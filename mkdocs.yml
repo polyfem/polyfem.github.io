@@ -1,0 +1,52 @@
+site_name: polyfem
+site_url: 'http://polyfem.github.io/polyfem/'
+repo_name: 'polyfem/polyfem'
+repo_url: 'https://github.com/polyfem/polyfem'
+edit_uri: '../polyfem.github.io/edit/docs/docs/'
+site_description: "Simple C++ FEM library"
+# strict: true
+docs_dir: 'docs'
+remote_branch: 'master'
+theme:
+  name: material
+  favicon: 'favicon.ico'
+  logo:
+    icon: ' '
+  palette:
+    primary: 'light green'
+    accent: 'green'
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/polyfem'
+markdown_extensions:
+  - codehilite
+  - footnotes
+  - admonition
+  - toc:
+      permalink: true
+  - markdown.extensions.smarty
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      repo_url_shortener: true
+      user: polyfem
+      repo: polyfem
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+nav:
+  - Home: index.md
