@@ -104,15 +104,17 @@ Each problem has a specific set of optional `problem_params` described here.
 **Time dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
-f_{2D}(x,y) = -[(y^3 + x^2 + xy)/20, (3x^4 + xy^2 + x)/20]<br/>
-f_{3D}(x,y,z) = -[(xy + x^2 + y^3 + 6z)/14, (zx - z^3 + xy^2 + 3x^4)/14, (xyz + y^2z^2 - 2x)/14]
+$\begin{align}
+f_{2D}(x,y) &= -\begin{bmatrix}(y^3 + x^2 + xy)/20\\ (3x^4 + xy^2 + x)/20\end{bmatrix}\\
+f_{3D}(x,y,z) &= -\begin{bmatrix}(xy + x^2 + y^3 + 6z)/14\\ (zx - z^3 + xy^2 + 3x^4)/14\\ (xyz + y^2z^2 - 2x)/14\end{bmatrix}
+\end{align}$
 
 ##### Cubic
 **Has exact solution**: true<br/>
 **Time dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
-f(x,y,z) = (2y-0.9)^4 + 0.1
+$f(x,y,z) = (2y-0.9)^4 + 0.1$
 
 ##### DrivenCavity
 **Has exact solution**: false<br/>
@@ -131,8 +133,10 @@ f(x,y,z) = (2y-0.9)^4 + 0.1
 **Time dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
-f_{2D}(x,y) = [(y^3 + x^2 + xy)/50, (3x^4 + xy^2 + x)/50]<br/>
-f_{3D}(x,y,z) = [(xy + x^2 + y^3 + 6z)/80, (xz - z^3 + xy^2 + 3x^4)/80, (xyz + y^2 z^2 - 2x)/80]
+$\begin{align}
+f_{2D}(x,y) &= \begin{bmatrix}(y^3 + x^2 + xy)/50\\ (3x^4 + xy^2 + x)/50\end{bmatrix}\\
+f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x^4)/80\\ (xyz + y^2 z^2 - 2x)/80\end{bmatrix}
+\end{align}$
 
 ##### ElasticZeroBC
 **Has exact solution**: false<br/>
@@ -210,8 +214,10 @@ f(x,y,z) = x
 **Time dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
-f_{2D}(x,y) = [-(y + x)/50, -(3x + y)/50]<br/>
-f_{3D}(x,y,z) = [-(y + x + z)/50, -(3x + y - z)/50, -(x + y - 2z)/50]
+$\begin{align}
+f_{2D}(x,y) &= \begin{bmatrix}-(y + x)/50\\ -(3x + y)/50\end{bmatrix}\\
+f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2z)/50\end{bmatrix}\\
+\end{align}$
 
 ##### MinSurf
 **Has exact solution**: false<br/>
@@ -267,23 +273,27 @@ f_{3D}(x,y,z) = [-(y + x + z)/50, -(3x + y - z)/50, -(x + y - 2z)/50]
 **Time dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
-f(x,y,z) = x^2
+$f(x,y,z) = x^2$
 
 ##### QuadraticElasticExact
 **Has exact solution**: true<br/>
 **Time dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
-f_{2D}(x,y) = [-(y^2 + x^2 + xy)/50, -(3x^2 + y)/50]<br/>
-f_{3D}(x,y,z) = [-(y^2 + x^2 + xy + yz)/50, -(3x^2 + y + z^2)/50, -(xz + y^2 - 2z)/50]
+$\begin{align}
+f_{2D}(x,y) &= \begin{bmatrix} -(y^2 + x^2 + xy)/50\\ -(3x^2 + y)/50\end{bmatrix}\\
+f_{3D}(x,y,z) &= \begin{bmatrix}-(y^2 + x^2 + xy + yz)/50\\ -(3x^2 + y + z^2)/50\\ -(xz + y^2 - 2z)/50\end{bmatrix}
+\end{align}$
 
 ##### Sine
 **Has exact solution**: true<br/>
 **Time dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
-f(x,y) = \sin(10x)\sin(10y)br/>
-f(x,y,z) = \sin(10x)\sin(10y)\sin(10z)<br/>
+$\begin{align}
+f(x,y) &= \sin(10x)\sin(10y)\\
+f(x,y,z) &= \sin(10x)\sin(10y)\sin(10z)
+\end{align}$
 
 ##### TestProblem
 **Has exact solution**: true<br/>
@@ -315,5 +325,7 @@ f(x,y,z) = \sin(10x)\sin(10y)\sin(10z)<br/>
 **Time dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
-f_{2D}(x,y) = (1 - x)  x^2 y (1-y)^2<br/>
-f_{3D}(x,y,z) = (1 - x)  x^2 y (1-y)^2 z (1 - z)
+$\begin{align}
+f_{2D}(x,y) &= (1 - x)  x^2 y (1-y)^2\\
+f_{3D}(x,y,z) &= (1 - x)  x^2 y (1-y)^2 z (1 - z)
+\end{align}$
