@@ -3,7 +3,7 @@ site_url: 'http://polyfem.github.io/polyfem/'
 repo_name: 'polyfem/polyfem'
 repo_url: 'https://github.com/polyfem/polyfem'
 edit_uri: '../polyfem.github.io/edit/docs/docs/'
-site_description: "Simple C++ FEM library"
+site_description: "A polyvalent C++ FEM library"
 # strict: true
 docs_dir: 'docs'
 remote_branch: 'master'
@@ -50,3 +50,5 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 nav:
   - Home: index.md
+  - Tutorial: tutorial.md
+  - Documentation: documentation.md
