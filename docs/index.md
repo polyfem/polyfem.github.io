@@ -41,7 +41,7 @@ Documentation
 License
 -------
 
-The code of PolyFEM itself is licensed under [MIT License](LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
+The code of PolyFEM itself is licensed under [MIT License](https://github.com/polyfem/polyfem/blob/master/LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
 
 Citation
 --------
