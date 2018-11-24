@@ -15,13 +15,13 @@ Then press the numbered button in sequence:
 1. Loads the mesh and normalized it
 1. Builds the FEM bases, you can change the order by changing discr. To enable *pref* or *spline* check the corresponding boxes (before pushing the button)
 1. Build a denser mesh for visualization purposes.
-1. Assembles the righ-hand side of the problem. You can change the problem with the problem drop-down menu
-1. Assembles the matrix. You can change the formulaiton by chaning the drop-down 1D nD Mixed form. The type of formulation depends on the problem. For instance Franke works only with scalar formulaitons, while Elastic only with tensor problems.
+1. Assembles the right-hand side of the problem. You can change the problem with the problem drop-down menu
+1. Assembles the matrix. You can change the formulation by changing the drop-down 1D nD Mixed form. The type of formulation depends on the problem. For instance Franke works only with scalar formulations, while Elastic only with tensor problems.
 1. Solve problem solves the problem.
 1. You can compute the error for problems with given exact solutions. In case of no exact solution, the program will compute the norms of the solutions
 ![Load mesh](img/t2.png)
 
-At the end you can press save VTU to save the `result.vtu` file in the binary directory. This file can be opeend with [Paraview](https://www.paraview.org/)
+At the end you can press save VTU to save the `result.vtu` file in the binary directory. This file can be opened with [Paraview](https://www.paraview.org/)
 
 ![Load mesh](img/t3.png)
 
@@ -29,7 +29,7 @@ At the end you can press save VTU to save the `result.vtu` file in the binary di
 JSON
 ----
 
-To run the previous experiemnt with a json file crease a `run.json` containing (refer to [documentation](documentation.md) for the full description):
+To run the previous experiment with a json file create a `run.json` containing (refer to [documentation](documentation.md) for the full description):
 
 ```json
 {
@@ -54,4 +54,4 @@ To run the previous experiemnt with a json file crease a `run.json` containing (
 }
 ```
 
-Then run `PolyFEM_bin --json run.json --cmd`. You can omit the `--cmd` argument to open the ui with the parameters.
+Then run `PolyFEM_bin --json run.json --cmd`. You can omit the `--cmd` argument to open the UI with the parameters.

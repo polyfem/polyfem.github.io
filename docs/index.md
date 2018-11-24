@@ -9,6 +9,9 @@ PolyFEM
 
 ![Logo](img/polyfem.png)
 
+[Repository](https://github.com/polyfem/polyfem)
+
+
 Compilation
 -----------
 
