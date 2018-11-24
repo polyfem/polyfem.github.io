@@ -7,15 +7,13 @@ PolyFEM
 [![Build status](https://ci.appveyor.com/api/projects/status/tseks5d0kydqhjot/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polyfem/branch/master)
 
 
-![Logo](img/polyfem.png)
-
-[Repository](https://github.com/polyfem/polyfem)
+[![Logo](img/polyfem.png)](https://github.com/polyfem/polyfem)
 
 
 Compilation
 -----------
 
-All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out of the box with CMake:
+Download the code from the [repository](https://github.com/polyfem/polyfem). All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out of the box with CMake:
 
     mkdir build
     cd build
