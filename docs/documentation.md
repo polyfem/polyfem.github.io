@@ -6,6 +6,7 @@ Complete example
 {
     "mesh": " ",                    "Mesh path"
     "bc_tag": " ",                  "Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)"
+    "boundary_id_threshold": -1,    "Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2"
     "normalize_mesh": true,         "Normalize mesh such that it fits in the [0,1] bounding box"
 
     "n_refs": 0,                    "Number of uniform refinement"
