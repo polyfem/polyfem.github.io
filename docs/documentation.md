@@ -89,7 +89,7 @@ Complete example
 * **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, Ogden, SaintVenant
 * **mixed_formulation**: IncompressibleLinearElasticity, Stokes
 
-* **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
+* **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
 
 
 * **solver_type**: Eigen::BiCGSTAB, Eigen::ConjugateGradient, Eigen::GMRES, Eigen::MINRES, Eigen::SimplicialLDLT, Eigen::SparseLU, Hypre,Pardiso
@@ -158,6 +158,35 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 **Form**: scalar<br/>
 **Description**: solves for the 2D and 3D Franke function
 
+
+### GenericScalar
+**Has exact solution**: false<br/>
+**Time dependent**: false<br/>
+**Form**: scalar<br/>
+**Description**: solves for generic tensor problem with zero rhs<br/>
+**Options**:
+```json
+"use_mixed_formulation": false,     "Use mixed formulation"
+"dirichlet_boundary": [             "List of Dirichelt boundaries"
+{
+    "id": 1,                        "Boundary id"
+    "value": 0                      "Boundary value"
+},
+{
+    "id": 2,                        "Boundary id"
+    "value": "sin(x)+y"             "Formulas are supported"
+}],
+"neumann_boundary": [               "List of Neumann boundaries"
+{
+    "id": 3,                        "Boundary id"
+    "value": 1,                     "Boundary value"
+},
+{
+    "id": 4,                        "Boundary id"
+    "value": "x^2"                  "Formulas are supported"
+}]
+```
+
 ### GenericTensor
 **Has exact solution**: false<br/>
 **Time dependent**: false<br/>
@@ -178,16 +207,16 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 },
 {
     "id": 2,                        "Boundary id"
-    "value": ["sin(x)+y", "z^2", 0],"Formulas are supported"
+    "value": ["sin(x)+y", "z^2", 0] "Formulas are supported"
 }],
 "neumann_boundary": [               "List of Neumann boundaries"
 {
     "id": 3,                        "Boundary id"
-    "value": [0, 0, 0],             "Boundary vector value"
+    "value": [0, 0, 0]              "Boundary vector value"
 },
 {
     "id": 4,                        "Boundary id"
-    "value": ["sin(x)+y", "z^2", 0],"Formulas are supported"
+    "value": ["sin(z)+y", "z^2", 0] "Formulas are supported"
 }]
 ```
 

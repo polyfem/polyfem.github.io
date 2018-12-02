@@ -65,7 +65,7 @@ Boundary Conditions
 For more advanced problems such as `GenericTensor`, `TorsionElastic`, or `DrivenCavity` the boundary conditions might be different for each boundary. For instance for the `TorsionElastic` problem you need to specify which part is fixed and which part moves. PolyFEM uses boundary tags to mark boundary primitives (edges in 2D and faces in 3D). By default:
 
 - in 2D all edges which barycenter is close up to 1e-7 to the left side of the bounding box gets tag 1, the right side gets 3, bottom 2, and top 4. Any other boundary gets 7.
-- in 3D the threshold is a bit larger (1e-2) and x-direction gets 1, 3, y-direction gets 2,4, and z-direction gets 5,6. . Any other boundary gets 7.
+- in 3D the threshold is a bit larger (1e-2) and x-direction gets 1, 3, y-direction gets 2, 4, and z-direction gets 5, 6. Any other boundary gets 7.
 
 You can also specify a file containing a list of integers per each edge/face of the mesh indicating the tag in the json value `bc_tag`.
 
@@ -124,6 +124,6 @@ For the 2 Dirichlet is a bit more complicated because we want reflective boundar
 
 Note that as value you can also specify an expression as string depending on x,y,z and PolyFEM will evaluate that expression on the edge/face.
 
-Since creating the file with association from boundary to id it is complicated, we also provide an application `bc_setter` to interactively *color* faces of 3D meshes and associate tags. By *shift* clicking you can color coplanar faces to assign and id. The UI also allow to specify the 3 values to assign to that boundary condition and choose between Dirichelt and Neumann. On save it will produce the txt file with the tags and a json file with the specified `problem_params`.
+Since creating the file with association from boundary to id it is complicated, we also provide an application `bc_setter` to interactively *color* faces of 3D meshes (or edges of 2D meshes) and associate tags. By *shift* clicking you can color coplanar faces to assign and id (*command* or *control* click colors only one face). The UI also allow to specify the 3 values (for scalar problem only one) to assign to that boundary condition and choose between Dirichelt and Neumann. On save it will produce the txt file with the tags to be used in `bc_tag` and a json file to set the `problem_params`. Note, if you selected the vector problem you need to use `"problem": "GenericTensor"` otherwise `"problem": "GenericScalar"`.
 
 ![bc_setter](img/bc_setter.png)
