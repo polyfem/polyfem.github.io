@@ -18,7 +18,7 @@ Then press the numbered button in sequence:
 1. Builds the FEM bases, you can change the order by changing discr. To enable *pref* or *spline* check the corresponding boxes (before pushing the button)
 1. Build a denser mesh for visualization purposes.
 1. Assembles the right-hand side of the problem. You can change the problem with the problem drop-down menu
-1. Assembles the matrix. You can change the formulation by changing the drop-down 1D nD Mixed form. The type of formulation depends on the problem. For instance Franke works only with scalar formulations, while Elastic only with tensor problems.
+1. Assembles the matrix. You can change the formulation by changing the drop-down 1D nD form. The type of formulation depends on the problem. For instance Franke works only with scalar formulations, while Elastic only with tensor problems.
 1. Solve problem solves the problem.
 1. You can compute the error for problems with given exact solutions. In case of no exact solution, the program will compute the norms of the solutions
 ![Load mesh](img/t2.png)

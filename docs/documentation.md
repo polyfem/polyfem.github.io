@@ -14,7 +14,6 @@ Complete example
 
     "scalar_formulation": "Laplacian",
     "tensor_formulation": "LinearElasticity",
-    "mixed_formulation": "Stokes",
 
     "count_flipped_els": false,     "Count (or not) flipped elements"
 
@@ -85,9 +84,8 @@ Complete example
 
 ### Optionals
 
-* **scalar_formulation**: Helmholtz, Laplacian
-* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, Ogden, SaintVenant
-* **mixed_formulation**: IncompressibleLinearElasticity, Stokes
+* **scalar_formulation**: Helmholtz, Laplacian, Bilaplacian (mixed)
+* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, Ogden, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed)
 
 * **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
 
@@ -121,7 +119,7 @@ $f(x,y,z) = (2y-0.9)^4 + 0.1$
 ### DrivenCavity
 **Has exact solution**: false<br/>
 **Time dependent**: false<br/>
-**Form**: mixed<br/>
+**Form**: tensor<br/>
 **Description**: solve for zero right-hand side, and 0.25 for boundary id 1<br/>
 
 ### Elastic
@@ -149,7 +147,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 ### Flow
 **Has exact solution**: false<br/>
 **Time dependent**: false<br/>
-**Form**: mixed<br/>
+**Form**: tensor<br/>
 **Description**: solve for zero right-hand side, [0.25, 0, 0] for boundary id 1/3, [0, 0, 0] for 7<br/>
 
 ### Franke
@@ -166,7 +164,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 **Description**: solves for generic tensor problem with zero rhs<br/>
 **Options**:
 ```json
-"use_mixed_formulation": false,     "Use mixed formulation"
+"rhs": 3                            "Rhs of the problem"
 "dirichlet_boundary": [             "List of Dirichelt boundaries"
 {
     "id": 1,                        "Boundary id"
@@ -194,7 +192,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 **Description**: solves for generic tensor problem with zero body forces<br/>
 **Options**:
 ```json
-"use_mixed_formulation": false,     "Use mixed formulation"
+"rhs": [1, 2, 3]                    "Rhs of the problem"
 "dirichlet_boundary": [             "List of Dirichelt boundaries"
 {
     "id": 1,                        "Boundary id"
@@ -335,7 +333,7 @@ f(x,y,z) &= \sin(10x)\sin(10y)\sin(10z)
 ### TimeDependentFlow
 **Has exact solution**: false<br/>
 **Time dependent**: true<br/>
-**Form**: mixed<br/>
+**Form**: tensor<br/>
 **Description**: solve for zero right-hand side, [0.25, 0, 0] for boundary id 1/3, [0, 0, 0] for 7, and zero inital velocity<br/>
 
 ### TimeDependentScalar
