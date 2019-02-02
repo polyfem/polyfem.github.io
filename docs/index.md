@@ -21,9 +21,12 @@ Download the code from the [repository](https://github.com/polyfem/polyfem). All
     make -j4
 
 On Linux `zenity` is required for the file dialog window to work. On macOS and Windows the native windows are used directly.
-The formula for higher order bases are computed at CMake time using an external python script. Consequently, PolyFEM requires a working installation of Python and some additional packages in order to build correctly:
 
-- `numpy` and `sympy`
+
+### Optional
+The formula for higher order bases are optionally computed at CMake time using an external python script. Consequently, PolyFEM might requires a working installation of Python and some additional packages in order to build correctly:
+
+- `numpy` and `sympy` (optional)
 - `quadpy` (optional)
 
 Usage
