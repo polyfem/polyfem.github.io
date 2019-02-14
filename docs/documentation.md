@@ -85,7 +85,7 @@ Complete example
 ### Optionals
 
 * **scalar_formulation**: Helmholtz, Laplacian, Bilaplacian (mixed)
-* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, Ogden, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed)
+* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed)
 
 * **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
 
@@ -94,6 +94,73 @@ Complete example
 * **nl_solver**: lbfgs, newton
 * **line_search**: armijo, armijo_alt, bisection, more_thuente
 
+
+Formulations
+------------
+
+List of possible formulations. The constants can be set in `params`. All formulations supports boundary conditions.
+
+### Scalar
+
+#### Laplacian
+**Constants**: none<br/>
+**Description**: solve for<br/>
+$-\Delta u = f$
+
+#### Bilaplacian (mixed)
+**Constants**: none<br/>
+**Description**: solve for<br/>
+$-\Delta^2 u = f$
+
+
+#### Helmholtz
+**Constants**: $k$<br/>
+**Description**: solve for<br/>
+$-\Delta u - k^2 u = f$
+
+
+### Tensor
+
+#### LinearElasticity
+**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
+**Description**: solve for<br/>
+$-\text{div}(\sigma[u]) = f \qquad \sigma[u] = 2 \mu  \epsilon[u]+ \lambda \text{tr}(\epsilon[u]) I \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)$
+
+
+#### HookeLinearElasticity
+**Constants**:  `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
+**Description**: solve for<br/>
+$-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C :  \epsilon[u] \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)$<br/>
+where $C$ is the elasticity tensor
+
+#### IncompressibleLinearElasticity (mixed)
+**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
+**Description**: solve for<br/>
+$\begin{align}
+-\text{div}(2\mu\epsilon[u] + p I) &= f\\
+\text{div}(u) - \lambda^{-1}p &= 0
+\end{align}$
+
+#### SaintVenant
+**Constants**: `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
+**Description**: solve for<br/>
+$-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C: \epsilon[u]  \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T \nabla u + \nabla u^T + \nabla u\right)$<br/>
+where $C$ is the elasticity tensor
+
+
+#### NeoHookean
+**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
+**Description**: solve for<br/>
+$-\text{div}(\sigma[u]) = f \quad \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \quad F[u] = \nabla u + I$
+
+
+#### Stokes (mixed)
+**Constants**: `viscosity` $\mu$<br/>
+**Description**: solve for<br/>
+$\begin{align}
+-\mu\Delta u + \nabla p &= f\\
+-\text{div}(u) &= 0
+\end{align}$
 
 Problems
 --------
