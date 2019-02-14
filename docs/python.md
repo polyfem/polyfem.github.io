@@ -5,7 +5,8 @@ Python bindings
 	The python bindings are in alpha (or pre alpha). Expect a lot of API changes and possible bugs. Use at your own peril!
 
 I am making efforts to provide a simple python interface to Polyfem.
-For doing so I am maintaining  a *conda* package which can be easily installed. Note that the conda deployment is slow and this tutorial will follow the deployment version.
+For doing so I am maintaining  a *conda* package which can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
+Note that the conda deployment is slow and this tutorial will follow the deployment version.
 
 If you hare in a hurry for the juicy latest feature you can clone the repository [Polyfem-python](https://github.com/polyfem/polyfem-python) and use `pip` to install:
 ```
