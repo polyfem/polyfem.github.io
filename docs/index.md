@@ -48,7 +48,7 @@ If you use PolyFEM in your project, please consider citing our work:
 
 ```bibtex
 @misc{polyfem,
-  author = {Teseo Schneider Jérémie Dumas and Xifeng Gao},
+  author = {Teseo Schneider and Jérémie Dumas and Xifeng Gao and Denis Zorin and Daniele Panozzo},
   title = {{Polyfem}},
   howpublished = "\url{https://polyfem.github.io/}",
   year = {2019},
@@ -71,6 +71,8 @@ If you use PolyFEM in your project, please consider citing our work:
 
 Acknowledgements & Founding
 --------
+The software is being developed in the [Geometric Computing Lab](https://cims.nyu.edu/gcl/index.html) at NYU Courant Institute of Mathematical Sciences
+
 
 This work was partially supported by:
 
