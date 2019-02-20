@@ -54,3 +54,4 @@ nav:
   - Documentation: documentation.md
   - Python [alpha]: python.md
   - Jupyter examples: python_examples.md
+  - Python docs: polyfempy_doc.md

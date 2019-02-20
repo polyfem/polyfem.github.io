@@ -1,0 +1,285 @@
+## class Settings
+
+Class that encodes the settings of the solver, it nodels the input json file
+
+**`serialize()`**
+
+stringygied json description of this class, used to run the solver
+
+**`set_advanced_option(key, value)`**
+
+Used to set any advanced option not present in this class, for instance set_advanced_option("use_spline",True), see https://polyfem.github.io/documentation/ for full list
+
+**`set_isolines_export_path(path)`**
+
+Sets the path to export the isolines of the solution
+
+**`set_material_params(name, value)`**
+
+set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/documentation/#formulations for full list
+
+**`set_problem(problem)`**
+
+Sets the problem, use any of the problems in Problems
+
+**`set_solution_export_path(path)`**
+
+Sets the path to save the solution
+
+**`set_vtu_export_path(path, bounda_only=False)`**
+
+Sets the path to export a vtu file with the results, use bounda_only to export only one layer of the mesh in 3d
+
+**`set_wireframe_export_path(path)`**
+
+Sets the path to export a wireframe of the mesh
+
+
+
+
+## class DrivenCavity
+
+Classical driven cavity problem in fluid simulation
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class Flow
+
+Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes and the list of obstacle sidesets. https://polyfem.github.io/documentation/#flow
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class Franke
+
+Franke problem with exact solution https://polyfem.github.io/documentation/#franke
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class GenericScalar
+
+Generic scalar problem https://polyfem.github.io/documentation/#genericscalar
+
+**`add_dirichlet_value(id, value)`**
+
+add the Dirichlet value value for the sideset id
+
+**`add_neumann_value(id, value)`**
+
+add the Neumann value value for the sideset id
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class GenericTensor
+
+Generic tensor problem https://polyfem.github.io/documentation/#generictensor
+
+**`add_dirichlet_value(id, value, is_dirichlet_dim=None)`**
+
+add the Dirichlet value value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem. is_dirichlet_dim is a vector of boolean specifying which dimentions are fixed.
+
+**`add_neumann_value(id, value)`**
+
+add the Neumann value value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class Gravity
+
+time dependent gravity problem https://polyfem.github.io/documentation/#gravity
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class Torsion
+
+3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary https://polyfem.github.io/documentation/#torsionelastic
+
+**`name()`**
+
+**`params()`**
+
+
+
+
+## class ScalarFormulations
+
+Bilaplacian = 'Bilaplacian'
+
+Helmholtz = 'Helmholtz'
+
+Laplacian = 'Laplacian'
+
+
+
+
+## class Solver
+
+Polyfem solver
+
+**`compute_errors()`**
+
+compute the error
+
+**`export_data()`**
+
+exports all data specified in the settings
+
+**`export_vtu(path: str)`**
+
+exports the solution as vtu
+
+**`export_wire(path: str, isolines: bool = False)`**
+
+exports wireframe of the mesh
+
+**`get_log() -> str`**
+
+gets the log as json
+
+**`get_pressure() -> numpy.ndarray`**
+
+returns the pressure
+
+**`get_sampled_connectivity_frames() -> List[numpy.ndarray]`**
+
+returns the connectivity frames for a time dependent problem on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_mises(boundary_only: bool = False) -> numpy.ndarray`**
+
+returns the von mises stresses on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_mises_avg(boundary_only: bool = False) -> tuple`**
+
+returns the von mises stresses and stress tensor averaged around a vertex on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_mises_avg_frames() -> List[numpy.ndarray]`**
+
+returns the von mises stresses per frame averaged around a vertex on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_mises_frames() -> List[numpy.ndarray]`**
+
+returns the von mises stresses frames on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_points_frames() -> List[numpy.ndarray]`**
+
+returns the points frames for a time dependent problem on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_solution(boundary_only: bool = False) -> tuple`**
+
+returns the solution on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_sampled_solution_frames() -> List[numpy.ndarray]`**
+
+returns the solution frames for a time dependent problem on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`get_solution() -> numpy.ndarray`**
+
+returns the solution
+
+**`get_stresses(boundary_only: bool = False) -> numpy.ndarray`**
+
+returns the stress tensor on a densly sampled mesh, use 'vismesh_rel_area' to control density
+
+**`load_mesh(*args, **kwargs)`**
+
+**`load_mesh()`**
+
+Loads a mesh from the 'mesh' field of the json and 'bc_tag' if any bc tags
+
+**`load_mesh(path: str)`**
+
+Loads a mesh from the path and 'bc_tag' from the json if any bc tags
+
+**`load_mesh(path: str, bc_tag_path: str)`**
+
+Loads a mesh and bc_tags from path
+
+**`set_boundary_side_set_from_bary(boundary_marker: Callable[[numpy.ndarray[float64[1, n]]], int])`**
+
+Sets the side set for the boundary conditions, the functions takes the barycenter of the boundary (edge or face)
+
+**`set_boundary_side_set_from_bary_and_boundary(boundary_marker: Callable[[numpy.ndarray[float64[1, n]], bool], int])`**
+
+Sets the side set for the boundary conditions, the functions takes the barycenter of the boundary (edge or face) and a flag that says if the element is boundary
+
+**`set_boundary_side_set_from_v_ids(boundary_marker: Callable[[List[int], bool], int])`**
+
+Sets the side set for the boundary conditions, the functions takes the sorted list of vertex id and a flag that says if the element is boundary
+
+**`set_log_level(log_level: int)`**
+
+sets polyfem log level, valid value between 0 (all logs) and 6 (no logs)
+
+**`set_mesh(vertices: numpy.ndarray, connectivity: numpy.ndarray)`**
+
+Loads a mesh from vertices and connectivity
+
+**`set_rhs(*args, **kwargs)`**
+
+**`set_rhs(path: str)`**
+
+Loads the rhs from a file
+
+**`set_rhs(matrix: numpy.ndarray)`**
+
+Sets the rhs
+
+**`settings(json: str)`**
+
+load PDE and problem parameters from the settings
+
+**`solve()`**
+
+solve the pde
+
+
+
+
+## class TensorFormulations
+
+HookeLinearElasticity = 'HookeLinearElasticity'
+
+IncompressibleLinearElasticity = 'IncompressibleLinearElasticity'
+
+LinearElasticity = 'LinearElasticity'
+
+NeoHookean = 'NeoHookean'
+
+Ogden = 'Ogden'
+
+SaintVenant = 'SaintVenant'
+
+Stokes = 'Stokes'
+
+
+
+
