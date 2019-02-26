@@ -2,10 +2,17 @@ Python bindings
 ===============
 
 !!! danger
-	The python bindings are in alpha (or pre alpha). Expect a lot of API changes and possible bugs. Use at your own peril!
+	The python bindings are in alpha. Expect a lot of API changes and possible bugs. Use at your own peril!
+
+![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)
+![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)
+![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)
+
 
 I am making efforts to provide a simple python interface to Polyfem.
+
 For doing so I am maintaining  a *conda* package which can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
+
 Note that the conda deployment is slow and this tutorial will follow the deployment version.
 
 If you hare in a hurry for the juicy latest feature you can clone the repository [Polyfem-python](https://github.com/polyfem/polyfem-python) and use `pip` to install:
@@ -20,9 +27,15 @@ for testing.
 
 Note that the folders tests contain some tests which can be used as documentation.
 
+The documentation can be found [here](polyfempy_doc.md).
 
 Examples
 --------
+
+For more and nice interactive example go to the [notebook](python_examples.md)!
+
+
+### Bended bar
 
 ```python
 import polyfempy as pf
@@ -73,8 +86,8 @@ mises, _ = solver.get_sampled_mises_avg()
 ```
 
 
-Plotting
---------
+### Plotting
+
 There are many python libraries for plotting, I created a simple function to display the results in 3D with [plotly](https://plot.ly/). It can be found in `tests/utils.py`
 ```python
 import plotly.offline as plotly
@@ -116,8 +129,7 @@ def plot(vertices, connectivity, function):
 ```
 
 
-Plate hole example
-------------------
+### Plate hole example
 
 Here is the python version of the plate with hole example explained [here](https://polyfem.github.io/tutorial/#boundary-conditions)
 ```python
@@ -172,8 +184,8 @@ plot(vertices, tets, mises)
 ```
 
 
-Torsion
--------
+### Torsion
+
 A non-linear torsion example. Note that it is really similar to the above one.
 ```python
 import polyfempy as pf

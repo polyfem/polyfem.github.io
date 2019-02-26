@@ -209,19 +209,17 @@ returns the solution
 
 returns the stress tensor on a densly sampled mesh, use 'vismesh_rel_area' to control density
 
-**`load_mesh(*args, **kwargs)`**
-
-**`load_mesh()`**
-
-Loads a mesh from the 'mesh' field of the json and 'bc_tag' if any bc tags
-
-**`load_mesh(path: str)`**
+**`load_mesh_from_path(path: str)`**
 
 Loads a mesh from the path and 'bc_tag' from the json if any bc tags
 
-**`load_mesh(path: str, bc_tag_path: str)`**
+**`load_mesh_from_path_and_tags(path: str, bc_tag_path: str)`**
 
 Loads a mesh and bc_tags from path
+
+**`load_mesh_from_settings()`**
+
+Loads a mesh from the 'mesh' field of the json and 'bc_tag' if any bc tags
 
 **`set_boundary_side_set_from_bary(boundary_marker: Callable[[numpy.ndarray[float64[1, n]]], int])`**
 
@@ -243,15 +241,13 @@ sets polyfem log level, valid value between 0 (all logs) and 6 (no logs)
 
 Loads a mesh from vertices and connectivity
 
-**`set_rhs(*args, **kwargs)`**
-
-**`set_rhs(path: str)`**
-
-Loads the rhs from a file
-
 **`set_rhs(matrix: numpy.ndarray)`**
 
 Sets the rhs
+
+**`set_rhs_from_path(path: str)`**
+
+Loads the rhs from a file
 
 **`settings(json: str)`**
 
@@ -273,8 +269,6 @@ IncompressibleLinearElasticity = 'IncompressibleLinearElasticity'
 LinearElasticity = 'LinearElasticity'
 
 NeoHookean = 'NeoHookean'
-
-Ogden = 'Ogden'
 
 SaintVenant = 'SaintVenant'
 
