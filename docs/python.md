@@ -4,9 +4,9 @@ Python bindings
 !!! danger
 	The python bindings are in alpha. Expect a lot of API changes and possible bugs. Use at your own peril!
 
-![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)
-![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)
-![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)
+[![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)](https://anaconda.org/conda-forge/polyfempy)
 
 
 I am making efforts to provide a simple python interface to Polyfem.
