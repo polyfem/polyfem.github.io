@@ -29,7 +29,23 @@ Note that the folders tests contain some tests which can be used as documentatio
 
 The documentation can be found [here](polyfempy_doc.md).
 
-Examples
+Tutorial
 --------
+
+Polyfempy relies 3 main objects:
+1. `Settings` that contains the main settings such discretization order (e.g., $P_1$ or $P_2$), material patameters, formulation, etc.
+2. `Problem` that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as `DrivenCavity`, or generic problems, such as `GenericTensor`.
+3. `Solver` that is the actual FEM solver.
+
+A typical use of Polyfempy is
+```python
+settings = polyfempy.Settings()
+# set necessary settings, e.g. settings.discr_order = 2
+
+problem = polyfempy.GenericTensor() # or any other problem
+# set problem related data, e.g. problem.set_displacement(1, [0, 0], [True, False])
+
+settings.set_problem(problem)
+```
 
 For more and nice interactive example go to the [notebook](python_examples.md)!
