@@ -46,6 +46,16 @@ problem = polyfempy.GenericTensor() # or any other problem
 # set problem related data, e.g. problem.set_displacement(1, [0, 0], [True, False])
 
 settings.set_problem(problem)
+
+#now we can create a solver and solve
+solver = polyfempy.Solver()
+
+solver.settings(settings)
+solver.load_mesh_from_path(mesh_path)
+
+solver.solve()
 ```
+
+Note that the solution of a FEM solver is the coefficients you need to multiply the bases with. These coeffiecients are unrelated with the mesh vertices because of reordering or high-order bases. For instance $P_2$ bases have additional nodes which do not depend on the mesh. For this reason Polyfempy uses a *visualization mesh* where the solution is sampled at the vertices. This mesh has two advantages: 1. it solves the problem of reordering and additional nodes in the same way; 2. it provides a true visualization for high order solution by densly sampling each element. To control the resolution of the visualization mesh use `settings.vismesh_rel_area`.
 
 For more and nice interactive example go to the [notebook](python_examples.md)!
