@@ -77,3 +77,5 @@ This mesh has two advantages:
 To control the resolution of the visualization mesh use `settings.vismesh_rel_area`.
 
 For more details and nice interactive example go to the [notebook tutorial](python_examples.md)!
+
+Or just play with the tutorial in [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb).
