@@ -33,9 +33,10 @@ Tutorial
 --------
 
 Polyfem relies 3 main objects:
-1. `Settings` that contains the main settings such discretization order (e.g., $P_1$ or $P_2$), material parameters, formulation, etc.
-2. `Problem` that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as `DrivenCavity`, or generic problems, such as `GenericTensor`.
-3. `Solver` that is the actual FEM solver.
+
+ 1. `Settings` that contains the main settings such discretization order (e.g., $P_1$ or $P_2$), material parameters, formulation, etc.
+ 2. `Problem` that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as `DrivenCavity`, or generic problems, such as `GenericTensor`.
+ 3. `Solver` that is the actual FEM solver.
 
 The usage of specific problems is indented for benchmarking, in general you want to use the `GenericTensor` for tensor-based PDEs (e.g., elasticity) or `GenericScalar` for scalar PDEs (e.g., Poisson). 
 
