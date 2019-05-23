@@ -52,6 +52,7 @@ nav:
   - Home: index.md
   - Tutorial: tutorial.md
   - Documentation: documentation.md
+  - Libary Usage: library.md
   - Python [beta]: python.md
   - Jupyter tutorial: python_examples.md
   - Python docs: polyfempy_doc.md
