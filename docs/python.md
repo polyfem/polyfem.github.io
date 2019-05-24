@@ -32,7 +32,7 @@ The documentation can be found [here](polyfempy_doc.md).
 Tutorial
 --------
 
-Polyfem relies 3 main objects:
+Polyfem relies on 3 main objects:
 
  1. `Settings` that contains the main settings such discretization order (e.g., $P_1$ or $P_2$), material parameters, formulation, etc.
  2. `Problem` that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as `DrivenCavity`, or generic problems, such as `GenericTensor`.
