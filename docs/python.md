@@ -7,6 +7,7 @@ Python bindings
 [![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
 [![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)](https://anaconda.org/conda-forge/polyfempy)
 [![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb)
 
 
 I am making efforts to provide a simple python interface to Polyfem.
@@ -77,6 +78,10 @@ This mesh has two advantages:
 
 To control the resolution of the visualization mesh use `settings.vismesh_rel_area`.
 
-For more details and nice interactive example go to the [notebook tutorial](python_examples.md)!
 
-Or just play with the tutorial in [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb).
+Notebook
+--------
+
+For more details and nice interactive example go to the [notebook tutorial](python_examples.ipynb)!
+
+Or just play with the tutorial in [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb)
