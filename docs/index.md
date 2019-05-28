@@ -1,15 +1,38 @@
 PolyFEM
 =======
 
-*A polyvalent C++ FEM library.*
+*A polyvalent C++ and Python FEM library.*
+
+![Logo](https://polyfem.github.io/img/polyfem.png)
+
+
+PolyFEM is a simple C++ and Python finite element library. We provide a wide set of common PDEs including:
+
+ - Laplace
+ - Helmholtz
+ - Linear Elasticity
+ - Saint-Venant Elasticity
+ - Neo-Hookean Elasticity
+ - Stokes
+
+PolyFEM simplicity lies on the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](documentation.md) or trough the [Setting class](polyfempy_doc.md) in python.
+
+
+For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up to 4, and integrate state-of-the-art techniques such as the adaptive $p$-refinement presented in "Decoupling Simulation Accuracy from Mesh Quality" or the spline and polygonal bases in "Poly-Spline Finite-Element Method".
+
+The library is actively used in our research so expect frequent updates, fixes, and new features!
+
+
+C++
+----
 
 [![Build Status](https://travis-ci.com/polyfem/polyfem.svg?branch=master)](https://travis-ci.com/polyfem/polyfem)
 [![Build status](https://ci.appveyor.com/api/projects/status/tseks5d0kydqhjot/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polyfem/branch/master)
 
-![Logo](https://polyfem.github.io/img/polyfem.png)
 
-Compilation
------------
+For more details refer to the [C++ section](cxx_index.md)
+
+### Compilation
 
 All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out of the box with CMake:
 
@@ -21,25 +44,41 @@ All the C++ dependencies required to build the code are included. It should work
 On Linux `zenity` is required for the file dialog window to work. On macOS and Windows the native windows are used directly.
 
 
-### Optional
-The formula for higher order bases are optionally computed at CMake time using an external python script. Consequently, PolyFEM might requires a working installation of Python and some additional packages in order to build correctly:
-
-- `numpy` and `sympy` (optional)
-- `quadpy` (optional)
-
-Usage
------
+### Usage
 
 The main executable, `./PolyFEM_bin`, can be called with a GUI or through a command-line interface. Simply run:
 
     ./PolyFEM_bin
 
-A more detailed documentation can be found on the [website](https://polyfem.github.io/).
 
-License
--------
+Python
+------
 
-The code of PolyFEM itself is licensed under [MIT License](LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
+[![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb)
+
+For more details refer to the [Python section](python.md)
+
+### Installation
+
+I am making efforts to provide a simple python interface to Polyfem.
+
+For doing so I am maintaining  a *conda* package which can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
+
+```shell
+conda install -c conda-forge polyfempy
+```
+
+### Usage
+Simply import the package!
+
+```python
+import polyfempy
+```
+
+
 
 Citation
 --------
@@ -97,3 +136,9 @@ This work was partially supported by:
 * the SNSF grant P2TIP2_175859
 * Adobe Research
 * nTopology
+
+
+License
+-------
+
+The code of PolyFEM itself is licensed under [MIT License](LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
