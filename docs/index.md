@@ -23,10 +23,12 @@ For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up 
 The library is actively used in our research so expect frequent updates, fixes, and new features!
 
 
-New Feature
------------
-PolyFEM now support high-order geometric maps!
-It has been recently used to run simulation on the curved meshes in "TriWild: Robust Triangulation with Curve Constraints"!
+News
+----
+- PolyFEM as been used in "A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis"! Check the [interactive plots](https://polyfem.github.io/tet-vs-hex/plot.html)!
+- PolyFEM now support high-order geometric maps! Check the SIGGRAPH paper "TriWild: Robust Triangulation with Curve Constraints" for more details!
+- PolyFEM has a [python interface](python.md)!
+- PolyFEM can do adaptive *a priori* $p$-refinement! Check the SIGGRAPH paper "Decoupling Simulation Accuracy from Mesh Quality" for more details!
 
 
 
