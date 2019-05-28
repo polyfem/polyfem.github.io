@@ -23,6 +23,14 @@ For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up 
 The library is actively used in our research so expect frequent updates, fixes, and new features!
 
 
+New Feature
+-----------
+PolyFEM now support high-order geometric maps!
+It has been recently used to run simulation on the curved meshes in "TriWild: Robust Triangulation with Curve Constraints"!
+
+
+
+
 C++
 ----
 
