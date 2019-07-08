@@ -25,6 +25,7 @@ The library is actively used in our research so expect frequent updates, fixes, 
 
 News
 ----
+- PolyFEM is now triangle and tetgen free. Stay tuned for the release of v0.5 in python with a new interface to high-order meshes and [meshplot](https://anaconda.org/conda-forge/meshplot) for the fast 3D plots!
 - PolyFEM as been used in "A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis"! Check the [interactive plots](https://polyfem.github.io/tet-vs-hex/plot.html)!
 - PolyFEM now support high-order geometric maps! Check the SIGGRAPH paper "TriWild: Robust Triangulation with Curve Constraints" for more details!
 - PolyFEM has a [python interface](python.md)!

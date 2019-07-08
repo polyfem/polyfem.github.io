@@ -50,7 +50,7 @@ Classical driven cavity problem in fluid simulation
 
 ## class Flow
 
-Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes and the list of obstacle sidesets. https://polyfem.github.io/documentation/#flow
+Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. https://polyfem.github.io/documentation/#flow
 
 **`name()`**
 
@@ -104,6 +104,18 @@ add the Neumann value value for the sideset id. Note the value must be a vector 
 **`name()`**
 
 **`params()`**
+
+**`set_displacement(id, value, is_dim_fixed=None)`**
+
+set the displacement value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`set_force(id, value)`**
+
+set the force value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`set_velocity(id, value, is_dim_fixed=None)`**
+
+set the velocity value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
 
 
 
@@ -161,6 +173,10 @@ exports the solution as vtu
 
 exports wireframe of the mesh
 
+**`get_boundary_sidesets() -> tuple`**
+
+exports get the boundary sideset, edges in 2d or trangles in 3d
+
 **`get_log() -> str`**
 
 gets the log as json
@@ -209,7 +225,7 @@ returns the solution
 
 returns the stress tensor on a densly sampled mesh, use 'vismesh_rel_area' to control density
 
-**`load_mesh_from_path(path: str)`**
+**`load_mesh_from_path(path: str, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)`**
 
 Loads a mesh from the path and 'bc_tag' from the json if any bc tags
 
@@ -233,6 +249,10 @@ Sets the side set for the boundary conditions, the functions takes the barycente
 
 Sets the side set for the boundary conditions, the functions takes the sorted list of vertex id and a flag that says if the element is boundary
 
+**`set_high_order_mesh(vertices: numpy.ndarray, connectivity: numpy.ndarray, nodes_pos: numpy.ndarray, nodes_indices: List[List[int]])`**
+
+Loads an high order mesh from vertices, connectivity, nodes, and node indices mapping element to nodes
+
 **`set_log_level(log_level: int)`**
 
 sets polyfem log level, valid value between 0 (all logs) and 6 (no logs)
@@ -249,7 +269,7 @@ Sets the rhs
 
 Loads the rhs from a file
 
-**`settings(json: str)`**
+**`settings(json: object)`**
 
 load PDE and problem parameters from the settings
 
@@ -273,6 +293,11 @@ NeoHookean = 'NeoHookean'
 SaintVenant = 'SaintVenant'
 
 Stokes = 'Stokes'
+
+
+
+
+## class ostream_redirect
 
 
 

@@ -2,5 +2,5 @@ channels:
   - conda-forge
 dependencies:
   - numpy
+  - meshplot
   - polyfempy
-  - plotly
