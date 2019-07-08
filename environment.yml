@@ -3,4 +3,5 @@ channels:
 dependencies:
   - numpy
   - meshplot
+  - wildmeshing
   - polyfempy
