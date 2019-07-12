@@ -1,10 +1,59 @@
+## class Problem
+
+Generic problem problem, scalar or tensor depending on the pde. Warning, this problem needs to be used with the `set_pde` function in settings
+
+**`add_dirichlet_value(id, value, is_dirichlet_dim=None)`**
+
+add the Dirichlet value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem. is_dirichlet_dim is a vector of boolean specifying which dimentions are fixed, only for vector-based problems.
+
+**`add_neumann_value(id, value)`**
+
+add the Neumann value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem
+
+**`params()`**
+
+**`set_displacement(id, value, is_dim_fixed=None)`**
+
+set the displacement value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`set_force(id, value)`**
+
+set the force value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`set_velocity(id, value, is_dim_fixed=None)`**
+
+set the velocity value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem
+
+**`set_x_symmetric(id)`**
+
+x coorinate is fixed, y is allowed to move (Neumann)
+
+**`set_xy_symmetric(id)`**
+
+xy coorinates are fixed, z is allowed to move (Neumann)
+
+**`set_xz_symmetric(id)`**
+
+xz coorinates are fixed, y is allowed to move (Neumann)
+
+**`set_y_symmetric(id)`**
+
+y coorinate is fixed, x is allowed to move (Neumann)
+
+**`set_yz_symmetric(id)`**
+
+yz coorinates are fixed, x is allowed to move (Neumann)
+
+
+
+
 ## class Settings
 
-Class that encodes the settings of the solver, it nodels the input json file
+Class that encodes the settings of the solver, it models the input json file
 
 **`serialize()`**
 
-stringygied json description of this class, used to run the solver
+stringyfied json description of this class, used to run the solver
 
 **`set_advanced_option(key, value)`**
 
@@ -18,9 +67,13 @@ Sets the path to export the isolines of the solution
 
 set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/documentation/#formulations for full list
 
+**`set_pde(pde)`**
+
+Sets the PDE to solve, use any of the polyfempy.PDEs
+
 **`set_problem(problem)`**
 
-Sets the problem, use any of the problems in Problems
+Sets the problem, use any of the problems in Problems or the Problem
 
 **`set_solution_export_path(path)`**
 
@@ -138,6 +191,33 @@ time dependent gravity problem https://polyfem.github.io/documentation/#gravity
 **`name()`**
 
 **`params()`**
+
+
+
+
+## class PDEs
+
+List of supported partial differential equations
+
+Bilaplacian = 'Bilaplacian'
+
+Helmholtz = 'Helmholtz'
+
+HookeLinearElasticity = 'HookeLinearElasticity'
+
+IncompressibleLinearElasticity = 'IncompressibleLinearElasticity'
+
+Laplacian = 'Laplacian'
+
+LinearElasticity = 'LinearElasticity'
+
+NeoHookean = 'NeoHookean'
+
+NonLinearElasticity = 'NonLinearElasticity'
+
+SaintVenant = 'SaintVenant'
+
+Stokes = 'Stokes'
 
 
 
@@ -290,14 +370,11 @@ LinearElasticity = 'LinearElasticity'
 
 NeoHookean = 'NeoHookean'
 
+NonLinearElasticity = 'NonLinearElasticity'
+
 SaintVenant = 'SaintVenant'
 
 Stokes = 'Stokes'
-
-
-
-
-## class ostream_redirect
 
 
 

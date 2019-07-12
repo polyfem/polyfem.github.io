@@ -4,6 +4,7 @@
 *.code-workspace
 
 .ipynb_checkpoints
+.vscode
 
 plane_hole.obj
 plane_hole.svg

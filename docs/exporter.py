@@ -70,7 +70,6 @@ while not packages.empty():
 
 		continue
 
-
 	lines = lines.replace("pybind11_builtins.pybind11_object", "")
 	lines = lines.replace("builtins.object", "")
 	lines = lines.replace("|", "")
@@ -91,6 +90,7 @@ while not packages.empty():
 
 	for line in iter(lines.splitlines()):
 		line = line.strip()
+
 		if skip_next:
 			skip_next = False
 			continue
@@ -129,7 +129,7 @@ while not packages.empty():
 		if skipping:
 			continue
 
-		if re.match(r'\w+\(...\)', line):
+		if re.match(r'\w+\(\.\.\.\)', line):
 			next_mark = True
 			continue
 
@@ -147,9 +147,6 @@ while not packages.empty():
 
 		if "## class " in line:
 			line = line.replace(package + " = ", "")
-
-
-
 
 		tmp += line + "\n\n"
 
