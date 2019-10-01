@@ -81,6 +81,7 @@ while not packages.empty():
 	lines = lines.replace(" -> None", "")
 	lines = lines.replace("[float64[m, n]]", "")
 	lines = lines.replace("[int32[m, n]]", "")
+	lines = lines.replace("numpy.ndarray", "array")
 
 	tmp = ""
 
@@ -122,7 +123,10 @@ while not packages.empty():
 		if "-----------------------------" in line:
 			continue
 
-		if re.match(r"__\w+", line):
+		if "__init__" not in line and re.match(r"__\w+", line):
+			skip_next = True
+			continue
+		if "params()" in line or "get_pde(pde)" in line or "get_problem(problem)" in line or "get_problem()" in line or "name()" in line or "__init__()" in line or "__init__(/, *args, **kwargs)" in line:
 			skip_next = True
 			continue
 
@@ -143,7 +147,11 @@ while not packages.empty():
 
 		if next_mark or re.match(r'\w+\(.*\)', line):
 			next_mark = False
-			line = "**`" + line + "`**"
+			xxx = line
+			if "__init__" in line:
+				line = line.replace("__init__", "init")
+			line = "### " + line[0:line.find('(')] +"\n"
+			line += "`" + xxx + "`"
 
 		if "## class " in line:
 			line = line.replace(package + " = ", "")

@@ -9,7 +9,7 @@ docs_dir: 'docs'
 remote_branch: 'master'
 theme:
   name: material
-  favicon: 'favicon.ico'
+  favicon: 'xxx.ico'
   logo:
     icon: ' '
   palette:
