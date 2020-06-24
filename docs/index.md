@@ -14,6 +14,7 @@ PolyFEM is a simple C++ and Python finite element library. We provide a wide set
  - Saint-Venant Elasticity
  - Neo-Hookean Elasticity
  - Stokes
+ - Navier Stokes [beta]
 
 PolyFEM simplicity lies on the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](documentation.md) or trough the [Setting class](polyfempy_doc.md) in python.
 
@@ -22,33 +23,32 @@ For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up 
 
 The library is actively used in our research so expect frequent updates, fixes, and new features!
 
-
 News
 ----
-- Bindings v0.5.2 with a new more pythonic interface, support for function in the right-hand side and exact solution
+
+- We finally extracted the solvers from PolyFEM. You can now use the wrappers independently, check the [PolySolve repo](https://github.com/polyfem/polysolve).
+- PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [Eurographics course](https://geometryprocessing.github.io/blackbox-computing-python/).
+- Bindings v0.5.2 with a new more pythonic interface, support for function in the right-hand side and exact solution.
 - PolyFEM is being used in biology! Check the [paper](https://pubs.acs.org/doi/10.1021/acs.nanolett.9b01505) or the [project page](https://cellogram.github.io)!
-- PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [SIGGRAPH course](https://geometryprocessing.github.io/geometric-computing-python/) (07/30/2019)
+- PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [SIGGRAPH course](https://geometryprocessing.github.io/geometric-computing-python/) (07/30/2019).
 - PolyFEM is now triangle and tetgen free. Stay tuned for the release of v0.5 in python with a new interface to high-order meshes and [meshplot](https://skoch9.github.io/meshplot) for the fast 3D plots!
 - PolyFEM as been used in "A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis"! Check the [interactive plots](https://polyfem.github.io/tet-vs-hex/plot.html)!
 - PolyFEM now support high-order geometric maps! Check the SIGGRAPH paper "TriWild: Robust Triangulation with Curve Constraints" for more details!
 - PolyFEM has a [python interface](python.md)!
 - PolyFEM can do adaptive *a priori* $p$-refinement! Check the SIGGRAPH paper "Decoupling Simulation Accuracy from Mesh Quality" for more details!
 
-
-
-
-C++
+PolyFEM in C++
 ----
 
 [![Build Status](https://travis-ci.com/polyfem/polyfem.svg?branch=master)](https://travis-ci.com/polyfem/polyfem)
 [![Build status](https://ci.appveyor.com/api/projects/status/tseks5d0kydqhjot/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polyfem/branch/master)
 
-
 For more details refer to the [C++ section](cxx_index.md)
+
 
 ### Compilation
 
-All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out of the box with CMake:
+All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out-of-the-box with CMake:
 
     mkdir build
     cd build
@@ -65,7 +65,7 @@ The main executable, `./PolyFEM_bin`, can be called with a GUI or through a comm
     ./PolyFEM_bin
 
 
-Python
+PolyFEM in Python
 ------
 
 [![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
@@ -92,7 +92,10 @@ Simply import the package!
 import polyfempy
 ```
 
+PolySolve
+---------
 
+PolyFEM heavily depends on external libraries for solving linear system. If you need a linear system wrapper based on Eigen (but do not need the finite element setup) you use [PolySolve](solvers.md).
 
 Citation
 --------
@@ -137,7 +140,7 @@ If you use PolyFEM in your project, please consider citing our work:
 ```
 
 Acknowledgements & Funding
---------
+--------------------------
 The software is being developed in the [Geometric Computing Lab](https://cims.nyu.edu/gcl/index.html) at NYU Courant Institute of Mathematical Sciences
 
 

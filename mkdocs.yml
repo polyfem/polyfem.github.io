@@ -55,12 +55,14 @@ extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 nav:
   - Home: index.md
-  - C++:
-    - Home: cxx_index.md
-    - Tutorial: tutorial.md
-    - Documentation: library.md
-    - JSON api: documentation.md
-  - Python [beta]:
-    - Home: python.md
-    - Jupyter tutorial: python_examples.ipynb
-    - Docs: polyfempy_doc.md
+  - PolyFEM:
+    - C++:
+      - Home: cxx_index.md
+      - Tutorial: tutorial.md
+      - Documentation: library.md
+      - JSON api: documentation.md
+    - Python:
+      - Home: python.md
+      - Jupyter tutorial: python_examples.ipynb
+      - Docs: polyfempy_doc.md
+  - PolySolve: solvers.md
