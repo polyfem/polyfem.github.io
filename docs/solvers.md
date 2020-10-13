@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.com/polyfem/polysolve.svg?branch=master)](https://travis-ci.com/polyfem/polysolve)
-[![Build status](https://ci.appveyor.com/api/projects/status/tk7mfelpp469vqb5/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polysolve/branch/master)
+![Build](https://github.com/polyfem/polysolve/workflows/Build/badge.svg)
 
 
 # PolySolve
@@ -53,13 +52,13 @@ You can use `LinearSolver::availableSolvers()` to obtain the list of available s
 `mtype`, sets the matrix type, default 11
 
 | mtype | Description                             |
-|-------|-----------------------------------------|
-|    1  | real and structurally symmetric         |
-|    2  | real and symmetric positive definite    |
-|   -2  | real and symmetric indefinite           |
-|    3  | complex and structurally symmetric      |
-|    4  | complex and Hermitian positive definite |
-|   -4  | complex and Hermitian indefinite        |
-|    6  | complex and symmetric                   |
-|   11  | real and nonsymmetric                   |
-|   13  | complex and nonsymmetric                |
+| ----- | --------------------------------------- |
+| 1     | real and structurally symmetric         |
+| 2     | real and symmetric positive definite    |
+| -2    | real and symmetric indefinite           |
+| 3     | complex and structurally symmetric      |
+| 4     | complex and Hermitian positive definite |
+| -4    | complex and Hermitian indefinite        |
+| 6     | complex and symmetric                   |
+| 11    | real and nonsymmetric                   |
+| 13    | complex and nonsymmetric                |

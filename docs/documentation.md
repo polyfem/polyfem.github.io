@@ -15,6 +15,11 @@ Complete example
     "scalar_formulation": "Laplacian",
     "tensor_formulation": "LinearElasticity",
 
+    "project_to_psd": false,        "Project the local matrices to PSD in for non-linear materials"
+
+    "has_collision": false,         "Enable collision detection"
+    "dhat": 0.03,                   "Barrier activation distance, check IPC paper"
+
     "count_flipped_els": false,     "Count (or not) flipped elements"
 
     "iso_parametric": false,        "Force isoparametric elements"
@@ -29,6 +34,7 @@ Complete example
 
     "n_boundary_samples": 6,        "number of boundary samples (Dirichelt) or quadrature points (Neumann)"
     "quadrature_order": 4,          "quadrature order"
+    "BDF_order": 1,                 "Order of BDF for time integration problems"
 
     "export": {                     "Export options"
         "full_mat": "",             "Stiffnes matrix without boundary conditions"
@@ -38,8 +44,10 @@ Complete example
         "spectrum": false,          "Spectrum of the stiffness matrix"
         "stiffness_mat": "",        "Stiffmess matrix after setting boundary conditions"
         "vis_boundary_only": false, "Exports only the boundary of volumetric meshes"
-        "vis_mesh": "",             "Path for the vtu mesh"
-        "wire_mesh": ""             "Wireframe of the mesh"
+        "paraview": "",             "Path for the vtu mesh"
+        "wire_mesh": "",            "Wireframe of the mesh"
+        "material_params": false,   "Exports lame parameters per tetrahedron",
+        "body_ids": false           "Export body ids"
     },
 
     "use_spline": false,            "Use spline for quad/hex elements"
@@ -85,7 +93,7 @@ Complete example
 ### Optionals
 
 * **scalar_formulation**: Helmholtz, Laplacian, Bilaplacian (mixed)
-* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed)
+* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed), NavierStokes (Mixed)
 
 * **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
 
@@ -155,10 +163,19 @@ $-\text{div}(\sigma[u]) = f \quad \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \
 
 
 #### Stokes (mixed)
-**Constants**: `viscosity` $\mu$<br/>
+**Constants**: `viscosity` $\nu$<br/>
 **Description**: solve for<br/>
 $\begin{align}
--\mu\Delta u + \nabla p &= f\\
+-\nu\Delta u + \nabla p &= f\\
+-\text{div}(u) &= 0
+\end{align}$
+
+
+#### NavierStokes (mixed)
+**Constants**: `viscosity` $\nu$<br/>
+**Description**: solve for<br/>
+$\begin{align}
+u\cdot \nabla u -\nu\Delta u + \nabla p &= f\\
 -\text{div}(u) &= 0
 \end{align}$
 

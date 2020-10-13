@@ -1,10 +1,10 @@
 C++ Library
 ===========
 
-[![Build Status](https://travis-ci.com/polyfem/polyfem.svg?branch=master)](https://travis-ci.com/polyfem/polyfem)
-[![Build status](https://ci.appveyor.com/api/projects/status/tseks5d0kydqhjot/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polyfem/branch/master)
+![Build](https://github.com/polyfem/polyfem/workflows/Build/badge.svg)
 
-PolyFEM in C++ uses modern CMake and is it cross platform.
+
+PolyFEM in C++ uses modern CMake and is it cross-platform.
 
 Compilation
 -----------

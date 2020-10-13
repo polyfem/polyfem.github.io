@@ -14,7 +14,7 @@ PolyFEM is a simple C++ and Python finite element library. We provide a wide set
  - Saint-Venant Elasticity
  - Neo-Hookean Elasticity
  - Stokes
- - Navier Stokes [beta]
+ - Navier Stokes
 
 PolyFEM simplicity lies on the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](documentation.md) or trough the [Setting class](polyfempy_doc.md) in python.
 
@@ -26,6 +26,11 @@ The library is actively used in our research so expect frequent updates, fixes, 
 News
 ----
 
+- New "selection" interface to set boundary conditions and body ids.
+- Added support for multi-material simulations.
+- PolyFEM support time-dependent fluid simulations!
+- PolyFEM support contacts using the [IPC Toolkit](https://github.com/ipc-sim/ipc-toolkit).
+- We support FEBio (*.feb) files.
 - We finally extracted the solvers from PolyFEM. You can now use the wrappers independently, check the [PolySolve repo](https://github.com/polyfem/polysolve).
 - PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [Eurographics course](https://geometryprocessing.github.io/blackbox-computing-python/).
 - Bindings v0.5.2 with a new more pythonic interface, support for function in the right-hand side and exact solution.
@@ -40,8 +45,7 @@ News
 PolyFEM in C++
 ----
 
-[![Build Status](https://travis-ci.com/polyfem/polyfem.svg?branch=master)](https://travis-ci.com/polyfem/polyfem)
-[![Build status](https://ci.appveyor.com/api/projects/status/tseks5d0kydqhjot/branch/master?svg=true)](https://ci.appveyor.com/project/teseoch/polyfem/branch/master)
+![Build](https://github.com/polyfem/polyfem/workflows/Build/badge.svg)
 
 For more details refer to the [C++ section](cxx_index.md)
 
