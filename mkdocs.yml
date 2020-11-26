@@ -63,6 +63,8 @@ nav:
           - JSON api: documentation.md
       - Python:
           - Home: python.md
-          - Jupyter tutorial: python_examples.ipynb
+          - Elasticity Examples: elasticity.ipynb
+          - Fluid Examples: fluids.ipynb
+          - Contact Examples: contact.ipynb
           - Docs: polyfempy_doc.md
   - PolySolve: solvers.md
