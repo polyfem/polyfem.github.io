@@ -4,7 +4,7 @@ Json files
 Complete example
 ```json
 {
-    "mesh": " ",                    "Mesh path"
+    "mesh": " ",                    "Mesh path (absolute or relative to JSON file)"
     "bc_tag": " ",                  "Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)"
     "boundary_id_threshold": -1,    "Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2"
     "normalize_mesh": true,         "Normalize mesh such that it fits in the [0,1] bounding box"
@@ -306,7 +306,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 **Has exact solution**: false<br/>
 **Time dependent**: true<br/>
 **Form**: tensor<br/>
-**Description**: solves for 0.1 body force in y direction and zeor for boundray 4
+**Description**: solves for 0.1 body force in y direction and zero for boundary 4
 
 ### Kernel
 **Has exact solution**: true<br/>
@@ -369,7 +369,6 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
         ]
     }
 },
-,
 {
     "id": 2,
     "value": {              "Rbf interpolated value"

@@ -11,10 +11,12 @@ Compilation
 
 All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out of the box with CMake:
 
-    mkdir build
-    cd build
-    cmake ..
-    make -j4
+```sh
+mkdir build
+cd build
+cmake ..
+make -j4
+```
 
 On Linux `zenity` is required for the file dialog window to work. On macOS and Windows the native windows are used directly.
 
@@ -30,6 +32,8 @@ Usage
 
 The main executable, `./PolyFEM_bin`, can be called with a GUI or through a command-line interface. Simply run:
 
-    ./PolyFEM_bin
+```sh
+./PolyFEM_bin
+```
 
 A more detailed documentation can be found on the [tutorial](tutorial.md).

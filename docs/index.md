@@ -54,10 +54,12 @@ For more details refer to the [C++ section](cxx_index.md)
 
 All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out-of-the-box with CMake:
 
-    mkdir build
-    cd build
-    cmake ..
-    make -j4
+```sh
+mkdir build
+cd build
+cmake ..
+make -j4
+```
 
 On Linux `zenity` is required for the file dialog window to work. On macOS and Windows the native windows are used directly.
 
@@ -66,8 +68,9 @@ On Linux `zenity` is required for the file dialog window to work. On macOS and W
 
 The main executable, `./PolyFEM_bin`, can be called with a GUI or through a command-line interface. Simply run:
 
-    ./PolyFEM_bin
-
+```sh
+./PolyFEM_bin
+```
 
 PolyFEM in Python
 ------
@@ -85,7 +88,7 @@ I am making efforts to provide a simple python interface to Polyfem.
 
 For doing so I am maintaining  a *conda* package which can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
 
-```shell
+```sh
 conda install -c conda-forge polyfempy
 ```
 

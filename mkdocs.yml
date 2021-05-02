@@ -10,14 +10,14 @@ remote_branch: "master"
 theme:
   name: material
   favicon: "xxx.ico"
-  logo:
-    icon: " "
+  icon:
+    logo: ""
   palette:
     primary: "light green"
     accent: "green"
 extra:
   social:
-    - type: "github"
+    - icon: fontawesome/brands/github-alt
       link: "https://github.com/polyfem"
 markdown_extensions:
   - codehilite
