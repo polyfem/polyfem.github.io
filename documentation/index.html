@@ -1,7 +1,1075 @@
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="A polyvalent C++ FEM library"><link rel="canonical" href="http://polyfem.github.io/polyfem/documentation/"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../xxx.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>JSON api - polyfem</title><link rel="stylesheet" href="../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#7cb342"><script src="../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../assets/fonts/material-icons.css"></head><body dir="ltr" data-md-color-primary="light-green" data-md-color-accent="green"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#json-files" tabindex="1" class="md-skip">Skip to content </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-header-nav__button md-logo"><i class="md-icon"> </i></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">polyfem</span><span class="md-header-nav__topic">JSON api</span></div></div><div class="md-flex__cell md-flex__cell--shrink"></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">polyfem/polyfem</div></a></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-nav__button md-logo"><i class="md-icon"> </i></a>polyfem</label><div class="md-nav__source"><a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">polyfem/polyfem</div></a></div><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href=".." title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked><label class="md-nav__link" for="nav-2">PolyFEM</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-2">PolyFEM</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked><label class="md-nav__link" for="nav-2-1">C++</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-2-1">C++</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../cxx_index/" title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item"><a href="../tutorial/" title="Tutorial" class="md-nav__link">Tutorial</a></li><li class="md-nav__item"><a href="../library/" title="Documentation" class="md-nav__link">Documentation</a></li><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">JSON api</label><a href="./" title="JSON api" class="md-nav__link md-nav__link--active">JSON api</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#json-files" title="Json files" class="md-nav__link">Json files</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#optionals" title="Optionals" class="md-nav__link">Optionals</a></li></ul></nav></li><li class="md-nav__item"><a href="#formulations" title="Formulations" class="md-nav__link">Formulations</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#scalar" title="Scalar" class="md-nav__link">Scalar</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#laplacian" title="Laplacian" class="md-nav__link">Laplacian</a></li><li class="md-nav__item"><a href="#bilaplacian-mixed" title="Bilaplacian (mixed)" class="md-nav__link">Bilaplacian (mixed)</a></li><li class="md-nav__item"><a href="#helmholtz" title="Helmholtz" class="md-nav__link">Helmholtz</a></li></ul></nav></li><li class="md-nav__item"><a href="#tensor" title="Tensor" class="md-nav__link">Tensor</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#linearelasticity" title="LinearElasticity" class="md-nav__link">LinearElasticity</a></li><li class="md-nav__item"><a href="#hookelinearelasticity" title="HookeLinearElasticity" class="md-nav__link">HookeLinearElasticity</a></li><li class="md-nav__item"><a href="#incompressiblelinearelasticity-mixed" title="IncompressibleLinearElasticity (mixed)" class="md-nav__link">IncompressibleLinearElasticity (mixed)</a></li><li class="md-nav__item"><a href="#saintvenant" title="SaintVenant" class="md-nav__link">SaintVenant</a></li><li class="md-nav__item"><a href="#neohookean" title="NeoHookean" class="md-nav__link">NeoHookean</a></li><li class="md-nav__item"><a href="#stokes-mixed" title="Stokes (mixed)" class="md-nav__link">Stokes (mixed)</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="#problems" title="Problems" class="md-nav__link">Problems</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#compressionelasticexact" title="CompressionElasticExact" class="md-nav__link">CompressionElasticExact</a></li><li class="md-nav__item"><a href="#cubic" title="Cubic" class="md-nav__link">Cubic</a></li><li class="md-nav__item"><a href="#drivencavity" title="DrivenCavity" class="md-nav__link">DrivenCavity</a></li><li class="md-nav__item"><a href="#elastic" title="Elastic" class="md-nav__link">Elastic</a></li><li class="md-nav__item"><a href="#elasticexact" title="ElasticExact" class="md-nav__link">ElasticExact</a></li><li class="md-nav__item"><a href="#elasticzerobc" title="ElasticZeroBC" class="md-nav__link">ElasticZeroBC</a></li><li class="md-nav__item"><a href="#flow" title="Flow" class="md-nav__link">Flow</a></li><li class="md-nav__item"><a href="#franke" title="Franke" class="md-nav__link">Franke</a></li><li class="md-nav__item"><a href="#genericscalar" title="GenericScalar" class="md-nav__link">GenericScalar</a></li><li class="md-nav__item"><a href="#generictensor" title="GenericTensor" class="md-nav__link">GenericTensor</a></li><li class="md-nav__item"><a href="#gravity" title="Gravity" class="md-nav__link">Gravity</a></li><li class="md-nav__item"><a href="#kernel" title="Kernel" class="md-nav__link">Kernel</a></li><li class="md-nav__item"><a href="#linear" title="Linear" class="md-nav__link">Linear</a></li><li class="md-nav__item"><a href="#linearelasticexact" title="LinearElasticExact" class="md-nav__link">LinearElasticExact</a></li><li class="md-nav__item"><a href="#minsurf" title="MinSurf" class="md-nav__link">MinSurf</a></li><li class="md-nav__item"><a href="#pointbasedtensor" title="PointBasedTensor" class="md-nav__link">PointBasedTensor</a></li><li class="md-nav__item"><a href="#quadratic" title="Quadratic" class="md-nav__link">Quadratic</a></li><li class="md-nav__item"><a href="#quadraticelasticexact" title="QuadraticElasticExact" class="md-nav__link">QuadraticElasticExact</a></li><li class="md-nav__item"><a href="#sine" title="Sine" class="md-nav__link">Sine</a></li><li class="md-nav__item"><a href="#testproblem" title="TestProblem" class="md-nav__link">TestProblem</a></li><li class="md-nav__item"><a href="#timedependentflow" title="TimeDependentFlow" class="md-nav__link">TimeDependentFlow</a></li><li class="md-nav__item"><a href="#timedependentscalar" title="TimeDependentScalar" class="md-nav__link">TimeDependentScalar</a></li><li class="md-nav__item"><a href="#torsionelastic" title="TorsionElastic" class="md-nav__link">TorsionElastic</a></li><li class="md-nav__item"><a href="#zero_bc" title="Zero_BC" class="md-nav__link">Zero_BC</a></li></ul></nav></li></ul></nav></li></ul></nav></li><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2"><label class="md-nav__link" for="nav-2-2">Python</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-2-2">Python</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../python/" title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item"><a href="../python_examples/" title="Jupyter tutorial" class="md-nav__link">Jupyter tutorial</a></li><li class="md-nav__item"><a href="../polyfempy_doc/" title="Docs" class="md-nav__link">Docs</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="../solvers/" title="PolySolve" class="md-nav__link">PolySolve</a></li></ul></nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#json-files" title="Json files" class="md-nav__link">Json files</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#optionals" title="Optionals" class="md-nav__link">Optionals</a></li></ul></nav></li><li class="md-nav__item"><a href="#formulations" title="Formulations" class="md-nav__link">Formulations</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#scalar" title="Scalar" class="md-nav__link">Scalar</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#laplacian" title="Laplacian" class="md-nav__link">Laplacian</a></li><li class="md-nav__item"><a href="#bilaplacian-mixed" title="Bilaplacian (mixed)" class="md-nav__link">Bilaplacian (mixed)</a></li><li class="md-nav__item"><a href="#helmholtz" title="Helmholtz" class="md-nav__link">Helmholtz</a></li></ul></nav></li><li class="md-nav__item"><a href="#tensor" title="Tensor" class="md-nav__link">Tensor</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#linearelasticity" title="LinearElasticity" class="md-nav__link">LinearElasticity</a></li><li class="md-nav__item"><a href="#hookelinearelasticity" title="HookeLinearElasticity" class="md-nav__link">HookeLinearElasticity</a></li><li class="md-nav__item"><a href="#incompressiblelinearelasticity-mixed" title="IncompressibleLinearElasticity (mixed)" class="md-nav__link">IncompressibleLinearElasticity (mixed)</a></li><li class="md-nav__item"><a href="#saintvenant" title="SaintVenant" class="md-nav__link">SaintVenant</a></li><li class="md-nav__item"><a href="#neohookean" title="NeoHookean" class="md-nav__link">NeoHookean</a></li><li class="md-nav__item"><a href="#stokes-mixed" title="Stokes (mixed)" class="md-nav__link">Stokes (mixed)</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="#problems" title="Problems" class="md-nav__link">Problems</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#compressionelasticexact" title="CompressionElasticExact" class="md-nav__link">CompressionElasticExact</a></li><li class="md-nav__item"><a href="#cubic" title="Cubic" class="md-nav__link">Cubic</a></li><li class="md-nav__item"><a href="#drivencavity" title="DrivenCavity" class="md-nav__link">DrivenCavity</a></li><li class="md-nav__item"><a href="#elastic" title="Elastic" class="md-nav__link">Elastic</a></li><li class="md-nav__item"><a href="#elasticexact" title="ElasticExact" class="md-nav__link">ElasticExact</a></li><li class="md-nav__item"><a href="#elasticzerobc" title="ElasticZeroBC" class="md-nav__link">ElasticZeroBC</a></li><li class="md-nav__item"><a href="#flow" title="Flow" class="md-nav__link">Flow</a></li><li class="md-nav__item"><a href="#franke" title="Franke" class="md-nav__link">Franke</a></li><li class="md-nav__item"><a href="#genericscalar" title="GenericScalar" class="md-nav__link">GenericScalar</a></li><li class="md-nav__item"><a href="#generictensor" title="GenericTensor" class="md-nav__link">GenericTensor</a></li><li class="md-nav__item"><a href="#gravity" title="Gravity" class="md-nav__link">Gravity</a></li><li class="md-nav__item"><a href="#kernel" title="Kernel" class="md-nav__link">Kernel</a></li><li class="md-nav__item"><a href="#linear" title="Linear" class="md-nav__link">Linear</a></li><li class="md-nav__item"><a href="#linearelasticexact" title="LinearElasticExact" class="md-nav__link">LinearElasticExact</a></li><li class="md-nav__item"><a href="#minsurf" title="MinSurf" class="md-nav__link">MinSurf</a></li><li class="md-nav__item"><a href="#pointbasedtensor" title="PointBasedTensor" class="md-nav__link">PointBasedTensor</a></li><li class="md-nav__item"><a href="#quadratic" title="Quadratic" class="md-nav__link">Quadratic</a></li><li class="md-nav__item"><a href="#quadraticelasticexact" title="QuadraticElasticExact" class="md-nav__link">QuadraticElasticExact</a></li><li class="md-nav__item"><a href="#sine" title="Sine" class="md-nav__link">Sine</a></li><li class="md-nav__item"><a href="#testproblem" title="TestProblem" class="md-nav__link">TestProblem</a></li><li class="md-nav__item"><a href="#timedependentflow" title="TimeDependentFlow" class="md-nav__link">TimeDependentFlow</a></li><li class="md-nav__item"><a href="#timedependentscalar" title="TimeDependentScalar" class="md-nav__link">TimeDependentScalar</a></li><li class="md-nav__item"><a href="#torsionelastic" title="TorsionElastic" class="md-nav__link">TorsionElastic</a></li><li class="md-nav__item"><a href="#zero_bc" title="Zero_BC" class="md-nav__link">Zero_BC</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><a href="https://github.com/polyfem/polyfem.github.io/edit/docs/docs/documentation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1>JSON api</h1><h2 id="json-files">Json files<a class="headerlink" href="#json-files" title="Permanent link">&para;</a></h2>
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A polyvalent C++ FEM library">
+      
+      
+      
+        <link rel="canonical" href="http://polyfem.github.io/polyfem/documentation/">
+      
+      
+      <link rel="shortcut icon" href="../xxx.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.3">
+    
+    
+      
+        <title>JSON api - polyfem</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2cb7adb3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f0267088.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#8bc34b">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="green">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#json-files" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-header-nav__button md-logo" aria-label="polyfem">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            polyfem
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              JSON api
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-nav__button md-logo" aria-label="polyfem">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    polyfem
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      PolyFEM
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PolyFEM" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        PolyFEM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C++
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="C++" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        C++
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cxx_index/" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../library/" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        JSON api
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      JSON api
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-files" class="md-nav__link">
+    Json files
+  </a>
+  
+    <nav class="md-nav" aria-label="Json files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optionals" class="md-nav__link">
+    Optionals
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formulations" class="md-nav__link">
+    Formulations
+  </a>
+  
+    <nav class="md-nav" aria-label="Formulations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar" class="md-nav__link">
+    Scalar
+  </a>
+  
+    <nav class="md-nav" aria-label="Scalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laplacian" class="md-nav__link">
+    Laplacian
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilaplacian-mixed" class="md-nav__link">
+    Bilaplacian (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helmholtz" class="md-nav__link">
+    Helmholtz
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensor" class="md-nav__link">
+    Tensor
+  </a>
+  
+    <nav class="md-nav" aria-label="Tensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linearelasticity" class="md-nav__link">
+    LinearElasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hookelinearelasticity" class="md-nav__link">
+    HookeLinearElasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incompressiblelinearelasticity-mixed" class="md-nav__link">
+    IncompressibleLinearElasticity (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saintvenant" class="md-nav__link">
+    SaintVenant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neohookean" class="md-nav__link">
+    NeoHookean
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stokes-mixed" class="md-nav__link">
+    Stokes (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navierstokes-mixed" class="md-nav__link">
+    NavierStokes (mixed)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    Problems
+  </a>
+  
+    <nav class="md-nav" aria-label="Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compressionelasticexact" class="md-nav__link">
+    CompressionElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cubic" class="md-nav__link">
+    Cubic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivencavity" class="md-nav__link">
+    DrivenCavity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic" class="md-nav__link">
+    Elastic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elasticexact" class="md-nav__link">
+    ElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elasticzerobc" class="md-nav__link">
+    ElasticZeroBC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#franke" class="md-nav__link">
+    Franke
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genericscalar" class="md-nav__link">
+    GenericScalar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generictensor" class="md-nav__link">
+    GenericTensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gravity" class="md-nav__link">
+    Gravity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    Kernel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    Linear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linearelasticexact" class="md-nav__link">
+    LinearElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minsurf" class="md-nav__link">
+    MinSurf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointbasedtensor" class="md-nav__link">
+    PointBasedTensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadratic" class="md-nav__link">
+    Quadratic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadraticelasticexact" class="md-nav__link">
+    QuadraticElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sine" class="md-nav__link">
+    Sine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testproblem" class="md-nav__link">
+    TestProblem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timedependentflow" class="md-nav__link">
+    TimeDependentFlow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timedependentscalar" class="md-nav__link">
+    TimeDependentScalar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torsionelastic" class="md-nav__link">
+    TorsionElastic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero_bc" class="md-nav__link">
+    Zero_BC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_examples.ipynb" class="md-nav__link">
+      Jupyter tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../polyfempy_doc/" class="md-nav__link">
+      Docs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../solvers/" class="md-nav__link">
+      PolySolve
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#json-files" class="md-nav__link">
+    Json files
+  </a>
+  
+    <nav class="md-nav" aria-label="Json files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optionals" class="md-nav__link">
+    Optionals
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formulations" class="md-nav__link">
+    Formulations
+  </a>
+  
+    <nav class="md-nav" aria-label="Formulations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scalar" class="md-nav__link">
+    Scalar
+  </a>
+  
+    <nav class="md-nav" aria-label="Scalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laplacian" class="md-nav__link">
+    Laplacian
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilaplacian-mixed" class="md-nav__link">
+    Bilaplacian (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helmholtz" class="md-nav__link">
+    Helmholtz
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensor" class="md-nav__link">
+    Tensor
+  </a>
+  
+    <nav class="md-nav" aria-label="Tensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linearelasticity" class="md-nav__link">
+    LinearElasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hookelinearelasticity" class="md-nav__link">
+    HookeLinearElasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incompressiblelinearelasticity-mixed" class="md-nav__link">
+    IncompressibleLinearElasticity (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saintvenant" class="md-nav__link">
+    SaintVenant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neohookean" class="md-nav__link">
+    NeoHookean
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stokes-mixed" class="md-nav__link">
+    Stokes (mixed)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navierstokes-mixed" class="md-nav__link">
+    NavierStokes (mixed)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problems" class="md-nav__link">
+    Problems
+  </a>
+  
+    <nav class="md-nav" aria-label="Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compressionelasticexact" class="md-nav__link">
+    CompressionElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cubic" class="md-nav__link">
+    Cubic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drivencavity" class="md-nav__link">
+    DrivenCavity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic" class="md-nav__link">
+    Elastic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elasticexact" class="md-nav__link">
+    ElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elasticzerobc" class="md-nav__link">
+    ElasticZeroBC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Flow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#franke" class="md-nav__link">
+    Franke
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genericscalar" class="md-nav__link">
+    GenericScalar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generictensor" class="md-nav__link">
+    GenericTensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gravity" class="md-nav__link">
+    Gravity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kernel" class="md-nav__link">
+    Kernel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear" class="md-nav__link">
+    Linear
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linearelasticexact" class="md-nav__link">
+    LinearElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minsurf" class="md-nav__link">
+    MinSurf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pointbasedtensor" class="md-nav__link">
+    PointBasedTensor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadratic" class="md-nav__link">
+    Quadratic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadraticelasticexact" class="md-nav__link">
+    QuadraticElasticExact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sine" class="md-nav__link">
+    Sine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testproblem" class="md-nav__link">
+    TestProblem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timedependentflow" class="md-nav__link">
+    TimeDependentFlow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timedependentscalar" class="md-nav__link">
+    TimeDependentScalar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torsionelastic" class="md-nav__link">
+    TorsionElastic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero_bc" class="md-nav__link">
+    Zero_BC
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/polyfem/polyfem.github.io/edit/docs/docs/documentation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>JSON api</h1>
+                
+                <h2 id="json-files">Json files<a class="headerlink" href="#json-files" title="Permanent link">&para;</a></h2>
 <p>Complete example
-<div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;mesh&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                    <span class="nt">&quot;Mesh path&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;mesh&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                    <span class="nt">&quot;Mesh path (absolute or relative to JSON file)&quot;</span>
     <span class="s2">&quot;bc_tag&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                  <span class="nt">&quot;Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)&quot;</span>
     <span class="s2">&quot;boundary_id_threshold&quot;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>    <span class="nt">&quot;Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2&quot;</span>
     <span class="s2">&quot;normalize_mesh&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>         <span class="nt">&quot;Normalize mesh such that it fits in the [0,1] bounding box&quot;</span>
@@ -12,7 +1080,12 @@
     <span class="s2">&quot;scalar_formulation&quot;</span><span class="p">:</span> <span class="s2">&quot;Laplacian&quot;</span><span class="p">,</span>
     <span class="nt">&quot;tensor_formulation&quot;</span><span class="p">:</span> <span class="s2">&quot;LinearElasticity&quot;</span><span class="p">,</span>
 
-    <span class="nt">&quot;count_flipped_els&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="nt">&quot;Count (or not) flipped elements&quot;</span>
+    <span class="nt">&quot;project_to_psd&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="nt">&quot;Project the local matrices to PSD in for non-linear materials&quot;</span>
+
+    <span class="s2">&quot;has_collision&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>         <span class="nt">&quot;Enable collision detection&quot;</span>
+    <span class="s2">&quot;dhat&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>                   <span class="nt">&quot;Barrier activation distance, check IPC paper&quot;</span>
+
+    <span class="s2">&quot;count_flipped_els&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="nt">&quot;Count (or not) flipped elements&quot;</span>
 
     <span class="s2">&quot;iso_parametric&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="nt">&quot;Force isoparametric elements&quot;</span>
     <span class="s2">&quot;discr_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="nt">&quot;Dicretization order, supports P1, P2, P3, P4, Q1, Q2&quot;</span>
@@ -26,6 +1099,7 @@
 
     <span class="s2">&quot;n_boundary_samples&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>        <span class="nt">&quot;number of boundary samples (Dirichelt) or quadrature points (Neumann)&quot;</span>
     <span class="s2">&quot;quadrature_order&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>          <span class="nt">&quot;quadrature order&quot;</span>
+    <span class="s2">&quot;BDF_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                 <span class="nt">&quot;Order of BDF for time integration problems&quot;</span>
 
     <span class="s2">&quot;export&quot;</span><span class="p">:</span> <span class="p">{</span>                     <span class="nt">&quot;Export options&quot;</span>
         <span class="s2">&quot;full_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Stiffnes matrix without boundary conditions&quot;</span>
@@ -35,8 +1109,10 @@
         <span class="s2">&quot;spectrum&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>          <span class="nt">&quot;Spectrum of the stiffness matrix&quot;</span>
         <span class="s2">&quot;stiffness_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>        <span class="nt">&quot;Stiffmess matrix after setting boundary conditions&quot;</span>
         <span class="s2">&quot;vis_boundary_only&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nt">&quot;Exports only the boundary of volumetric meshes&quot;</span>
-        <span class="s2">&quot;vis_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Path for the vtu mesh&quot;</span>
-        <span class="s2">&quot;wire_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>             <span class="s2">&quot;Wireframe of the mesh&quot;</span>
+        <span class="s2">&quot;paraview&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Path for the vtu mesh&quot;</span>
+        <span class="s2">&quot;wire_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>            <span class="nt">&quot;Wireframe of the mesh&quot;</span>
+        <span class="s2">&quot;material_params&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>   <span class="nt">&quot;Exports lame parameters per tetrahedron&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;body_ids&quot;</span><span class="p">:</span> <span class="kc">false</span>           <span class="s2">&quot;Export body ids&quot;</span>
     <span class="p">},</span>
 
     <span class="nt">&quot;use_spline&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>            <span class="nt">&quot;Use spline for quad/hex elements&quot;</span>
@@ -77,12 +1153,12 @@
 
     <span class="s2">&quot;vismesh_rel_area&quot;</span><span class="p">:</span> <span class="mf">1e-05</span>       <span class="s2">&quot;Relative resolution of the output mesh&quot;</span>
 <span class="p">}</span>
-</pre></div></p>
+</code></pre></div></p>
 <h3 id="optionals">Optionals<a class="headerlink" href="#optionals" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>scalar_formulation</strong>: Helmholtz, Laplacian, Bilaplacian (mixed)</li>
 <li>
-<p><strong>tensor_formulation</strong>: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed)</p>
+<p><strong>tensor_formulation</strong>: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed), NavierStokes (Mixed)</p>
 </li>
 <li>
 <p><strong>problem</strong>: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC</p>
@@ -94,7 +1170,7 @@
 <li><strong>line_search</strong>: armijo, armijo_alt, bisection, more_thuente</li>
 </ul>
 <h2 id="formulations">Formulations<a class="headerlink" href="#formulations" title="Permanent link">&para;</a></h2>
-<p>List of possible formulations. The constants can be set in <code class="codehilite"><span class="err">params</span></code>. All formulations supports boundary conditions.</p>
+<p>List of possible formulations. The constants can be set in <code>params</code>. All formulations supports boundary conditions.</p>
 <h3 id="scalar">Scalar<a class="headerlink" href="#scalar" title="Permanent link">&para;</a></h3>
 <h4 id="laplacian">Laplacian<a class="headerlink" href="#laplacian" title="Permanent link">&para;</a></h4>
 <p><strong>Constants</strong>: none<br/>
@@ -110,16 +1186,16 @@
 <span><span class="MathJax_Preview">-\Delta u - k^2 u = f</span><script type="math/tex">-\Delta u - k^2 u = f</script></span></p>
 <h3 id="tensor">Tensor<a class="headerlink" href="#tensor" title="Permanent link">&para;</a></h3>
 <h4 id="linearelasticity">LinearElasticity<a class="headerlink" href="#linearelasticity" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>: <code class="codehilite"><span class="err">young</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">E</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">lambda</span></code>/<code class="codehilite"><span class="err">nu</span></code><br/>
+<p><strong>Constants</strong>: <code>young</code>/<code>nu</code>, <code>E</code>/<code>nu</code>, <code>lambda</code>/<code>nu</code><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = 2 \mu  \epsilon[u]+ \lambda \text{tr}(\epsilon[u]) I \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)</span><script type="math/tex">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = 2 \mu  \epsilon[u]+ \lambda \text{tr}(\epsilon[u]) I \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)</script></span></p>
 <h4 id="hookelinearelasticity">HookeLinearElasticity<a class="headerlink" href="#hookelinearelasticity" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>:  <code class="codehilite"><span class="err">elasticity_tensor</span></code>, <code class="codehilite"><span class="err">young</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">E</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">lambda</span></code>/<code class="codehilite"><span class="err">nu</span></code><br/>
+<p><strong>Constants</strong>:  <code>elasticity_tensor</code>, <code>young</code>/<code>nu</code>, <code>E</code>/<code>nu</code>, <code>lambda</code>/<code>nu</code><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C :  \epsilon[u] \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)</span><script type="math/tex">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C :  \epsilon[u] \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)</script></span><br/>
 where <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> is the elasticity tensor</p>
 <h4 id="incompressiblelinearelasticity-mixed">IncompressibleLinearElasticity (mixed)<a class="headerlink" href="#incompressiblelinearelasticity-mixed" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>: <code class="codehilite"><span class="err">young</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">E</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">lambda</span></code>/<code class="codehilite"><span class="err">nu</span></code><br/>
+<p><strong>Constants</strong>: <code>young</code>/<code>nu</code>, <code>E</code>/<code>nu</code>, <code>lambda</code>/<code>nu</code><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">\begin{align}
 -\text{div}(2\mu\epsilon[u] + p I) &amp;= f\\
@@ -129,26 +1205,36 @@ where <span><span class="MathJax_Preview">C</span><script type="math/tex">C</scr
 \text{div}(u) - \lambda^{-1}p &= 0
 \end{align}</script></span></p>
 <h4 id="saintvenant">SaintVenant<a class="headerlink" href="#saintvenant" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>: <code class="codehilite"><span class="err">elasticity_tensor</span></code>, <code class="codehilite"><span class="err">young</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">E</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">lambda</span></code>/<code class="codehilite"><span class="err">nu</span></code><br/>
+<p><strong>Constants</strong>: <code>elasticity_tensor</code>, <code>young</code>/<code>nu</code>, <code>E</code>/<code>nu</code>, <code>lambda</code>/<code>nu</code><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C: \epsilon[u]  \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T \nabla u + \nabla u^T + \nabla u\right)</span><script type="math/tex">-\text{div}(\sigma[u]) = f \qquad \sigma[u] = C: \epsilon[u]  \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T \nabla u + \nabla u^T + \nabla u\right)</script></span><br/>
 where <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> is the elasticity tensor</p>
 <h4 id="neohookean">NeoHookean<a class="headerlink" href="#neohookean" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>: <code class="codehilite"><span class="err">young</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">E</span></code>/<code class="codehilite"><span class="err">nu</span></code>, <code class="codehilite"><span class="err">lambda</span></code>/<code class="codehilite"><span class="err">nu</span></code><br/>
+<p><strong>Constants</strong>: <code>young</code>/<code>nu</code>, <code>E</code>/<code>nu</code>, <code>lambda</code>/<code>nu</code><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">-\text{div}(\sigma[u]) = f \quad \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \quad F[u] = \nabla u + I</span><script type="math/tex">-\text{div}(\sigma[u]) = f \quad \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \quad F[u] = \nabla u + I</script></span></p>
 <h4 id="stokes-mixed">Stokes (mixed)<a class="headerlink" href="#stokes-mixed" title="Permanent link">&para;</a></h4>
-<p><strong>Constants</strong>: <code class="codehilite"><span class="err">viscosity</span></code> <span><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span><br/>
+<p><strong>Constants</strong>: <code>viscosity</code> <span><span class="MathJax_Preview">\nu</span><script type="math/tex">\nu</script></span><br/>
 <strong>Description</strong>: solve for<br/>
 <span><span class="MathJax_Preview">\begin{align}
--\mu\Delta u + \nabla p &amp;= f\\
+-\nu\Delta u + \nabla p &amp;= f\\
 -\text{div}(u) &amp;= 0
 \end{align}</span><script type="math/tex">\begin{align}
--\mu\Delta u + \nabla p &= f\\
+-\nu\Delta u + \nabla p &= f\\
+-\text{div}(u) &= 0
+\end{align}</script></span></p>
+<h4 id="navierstokes-mixed">NavierStokes (mixed)<a class="headerlink" href="#navierstokes-mixed" title="Permanent link">&para;</a></h4>
+<p><strong>Constants</strong>: <code>viscosity</code> <span><span class="MathJax_Preview">\nu</span><script type="math/tex">\nu</script></span><br/>
+<strong>Description</strong>: solve for<br/>
+<span><span class="MathJax_Preview">\begin{align}
+u\cdot \nabla u -\nu\Delta u + \nabla p &amp;= f\\
+-\text{div}(u) &amp;= 0
+\end{align}</span><script type="math/tex">\begin{align}
+u\cdot \nabla u -\nu\Delta u + \nabla p &= f\\
 -\text{div}(u) &= 0
 \end{align}</script></span></p>
 <h2 id="problems">Problems<a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
-<p>Each problem has a specific set of optional <code class="codehilite"><span class="err">problem_params</span></code> described here.</p>
+<p>Each problem has a specific set of optional <code>problem_params</code> described here.</p>
 <h3 id="compressionelasticexact">CompressionElasticExact<a class="headerlink" href="#compressionelasticexact" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: true<br/>
 <strong>Time dependent</strong>: false<br/>
@@ -210,7 +1296,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 <strong>Form</strong>: scalar<br/>
 <strong>Description</strong>: solves for generic tensor problem with zero rhs<br/>
 <strong>Options</strong>:
-<div class="codehilite"><pre><span></span><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="mi">3</span>                            <span class="s2">&quot;Rhs of the problem&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="mi">3</span>                            <span class="s2">&quot;Rhs of the problem&quot;</span>
 <span class="s2">&quot;dirichlet_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
@@ -229,14 +1315,14 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
     <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;x^2&quot;</span>                  <span class="s2">&quot;Formulas are supported&quot;</span>
 <span class="p">}]</span>
-</pre></div></p>
+</code></pre></div></p>
 <h3 id="generictensor">GenericTensor<a class="headerlink" href="#generictensor" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: false<br/>
 <strong>Time dependent</strong>: false<br/>
 <strong>Form</strong>: tesor<br/>
 <strong>Description</strong>: solves for generic tensor problem with zero body forces<br/>
 <strong>Options</strong>:
-<div class="codehilite"><pre><span></span><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>                    <span class="s2">&quot;Rhs of the problem&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>                    <span class="s2">&quot;Rhs of the problem&quot;</span>
 <span class="s2">&quot;dirichlet_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
@@ -260,18 +1346,18 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
     <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sin(z)+y&quot;</span><span class="p">,</span> <span class="s2">&quot;z^2&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="s2">&quot;Formulas are supported&quot;</span>
 <span class="p">}]</span>
-</pre></div></p>
+</code></pre></div></p>
 <h3 id="gravity">Gravity<a class="headerlink" href="#gravity" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: false<br/>
 <strong>Time dependent</strong>: true<br/>
 <strong>Form</strong>: tensor<br/>
-<strong>Description</strong>: solves for 0.1 body force in y direction and zeor for boundray 4</p>
+<strong>Description</strong>: solves for 0.1 body force in y direction and zero for boundary 4</p>
 <h3 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: true<br/>
 <strong>Time dependent</strong>: false<br/>
 <strong>Form</strong>: scalar/tensor<br/>
-<strong>Description</strong>: solves the omogenous PDE with <code class="codehilite"><span class="err">n_kernels</span></code> kernels placed on the bounding box at <code class="codehilite"><span class="err">kernel_distance</span></code><br/>
-<strong>Options</strong>: <code class="codehilite"><span class="err">n_kernels</span></code> sets the number of kernels, <code class="codehilite"><span class="err">kernel_distance</span></code> sets the distance from the bounding box</p>
+<strong>Description</strong>: solves the omogenous PDE with <code>n_kernels</code> kernels placed on the bounding box at <code>kernel_distance</code><br/>
+<strong>Options</strong>: <code>n_kernels</code> sets the number of kernels, <code>kernel_distance</code> sets the distance from the bounding box</p>
 <h3 id="linear">Linear<a class="headerlink" href="#linear" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: true<br/>
 <strong>Time dependent</strong>: false<br/>
@@ -301,7 +1387,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
 <strong>Form</strong>: tesor<br/>
 <strong>Description</strong>: solves for point-based boudary conditions<br/>
 <strong>Options</strong>:
-<div class="codehilite"><pre><span></span><span class="s2">&quot;scaling&quot;</span><span class="err">:</span> <span class="mi">1</span><span class="err">,</span>               <span class="s2">&quot;Scaling factor&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;scaling&quot;</span><span class="err">:</span> <span class="mi">1</span><span class="err">,</span>               <span class="s2">&quot;Scaling factor&quot;</span>
 <span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="mi">0</span><span class="err">,</span>                   <span class="s2">&quot;Right-hand side&quot;</span>
 <span class="s2">&quot;translation&quot;</span><span class="err">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>    <span class="s2">&quot;Translation&quot;</span>
 <span class="s2">&quot;boundary_ids&quot;</span><span class="err">:</span> <span class="p">[</span>           <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
@@ -325,7 +1411,6 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
         <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">},</span>
-<span class="p">,</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>              <span class="nt">&quot;Rbf interpolated value&quot;</span>
@@ -335,7 +1420,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
         <span class="s2">&quot;coordinate&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="nt">&quot;Coordinate to ignore&quot;</span>
     <span class="p">}</span>
 <span class="p">}]</span>
-</pre></div></p>
+</code></pre></div></p>
 <h3 id="quadratic">Quadratic<a class="headerlink" href="#quadratic" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: true<br/>
 <strong>Time dependent</strong>: false<br/>
@@ -385,8 +1470,8 @@ f(x,y,z) &= \sin(10x)\sin(10y)\sin(10z)
 <p><strong>Has exact solution</strong>: false<br/>
 <strong>Time dependent</strong>: false<br/>
 <strong>Form</strong>: tensor<br/>
-<strong>Description</strong>: solve for zero body forces, <code class="codehilite"><span class="err">fixed_boundary</span></code> fixed (zero displacement), <code class="codehilite"><span class="err">turning_boundary</span></code> rotating around <code class="codehilite"><span class="err">axis_coordiante</span></code> for <code class="codehilite"><span class="err">n_turns</span></code><br/>
-<strong>Options</strong>: <code class="codehilite"><span class="err">fixed_boundary</span></code> id of the fixed boundary, <code class="codehilite"><span class="err">turning_boundary</span></code> id of the moving boundary, <code class="codehilite"><span class="err">axis_coordiante</span></code> coordinate of the rotating axis, <code class="codehilite"><span class="err">n_turns</span></code> number of turns</p>
+<strong>Description</strong>: solve for zero body forces, <code>fixed_boundary</code> fixed (zero displacement), <code>turning_boundary</code> rotating around <code>axis_coordiante</code> for <code>n_turns</code><br/>
+<strong>Options</strong>: <code>fixed_boundary</code> id of the fixed boundary, <code>turning_boundary</code> id of the moving boundary, <code>axis_coordiante</code> coordinate of the rotating axis, <code>n_turns</code> number of turns</p>
 <h3 id="zero_bc">Zero_BC<a class="headerlink" href="#zero_bc" title="Permanent link">&para;</a></h3>
 <p><strong>Has exact solution</strong>: true<br/>
 <strong>Time dependent</strong>: false<br/>
@@ -398,4 +1483,101 @@ f_{3D}(x,y,z) &amp;= (1 - x)  x^2 y (1-y)^2 z (1 - z)
 \end{align}</span><script type="math/tex">\begin{align}
 f_{2D}(x,y) &= (1 - x)  x^2 y (1-y)^2\\
 f_{3D}(x,y,z) &= (1 - x)  x^2 y (1-y)^2 z (1 - z)
-\end{align}</script></span></p></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../library/" title="Documentation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Documentation</span></div></a><a href="../python/" title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>Home</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../assets/fonts/font-awesome.css"> <a href="https://github.com/polyfem" class="md-footer-social__link fa fa-github"></a> </div></div></div></footer></div><script src="../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:".."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
+\end{align}</script></span></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../library/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Documentation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../python/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Home
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/polyfem" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

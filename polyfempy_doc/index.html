@@ -1,75 +1,1697 @@
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="A polyvalent C++ FEM library"><link rel="canonical" href="http://polyfem.github.io/polyfem/polyfempy_doc/"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../xxx.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>Docs - polyfem</title><link rel="stylesheet" href="../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#7cb342"><script src="../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../assets/fonts/material-icons.css"></head><body dir="ltr" data-md-color-primary="light-green" data-md-color-accent="green"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#class-problem" tabindex="1" class="md-skip">Skip to content </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-header-nav__button md-logo"><i class="md-icon"> </i></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">polyfem</span><span class="md-header-nav__topic">Docs</span></div></div><div class="md-flex__cell md-flex__cell--shrink"></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">polyfem/polyfem</div></a></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-nav__button md-logo"><i class="md-icon"> </i></a>polyfem</label><div class="md-nav__source"><a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">polyfem/polyfem</div></a></div><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href=".." title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked><label class="md-nav__link" for="nav-2">PolyFEM</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-2">PolyFEM</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1"><label class="md-nav__link" for="nav-2-1">C++</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-2-1">C++</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../cxx_index/" title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item"><a href="../tutorial/" title="Tutorial" class="md-nav__link">Tutorial</a></li><li class="md-nav__item"><a href="../library/" title="Documentation" class="md-nav__link">Documentation</a></li><li class="md-nav__item"><a href="../documentation/" title="JSON api" class="md-nav__link">JSON api</a></li></ul></nav></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked><label class="md-nav__link" for="nav-2-2">Python</label><nav class="md-nav" data-md-component="collapsible" data-md-level="2"><label class="md-nav__title" for="nav-2-2">Python</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../python/" title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item"><a href="../python_examples/" title="Jupyter tutorial" class="md-nav__link">Jupyter tutorial</a></li><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">Docs</label><a href="./" title="Docs" class="md-nav__link md-nav__link--active">Docs</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#class-problem" title="class Problem" class="md-nav__link">class Problem</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init" title="init" class="md-nav__link">init</a></li><li class="md-nav__item"><a href="#add_dirichlet_value" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li><li class="md-nav__item"><a href="#set_dirichlet_value" title="set_dirichlet_value" class="md-nav__link">set_dirichlet_value</a></li><li class="md-nav__item"><a href="#set_displacement" title="set_displacement" class="md-nav__link">set_displacement</a></li><li class="md-nav__item"><a href="#set_force" title="set_force" class="md-nav__link">set_force</a></li><li class="md-nav__item"><a href="#set_neumann_value" title="set_neumann_value" class="md-nav__link">set_neumann_value</a></li><li class="md-nav__item"><a href="#set_velocity" title="set_velocity" class="md-nav__link">set_velocity</a></li><li class="md-nav__item"><a href="#set_x_symmetric" title="set_x_symmetric" class="md-nav__link">set_x_symmetric</a></li><li class="md-nav__item"><a href="#set_xy_symmetric" title="set_xy_symmetric" class="md-nav__link">set_xy_symmetric</a></li><li class="md-nav__item"><a href="#set_xz_symmetric" title="set_xz_symmetric" class="md-nav__link">set_xz_symmetric</a></li><li class="md-nav__item"><a href="#set_y_symmetric" title="set_y_symmetric" class="md-nav__link">set_y_symmetric</a></li><li class="md-nav__item"><a href="#set_yz_symmetric" title="set_yz_symmetric" class="md-nav__link">set_yz_symmetric</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-settings" title="class Settings" class="md-nav__link">class Settings</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_1" title="init" class="md-nav__link">init</a></li><li class="md-nav__item"><a href="#serialize" title="serialize" class="md-nav__link">serialize</a></li><li class="md-nav__item"><a href="#set_advanced_option" title="set_advanced_option" class="md-nav__link">set_advanced_option</a></li><li class="md-nav__item"><a href="#set_isolines_export_path" title="set_isolines_export_path" class="md-nav__link">set_isolines_export_path</a></li><li class="md-nav__item"><a href="#set_material_params" title="set_material_params" class="md-nav__link">set_material_params</a></li><li class="md-nav__item"><a href="#set_pde" title="set_pde" class="md-nav__link">set_pde</a></li><li class="md-nav__item"><a href="#set_problem" title="set_problem" class="md-nav__link">set_problem</a></li><li class="md-nav__item"><a href="#set_solution_export_path" title="set_solution_export_path" class="md-nav__link">set_solution_export_path</a></li><li class="md-nav__item"><a href="#set_vtu_export_path" title="set_vtu_export_path" class="md-nav__link">set_vtu_export_path</a></li><li class="md-nav__item"><a href="#set_wireframe_export_path" title="set_wireframe_export_path" class="md-nav__link">set_wireframe_export_path</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-drivencavity" title="class DrivenCavity" class="md-nav__link">class DrivenCavity</a></li><li class="md-nav__item"><a href="#class-flow" title="class Flow" class="md-nav__link">class Flow</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_2" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-franke" title="class Franke" class="md-nav__link">class Franke</a></li><li class="md-nav__item"><a href="#class-genericscalar" title="class GenericScalar" class="md-nav__link">class GenericScalar</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add_dirichlet_value_1" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value_1" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-generictensor" title="class GenericTensor" class="md-nav__link">class GenericTensor</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add_dirichlet_value_2" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value_2" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li><li class="md-nav__item"><a href="#set_displacement_1" title="set_displacement" class="md-nav__link">set_displacement</a></li><li class="md-nav__item"><a href="#set_force_1" title="set_force" class="md-nav__link">set_force</a></li><li class="md-nav__item"><a href="#set_velocity_1" title="set_velocity" class="md-nav__link">set_velocity</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-gravity" title="class Gravity" class="md-nav__link">class Gravity</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_3" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-torsion" title="class Torsion" class="md-nav__link">class Torsion</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_4" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-pdes" title="class PDEs" class="md-nav__link">class PDEs</a></li><li class="md-nav__item"><a href="#class-scalarformulations" title="class ScalarFormulations" class="md-nav__link">class ScalarFormulations</a></li><li class="md-nav__item"><a href="#class-solver" title="class Solver" class="md-nav__link">class Solver</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#compute_errors" title="compute_errors" class="md-nav__link">compute_errors</a></li><li class="md-nav__item"><a href="#export_data" title="export_data" class="md-nav__link">export_data</a></li><li class="md-nav__item"><a href="#export_vtu" title="export_vtu" class="md-nav__link">export_vtu</a></li><li class="md-nav__item"><a href="#export_wire" title="export_wire" class="md-nav__link">export_wire</a></li><li class="md-nav__item"><a href="#get_boundary_sidesets" title="get_boundary_sidesets" class="md-nav__link">get_boundary_sidesets</a></li><li class="md-nav__item"><a href="#get_log" title="get_log" class="md-nav__link">get_log</a></li><li class="md-nav__item"><a href="#get_pressure" title="get_pressure" class="md-nav__link">get_pressure</a></li><li class="md-nav__item"><a href="#get_sampled_connectivity_frames" title="get_sampled_connectivity_frames" class="md-nav__link">get_sampled_connectivity_frames</a></li><li class="md-nav__item"><a href="#get_sampled_mises" title="get_sampled_mises" class="md-nav__link">get_sampled_mises</a></li><li class="md-nav__item"><a href="#get_sampled_mises_avg" title="get_sampled_mises_avg" class="md-nav__link">get_sampled_mises_avg</a></li><li class="md-nav__item"><a href="#get_sampled_mises_avg_frames" title="get_sampled_mises_avg_frames" class="md-nav__link">get_sampled_mises_avg_frames</a></li><li class="md-nav__item"><a href="#get_sampled_mises_frames" title="get_sampled_mises_frames" class="md-nav__link">get_sampled_mises_frames</a></li><li class="md-nav__item"><a href="#get_sampled_points_frames" title="get_sampled_points_frames" class="md-nav__link">get_sampled_points_frames</a></li><li class="md-nav__item"><a href="#get_sampled_solution" title="get_sampled_solution" class="md-nav__link">get_sampled_solution</a></li><li class="md-nav__item"><a href="#get_sampled_solution_frames" title="get_sampled_solution_frames" class="md-nav__link">get_sampled_solution_frames</a></li><li class="md-nav__item"><a href="#get_solution" title="get_solution" class="md-nav__link">get_solution</a></li><li class="md-nav__item"><a href="#get_stresses" title="get_stresses" class="md-nav__link">get_stresses</a></li><li class="md-nav__item"><a href="#load_mesh_from_path" title="load_mesh_from_path" class="md-nav__link">load_mesh_from_path</a></li><li class="md-nav__item"><a href="#load_mesh_from_path_and_tags" title="load_mesh_from_path_and_tags" class="md-nav__link">load_mesh_from_path_and_tags</a></li><li class="md-nav__item"><a href="#load_mesh_from_settings" title="load_mesh_from_settings" class="md-nav__link">load_mesh_from_settings</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_bary" title="set_boundary_side_set_from_bary" class="md-nav__link">set_boundary_side_set_from_bary</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_bary_and_boundary" title="set_boundary_side_set_from_bary_and_boundary" class="md-nav__link">set_boundary_side_set_from_bary_and_boundary</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_v_ids" title="set_boundary_side_set_from_v_ids" class="md-nav__link">set_boundary_side_set_from_v_ids</a></li><li class="md-nav__item"><a href="#set_high_order_mesh" title="set_high_order_mesh" class="md-nav__link">set_high_order_mesh</a></li><li class="md-nav__item"><a href="#set_log_level" title="set_log_level" class="md-nav__link">set_log_level</a></li><li class="md-nav__item"><a href="#set_mesh" title="set_mesh" class="md-nav__link">set_mesh</a></li><li class="md-nav__item"><a href="#set_rhs" title="set_rhs" class="md-nav__link">set_rhs</a></li><li class="md-nav__item"><a href="#set_rhs_from_path" title="set_rhs_from_path" class="md-nav__link">set_rhs_from_path</a></li><li class="md-nav__item"><a href="#set_settings" title="set_settings" class="md-nav__link">set_settings</a></li><li class="md-nav__item"><a href="#settings" title="settings" class="md-nav__link">settings</a></li><li class="md-nav__item"><a href="#solve" title="solve" class="md-nav__link">solve</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-tensorformulations" title="class TensorFormulations" class="md-nav__link">class TensorFormulations</a></li></ul></nav></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="../solvers/" title="PolySolve" class="md-nav__link">PolySolve</a></li></ul></nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#class-problem" title="class Problem" class="md-nav__link">class Problem</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init" title="init" class="md-nav__link">init</a></li><li class="md-nav__item"><a href="#add_dirichlet_value" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li><li class="md-nav__item"><a href="#set_dirichlet_value" title="set_dirichlet_value" class="md-nav__link">set_dirichlet_value</a></li><li class="md-nav__item"><a href="#set_displacement" title="set_displacement" class="md-nav__link">set_displacement</a></li><li class="md-nav__item"><a href="#set_force" title="set_force" class="md-nav__link">set_force</a></li><li class="md-nav__item"><a href="#set_neumann_value" title="set_neumann_value" class="md-nav__link">set_neumann_value</a></li><li class="md-nav__item"><a href="#set_velocity" title="set_velocity" class="md-nav__link">set_velocity</a></li><li class="md-nav__item"><a href="#set_x_symmetric" title="set_x_symmetric" class="md-nav__link">set_x_symmetric</a></li><li class="md-nav__item"><a href="#set_xy_symmetric" title="set_xy_symmetric" class="md-nav__link">set_xy_symmetric</a></li><li class="md-nav__item"><a href="#set_xz_symmetric" title="set_xz_symmetric" class="md-nav__link">set_xz_symmetric</a></li><li class="md-nav__item"><a href="#set_y_symmetric" title="set_y_symmetric" class="md-nav__link">set_y_symmetric</a></li><li class="md-nav__item"><a href="#set_yz_symmetric" title="set_yz_symmetric" class="md-nav__link">set_yz_symmetric</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-settings" title="class Settings" class="md-nav__link">class Settings</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_1" title="init" class="md-nav__link">init</a></li><li class="md-nav__item"><a href="#serialize" title="serialize" class="md-nav__link">serialize</a></li><li class="md-nav__item"><a href="#set_advanced_option" title="set_advanced_option" class="md-nav__link">set_advanced_option</a></li><li class="md-nav__item"><a href="#set_isolines_export_path" title="set_isolines_export_path" class="md-nav__link">set_isolines_export_path</a></li><li class="md-nav__item"><a href="#set_material_params" title="set_material_params" class="md-nav__link">set_material_params</a></li><li class="md-nav__item"><a href="#set_pde" title="set_pde" class="md-nav__link">set_pde</a></li><li class="md-nav__item"><a href="#set_problem" title="set_problem" class="md-nav__link">set_problem</a></li><li class="md-nav__item"><a href="#set_solution_export_path" title="set_solution_export_path" class="md-nav__link">set_solution_export_path</a></li><li class="md-nav__item"><a href="#set_vtu_export_path" title="set_vtu_export_path" class="md-nav__link">set_vtu_export_path</a></li><li class="md-nav__item"><a href="#set_wireframe_export_path" title="set_wireframe_export_path" class="md-nav__link">set_wireframe_export_path</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-drivencavity" title="class DrivenCavity" class="md-nav__link">class DrivenCavity</a></li><li class="md-nav__item"><a href="#class-flow" title="class Flow" class="md-nav__link">class Flow</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_2" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-franke" title="class Franke" class="md-nav__link">class Franke</a></li><li class="md-nav__item"><a href="#class-genericscalar" title="class GenericScalar" class="md-nav__link">class GenericScalar</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add_dirichlet_value_1" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value_1" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-generictensor" title="class GenericTensor" class="md-nav__link">class GenericTensor</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add_dirichlet_value_2" title="add_dirichlet_value" class="md-nav__link">add_dirichlet_value</a></li><li class="md-nav__item"><a href="#add_neumann_value_2" title="add_neumann_value" class="md-nav__link">add_neumann_value</a></li><li class="md-nav__item"><a href="#set_displacement_1" title="set_displacement" class="md-nav__link">set_displacement</a></li><li class="md-nav__item"><a href="#set_force_1" title="set_force" class="md-nav__link">set_force</a></li><li class="md-nav__item"><a href="#set_velocity_1" title="set_velocity" class="md-nav__link">set_velocity</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-gravity" title="class Gravity" class="md-nav__link">class Gravity</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_3" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-torsion" title="class Torsion" class="md-nav__link">class Torsion</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#init_4" title="init" class="md-nav__link">init</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-pdes" title="class PDEs" class="md-nav__link">class PDEs</a></li><li class="md-nav__item"><a href="#class-scalarformulations" title="class ScalarFormulations" class="md-nav__link">class ScalarFormulations</a></li><li class="md-nav__item"><a href="#class-solver" title="class Solver" class="md-nav__link">class Solver</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#compute_errors" title="compute_errors" class="md-nav__link">compute_errors</a></li><li class="md-nav__item"><a href="#export_data" title="export_data" class="md-nav__link">export_data</a></li><li class="md-nav__item"><a href="#export_vtu" title="export_vtu" class="md-nav__link">export_vtu</a></li><li class="md-nav__item"><a href="#export_wire" title="export_wire" class="md-nav__link">export_wire</a></li><li class="md-nav__item"><a href="#get_boundary_sidesets" title="get_boundary_sidesets" class="md-nav__link">get_boundary_sidesets</a></li><li class="md-nav__item"><a href="#get_log" title="get_log" class="md-nav__link">get_log</a></li><li class="md-nav__item"><a href="#get_pressure" title="get_pressure" class="md-nav__link">get_pressure</a></li><li class="md-nav__item"><a href="#get_sampled_connectivity_frames" title="get_sampled_connectivity_frames" class="md-nav__link">get_sampled_connectivity_frames</a></li><li class="md-nav__item"><a href="#get_sampled_mises" title="get_sampled_mises" class="md-nav__link">get_sampled_mises</a></li><li class="md-nav__item"><a href="#get_sampled_mises_avg" title="get_sampled_mises_avg" class="md-nav__link">get_sampled_mises_avg</a></li><li class="md-nav__item"><a href="#get_sampled_mises_avg_frames" title="get_sampled_mises_avg_frames" class="md-nav__link">get_sampled_mises_avg_frames</a></li><li class="md-nav__item"><a href="#get_sampled_mises_frames" title="get_sampled_mises_frames" class="md-nav__link">get_sampled_mises_frames</a></li><li class="md-nav__item"><a href="#get_sampled_points_frames" title="get_sampled_points_frames" class="md-nav__link">get_sampled_points_frames</a></li><li class="md-nav__item"><a href="#get_sampled_solution" title="get_sampled_solution" class="md-nav__link">get_sampled_solution</a></li><li class="md-nav__item"><a href="#get_sampled_solution_frames" title="get_sampled_solution_frames" class="md-nav__link">get_sampled_solution_frames</a></li><li class="md-nav__item"><a href="#get_solution" title="get_solution" class="md-nav__link">get_solution</a></li><li class="md-nav__item"><a href="#get_stresses" title="get_stresses" class="md-nav__link">get_stresses</a></li><li class="md-nav__item"><a href="#load_mesh_from_path" title="load_mesh_from_path" class="md-nav__link">load_mesh_from_path</a></li><li class="md-nav__item"><a href="#load_mesh_from_path_and_tags" title="load_mesh_from_path_and_tags" class="md-nav__link">load_mesh_from_path_and_tags</a></li><li class="md-nav__item"><a href="#load_mesh_from_settings" title="load_mesh_from_settings" class="md-nav__link">load_mesh_from_settings</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_bary" title="set_boundary_side_set_from_bary" class="md-nav__link">set_boundary_side_set_from_bary</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_bary_and_boundary" title="set_boundary_side_set_from_bary_and_boundary" class="md-nav__link">set_boundary_side_set_from_bary_and_boundary</a></li><li class="md-nav__item"><a href="#set_boundary_side_set_from_v_ids" title="set_boundary_side_set_from_v_ids" class="md-nav__link">set_boundary_side_set_from_v_ids</a></li><li class="md-nav__item"><a href="#set_high_order_mesh" title="set_high_order_mesh" class="md-nav__link">set_high_order_mesh</a></li><li class="md-nav__item"><a href="#set_log_level" title="set_log_level" class="md-nav__link">set_log_level</a></li><li class="md-nav__item"><a href="#set_mesh" title="set_mesh" class="md-nav__link">set_mesh</a></li><li class="md-nav__item"><a href="#set_rhs" title="set_rhs" class="md-nav__link">set_rhs</a></li><li class="md-nav__item"><a href="#set_rhs_from_path" title="set_rhs_from_path" class="md-nav__link">set_rhs_from_path</a></li><li class="md-nav__item"><a href="#set_settings" title="set_settings" class="md-nav__link">set_settings</a></li><li class="md-nav__item"><a href="#settings" title="settings" class="md-nav__link">settings</a></li><li class="md-nav__item"><a href="#solve" title="solve" class="md-nav__link">solve</a></li></ul></nav></li><li class="md-nav__item"><a href="#class-tensorformulations" title="class TensorFormulations" class="md-nav__link">class TensorFormulations</a></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><a href="https://github.com/polyfem/polyfem.github.io/edit/docs/docs/polyfempy_doc.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1>Docs</h1><h2 id="class-problem">class Problem<a class="headerlink" href="#class-problem" title="Permanent link">&para;</a></h2>
-<p>Generic problem problem, scalar or tensor depending on the pde. Warning, this problem needs to be used with the <code class="codehilite"><span class="err">set_pde</span></code> function in settings</p>
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A polyvalent C++ FEM library">
+      
+      
+      
+        <link rel="canonical" href="http://polyfem.github.io/polyfem/polyfempy_doc/">
+      
+      
+      <link rel="shortcut icon" href="../xxx.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.3">
+    
+    
+      
+        <title>Docs - polyfem</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2cb7adb3.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f0267088.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#8bc34b">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="green">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-problem" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-header-nav__button md-logo" aria-label="polyfem">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            polyfem
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Docs
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="http://polyfem.github.io/polyfem/" title="polyfem" class="md-nav__button md-logo" aria-label="polyfem">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    polyfem
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/polyfem/polyfem/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      PolyFEM
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="PolyFEM" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        PolyFEM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      C++
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="C++" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        C++
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cxx_index/" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../library/" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../documentation/" class="md-nav__link">
+      JSON api
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Python
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Python" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_examples.ipynb" class="md-nav__link">
+      Jupyter tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Docs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Docs
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-problem" class="md-nav__link">
+    class Problem
+  </a>
+  
+    <nav class="md-nav" aria-label="class Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dirichlet_value" class="md-nav__link">
+    set_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_displacement" class="md-nav__link">
+    set_displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_force" class="md-nav__link">
+    set_force
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_neumann_value" class="md-nav__link">
+    set_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_velocity" class="md-nav__link">
+    set_velocity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_x_symmetric" class="md-nav__link">
+    set_x_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_xy_symmetric" class="md-nav__link">
+    set_xy_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_xz_symmetric" class="md-nav__link">
+    set_xz_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_y_symmetric" class="md-nav__link">
+    set_y_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_yz_symmetric" class="md-nav__link">
+    set_yz_symmetric
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-settings" class="md-nav__link">
+    class Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="class Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_1" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialize" class="md-nav__link">
+    serialize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_advanced_option" class="md-nav__link">
+    set_advanced_option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_isolines_export_path" class="md-nav__link">
+    set_isolines_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_material_params" class="md-nav__link">
+    set_material_params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pde" class="md-nav__link">
+    set_pde
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_problem" class="md-nav__link">
+    set_problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_solution_export_path" class="md-nav__link">
+    set_solution_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_vtu_export_path" class="md-nav__link">
+    set_vtu_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_wireframe_export_path" class="md-nav__link">
+    set_wireframe_export_path
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-drivencavity" class="md-nav__link">
+    class DrivenCavity
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-flow" class="md-nav__link">
+    class Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="class Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_2" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-franke" class="md-nav__link">
+    class Franke
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-genericscalar" class="md-nav__link">
+    class GenericScalar
+  </a>
+  
+    <nav class="md-nav" aria-label="class GenericScalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value_1" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value_1" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-generictensor" class="md-nav__link">
+    class GenericTensor
+  </a>
+  
+    <nav class="md-nav" aria-label="class GenericTensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value_2" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value_2" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_displacement_1" class="md-nav__link">
+    set_displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_force_1" class="md-nav__link">
+    set_force
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_velocity_1" class="md-nav__link">
+    set_velocity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-gravity" class="md-nav__link">
+    class Gravity
+  </a>
+  
+    <nav class="md-nav" aria-label="class Gravity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_3" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-torsion" class="md-nav__link">
+    class Torsion
+  </a>
+  
+    <nav class="md-nav" aria-label="class Torsion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_4" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-pdes" class="md-nav__link">
+    class PDEs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-scalarformulations" class="md-nav__link">
+    class ScalarFormulations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-solver" class="md-nav__link">
+    class Solver
+  </a>
+  
+    <nav class="md-nav" aria-label="class Solver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute_errors" class="md-nav__link">
+    compute_errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_data" class="md-nav__link">
+    export_data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_vtu" class="md-nav__link">
+    export_vtu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_wire" class="md-nav__link">
+    export_wire
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_boundary_sidesets" class="md-nav__link">
+    get_boundary_sidesets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_log" class="md-nav__link">
+    get_log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_pressure" class="md-nav__link">
+    get_pressure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_connectivity_frames" class="md-nav__link">
+    get_sampled_connectivity_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises" class="md-nav__link">
+    get_sampled_mises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_avg" class="md-nav__link">
+    get_sampled_mises_avg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_avg_frames" class="md-nav__link">
+    get_sampled_mises_avg_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_frames" class="md-nav__link">
+    get_sampled_mises_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_points_frames" class="md-nav__link">
+    get_sampled_points_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_solution" class="md-nav__link">
+    get_sampled_solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_solution_frames" class="md-nav__link">
+    get_sampled_solution_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_solution" class="md-nav__link">
+    get_solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_stresses" class="md-nav__link">
+    get_stresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_path" class="md-nav__link">
+    load_mesh_from_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_path_and_tags" class="md-nav__link">
+    load_mesh_from_path_and_tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_settings" class="md-nav__link">
+    load_mesh_from_settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_bary" class="md-nav__link">
+    set_boundary_side_set_from_bary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_bary_and_boundary" class="md-nav__link">
+    set_boundary_side_set_from_bary_and_boundary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_v_ids" class="md-nav__link">
+    set_boundary_side_set_from_v_ids
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_high_order_mesh" class="md-nav__link">
+    set_high_order_mesh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_log_level" class="md-nav__link">
+    set_log_level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_mesh" class="md-nav__link">
+    set_mesh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_rhs" class="md-nav__link">
+    set_rhs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_rhs_from_path" class="md-nav__link">
+    set_rhs_from_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_settings" class="md-nav__link">
+    set_settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solve" class="md-nav__link">
+    solve
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-tensorformulations" class="md-nav__link">
+    class TensorFormulations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../solvers/" class="md-nav__link">
+      PolySolve
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-problem" class="md-nav__link">
+    class Problem
+  </a>
+  
+    <nav class="md-nav" aria-label="class Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dirichlet_value" class="md-nav__link">
+    set_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_displacement" class="md-nav__link">
+    set_displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_force" class="md-nav__link">
+    set_force
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_neumann_value" class="md-nav__link">
+    set_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_velocity" class="md-nav__link">
+    set_velocity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_x_symmetric" class="md-nav__link">
+    set_x_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_xy_symmetric" class="md-nav__link">
+    set_xy_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_xz_symmetric" class="md-nav__link">
+    set_xz_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_y_symmetric" class="md-nav__link">
+    set_y_symmetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_yz_symmetric" class="md-nav__link">
+    set_yz_symmetric
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-settings" class="md-nav__link">
+    class Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="class Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_1" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serialize" class="md-nav__link">
+    serialize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_advanced_option" class="md-nav__link">
+    set_advanced_option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_isolines_export_path" class="md-nav__link">
+    set_isolines_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_material_params" class="md-nav__link">
+    set_material_params
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pde" class="md-nav__link">
+    set_pde
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_problem" class="md-nav__link">
+    set_problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_solution_export_path" class="md-nav__link">
+    set_solution_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_vtu_export_path" class="md-nav__link">
+    set_vtu_export_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_wireframe_export_path" class="md-nav__link">
+    set_wireframe_export_path
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-drivencavity" class="md-nav__link">
+    class DrivenCavity
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-flow" class="md-nav__link">
+    class Flow
+  </a>
+  
+    <nav class="md-nav" aria-label="class Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_2" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-franke" class="md-nav__link">
+    class Franke
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-genericscalar" class="md-nav__link">
+    class GenericScalar
+  </a>
+  
+    <nav class="md-nav" aria-label="class GenericScalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value_1" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value_1" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-generictensor" class="md-nav__link">
+    class GenericTensor
+  </a>
+  
+    <nav class="md-nav" aria-label="class GenericTensor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_dirichlet_value_2" class="md-nav__link">
+    add_dirichlet_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_neumann_value_2" class="md-nav__link">
+    add_neumann_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_displacement_1" class="md-nav__link">
+    set_displacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_force_1" class="md-nav__link">
+    set_force
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_velocity_1" class="md-nav__link">
+    set_velocity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-gravity" class="md-nav__link">
+    class Gravity
+  </a>
+  
+    <nav class="md-nav" aria-label="class Gravity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_3" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-torsion" class="md-nav__link">
+    class Torsion
+  </a>
+  
+    <nav class="md-nav" aria-label="class Torsion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#init_4" class="md-nav__link">
+    init
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-pdes" class="md-nav__link">
+    class PDEs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-scalarformulations" class="md-nav__link">
+    class ScalarFormulations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-solver" class="md-nav__link">
+    class Solver
+  </a>
+  
+    <nav class="md-nav" aria-label="class Solver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compute_errors" class="md-nav__link">
+    compute_errors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_data" class="md-nav__link">
+    export_data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_vtu" class="md-nav__link">
+    export_vtu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_wire" class="md-nav__link">
+    export_wire
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_boundary_sidesets" class="md-nav__link">
+    get_boundary_sidesets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_log" class="md-nav__link">
+    get_log
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_pressure" class="md-nav__link">
+    get_pressure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_connectivity_frames" class="md-nav__link">
+    get_sampled_connectivity_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises" class="md-nav__link">
+    get_sampled_mises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_avg" class="md-nav__link">
+    get_sampled_mises_avg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_avg_frames" class="md-nav__link">
+    get_sampled_mises_avg_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_mises_frames" class="md-nav__link">
+    get_sampled_mises_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_points_frames" class="md-nav__link">
+    get_sampled_points_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_solution" class="md-nav__link">
+    get_sampled_solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_sampled_solution_frames" class="md-nav__link">
+    get_sampled_solution_frames
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_solution" class="md-nav__link">
+    get_solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_stresses" class="md-nav__link">
+    get_stresses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_path" class="md-nav__link">
+    load_mesh_from_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_path_and_tags" class="md-nav__link">
+    load_mesh_from_path_and_tags
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load_mesh_from_settings" class="md-nav__link">
+    load_mesh_from_settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_bary" class="md-nav__link">
+    set_boundary_side_set_from_bary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_bary_and_boundary" class="md-nav__link">
+    set_boundary_side_set_from_bary_and_boundary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_boundary_side_set_from_v_ids" class="md-nav__link">
+    set_boundary_side_set_from_v_ids
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_high_order_mesh" class="md-nav__link">
+    set_high_order_mesh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_log_level" class="md-nav__link">
+    set_log_level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_mesh" class="md-nav__link">
+    set_mesh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_rhs" class="md-nav__link">
+    set_rhs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_rhs_from_path" class="md-nav__link">
+    set_rhs_from_path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_settings" class="md-nav__link">
+    set_settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solve" class="md-nav__link">
+    solve
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-tensorformulations" class="md-nav__link">
+    class TensorFormulations
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/polyfem/polyfem.github.io/edit/docs/docs/polyfempy_doc.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Docs</h1>
+                
+                <h2 id="class-problem">class Problem<a class="headerlink" href="#class-problem" title="Permanent link">&para;</a></h2>
+<p>Generic problem problem, scalar or tensor depending on the pde. Warning, this problem needs to be used with the <code>set_pde</code> function in settings</p>
 <h3 id="init">init<a class="headerlink" href="#init" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">__init__(rhs=None, exact=None)</span></code></p>
+<p><code>__init__(rhs=None, exact=None)</code></p>
 <p>Initialize .  See help(type()) for accurate signature.</p>
 <h3 id="add_dirichlet_value">add_dirichlet_value<a class="headerlink" href="#add_dirichlet_value" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_dirichlet_value(id, value, is_dirichlet_dim=None)</span></code></p>
+<p><code>add_dirichlet_value(id, value, is_dirichlet_dim=None)</code></p>
 <p>set the Dirichlet value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem. is_dirichlet_dim is a vector of boolean specifying which dimentions are fixed, only for vector-based problems.</p>
 <h3 id="add_neumann_value">add_neumann_value<a class="headerlink" href="#add_neumann_value" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_neumann_value(id, value)</span></code></p>
+<p><code>add_neumann_value(id, value)</code></p>
 <p>set the Neumann value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem</p>
 <h3 id="set_dirichlet_value">set_dirichlet_value<a class="headerlink" href="#set_dirichlet_value" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_dirichlet_value(id, value, is_dirichlet_dim=None)</span></code></p>
+<p><code>set_dirichlet_value(id, value, is_dirichlet_dim=None)</code></p>
 <p>set the Dirichlet value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem. is_dirichlet_dim is a vector of boolean specifying which dimentions are fixed, only for vector-based problems.</p>
 <h3 id="set_displacement">set_displacement<a class="headerlink" href="#set_displacement" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_displacement(id, value, is_dim_fixed=None)</span></code></p>
+<p><code>set_displacement(id, value, is_dim_fixed=None)</code></p>
 <p>set the displacement value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_force">set_force<a class="headerlink" href="#set_force" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_force(id, value)</span></code></p>
+<p><code>set_force(id, value)</code></p>
 <p>set the force value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_neumann_value">set_neumann_value<a class="headerlink" href="#set_neumann_value" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_neumann_value(id, value)</span></code></p>
+<p><code>set_neumann_value(id, value)</code></p>
 <p>set the Neumann value value for the sideset id. Note the value must be a scalar, vector in 2D, or 3D depending on the problem</p>
 <h3 id="set_velocity">set_velocity<a class="headerlink" href="#set_velocity" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_velocity(id, value, is_dim_fixed=None)</span></code></p>
+<p><code>set_velocity(id, value, is_dim_fixed=None)</code></p>
 <p>set the velocity value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_x_symmetric">set_x_symmetric<a class="headerlink" href="#set_x_symmetric" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_x_symmetric(id)</span></code></p>
+<p><code>set_x_symmetric(id)</code></p>
 <p>x coorinate is fixed, y is allowed to move (Neumann)</p>
 <h3 id="set_xy_symmetric">set_xy_symmetric<a class="headerlink" href="#set_xy_symmetric" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_xy_symmetric(id)</span></code></p>
+<p><code>set_xy_symmetric(id)</code></p>
 <p>xy coorinates are fixed, z is allowed to move (Neumann)</p>
 <h3 id="set_xz_symmetric">set_xz_symmetric<a class="headerlink" href="#set_xz_symmetric" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_xz_symmetric(id)</span></code></p>
+<p><code>set_xz_symmetric(id)</code></p>
 <p>xz coorinates are fixed, y is allowed to move (Neumann)</p>
 <h3 id="set_y_symmetric">set_y_symmetric<a class="headerlink" href="#set_y_symmetric" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_y_symmetric(id)</span></code></p>
+<p><code>set_y_symmetric(id)</code></p>
 <p>y coorinate is fixed, x is allowed to move (Neumann)</p>
 <h3 id="set_yz_symmetric">set_yz_symmetric<a class="headerlink" href="#set_yz_symmetric" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_yz_symmetric(id)</span></code></p>
+<p><code>set_yz_symmetric(id)</code></p>
 <p>yz coorinates are fixed, x is allowed to move (Neumann)</p>
 <h2 id="class-settings">class Settings<a class="headerlink" href="#class-settings" title="Permanent link">&para;</a></h2>
 <p>Class that encodes the settings of the solver, it models the input json file</p>
 <h3 id="init_1">init<a class="headerlink" href="#init_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">__init__(discr_order=1, pressure_discr_order=1, pde=&#39;Laplacian&#39;, nl_solver_rhs_steps=1, tend=1, time_steps=10)</span></code></p>
+<p><code>__init__(discr_order=1, pressure_discr_order=1, pde='Laplacian', nl_solver_rhs_steps=1, tend=1, time_steps=10)</code></p>
 <p>Initialize .  See help(type()) for accurate signature.</p>
 <h3 id="serialize">serialize<a class="headerlink" href="#serialize" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">serialize()</span></code></p>
+<p><code>serialize()</code></p>
 <p>stringyfied json description of this class, used to run the solver</p>
 <h3 id="set_advanced_option">set_advanced_option<a class="headerlink" href="#set_advanced_option" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_advanced_option(key, value)</span></code></p>
+<p><code>set_advanced_option(key, value)</code></p>
 <p>Used to set any advanced option not present in this class, for instance set_advanced_option(&ldquo;use_spline&rdquo;,True), see <a href="https://polyfem.github.io/documentation/">https://polyfem.github.io/documentation/</a> for full list</p>
 <h3 id="set_isolines_export_path">set_isolines_export_path<a class="headerlink" href="#set_isolines_export_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_isolines_export_path(path)</span></code></p>
+<p><code>set_isolines_export_path(path)</code></p>
 <p>Sets the path to export the isolines of the solution</p>
 <h3 id="set_material_params">set_material_params<a class="headerlink" href="#set_material_params" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_material_params(name, value)</span></code></p>
+<p><code>set_material_params(name, value)</code></p>
 <p>set the material parameters, for instance set_material_params(&ldquo;E&rdquo;, 200) sets the Young&rsquo;s modulus E to 200. See <a href="https://polyfem.github.io/documentation/#formulations">https://polyfem.github.io/documentation/#formulations</a> for full list</p>
 <h3 id="set_pde">set_pde<a class="headerlink" href="#set_pde" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_pde(pde)</span></code></p>
+<p><code>set_pde(pde)</code></p>
 <p>Sets the PDE to solve, use any of the polyfempy.PDEs</p>
 <h3 id="set_problem">set_problem<a class="headerlink" href="#set_problem" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_problem(problem)</span></code></p>
+<p><code>set_problem(problem)</code></p>
 <p>Sets the problem, use any of the problems in Problems or the Problem</p>
 <h3 id="set_solution_export_path">set_solution_export_path<a class="headerlink" href="#set_solution_export_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_solution_export_path(path)</span></code></p>
+<p><code>set_solution_export_path(path)</code></p>
 <p>Sets the path to save the solution</p>
 <h3 id="set_vtu_export_path">set_vtu_export_path<a class="headerlink" href="#set_vtu_export_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_vtu_export_path(path, bounda_only=False)</span></code></p>
+<p><code>set_vtu_export_path(path, bounda_only=False)</code></p>
 <p>Sets the path to export a vtu file with the results, use bounda_only to export only one layer of the mesh in 3d</p>
 <h3 id="set_wireframe_export_path">set_wireframe_export_path<a class="headerlink" href="#set_wireframe_export_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_wireframe_export_path(path)</span></code></p>
+<p><code>set_wireframe_export_path(path)</code></p>
 <p>Sets the path to export a wireframe of the mesh</p>
 <p>pde</p>
 <p>Get the PDE</p>
@@ -80,44 +1702,44 @@
 <h2 id="class-flow">class Flow<a class="headerlink" href="#class-flow" title="Permanent link">&para;</a></h2>
 <p>Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. <a href="https://polyfem.github.io/documentation/#flow">https://polyfem.github.io/documentation/#flow</a></p>
 <h3 id="init_2">init<a class="headerlink" href="#init_2" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">__init__(inflow=1, outflow=3, inflow_amout=0.25, outflow_amout=0.25, direction=0, obstacle=[7])</span></code></p>
+<p><code>__init__(inflow=1, outflow=3, inflow_amout=0.25, outflow_amout=0.25, direction=0, obstacle=[7])</code></p>
 <p>Initialize .  See help(type()) for accurate signature.</p>
 <h2 id="class-franke">class Franke<a class="headerlink" href="#class-franke" title="Permanent link">&para;</a></h2>
 <p>Franke problem with exact solution <a href="https://polyfem.github.io/documentation/#franke">https://polyfem.github.io/documentation/#franke</a></p>
 <h2 id="class-genericscalar">class GenericScalar<a class="headerlink" href="#class-genericscalar" title="Permanent link">&para;</a></h2>
 <p>Generic scalar problem <a href="https://polyfem.github.io/documentation/#genericscalar">https://polyfem.github.io/documentation/#genericscalar</a></p>
 <h3 id="add_dirichlet_value_1">add_dirichlet_value<a class="headerlink" href="#add_dirichlet_value_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_dirichlet_value(id, value)</span></code></p>
+<p><code>add_dirichlet_value(id, value)</code></p>
 <p>add the Dirichlet value value for the sideset id</p>
 <h3 id="add_neumann_value_1">add_neumann_value<a class="headerlink" href="#add_neumann_value_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_neumann_value(id, value)</span></code></p>
+<p><code>add_neumann_value(id, value)</code></p>
 <p>add the Neumann value value for the sideset id</p>
 <h2 id="class-generictensor">class GenericTensor<a class="headerlink" href="#class-generictensor" title="Permanent link">&para;</a></h2>
 <p>Generic tensor problem <a href="https://polyfem.github.io/documentation/#generictensor">https://polyfem.github.io/documentation/#generictensor</a></p>
 <h3 id="add_dirichlet_value_2">add_dirichlet_value<a class="headerlink" href="#add_dirichlet_value_2" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_dirichlet_value(id, value, is_dirichlet_dim=None)</span></code></p>
+<p><code>add_dirichlet_value(id, value, is_dirichlet_dim=None)</code></p>
 <p>add the Dirichlet value value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem. is_dirichlet_dim is a vector of boolean specifying which dimentions are fixed.</p>
 <h3 id="add_neumann_value_2">add_neumann_value<a class="headerlink" href="#add_neumann_value_2" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">add_neumann_value(id, value)</span></code></p>
+<p><code>add_neumann_value(id, value)</code></p>
 <p>add the Neumann value value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_displacement_1">set_displacement<a class="headerlink" href="#set_displacement_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_displacement(id, value, is_dim_fixed=None)</span></code></p>
+<p><code>set_displacement(id, value, is_dim_fixed=None)</code></p>
 <p>set the displacement value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_force_1">set_force<a class="headerlink" href="#set_force_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_force(id, value)</span></code></p>
+<p><code>set_force(id, value)</code></p>
 <p>set the force value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h3 id="set_velocity_1">set_velocity<a class="headerlink" href="#set_velocity_1" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_velocity(id, value, is_dim_fixed=None)</span></code></p>
+<p><code>set_velocity(id, value, is_dim_fixed=None)</code></p>
 <p>set the velocity value for the sideset id. Note the value must be a vector in 2D or 3D depending on the problem</p>
 <h2 id="class-gravity">class Gravity<a class="headerlink" href="#class-gravity" title="Permanent link">&para;</a></h2>
 <p>time dependent gravity problem <a href="https://polyfem.github.io/documentation/#gravity">https://polyfem.github.io/documentation/#gravity</a></p>
 <h3 id="init_3">init<a class="headerlink" href="#init_3" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">__init__(force=0.1)</span></code></p>
+<p><code>__init__(force=0.1)</code></p>
 <p>Initialize .  See help(type()) for accurate signature.</p>
 <h2 id="class-torsion">class Torsion<a class="headerlink" href="#class-torsion" title="Permanent link">&para;</a></h2>
 <p>3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary <a href="https://polyfem.github.io/documentation/#torsionelastic">https://polyfem.github.io/documentation/#torsionelastic</a></p>
 <h3 id="init_4">init<a class="headerlink" href="#init_4" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">__init__(axis_coordiante=2, n_turns=0.5, fixed_boundary=5, turning_boundary=6)</span></code></p>
+<p><code>__init__(axis_coordiante=2, n_turns=0.5, fixed_boundary=5, turning_boundary=6)</code></p>
 <p>Initialize .  See help(type()) for accurate signature.</p>
 <h2 id="class-pdes">class PDEs<a class="headerlink" href="#class-pdes" title="Permanent link">&para;</a></h2>
 <p>List of supported partial differential equations</p>
@@ -138,97 +1760,97 @@
 <h2 id="class-solver">class Solver<a class="headerlink" href="#class-solver" title="Permanent link">&para;</a></h2>
 <p>Polyfem solver</p>
 <h3 id="compute_errors">compute_errors<a class="headerlink" href="#compute_errors" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">compute_errors()</span></code></p>
+<p><code>compute_errors()</code></p>
 <p>compute the error</p>
 <h3 id="export_data">export_data<a class="headerlink" href="#export_data" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">export_data()</span></code></p>
+<p><code>export_data()</code></p>
 <p>exports all data specified in the settings</p>
 <h3 id="export_vtu">export_vtu<a class="headerlink" href="#export_vtu" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">export_vtu(path: str)</span></code></p>
+<p><code>export_vtu(path: str)</code></p>
 <p>exports the solution as vtu</p>
 <h3 id="export_wire">export_wire<a class="headerlink" href="#export_wire" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">export_wire(path: str, isolines: bool = False)</span></code></p>
+<p><code>export_wire(path: str, isolines: bool = False)</code></p>
 <p>exports wireframe of the mesh</p>
 <h3 id="get_boundary_sidesets">get_boundary_sidesets<a class="headerlink" href="#get_boundary_sidesets" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_boundary_sidesets() -&gt; tuple</span></code></p>
+<p><code>get_boundary_sidesets() -&gt; tuple</code></p>
 <p>exports get the boundary sideset, edges in 2d or trangles in 3d</p>
 <h3 id="get_log">get_log<a class="headerlink" href="#get_log" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_log() -&gt; str</span></code></p>
+<p><code>get_log() -&gt; str</code></p>
 <p>gets the log as json</p>
 <h3 id="get_pressure">get_pressure<a class="headerlink" href="#get_pressure" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_pressure() -&gt; array</span></code></p>
+<p><code>get_pressure() -&gt; array</code></p>
 <p>returns the pressure</p>
 <h3 id="get_sampled_connectivity_frames">get_sampled_connectivity_frames<a class="headerlink" href="#get_sampled_connectivity_frames" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">get_sampled_connectivity_frames</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">array</span><span class="o">]</span><span class="w"></span></code></p>
+<p><code>get_sampled_connectivity_frames() -&gt; List[array]</code></p>
 <p>returns the connectivity frames for a time dependent problem on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_mises">get_sampled_mises<a class="headerlink" href="#get_sampled_mises" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_sampled_mises(boundary_only: bool = False) -&gt; array</span></code></p>
+<p><code>get_sampled_mises(boundary_only: bool = False) -&gt; array</code></p>
 <p>returns the von mises stresses on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_mises_avg">get_sampled_mises_avg<a class="headerlink" href="#get_sampled_mises_avg" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_sampled_mises_avg(boundary_only: bool = False) -&gt; tuple</span></code></p>
+<p><code>get_sampled_mises_avg(boundary_only: bool = False) -&gt; tuple</code></p>
 <p>returns the von mises stresses and stress tensor averaged around a vertex on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_mises_avg_frames">get_sampled_mises_avg_frames<a class="headerlink" href="#get_sampled_mises_avg_frames" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">get_sampled_mises_avg_frames</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">array</span><span class="o">]</span><span class="w"></span></code></p>
+<p><code>get_sampled_mises_avg_frames() -&gt; List[array]</code></p>
 <p>returns the von mises stresses per frame averaged around a vertex on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_mises_frames">get_sampled_mises_frames<a class="headerlink" href="#get_sampled_mises_frames" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">get_sampled_mises_frames</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">array</span><span class="o">]</span><span class="w"></span></code></p>
+<p><code>get_sampled_mises_frames() -&gt; List[array]</code></p>
 <p>returns the von mises stresses frames on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_points_frames">get_sampled_points_frames<a class="headerlink" href="#get_sampled_points_frames" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">get_sampled_points_frames</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">array</span><span class="o">]</span><span class="w"></span></code></p>
+<p><code>get_sampled_points_frames() -&gt; List[array]</code></p>
 <p>returns the points frames for a time dependent problem on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_solution">get_sampled_solution<a class="headerlink" href="#get_sampled_solution" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_sampled_solution(boundary_only: bool = False) -&gt; tuple</span></code></p>
+<p><code>get_sampled_solution(boundary_only: bool = False) -&gt; tuple</code></p>
 <p>returns the solution on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_sampled_solution_frames">get_sampled_solution_frames<a class="headerlink" href="#get_sampled_solution_frames" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">get_sampled_solution_frames</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">array</span><span class="o">]</span><span class="w"></span></code></p>
+<p><code>get_sampled_solution_frames() -&gt; List[array]</code></p>
 <p>returns the solution frames for a time dependent problem on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="get_solution">get_solution<a class="headerlink" href="#get_solution" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_solution() -&gt; array</span></code></p>
+<p><code>get_solution() -&gt; array</code></p>
 <p>returns the solution</p>
 <h3 id="get_stresses">get_stresses<a class="headerlink" href="#get_stresses" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">get_stresses(boundary_only: bool = False) -&gt; array</span></code></p>
+<p><code>get_stresses(boundary_only: bool = False) -&gt; array</code></p>
 <p>returns the stress tensor on a densly sampled mesh, use &lsquo;vismesh_rel_area&rsquo; to control density</p>
 <h3 id="load_mesh_from_path">load_mesh_from_path<a class="headerlink" href="#load_mesh_from_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">load_mesh_from_path(path: str, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</span></code></p>
+<p><code>load_mesh_from_path(path: str, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</code></p>
 <p>Loads a mesh from the path and &lsquo;bc_tag&rsquo; from the json if any bc tags</p>
 <h3 id="load_mesh_from_path_and_tags">load_mesh_from_path_and_tags<a class="headerlink" href="#load_mesh_from_path_and_tags" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">load_mesh_from_path_and_tags(path: str, bc_tag_path: str, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</span></code></p>
+<p><code>load_mesh_from_path_and_tags(path: str, bc_tag_path: str, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</code></p>
 <p>Loads a mesh and bc_tags from path</p>
 <h3 id="load_mesh_from_settings">load_mesh_from_settings<a class="headerlink" href="#load_mesh_from_settings" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">load_mesh_from_settings(normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</span></code></p>
+<p><code>load_mesh_from_settings(normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</code></p>
 <p>Loads a mesh from the &lsquo;mesh&rsquo; field of the json and &lsquo;bc_tag&rsquo; if any bc tags</p>
 <h3 id="set_boundary_side_set_from_bary">set_boundary_side_set_from_bary<a class="headerlink" href="#set_boundary_side_set_from_bary" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_boundary_side_set_from_bary(boundary_marker: Callable[[array[float64[1, n]]], int])</span></code></p>
+<p><code>set_boundary_side_set_from_bary(boundary_marker: Callable[[array[float64[1, n]]], int])</code></p>
 <p>Sets the side set for the boundary conditions, the functions takes the barycenter of the boundary (edge or face)</p>
 <h3 id="set_boundary_side_set_from_bary_and_boundary">set_boundary_side_set_from_bary_and_boundary<a class="headerlink" href="#set_boundary_side_set_from_bary_and_boundary" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_boundary_side_set_from_bary_and_boundary(boundary_marker: Callable[[array[float64[1, n]], bool], int])</span></code></p>
+<p><code>set_boundary_side_set_from_bary_and_boundary(boundary_marker: Callable[[array[float64[1, n]], bool], int])</code></p>
 <p>Sets the side set for the boundary conditions, the functions takes the barycenter of the boundary (edge or face) and a flag that says if the element is boundary</p>
 <h3 id="set_boundary_side_set_from_v_ids">set_boundary_side_set_from_v_ids<a class="headerlink" href="#set_boundary_side_set_from_v_ids" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">set_boundary_side_set_from_v_ids</span><span class="p">(</span><span class="nl">boundary_marker</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[List[int</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="nc">int</span><span class="err">]</span><span class="p">)</span><span class="w"></span></code></p>
+<p><code>set_boundary_side_set_from_v_ids(boundary_marker: Callable[[List[int], bool], int])</code></p>
 <p>Sets the side set for the boundary conditions, the functions takes the sorted list of vertex id and a flag that says if the element is boundary</p>
 <h3 id="set_high_order_mesh">set_high_order_mesh<a class="headerlink" href="#set_high_order_mesh" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="n">set_high_order_mesh</span><span class="p">(</span><span class="nl">vertices</span><span class="p">:</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="nl">connectivity</span><span class="p">:</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="nl">nodes_pos</span><span class="p">:</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="nl">nodes_indices</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">List[int</span><span class="o">]</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="nl">normalize_mesh</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">False</span><span class="p">,</span><span class="w"> </span><span class="nl">vismesh_rel_area</span><span class="p">:</span><span class="w"> </span><span class="nc">float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-05</span><span class="p">,</span><span class="w"> </span><span class="nl">n_refs</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">boundary_id_threshold</span><span class="p">:</span><span class="w"> </span><span class="nc">float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="w"></span></code></p>
+<p><code>set_high_order_mesh(vertices: array, connectivity: array, nodes_pos: array, nodes_indices: List[List[int]], normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</code></p>
 <p>Loads an high order mesh from vertices, connectivity, nodes, and node indices mapping element to nodes</p>
 <h3 id="set_log_level">set_log_level<a class="headerlink" href="#set_log_level" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_log_level(log_level: int)</span></code></p>
+<p><code>set_log_level(log_level: int)</code></p>
 <p>sets polyfem log level, valid value between 0 (all logs) and 6 (no logs)</p>
 <h3 id="set_mesh">set_mesh<a class="headerlink" href="#set_mesh" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_mesh(vertices: array, connectivity: array, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</span></code></p>
+<p><code>set_mesh(vertices: array, connectivity: array, normalize_mesh: bool = False, vismesh_rel_area: float = 1e-05, n_refs: int = 0, boundary_id_threshold: float = -1.0)</code></p>
 <p>Loads a mesh from vertices and connectivity</p>
 <h3 id="set_rhs">set_rhs<a class="headerlink" href="#set_rhs" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_rhs(matrix: array)</span></code></p>
+<p><code>set_rhs(matrix: array)</code></p>
 <p>Sets the rhs</p>
 <h3 id="set_rhs_from_path">set_rhs_from_path<a class="headerlink" href="#set_rhs_from_path" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_rhs_from_path(path: str)</span></code></p>
+<p><code>set_rhs_from_path(path: str)</code></p>
 <p>Loads the rhs from a file</p>
 <h3 id="set_settings">set_settings<a class="headerlink" href="#set_settings" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">set_settings(json: object)</span></code></p>
+<p><code>set_settings(json: object)</code></p>
 <p>load PDE and problem parameters from the settings</p>
 <h3 id="settings">settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">settings(json: object)</span></code></p>
+<p><code>settings(json: object)</code></p>
 <p>load PDE and problem parameters from the settings</p>
 <h3 id="solve">solve<a class="headerlink" href="#solve" title="Permanent link">&para;</a></h3>
-<p><code class="codehilite"><span class="err">solve()</span></code></p>
+<p><code>solve()</code></p>
 <p>solve the pde</p>
 <h2 id="class-tensorformulations">class TensorFormulations<a class="headerlink" href="#class-tensorformulations" title="Permanent link">&para;</a></h2>
 <p>HookeLinearElasticity = &lsquo;HookeLinearElasticity&rsquo;</p>
@@ -237,4 +1859,101 @@
 <p>NeoHookean = &lsquo;NeoHookean&rsquo;</p>
 <p>NonLinearElasticity = &lsquo;NonLinearElasticity&rsquo;</p>
 <p>SaintVenant = &lsquo;SaintVenant&rsquo;</p>
-<p>Stokes = &lsquo;Stokes&rsquo;</p></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../python_examples/" title="Jupyter tutorial" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Jupyter tutorial</span></div></a><a href="../solvers/" title="PolySolve" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>PolySolve</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../assets/fonts/font-awesome.css"> <a href="https://github.com/polyfem" class="md-footer-social__link fa fa-github"></a> </div></div></div></footer></div><script src="../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:".."}})</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
+<p>Stokes = &lsquo;Stokes&rsquo;</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../python_examples.ipynb" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Jupyter tutorial
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../solvers/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                PolySolve
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/polyfem" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
