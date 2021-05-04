@@ -92,15 +92,15 @@ Complete example
 
 ### Optionals
 
-* **scalar_formulation**: Helmholtz, Laplacian, Bilaplacian (mixed)
-* **tensor_formulation**: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed), NavierStokes (Mixed)
+* **scalar_formulation**: `Helmholtz`, `Laplacian`, `Bilaplacian` (mixed)
+* **tensor_formulation**: `HookeLinearElasticity`, `LinearElasticity`, `NeoHookean`, `SaintVenant`, `IncompressibleLinearElasticity` (mixed), `Stokes` (mixed), `NavierStokes` (mixed)
 
-* **problem**: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC
+* **problem**: `CompressionElasticExact`, `Cubic`, `DrivenCavity`, `Elastic`, `ElasticExact`, `ElasticZeroBC`, `Flow`, `Franke`, `GenericScalar`, `GenericTensor`, `Gravity`, `Kernel`, `Linear`, `LinearElasticExact`, `MinSurf`, `PointBasedTensor`, `Quadratic`, `QuadraticElasticExact`, `Sine`, `TestProblem`, `TimeDependentFlow`, `TimeDependentScalar`, `TorsionElastic`, `Zero_BC`
 
 
-* **solver_type**: Eigen::BiCGSTAB, Eigen::ConjugateGradient, Eigen::GMRES, Eigen::MINRES, Eigen::SimplicialLDLT, Eigen::SparseLU, Hypre,Pardiso
-* **nl_solver**: lbfgs, newton
-* **line_search**: armijo, armijo_alt, bisection, more_thuente
+* **solver_type**: `AMGCL`, `Eigen::BiCGSTAB`, `Eigen::CholmodSupernodalLLT`, `Eigen::ConjugateGradient`, `Eigen::DGMRES`, `Eigen::GMRES`, `Eigen::LeastSquaresConjugateGradient`, `Eigen::MINRES`, `Eigen::PardisoLDLT`, `Eigen::PardisoLU`, `Eigen::SimplicialLDLT`, `Eigen::SparseLU`, `Eigen::UmfPackLU`, `Hypre`, `Pardiso`
+* **nl_solver**: `lbfgs`, `newton`
+* **line_search**: `armijo`, `armijo_alt`, `bisection`, `more_thuente`
 
 
 Formulations
