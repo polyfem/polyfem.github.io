@@ -1156,18 +1156,18 @@
 </code></pre></div></p>
 <h3 id="optionals">Optionals<a class="headerlink" href="#optionals" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>scalar_formulation</strong>: Helmholtz, Laplacian, Bilaplacian (mixed)</li>
+<li><strong>scalar_formulation</strong>: <code>Helmholtz</code>, <code>Laplacian</code>, <code>Bilaplacian</code> (mixed)</li>
 <li>
-<p><strong>tensor_formulation</strong>: HookeLinearElasticity, LinearElasticity, NeoHookean, SaintVenant, IncompressibleLinearElasticity (mixed), Stokes (mixed), NavierStokes (Mixed)</p>
+<p><strong>tensor_formulation</strong>: <code>HookeLinearElasticity</code>, <code>LinearElasticity</code>, <code>NeoHookean</code>, <code>SaintVenant</code>, <code>IncompressibleLinearElasticity</code> (mixed), <code>Stokes</code> (mixed), <code>NavierStokes</code> (mixed)</p>
 </li>
 <li>
-<p><strong>problem</strong>: CompressionElasticExact, Cubic, DrivenCavity, Elastic, ElasticExact, ElasticZeroBC, Flow, Franke, GenericScalar, GenericTensor, Gravity, Kernel, Linear, LinearElasticExact, MinSurf, PointBasedTensor, Quadratic, QuadraticElasticExact, Sine, TestProblem, TimeDependentFlow, TimeDependentScalar, TorsionElastic, Zero_BC</p>
+<p><strong>problem</strong>: <code>CompressionElasticExact</code>, <code>Cubic</code>, <code>DrivenCavity</code>, <code>Elastic</code>, <code>ElasticExact</code>, <code>ElasticZeroBC</code>, <code>Flow</code>, <code>Franke</code>, <code>GenericScalar</code>, <code>GenericTensor</code>, <code>Gravity</code>, <code>Kernel</code>, <code>Linear</code>, <code>LinearElasticExact</code>, <code>MinSurf</code>, <code>PointBasedTensor</code>, <code>Quadratic</code>, <code>QuadraticElasticExact</code>, <code>Sine</code>, <code>TestProblem</code>, <code>TimeDependentFlow</code>, <code>TimeDependentScalar</code>, <code>TorsionElastic</code>, <code>Zero_BC</code></p>
 </li>
 <li>
-<p><strong>solver_type</strong>: Eigen::BiCGSTAB, Eigen::ConjugateGradient, Eigen::GMRES, Eigen::MINRES, Eigen::SimplicialLDLT, Eigen::SparseLU, Hypre,Pardiso</p>
+<p><strong>solver_type</strong>: <code>AMGCL</code>, <code>Eigen::BiCGSTAB</code>, <code>Eigen::CholmodSupernodalLLT</code>, <code>Eigen::ConjugateGradient</code>, <code>Eigen::DGMRES</code>, <code>Eigen::GMRES</code>, <code>Eigen::LeastSquaresConjugateGradient</code>, <code>Eigen::MINRES</code>, <code>Eigen::PardisoLDLT</code>, <code>Eigen::PardisoLU</code>, <code>Eigen::SimplicialLDLT</code>, <code>Eigen::SparseLU</code>, <code>Eigen::UmfPackLU</code>, <code>Hypre</code>, <code>Pardiso</code></p>
 </li>
-<li><strong>nl_solver</strong>: lbfgs, newton</li>
-<li><strong>line_search</strong>: armijo, armijo_alt, bisection, more_thuente</li>
+<li><strong>nl_solver</strong>: <code>lbfgs</code>, <code>newton</code></li>
+<li><strong>line_search</strong>: <code>armijo</code>, <code>armijo_alt</code>, <code>bisection</code>, <code>more_thuente</code></li>
 </ul>
 <h2 id="formulations">Formulations<a class="headerlink" href="#formulations" title="Permanent link">&para;</a></h2>
 <p>List of possible formulations. The constants can be set in <code>params</code>. All formulations supports boundary conditions.</p>
