@@ -80,6 +80,8 @@ Complete example
 
         "lambda": 0.329670329,      "Lame parameter, E, nu have priority"
         "mu": 0.384615384,
+
+        "density": 1
     },
 
 
