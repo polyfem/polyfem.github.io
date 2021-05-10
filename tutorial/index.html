@@ -592,7 +592,7 @@ For the 2 Dirichlet is a bit more complicated because we want reflective boundar
 <h2 id="selections-multi-material-and-collisions-beta">Selections, Multi-material, and Collisions [Beta]<a class="headerlink" href="#selections-multi-material-and-collisions-beta" title="Permanent link">&para;</a></h2>
 <p><img alt="Sphere-mat" src="../img/sphere-mat.png" /></p>
 <p>The new release of PolyFEM support multi-material. For example if we want to simulate a sphere of radius 0.5m centered on <span><span class="MathJax_Preview">[0,1,0]</span><script type="math/tex">[0,1,0]</script></span> with material <span><span class="MathJax_Preview">E=10^8, \nu=0.4, \rho=2000</span><script type="math/tex">E=10^8, \nu=0.4, \rho=2000</script></span> falling on thin soft mat  (<span><span class="MathJax_Preview">E=10^6, \nu=0.4, \rho=1000</span><script type="math/tex">E=10^6, \nu=0.4, \rho=1000</script></span>) we need to set the body id. To set the body ids we can use selection, that is add this to the main json file:
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;body_ids&quot;</span><span class="err">:</span> <span class="p">[{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;body_ids&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;center&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="nt">&quot;radius&quot;</span><span class="p">:</span> <span class="mf">0.6</span>
@@ -603,7 +603,7 @@ For the 2 Dirichlet is a bit more complicated because we want reflective boundar
 <span class="p">}]</span>
 </code></pre></div>
 The sphere will be body 1, the selection is a sphere, for the mat the selection is an &ldquo;axis-plane&rdquo;. For axis-planes the axis (1,2,3) represent <span><span class="MathJax_Preview">x,y,z</span><script type="math/tex">x,y,z</script></span>, the sign indicates the direction of the plane, and the position the offset. For this example, we are setting body id 2 to everything that has <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span>-coordinate less than 0.01m (i.e., the thin mat). Using the body ids we can set the per-body material parameters by adding to the json
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;body_params&quot;</span><span class="err">:</span> <span class="p">[{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;body_params&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;E&quot;</span><span class="p">:</span> <span class="mf">1e8</span><span class="p">,</span>
     <span class="nt">&quot;nu&quot;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span>
@@ -617,7 +617,7 @@ The sphere will be body 1, the selection is a sphere, for the mat the selection 
 </code></pre></div>
 Where the id points to the selection.</p>
 <p>Selections can be used to set boundary conditions too. For our example we want to fix the 4 sides of the mat, that is set zero Dirichlet. thus we need to select faces that are left/right top/bottom and assign to them side-set 2 (we are again using axis-planes selections):
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;boundary_sidesets&quot;</span><span class="err">:</span> <span class="p">[{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;boundary_sidesets&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="nt">&quot;axis&quot;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>
     <span class="nt">&quot;position&quot;</span><span class="p">:</span> <span class="mf">-0.99</span>
@@ -636,7 +636,7 @@ Where the id points to the selection.</p>
 <span class="p">}]</span>
 </code></pre></div></p>
 <p>The final piece is to use a Generic tensor problem <code>"problem": "GenericTensor"</code> and specify boundary conditions and rhs (for the gravity):
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;problem_params&quot;</span><span class="err">:</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;problem_params&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;is_time_dependent&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 
     <span class="nt">&quot;dirichlet_boundary&quot;</span><span class="p">:</span> <span class="p">[{</span>

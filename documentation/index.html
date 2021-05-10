@@ -1070,88 +1070,90 @@
 <p>Complete example
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;mesh&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                    <span class="nt">&quot;Mesh path (absolute or relative to JSON file)&quot;</span>
-    <span class="s2">&quot;bc_tag&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                  <span class="nt">&quot;Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)&quot;</span>
-    <span class="s2">&quot;boundary_id_threshold&quot;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>    <span class="nt">&quot;Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2&quot;</span>
-    <span class="s2">&quot;normalize_mesh&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>         <span class="nt">&quot;Normalize mesh such that it fits in the [0,1] bounding box&quot;</span>
+    <span class="nt">&quot;bc_tag&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>                  <span class="nt">&quot;Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)&quot;</span>
+    <span class="nt">&quot;boundary_id_threshold&quot;</span><span class="p">:</span> <span class="mi">-1</span><span class="p">,</span>    <span class="nt">&quot;Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2&quot;</span>
+    <span class="nt">&quot;normalize_mesh&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>         <span class="nt">&quot;Normalize mesh such that it fits in the [0,1] bounding box&quot;</span>
 
-    <span class="s2">&quot;n_refs&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                    <span class="nt">&quot;Number of uniform refinement&quot;</span>
-    <span class="s2">&quot;refinenemt_location&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>     <span class="nt">&quot;Refiniement location of polyhedra&quot;</span>
+    <span class="nt">&quot;n_refs&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                    <span class="nt">&quot;Number of uniform refinement&quot;</span>
+    <span class="nt">&quot;refinenemt_location&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>     <span class="nt">&quot;Refiniement location of polyhedra&quot;</span>
 
-    <span class="s2">&quot;scalar_formulation&quot;</span><span class="p">:</span> <span class="s2">&quot;Laplacian&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;scalar_formulation&quot;</span><span class="p">:</span> <span class="s2">&quot;Laplacian&quot;</span><span class="p">,</span>
     <span class="nt">&quot;tensor_formulation&quot;</span><span class="p">:</span> <span class="s2">&quot;LinearElasticity&quot;</span><span class="p">,</span>
 
     <span class="nt">&quot;project_to_psd&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="nt">&quot;Project the local matrices to PSD in for non-linear materials&quot;</span>
 
-    <span class="s2">&quot;has_collision&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>         <span class="nt">&quot;Enable collision detection&quot;</span>
-    <span class="s2">&quot;dhat&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>                   <span class="nt">&quot;Barrier activation distance, check IPC paper&quot;</span>
+    <span class="nt">&quot;has_collision&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>         <span class="nt">&quot;Enable collision detection&quot;</span>
+    <span class="nt">&quot;dhat&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>                   <span class="nt">&quot;Barrier activation distance, check IPC paper&quot;</span>
 
-    <span class="s2">&quot;count_flipped_els&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="nt">&quot;Count (or not) flipped elements&quot;</span>
+    <span class="nt">&quot;count_flipped_els&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>     <span class="nt">&quot;Count (or not) flipped elements&quot;</span>
 
-    <span class="s2">&quot;iso_parametric&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="nt">&quot;Force isoparametric elements&quot;</span>
-    <span class="s2">&quot;discr_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="nt">&quot;Dicretization order, supports P1, P2, P3, P4, Q1, Q2&quot;</span>
+    <span class="nt">&quot;iso_parametric&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>        <span class="nt">&quot;Force isoparametric elements&quot;</span>
+    <span class="nt">&quot;discr_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="nt">&quot;Dicretization order, supports P1, P2, P3, P4, Q1, Q2&quot;</span>
 
-    <span class="s2">&quot;pressure_discr_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>      <span class="nt">&quot;Pressure dicrezation order, for mixed formulation&quot;</span>
+    <span class="nt">&quot;pressure_discr_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>      <span class="nt">&quot;Pressure dicrezation order, for mixed formulation&quot;</span>
 
-    <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                   <span class="nt">&quot;Output json path&quot;</span>
+    <span class="nt">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                   <span class="nt">&quot;Output json path&quot;</span>
 
-    <span class="s2">&quot;problem&quot;</span><span class="p">:</span> <span class="s2">&quot;Franke&quot;</span><span class="p">,</span>            <span class="nt">&quot;Problem to solve&quot;</span>
-    <span class="s2">&quot;problem_params&quot;</span><span class="p">:</span> <span class="p">{},</span>           <span class="nt">&quot;Problem specific parameters&quot;</span>
+    <span class="nt">&quot;problem&quot;</span><span class="p">:</span> <span class="s2">&quot;Franke&quot;</span><span class="p">,</span>            <span class="nt">&quot;Problem to solve&quot;</span>
+    <span class="nt">&quot;problem_params&quot;</span><span class="p">:</span> <span class="p">{},</span>           <span class="nt">&quot;Problem specific parameters&quot;</span>
 
-    <span class="s2">&quot;n_boundary_samples&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>        <span class="nt">&quot;number of boundary samples (Dirichelt) or quadrature points (Neumann)&quot;</span>
-    <span class="s2">&quot;quadrature_order&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>          <span class="nt">&quot;quadrature order&quot;</span>
-    <span class="s2">&quot;BDF_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                 <span class="nt">&quot;Order of BDF for time integration problems&quot;</span>
+    <span class="nt">&quot;n_boundary_samples&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>        <span class="nt">&quot;number of boundary samples (Dirichelt) or quadrature points (Neumann)&quot;</span>
+    <span class="nt">&quot;quadrature_order&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>          <span class="nt">&quot;quadrature order&quot;</span>
+    <span class="nt">&quot;BDF_order&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                 <span class="nt">&quot;Order of BDF for time integration problems&quot;</span>
 
-    <span class="s2">&quot;export&quot;</span><span class="p">:</span> <span class="p">{</span>                     <span class="nt">&quot;Export options&quot;</span>
-        <span class="s2">&quot;full_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Stiffnes matrix without boundary conditions&quot;</span>
-        <span class="s2">&quot;iso_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Isolines mesh&quot;</span>
-        <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                <span class="nt">&quot;FE nodes&quot;</span>
-        <span class="s2">&quot;solution&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Solution vector&quot;</span>
-        <span class="s2">&quot;spectrum&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>          <span class="nt">&quot;Spectrum of the stiffness matrix&quot;</span>
-        <span class="s2">&quot;stiffness_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>        <span class="nt">&quot;Stiffmess matrix after setting boundary conditions&quot;</span>
-        <span class="s2">&quot;vis_boundary_only&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nt">&quot;Exports only the boundary of volumetric meshes&quot;</span>
-        <span class="s2">&quot;paraview&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Path for the vtu mesh&quot;</span>
-        <span class="s2">&quot;wire_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>            <span class="nt">&quot;Wireframe of the mesh&quot;</span>
-        <span class="s2">&quot;material_params&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>   <span class="nt">&quot;Exports lame parameters per tetrahedron&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;export&quot;</span><span class="p">:</span> <span class="p">{</span>                     <span class="nt">&quot;Export options&quot;</span>
+        <span class="nt">&quot;full_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Stiffnes matrix without boundary conditions&quot;</span>
+        <span class="nt">&quot;iso_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Isolines mesh&quot;</span>
+        <span class="nt">&quot;nodes&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>                <span class="nt">&quot;FE nodes&quot;</span>
+        <span class="nt">&quot;solution&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Solution vector&quot;</span>
+        <span class="nt">&quot;spectrum&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>          <span class="nt">&quot;Spectrum of the stiffness matrix&quot;</span>
+        <span class="nt">&quot;stiffness_mat&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>        <span class="nt">&quot;Stiffmess matrix after setting boundary conditions&quot;</span>
+        <span class="nt">&quot;vis_boundary_only&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nt">&quot;Exports only the boundary of volumetric meshes&quot;</span>
+        <span class="nt">&quot;paraview&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>             <span class="nt">&quot;Path for the vtu mesh&quot;</span>
+        <span class="nt">&quot;wire_mesh&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>            <span class="nt">&quot;Wireframe of the mesh&quot;</span>
+        <span class="nt">&quot;material_params&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>   <span class="s2">&quot;Exports lame parameters per tetrahedron&quot;</span><span class="p">,</span>
         <span class="nt">&quot;body_ids&quot;</span><span class="p">:</span> <span class="kc">false</span>           <span class="s2">&quot;Export body ids&quot;</span>
     <span class="p">},</span>
 
     <span class="nt">&quot;use_spline&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>            <span class="nt">&quot;Use spline for quad/hex elements&quot;</span>
-    <span class="s2">&quot;fit_nodes&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>             <span class="nt">&quot;Fit nodes for spline basis&quot;</span>
+    <span class="nt">&quot;fit_nodes&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>             <span class="nt">&quot;Fit nodes for spline basis&quot;</span>
 
-    <span class="s2">&quot;integral_constraints&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>      <span class="nt">&quot;Number of constraints for polygonal basis 0, 1, or 2&quot;</span>
-    <span class="s2">&quot;n_harmonic_samples&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>       <span class="nt">&quot;Number of face/line samples for harmonic bases for polyhedra&quot;</span>
+    <span class="nt">&quot;integral_constraints&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>      <span class="nt">&quot;Number of constraints for polygonal basis 0, 1, or 2&quot;</span>
+    <span class="nt">&quot;n_harmonic_samples&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>       <span class="nt">&quot;Number of face/line samples for harmonic bases for polyhedra&quot;</span>
 
-    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>                         <span class="nt">&quot;User provided parameter for pref tolerance&quot;</span>
-    <span class="s2">&quot;use_p_ref&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>             <span class="nt">&quot;Enable prefinement for badly shaped simplices&quot;</span>
-    <span class="s2">&quot;discr_order_max&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>           <span class="nt">&quot;Maximum allowed dicrezation oder, used in p pref&quot;</span>
-    <span class="s2">&quot;h1_formula&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>            <span class="nt">&quot;Use pref formula for h1 bound&quot;</span>
+    <span class="nt">&quot;B&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>                         <span class="nt">&quot;User provided parameter for pref tolerance&quot;</span>
+    <span class="nt">&quot;use_p_ref&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>             <span class="nt">&quot;Enable prefinement for badly shaped simplices&quot;</span>
+    <span class="nt">&quot;discr_order_max&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>           <span class="nt">&quot;Maximum allowed dicrezation oder, used in p pref&quot;</span>
+    <span class="nt">&quot;h1_formula&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>            <span class="nt">&quot;Use pref formula for h1 bound&quot;</span>
 
-    <span class="s2">&quot;solver_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pardiso&quot;</span><span class="p">,</span>       <span class="nt">&quot;Library for linear solver&quot;</span>
-    <span class="s2">&quot;precond_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Eigen::DiagonalPreconditioner&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;solver_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Pardiso&quot;</span><span class="p">,</span>       <span class="nt">&quot;Library for linear solver&quot;</span>
+    <span class="nt">&quot;precond_type&quot;</span><span class="p">:</span> <span class="s2">&quot;Eigen::DiagonalPreconditioner&quot;</span><span class="p">,</span>
     <span class="nt">&quot;solver_params&quot;</span><span class="p">:</span> <span class="p">{},</span>            <span class="nt">&quot;solver specific parameters&quot;</span>
 
-    <span class="s2">&quot;nl_solver&quot;</span><span class="p">:</span> <span class="s2">&quot;newton&quot;</span><span class="p">,</span>          <span class="nt">&quot;Non linear solver&quot;</span>
-    <span class="s2">&quot;line_search&quot;</span><span class="p">:</span> <span class="s2">&quot;armijo&quot;</span><span class="p">,</span>        <span class="nt">&quot;Line search for newton solver&quot;</span>
-    <span class="s2">&quot;nl_solver_rhs_steps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>       <span class="nt">&quot;Number of incremental load steps&quot;</span>
-    <span class="s2">&quot;save_solve_sequence&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>   <span class="nt">&quot;Save all incremental load steps&quot;</span>
+    <span class="nt">&quot;nl_solver&quot;</span><span class="p">:</span> <span class="s2">&quot;newton&quot;</span><span class="p">,</span>          <span class="nt">&quot;Non linear solver&quot;</span>
+    <span class="nt">&quot;line_search&quot;</span><span class="p">:</span> <span class="s2">&quot;armijo&quot;</span><span class="p">,</span>        <span class="nt">&quot;Line search for newton solver&quot;</span>
+    <span class="nt">&quot;nl_solver_rhs_steps&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>       <span class="nt">&quot;Number of incremental load steps&quot;</span>
+    <span class="nt">&quot;save_solve_sequence&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>   <span class="nt">&quot;Save all incremental load steps&quot;</span>
 
-    <span class="s2">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>                     <span class="nt">&quot;Material parameter&quot;</span>
-        <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>                   <span class="nt">&quot;Constant in helmolz&quot;</span>
+    <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>                     <span class="nt">&quot;Material parameter&quot;</span>
+        <span class="nt">&quot;k&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>                   <span class="nt">&quot;Constant in helmolz&quot;</span>
 
-        <span class="s2">&quot;elasticity_tensor&quot;</span><span class="p">:</span> <span class="p">{},</span>    <span class="nt">&quot;Elasticity tensor, used in hooke and saint ventant&quot;</span>
+        <span class="nt">&quot;elasticity_tensor&quot;</span><span class="p">:</span> <span class="p">{},</span>    <span class="nt">&quot;Elasticity tensor, used in hooke and saint ventant&quot;</span>
 
-        <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>                   <span class="nt">&quot;Young modulus&quot;</span>
-        <span class="s2">&quot;nu&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>                  <span class="nt">&quot;Poisson&#39;s ratio&quot;</span>
+        <span class="nt">&quot;E&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>                   <span class="nt">&quot;Young modulus&quot;</span>
+        <span class="nt">&quot;nu&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>                  <span class="nt">&quot;Poisson&#39;s ratio&quot;</span>
 
-        <span class="s2">&quot;lambda&quot;</span><span class="p">:</span> <span class="mf">0.329670329</span><span class="p">,</span>      <span class="nt">&quot;Lame parameter, E, nu have priority&quot;</span>
-        <span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="mf">0.384615384</span><span class="p">,</span>
+        <span class="nt">&quot;lambda&quot;</span><span class="p">:</span> <span class="mf">0.329670329</span><span class="p">,</span>      <span class="nt">&quot;Lame parameter, E, nu have priority&quot;</span>
+        <span class="nt">&quot;mu&quot;</span><span class="p">:</span> <span class="mf">0.384615384</span><span class="p">,</span>
+
+        <span class="nt">&quot;density&quot;</span><span class="p">:</span> <span class="mi">1</span>
     <span class="p">},</span>
 
 
     <span class="nt">&quot;tend&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                      <span class="nt">&quot;End time for time dependent simulations&quot;</span>
-    <span class="s2">&quot;time_steps&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>               <span class="nt">&quot;Number of time steps for time dependent simulations&quot;</span>
+    <span class="nt">&quot;time_steps&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>               <span class="nt">&quot;Number of time steps for time dependent simulations&quot;</span>
 
-    <span class="s2">&quot;vismesh_rel_area&quot;</span><span class="p">:</span> <span class="mf">1e-05</span>       <span class="s2">&quot;Relative resolution of the output mesh&quot;</span>
+    <span class="nt">&quot;vismesh_rel_area&quot;</span><span class="p">:</span> <span class="mf">1e-05</span>       <span class="s2">&quot;Relative resolution of the output mesh&quot;</span>
 <span class="p">}</span>
 </code></pre></div></p>
 <h3 id="optionals">Optionals<a class="headerlink" href="#optionals" title="Permanent link">&para;</a></h3>
@@ -1296,24 +1298,24 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 <strong>Form</strong>: scalar<br/>
 <strong>Description</strong>: solves for generic tensor problem with zero rhs<br/>
 <strong>Options</strong>:
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="mi">3</span>                            <span class="s2">&quot;Rhs of the problem&quot;</span>
-<span class="s2">&quot;dirichlet_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;rhs&quot;</span><span class="p">:</span> <span class="mi">3</span>                            <span class="nt">&quot;Rhs of the problem&quot;</span>
+<span class="nt">&quot;dirichlet_boundary&quot;</span><span class="p">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span>                      <span class="s2">&quot;Boundary value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span>                      <span class="s2">&quot;Boundary value&quot;</span>
 <span class="p">},</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;sin(x)+y&quot;</span>             <span class="s2">&quot;Formulas are supported&quot;</span>
-<span class="p">}]</span><span class="err">,</span>
-<span class="s2">&quot;neumann_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>               <span class="s2">&quot;List of Neumann boundaries&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;sin(x)+y&quot;</span>             <span class="s2">&quot;Formulas are supported&quot;</span>
+<span class="p">}],</span>
+<span class="nt">&quot;neumann_boundary&quot;</span><span class="p">:</span> <span class="p">[</span>               <span class="s2">&quot;List of Neumann boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                     <span class="nt">&quot;Boundary value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                     <span class="s2">&quot;Boundary value&quot;</span>
 <span class="p">},</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;x^2&quot;</span>                  <span class="s2">&quot;Formulas are supported&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;x^2&quot;</span>                  <span class="s2">&quot;Formulas are supported&quot;</span>
 <span class="p">}]</span>
 </code></pre></div></p>
 <h3 id="generictensor">GenericTensor<a class="headerlink" href="#generictensor" title="Permanent link">&para;</a></h3>
@@ -1322,12 +1324,12 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 <strong>Form</strong>: tesor<br/>
 <strong>Description</strong>: solves for generic tensor problem with zero body forces<br/>
 <strong>Options</strong>:
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>                    <span class="s2">&quot;Rhs of the problem&quot;</span>
-<span class="s2">&quot;dirichlet_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;rhs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>                    <span class="nt">&quot;Rhs of the problem&quot;</span>
+<span class="nt">&quot;dirichlet_boundary&quot;</span><span class="p">:</span> <span class="p">[</span>             <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>             <span class="nt">&quot;Boundary vector value&quot;</span>
-    <span class="s2">&quot;dimension&quot;</span><span class="p">:</span> <span class="p">[</span>                  <span class="s2">&quot;Which dimension are Dirichelt&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>             <span class="nt">&quot;Boundary vector value&quot;</span>
+    <span class="nt">&quot;dimension&quot;</span><span class="p">:</span> <span class="p">[</span>                  <span class="s2">&quot;Which dimension are Dirichelt&quot;</span>
             <span class="kc">true</span><span class="p">,</span>
             <span class="kc">true</span><span class="p">,</span>
             <span class="kc">false</span>                   <span class="s2">&quot;In this case z is free&quot;</span>
@@ -1335,16 +1337,16 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 <span class="p">},</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sin(x)+y&quot;</span><span class="p">,</span> <span class="s2">&quot;z^2&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="s2">&quot;Formulas are supported&quot;</span>
-<span class="p">}]</span><span class="err">,</span>
-<span class="s2">&quot;neumann_boundary&quot;</span><span class="err">:</span> <span class="p">[</span>               <span class="s2">&quot;List of Neumann boundaries&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sin(x)+y&quot;</span><span class="p">,</span> <span class="s2">&quot;z^2&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="s2">&quot;Formulas are supported&quot;</span>
+<span class="p">}],</span>
+<span class="nt">&quot;neumann_boundary&quot;</span><span class="p">:</span> <span class="p">[</span>               <span class="s2">&quot;List of Neumann boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>              <span class="s2">&quot;Boundary vector value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>              <span class="s2">&quot;Boundary vector value&quot;</span>
 <span class="p">},</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>                        <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sin(z)+y&quot;</span><span class="p">,</span> <span class="s2">&quot;z^2&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="s2">&quot;Formulas are supported&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sin(z)+y&quot;</span><span class="p">,</span> <span class="s2">&quot;z^2&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="s2">&quot;Formulas are supported&quot;</span>
 <span class="p">}]</span>
 </code></pre></div></p>
 <h3 id="gravity">Gravity<a class="headerlink" href="#gravity" title="Permanent link">&para;</a></h3>
@@ -1387,24 +1389,24 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
 <strong>Form</strong>: tesor<br/>
 <strong>Description</strong>: solves for point-based boudary conditions<br/>
 <strong>Options</strong>:
-<div class="highlight"><pre><span></span><code><span class="s2">&quot;scaling&quot;</span><span class="err">:</span> <span class="mi">1</span><span class="err">,</span>               <span class="s2">&quot;Scaling factor&quot;</span>
-<span class="s2">&quot;rhs&quot;</span><span class="err">:</span> <span class="mi">0</span><span class="err">,</span>                   <span class="s2">&quot;Right-hand side&quot;</span>
-<span class="s2">&quot;translation&quot;</span><span class="err">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>    <span class="s2">&quot;Translation&quot;</span>
-<span class="s2">&quot;boundary_ids&quot;</span><span class="err">:</span> <span class="p">[</span>           <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;scaling&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>               <span class="nt">&quot;Scaling factor&quot;</span>
+<span class="nt">&quot;rhs&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                   <span class="nt">&quot;Right-hand side&quot;</span>
+<span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>    <span class="nt">&quot;Translation&quot;</span>
+<span class="nt">&quot;boundary_ids&quot;</span><span class="p">:</span> <span class="p">[</span>           <span class="s2">&quot;List of Dirichelt boundaries&quot;</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                <span class="nt">&quot;Boundary id&quot;</span>
-    <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>      <span class="s2">&quot;Boundary vector value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>      <span class="s2">&quot;Boundary vector value&quot;</span>
 <span class="p">},</span>
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>              <span class="nt">&quot;Rbf interpolated value&quot;</span>
-        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>     <span class="nt">&quot;Function file&quot;</span>
-        <span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>       <span class="nt">&quot;Points file&quot;</span>
-        <span class="s2">&quot;rbf&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>  <span class="nt">&quot;Rbf kernel&quot;</span>
-        <span class="s2">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>     <span class="nt">&quot;Rbf epsilon&quot;</span>
-        <span class="s2">&quot;coordinate&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="nt">&quot;Coordinate to ignore&quot;</span>
+        <span class="nt">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>     <span class="nt">&quot;Function file&quot;</span>
+        <span class="nt">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>       <span class="nt">&quot;Points file&quot;</span>
+        <span class="nt">&quot;rbf&quot;</span><span class="p">:</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span>  <span class="nt">&quot;Rbf kernel&quot;</span>
+        <span class="nt">&quot;epsilon&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>     <span class="nt">&quot;Rbf epsilon&quot;</span>
+        <span class="nt">&quot;coordinate&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="nt">&quot;Coordinate to ignore&quot;</span>
 
-        <span class="s2">&quot;dimension&quot;</span><span class="p">:</span> <span class="p">[</span>      <span class="s2">&quot;Which dimension are Dirichelt&quot;</span>
+        <span class="nt">&quot;dimension&quot;</span><span class="p">:</span> <span class="p">[</span>      <span class="s2">&quot;Which dimension are Dirichelt&quot;</span>
             <span class="kc">true</span><span class="p">,</span>
             <span class="kc">true</span><span class="p">,</span>
             <span class="kc">false</span>           <span class="s2">&quot;In this case z is free&quot;</span>
@@ -1414,10 +1416,10 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
 <span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="p">{</span>              <span class="nt">&quot;Rbf interpolated value&quot;</span>
-        <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>     <span class="nt">&quot;Function file&quot;</span>
-        <span class="s2">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>       <span class="nt">&quot;Points file&quot;</span>
-        <span class="s2">&quot;triangles&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>    <span class="nt">&quot;Triangles file&quot;</span>
-        <span class="s2">&quot;coordinate&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="nt">&quot;Coordinate to ignore&quot;</span>
+        <span class="nt">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>     <span class="nt">&quot;Function file&quot;</span>
+        <span class="nt">&quot;points&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>       <span class="nt">&quot;Points file&quot;</span>
+        <span class="nt">&quot;triangles&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>    <span class="nt">&quot;Triangles file&quot;</span>
+        <span class="nt">&quot;coordinate&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>    <span class="s2">&quot;Coordinate to ignore&quot;</span>
     <span class="p">}</span>
 <span class="p">}]</span>
 </code></pre></div></p>
