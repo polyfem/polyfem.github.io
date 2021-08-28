@@ -179,3 +179,65 @@ The final piece is to use a Generic tensor problem `"problem": "GenericTensor"` 
 
 Since this is a contact problem we need to enable collision, **no other thing is needed**: `"has_collision": true`, and run the simulation (the complete json script can be found [here](img/sphere-mat.json)).
 ![Sphere-mat](img/sphere-mat-res.png)
+
+Multibody System
+----------------
+
+Alternative to the standard `"mesh"` JSON input, we can instead create a system of multiple bodies using the `"meshes"` JSON field. The field `"meshes"` should be an array containing a JSON object for each body. For example, the following constructs the sphere-mat system above.
+
+```json
+"meshes": [{
+    "mesh": "sphere1K.msh",
+    "position": [0, 1, 0],
+    "body_id": 1
+}, {
+    "mesh": "mat40x40.msh",
+    "scale": 2,
+    "body_id": 2
+}]
+```
+
+**Note: if the `mesh` field is present it takes priority over the `meshes` input.**
+
+Besides the `"mesh"` field, all other body object fields are optional. A complete list of values are given below with their default values.
+
+```json
+{
+    "position": [0.0, 0.0, 0.0],
+    "rotation": [0.0, 0.0, 0.0],
+    "rotation_mode": "xyz",
+    "scale": [1.0, 1.0, 1.0],
+    "enabled": true,
+    "body_id": 0,
+    "boundary_id": 0
+}
+```
+
+### Body Object Fields
+
+#### Position
+The `"position"` field encodes the position of the mesh's origin (not the center of mass). This is equivalent to a translation of the mesh. This mush be an array of length $d$, the dimension of the scene.
+
+#### Rotation
+The `"rotation"` field encodes a rotation around the mesh's origin (not the center of mass). The rotation can either be a single number or array of numbers depending on the `"rotation_mode"`.
+
+The `"rotation_mode"` field indicates how the `"rotation"` is represented. The options are:
+
+* `"axis_angle"`: The `"rotation"` must be an array of four numbers where the first number is the angle of rotation in degrees and the last three are the axis or rotation. The axis will be normalized.
+* `"quaternion"`: The `"rotation"` must be an array of four numbers which represent a quaternion $w + xi + yj + zk$. The order of `"rotation"` is `[x, y, z, w]`. The quaternion will be normalized.
+* `"rotation_vector"`: The `"rotation"` must be an array of four numbers whose magnitude is the angle of rotation in degrees and normalized version is the axis of rotation.
+* `r"[xyz]+"`: Indicates the `"rotation"` is a series of Euler angle rotations. The `"rotation"` can be either a number or variable length array as long as the length matches the rotation mode string's length. The Euler rotations will be applied in the order of the string (from left to right).
+
+The default `"rotation_mode"` is `"xyz"` which indicates a Euler angle rotation in the order `x`, `y`, and then `z`.
+
+#### Scale
+The `"scale"` field encodes the scale of the mesh relative to its origin (not the center of mass). This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
+
+#### Enable
+A boolean for enabling the body. By default, bodies are enabled.
+
+#### Body ID
+The `"id"` of the `"body_params"` to use for the entire body.
+
+#### Boundary ID
+The `"id"` of the boundary conditions (e.g., `"dirichlet_boundary"` or `"neumann_boundary"`) to use on the entirety the body's boundary.
