@@ -213,31 +213,15 @@ Besides the `"mesh"` field, all other body object fields are optional. A complet
 }
 ```
 
-### Body Object Fields
+More details on each of these fields can be found in the [JSON API documentation](../documentation/#meshes).
 
-#### Position
-The `"position"` field encodes the position of the mesh's origin (not the center of mass). This is equivalent to a translation of the mesh. This mush be an array of length $d$, the dimension of the scene.
+Time Dependent Simulation
+-------------------------
 
-#### Rotation
-The `"rotation"` field encodes a rotation around the mesh's origin (not the center of mass). The rotation can either be a single number or array of numbers depending on the `"rotation_mode"`.
+To enable time dependent simulation simply add `"is_time_dependent": true` to the `"problem_params"`.
 
-The `"rotation_mode"` field indicates how the `"rotation"` is represented. The options are:
+To specify the duration of the simulation set `"tend"` in the root of your JSON file. The the number of time steps can either be set directly using `"time_steps"` or by specifying the time step size `"dt"` (`"dt"` has priority over `"time_steps"`).
 
-* `"axis_angle"`: The `"rotation"` must be an array of four numbers where the first number is the angle of rotation in degrees and the last three are the axis or rotation. The axis will be normalized.
-* `"quaternion"`: The `"rotation"` must be an array of four numbers which represent a quaternion $w + xi + yj + zk$. The order of `"rotation"` is `[x, y, z, w]`. The quaternion will be normalized.
-* `"rotation_vector"`: The `"rotation"` must be an array of four numbers whose magnitude is the angle of rotation in degrees and normalized version is the axis of rotation.
-* `r"[xyz]+"`: Indicates the `"rotation"` is a series of Euler angle rotations. The `"rotation"` can be either a number or variable length array as long as the length matches the rotation mode string's length. The Euler rotations will be applied in the order of the string (from left to right).
+You can also specify the time integration method using `"time_integrator"`. By default it uses `"ImplicitEuler"`, and a complete list of options can be found [here](../documentation/#time-integrators) along with details about `"time_integrator_params"`.
 
-The default `"rotation_mode"` is `"xyz"` which indicates a Euler angle rotation in the order `x`, `y`, and then `z`.
-
-#### Scale
-The `"scale"` field encodes the scale of the mesh relative to its origin (not the center of mass). This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
-
-#### Enable
-A boolean for enabling the body. By default, bodies are enabled.
-
-#### Body ID
-The `"id"` of the `"body_params"` to use for the entire body.
-
-#### Boundary ID
-The `"id"` of the boundary conditions (e.g., `"dirichlet_boundary"` or `"neumann_boundary"`) to use on the entirety the body's boundary.
+If you specify `"save_time_sequence": true` then PolyFEM will generate a sequence of VTU files (one file per time step) and a [PVD](https://www.paraview.org/Wiki/ParaView/Data_formats#PVD_File_Format) file of the animation that can be directly viewed in [ParaView](https://www.paraview.org/).

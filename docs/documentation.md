@@ -5,6 +5,16 @@ Complete example
 ```json
 {
     "mesh": " ",                    "Mesh path (absolute or relative to JSON file)"
+    "meshes": [{                    "Multi-mesh input"
+        "mesh": " ",                "Mesh path (absolute or relative to JSON file)"
+        "position": [0.0, 0.0, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "rotation_mode": "xyz",
+        "scale": [1.0, 1.0, 1.0],
+        "enabled": true,
+        "body_id": 0,
+        "boundary_id": 0
+    }],
     "bc_tag": " ",                  "Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)"
     "boundary_id_threshold": -1,    "Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2"
     "normalize_mesh": true,         "Normalize mesh such that it fits in the [0,1] bounding box"
@@ -30,7 +40,9 @@ Complete example
     "output": "",                   "Output json path"
 
     "problem": "Franke",            "Problem to solve"
-    "problem_params": {},           "Problem specific parameters"
+    "problem_params": {             "Problem specific parameters"
+        "is_time_dependent": false  "Is the problem time dependent"
+    },
 
     "n_boundary_samples": 6,        "number of boundary samples (Dirichelt) or quadrature points (Neumann)"
     "quadrature_order": 4,          "quadrature order"
@@ -85,8 +97,13 @@ Complete example
     },
 
 
+    "t0": 0,                        "Start time for time dependent simulations"
     "tend": 1,                      "End time for time dependent simulations"
     "time_steps": 10,               "Number of time steps for time dependent simulations"
+    "dt": 0.1,                      "Time step size for time dependent simulations (priority over time_steps)"
+    "skip_frame": 1,
+    "time_integrator": "ImplicitEuler",
+    "time_integrator_params": {},   "Time integrator specific parameters"
 
     "vismesh_rel_area": 1e-05       "Relative resolution of the output mesh"
 }
@@ -103,6 +120,8 @@ Complete example
 * **solver_type**: `AMGCL`, `Eigen::BiCGSTAB`, `Eigen::CholmodSupernodalLLT`, `Eigen::ConjugateGradient`, `Eigen::DGMRES`, `Eigen::GMRES`, `Eigen::LeastSquaresConjugateGradient`, `Eigen::MINRES`, `Eigen::PardisoLDLT`, `Eigen::PardisoLU`, `Eigen::SimplicialLDLT`, `Eigen::SparseLU`, `Eigen::UmfPackLU`, `Hypre`, `Pardiso`
 * **nl_solver**: `lbfgs`, `newton`
 * **line_search**: `armijo`, `armijo_alt`, `bisection`, `more_thuente`
+
+* **time_integrator**: `ImplicitEuler`, `ImplicitNewmark`
 
 
 Formulations
@@ -443,3 +462,69 @@ $\begin{align}
 f_{2D}(x,y) &= (1 - x)  x^2 y (1-y)^2\\
 f_{3D}(x,y,z) &= (1 - x)  x^2 y (1-y)^2 z (1 - z)
 \end{align}$
+
+```json
+{
+    "position": [0.0, 0.0, 0.0],
+    "rotation": [0.0, 0.0, 0.0],
+    "rotation_mode": "xyz",
+    "scale": [1.0, 1.0, 1.0],
+    "enabled": true,
+    "body_id": 0,
+    "boundary_id": 0
+}
+```
+
+Time Integrators
+----------------
+
+### Implicit Euler
+
+**Constants**:<br>
+**Description**: <br>
+$\dot{u}^{t+1} = u^t + h \ddot{u}^{t+1}$ <br>
+$u^{t+1} = u^t + h \dot{u}^{t+1}$ <br>
+where $h$ is the time step size<br>
+**Reference**: https://en.wikipedia.org/wiki/Backward_Euler_method
+
+### Implicit Newmark
+
+**Constants**: `beta`, `gamma`<br>
+**Description**: <br>
+$\dot{u}^{t+1} = \dot{u}^t + (1-\gamma)h\ddot{u}^t + \gamma h\ddot{u}^{t+1}$<br>
+$u^{t+1} = u^t + h\dot{u}^t + \tfrac{h^2}{2}((1-2\beta)\ddot{u}^t + 2\beta\ddot{u}^{t+1})$ <br>
+where $h$ is the time step size and by default $\gamma = 0.5$ and $\beta = 0.25$<br>
+**Reference**: https://en.wikipedia.org/wiki/Newmark-beta_method
+
+Meshes
+------
+
+### Mesh
+The path to the mesh file (absolute or relative to JSON file).
+
+### Position
+The `"position"` field encodes the position of the mesh's origin (not the center of mass). This is equivalent to a translation of the mesh. This mush be an array of length $d$, the dimension of the scene.
+
+### Rotation
+The `"rotation"` field encodes a rotation around the mesh's origin (not the center of mass). The rotation can either be a single number or array of numbers depending on the `"rotation_mode"`.
+
+The `"rotation_mode"` field indicates how the `"rotation"` is represented. The options are:
+
+* `"axis_angle"`: The `"rotation"` must be an array of four numbers where the first number is the angle of rotation in degrees and the last three are the axis or rotation. The axis will be normalized.
+* `"quaternion"`: The `"rotation"` must be an array of four numbers which represent a quaternion $w + xi + yj + zk$. The order of `"rotation"` is `[x, y, z, w]`. The quaternion will be normalized.
+* `"rotation_vector"`: The `"rotation"` must be an array of four numbers whose magnitude is the angle of rotation in degrees and normalized version is the axis of rotation.
+* `r"[xyz]+"`: Indicates the `"rotation"` is a series of Euler angle rotations. The `"rotation"` can be either a number or variable length array as long as the length matches the rotation mode string's length. The Euler rotations will be applied in the order of the string (from left to right).
+
+The default `"rotation_mode"` is `"xyz"` which indicates a Euler angle rotation in the order `x`, `y`, and then `z`.
+
+### Scale
+The `"scale"` field encodes the scale of the mesh relative to its origin (not the center of mass). This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
+
+### Enable
+A boolean for enabling the body. By default, bodies are enabled.
+
+### Body ID
+The `"id"` of the `"body_params"` to use for the entire body.
+
+### Boundary ID
+The `"id"` of the boundary conditions (e.g., `"dirichlet_boundary"` or `"neumann_boundary"`) to use on the entirety the body's boundary.

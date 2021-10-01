@@ -60,7 +60,7 @@ nav:
           - Home: cxx_index.md
           - Tutorial: tutorial.md
           - Documentation: library.md
-          - JSON api: documentation.md
+          - JSON API: documentation.md
       - Python:
           - Home: python.md
           - Jupyter tutorial: python_examples.ipynb
