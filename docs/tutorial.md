@@ -68,7 +68,7 @@ For more advanced problems such as `GenericTensor`, `TorsionElastic`, or `Driven
 
 You can also specify a file containing a list of integers per each edge/face of the mesh indicating the tag in the json value `bc_tag`.
 
-If you want to run the *real* plate with hole problem you need to choose `GenericTensor` as problem, set the correct Lame constants in `params`, and specify the proper boundary conditions in `problem_params`. For this example, we want Neumann boundary condition of [100, 0]  (a force of 100 in x) applied to the whole right side (pulling), so in the `neumann_boundary` array of `problem_params` we add an entry with `id` 3 and value [100, 0].
+If you want to run the *real* plate with hole problem you need to choose `GenericTensor` as problem, set the correct Lamé constants in `params`, and specify the proper boundary conditions in `problem_params`. For this example, we want Neumann boundary condition of [100, 0]  (a force of 100 in x) applied to the whole right side (pulling), so in the `neumann_boundary` array of `problem_params` we add an entry with `id` 3 and value [100, 0].
 For the 2 Dirichlet is a bit more complicated because we want reflective boundary condition, that is we want to fix only one of the 2 coordinates. For instance, the right part of the mesh (id 1) needs to be fixed in x (or equivalent can move only in y-direction). To do so we add an entry to the `dirichlet_boundary` array with `id` 1 and `value` [0, 0], that is zero displacement, and specify which `dimension` these boundaries needs to be applied, in this case only the x-direction so `dimension` gets the value `[true, false]`. Similarly, the top part (id 4) gets `dimension=[false, true]`.
 
 
@@ -102,9 +102,27 @@ For the 2 Dirichlet is a bit more complicated because we want reflective boundar
 }
 ```
 
-Note that as value you can also specify an expression as string depending on x,y,z and Polyfem will evaluate that expression on the edge/face.
+### Spatially Varying Boundary Conditions
 
-Since creating the file with association from boundary to id it is complicated, we also provide an application `bc_setter` to interactively *color* faces of 3D meshes (or edges of 2D meshes) and associate tags. By *shift* clicking you can color coplanar faces to assign and id (*command* or *control* click colors only one face). The UI also allow to specify the 3 values (for scalar problem only one) to assign to that boundary condition and choose between Dirichlet and Neumann. On save it will produce the txt file with the tags to be used in `bc_tag` and a json file to set the `problem_params`. Note, if you selected the vector problem you need to use `"problem": "GenericTensor"` otherwise `"problem": "GenericScalar"`.
+The specified value for boundary conditions can also contain expression as string depending on `x`,`y`, and `z`. Polyfem will evaluate these expressions on the edge/face. For this we use the [TinyExpr](https://github.com/codeplea/tinyexpr) library.
+
+In addition to [TinyExpr's built-in functions](https://github.com/codeplea/tinyexpr#functions-supported), we define some useful utility functions including:
+
+* `min(a, b)`: minimum of two values
+* `max(a, b)`: maximum of two values
+* `deg2rad(d)`: convert degrees to radians
+* `rotate_2D_x(x, y, theta)`: given a value for `x`, `y`, and `theta`, compute the *x* component of a 2D rotation of `theta` radians
+    * definition: `x * cos(theta) - y * sin(theta)`
+* `rotate_2D_y(x, y, theta)`: given a value for `x`, `y`, and `theta`, compute the *y* component of a 2D rotation of `theta` radians
+    * definition: `x * sin(theta) + y * cos(theta)`
+
+### BC Setter App
+
+Since creating the file with association from boundary to ID is complicated, we also provide an application `bc_setter` to interactively *color* faces of 3D meshes (or edges of 2D meshes) and associate tags.
+
+By *shift* clicking you can color coplanar faces to assign an ID (*command* or *control* click colors only one face). The UI also allow to specify the 3 values (for scalar problem only one) to assign to that boundary condition and choose between Dirichlet and Neumann.
+
+On save it will produce the `.txt` file with the tags to be used in the `"bc_tag"` JSON field and a JSON file to set the `problem_params`. Note, if you selected the vector problem you need to use `"problem": "GenericTensor"` otherwise use `"problem": "GenericScalar"`.
 
 ![bc_setter](img/bc_setter.png)
 
@@ -225,3 +243,14 @@ To specify the duration of the simulation set `"tend"` in the root of your JSON 
 You can also specify the time integration method using `"time_integrator"`. By default it uses `"ImplicitEuler"`, and a complete list of options can be found [here](../documentation/#time-integrators) along with details about `"time_integrator_params"`.
 
 If you specify `"save_time_sequence": true` then PolyFEM will generate a sequence of VTU files (one file per time step) and a [PVD](https://www.paraview.org/Wiki/ParaView/Data_formats#PVD_File_Format) file of the animation that can be directly viewed in [ParaView](https://www.paraview.org/).
+
+### Time Dependent Boundary Conditions
+
+Enabling time dependent simulation also enable the ability to use the current time to design time dependent boundary conditions. To define time dependent boundary conditions you can use the variable `t` in an expression value. For example,
+```json
+"dirichlet_boundary": [{
+    "id": 1,
+    "value": ["t", 0, 0]
+}]
+```
+defines a boundary condition that linearly increases in the x component as time progresses. An example use case for this would be in an elasticity problem to move the boundary over time (remember in this case the value expresses the displacement not the position).
