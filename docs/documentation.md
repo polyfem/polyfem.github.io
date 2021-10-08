@@ -101,7 +101,7 @@ Complete example
     "tend": 1,                      "End time for time dependent simulations"
     "time_steps": 10,               "Number of time steps for time dependent simulations"
     "dt": 0.1,                      "Time step size for time dependent simulations (priority over time_steps)"
-    "skip_frame": 1,
+    "skip_frame": 1,                "Export every n frame"
     "time_integrator": "ImplicitEuler",
     "time_integrator_params": {},   "Time integrator specific parameters"
 
@@ -495,6 +495,35 @@ $\dot{u}^{t+1} = \dot{u}^t + (1-\gamma)h\ddot{u}^t + \gamma h\ddot{u}^{t+1}$<br>
 $u^{t+1} = u^t + h\dot{u}^t + \tfrac{h^2}{2}((1-2\beta)\ddot{u}^t + 2\beta\ddot{u}^{t+1})$ <br>
 where $h$ is the time step size and by default $\gamma = 0.5$ and $\beta = 0.25$<br>
 **Reference**: https://en.wikipedia.org/wiki/Newmark-beta_method
+
+Solvers
+-------
+
+### Linear Solver
+
+PolyFEM offers a number of linear solver options based on compilation options. For more information see [PolySolve](../solvers), a stand-alone linear solver wrapper library used by PolyFEM.
+
+### Nonlinear Solver
+
+To solve nonlinear formulations, PolyFEM offers two options: Newton's method and L-BFGS.
+
+The settings for the solver are stored inside the field `"solver_params"`. General settings include:
+
+* `"gradNorm"` (default: `1e-8`): convergence tolerance on the norm ($L^2$) of the gradient
+* `"nl_iterations"` (default: `3000`): maximum number of iterations to spend solving
+* `"useGradNorm"` (default: `true`): whether to use the gradient norm or update direction norm for convergence checks
+    * When optimizing a function it is natural to check for a zero (up to tolerance) gradient as this signifies an extrema. However, we also implement the convergence criteria used by [Li et al. [2020]](https://ipc-sim.github.io/). Where instead of the gradient's norm the update direction's $L^\infty$-norm is used. This provides two benifits: (1) it expresses the convergence criteria in the units of the variable (e.g., distance for elasticity) which (2) avoids applying small updates that lead to marginal change in the variables. Note: this criteria has been well tested for nonlinear elasticity, but your milage may vary for other formulations.
+
+#### Newton's Method
+
+A standard Newton's method with line search. Optionally this method can be turned into a projected Newton's method by setting `"project_to_psd": true`.
+
+#### L-BFGS
+
+A quasi-Newton method, L-BFGS requires more iterations than the full Newton's method, but avoids expensive linear solves.
+
+Reference: https://en.wikipedia.org/wiki/Limited-memory_BFGS<br>
+Acknowledgments: The L-BFGS solver is implemented using the [LBFGS++](https://github.com/yixuan/LBFGSpp) library.
 
 Meshes
 ------
