@@ -112,9 +112,11 @@ In addition to [TinyExpr's built-in functions](https://github.com/codeplea/tinye
 * `max(a, b)`: maximum of two values
 * `deg2rad(d)`: convert degrees to radians
 * `rotate_2D_x(x, y, theta)`: given a value for `x`, `y`, and `theta`, compute the *x* component of a 2D rotation of `theta` radians
-    * definition: `x * cos(theta) - y * sin(theta)`
+    * definition: $x\cos(\theta) - y\sin(\theta)$
 * `rotate_2D_y(x, y, theta)`: given a value for `x`, `y`, and `theta`, compute the *y* component of a 2D rotation of `theta` radians
-    * definition: `x * sin(theta) + y * cos(theta)`
+    * definition: $x\sin(\theta) + y\cos(\theta)$
+* `smooth_abs(x, k)`: a smooth approximation to `abs(x)`
+    * definition: $\tanh(kx)x$
 
 ### BC Setter App
 
