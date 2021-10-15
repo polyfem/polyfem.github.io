@@ -4,6 +4,7 @@ Json files
 Complete example
 ```json
 {
+    "default_params": " ",          "Path to another JSON file containing default arguments on which to patch these arguments"
     "mesh": " ",                    "Mesh path (absolute or relative to JSON file)"
     "meshes": [{                    "Multi-mesh input"
         "mesh": " ",                "Mesh path (absolute or relative to JSON file)"
