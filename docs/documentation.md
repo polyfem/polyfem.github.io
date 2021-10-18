@@ -30,6 +30,15 @@ Complete example
 
     "has_collision": false,         "Enable collision detection"
     "dhat": 0.03,                   "Barrier activation distance, check IPC paper"
+    "obstacles": [{                 "Collision obstacle input"
+        "mesh": " ",                "Mesh path (absolute or relative to JSON file)"
+        "position": [0.0, 0.0, 0.0],
+        "rotation": [0.0, 0.0, 0.0],
+        "rotation_mode": "xyz",
+        "scale": [1.0, 1.0, 1.0],
+        "enabled": true,
+        "displacement": [0.0, 0.0, 0.0]
+    }],
 
     "count_flipped_els": false,     "Count (or not) flipped elements"
 
@@ -42,7 +51,7 @@ Complete example
 
     "problem": "Franke",            "Problem to solve"
     "problem_params": {             "Problem specific parameters"
-        "is_time_dependent": false  "Is the problem time dependent"
+        "is_time_dependent": false  "Is the problem time-dependent"
     },
 
     "n_boundary_samples": 6,        "number of boundary samples (Dirichelt) or quadrature points (Neumann)"
@@ -98,10 +107,10 @@ Complete example
     },
 
 
-    "t0": 0,                        "Start time for time dependent simulations"
-    "tend": 1,                      "End time for time dependent simulations"
-    "time_steps": 10,               "Number of time steps for time dependent simulations"
-    "dt": 0.1,                      "Time step size for time dependent simulations (priority over time_steps)"
+    "t0": 0,                        "Start time for time-dependent simulations"
+    "tend": 1,                      "End time for time-dependent simulations"
+    "time_steps": 10,               "Number of time steps for time-dependent simulations"
+    "dt": 0.1,                      "Time step size for time-dependent simulations (priority over time_steps)"
     "skip_frame": 1,                "Export every n frame"
     "time_integrator": "ImplicitEuler",
     "time_integrator_params": {},   "Time integrator specific parameters"
@@ -207,7 +216,7 @@ Each problem has a specific set of optional `problem_params` described here.
 
 ### CompressionElasticExact
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -217,26 +226,26 @@ f_{3D}(x,y,z) &= -\begin{bmatrix}(xy + x^2 + y^3 + 6z)/14\\ (zx - z^3 + xy^2 + 3
 
 ### Cubic
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
 $f(x,y,z) = (2y-0.9)^4 + 0.1$
 
 ### DrivenCavity
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for zero right-hand side, and 0.25 for boundary id 1<br/>
 
 ### Elastic
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for zero right-hand side, -0.25 for boundary id 1/5, 0.25 for id 3/6<br/>
 
 ### ElasticExact
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -246,26 +255,26 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 
 ### ElasticZeroBC
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for [0, 0.5, 0] right-hand side and zero boundary condition<br/>
 
 ### Flow
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for zero right-hand side, [0.25, 0, 0] for boundary id 1/3, [0, 0, 0] for 7<br/>
 
 ### Franke
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solves for the 2D and 3D Franke function
 
 
 ### GenericScalar
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solves for generic tensor problem with zero rhs<br/>
 **Options**:
@@ -293,7 +302,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 
 ### GenericTensor
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tesor<br/>
 **Description**: solves for generic tensor problem with zero body forces<br/>
 **Options**:
@@ -326,27 +335,27 @@ f_{3D}(x,y,z) &= \begin{bmatrix}(xy + x^2 + y^3 + 6z)/80\\ (xz - z^3 + xy^2 + 3x
 
 ### Gravity
 **Has exact solution**: false<br/>
-**Time dependent**: true<br/>
+**Time-dependent**: true<br/>
 **Form**: tensor<br/>
 **Description**: solves for 0.1 body force in y direction and zero for boundary 4
 
 ### Kernel
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar/tensor<br/>
 **Description**: solves the omogenous PDE with `n_kernels` kernels placed on the bounding box at `kernel_distance`<br/>
 **Options**: `n_kernels` sets the number of kernels, `kernel_distance` sets the distance from the bounding box
 
 ### Linear
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
 f(x,y,z) = x
 
 ### LinearElasticExact
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -356,13 +365,13 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
 
 ### MinSurf
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for -10 for rhs, and zero Dirichelt boundary condition
 
 ### PointBasedTensor
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tesor<br/>
 **Description**: solves for point-based boudary conditions<br/>
 **Options**:
@@ -404,14 +413,14 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y + x + z)/50\\ -(3x + y - z)/50\\ -(x + y - 2
 
 ### Quadratic
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
 $f(x,y,z) = x^2$
 
 ### QuadraticElasticExact
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -421,7 +430,7 @@ f_{3D}(x,y,z) &= \begin{bmatrix}-(y^2 + x^2 + xy + yz)/50\\ -(3x^2 + y + z^2)/50
 
 ### Sine
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -431,32 +440,32 @@ f(x,y,z) &= \sin(10x)\sin(10y)\sin(10z)
 
 ### TestProblem
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: scalar<br/>
 **Description**: solve for extreme problem to test errors for high order discretizations
 
 ### TimeDependentFlow
 **Has exact solution**: false<br/>
-**Time dependent**: true<br/>
+**Time-dependent**: true<br/>
 **Form**: tensor<br/>
 **Description**: solve for zero right-hand side, [0.25, 0, 0] for boundary id 1/3, [0, 0, 0] for 7, and zero inital velocity<br/>
 
 ### TimeDependentScalar
 **Has exact solution**: false<br/>
-**Time dependent**: true<br/>
+**Time-dependent**: true<br/>
 **Form**: scalar<br/>
 **Description**: solve for one right-hand side, zero boundary condition, and zero time boundary<br/>
 
 ### TorsionElastic
 **Has exact solution**: false<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for zero body forces, `fixed_boundary` fixed (zero displacement), `turning_boundary` rotating around `axis_coordiante` for `n_turns`<br/>
 **Options**: `fixed_boundary` id of the fixed boundary, `turning_boundary` id of the moving boundary, `axis_coordiante` coordinate of the rotating axis, `n_turns` number of turns
 
 ### Zero_BC
 **Has exact solution**: true<br/>
-**Time dependent**: false<br/>
+**Time-dependent**: false<br/>
 **Form**: tensor<br/>
 **Description**: solve for<br/>
 $\begin{align}
@@ -558,3 +567,14 @@ The `"id"` of the `"body_params"` to use for the entire body.
 
 ### Boundary ID
 The `"id"` of the boundary conditions (e.g., `"dirichlet_boundary"` or `"neumann_boundary"`) to use on the entirety the body's boundary.
+
+Obstacles
+---------
+
+Obstacles serve as a way of specifying non-simulated collision objects. The syntax of specifying an obstacle is similar to specifying a mesh in the [multi-mesh input](#meshes). The difference is obstacles do not take have a `body_id` or `boundary_id` field, but they do have a `displacement` field.
+
+### Mesh
+The path to the mesh file (absolute or relative to JSON file). In addition to the standard volumetric meshes supported by simulated meshes, this can be a codimensional/surface mesh (i.e., points, edges, or triangles). Currently codimensional points and edges are only supported using the OBJ file format. Codimensional points are specified as vertex lines that are not indexed by any elements. Codimensional edges are specified as OBJ [line elements](https://en.wikipedia.org/wiki/Wavefront_.obj_file#Line_elements).
+
+### Displacement
+Specifies the displacement field for the obstacle. This can either be a constant vector or an expression similar to [spatially varying](../tutorial/#spatially-varying-boundary-conditions) and [time-dependent](../tutorial/#time-dependent-boundary-conditions) boundary conditions.

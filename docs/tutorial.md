@@ -235,10 +235,10 @@ Besides the `"mesh"` field, all other body object fields are optional. A complet
 
 More details on each of these fields can be found in the [JSON API documentation](../documentation/#meshes).
 
-Time Dependent Simulation
+Time-Dependent Simulation
 -------------------------
 
-To enable time dependent simulation simply add `"is_time_dependent": true` to the `"problem_params"`.
+To enable time-dependent simulation simply add `"is_time_dependent": true` to the `"problem_params"`.
 
 To specify the duration of the simulation set `"tend"` in the root of your JSON file. The the number of time steps can either be set directly using `"time_steps"` or by specifying the time step size `"dt"` (`"dt"` has priority over `"time_steps"`).
 
@@ -246,9 +246,9 @@ You can also specify the time integration method using `"time_integrator"`. By d
 
 If you specify `"save_time_sequence": true` then PolyFEM will generate a sequence of VTU files (one file per time step) and a [PVD](https://www.paraview.org/Wiki/ParaView/Data_formats#PVD_File_Format) file of the animation that can be directly viewed in [ParaView](https://www.paraview.org/).
 
-### Time Dependent Boundary Conditions
+### Time-Dependent Boundary Conditions
 
-Enabling time dependent simulation also enable the ability to use the current time to design time dependent boundary conditions. To define time dependent boundary conditions you can use the variable `t` in an expression value. For example,
+Enabling time-dependent simulation also enable the ability to use the current time to design time-dependent boundary conditions. To define time-dependent boundary conditions you can use the variable `t` in an expression value. For example,
 ```json
 "dirichlet_boundary": [{
     "id": 1,
