@@ -5,6 +5,7 @@
 
 This library contains a cross-platform Eigen wrapper for many different external linear solvers including (but not limited to):
 
+ - CHOLMOD
  - Hypre
  - AMGCL
  - Pardiso
@@ -16,16 +17,16 @@ This library contains a cross-platform Eigen wrapper for many different external
 const std::string solver_name = "Hypre"
 auto solver = LinearSolver::create(solver_name, "");
 
-// configuration parameters like iteration or accuracy for iterative solvers
+// Configuration parameters like iteration or accuracy for iterative solvers
 // solver->setParameters(params);
 
-//System sparse matrix
+// System sparse matrix
 Eigen::SparseMatrix<double> A;
 
-//right-hand side
+// Right-hand side
 Eigen::VectorXd b;
 
-//solution
+// Solution
 Eigen::VectorXd x(b.size());
 
 solver->analyzePattern(A, A.rows());
@@ -42,23 +43,59 @@ You can use `LinearSolver::availableSolvers()` to obtain the list of available s
  - `max_iter` controls the solver's iterations, default `1000`
  - `conv_tol`, `tolerance` controls the convergence tolerance, default `1e-10`
 
-**Hypre Only**
+#### Hypre Only
 
 - `pre_max_iter`, number of pre iterations, default `1`
 
+#### AMGCL Only
+
+The default parameters of the AMGCL solver are:
+```json
+{
+    "precond": {
+        "relax": {
+            "degree": 16,
+            "type": "chebyshev",
+            "power_iters": 100,
+            "higher": 2,
+            "lower": 0.008333333333,
+            "scale": true
+        },
+        "class": "amg",
+        "max_levels": 6,
+        "direct_coarse": false,
+        "ncycle": 2,
+        "coarsening": {
+            "type": "smoothed_aggregation",
+            "estimate_spectral_radius": true,
+            "relax": 1,
+            "aggr": {
+                "eps_strong": 0
+            }
+        }
+    },
+    "solver": {
+        "tol": 1e-10,
+        "maxiter": 1000,
+        "type": "cg"
+    }
+}
+```
+
+For a more details and options refer to the [AMGCL documentation](https://amgcl.readthedocs.io/en/latest/components.html).
 
 ### Pardiso
 
 `mtype`, sets the matrix type, default 11
 
 | mtype | Description                             |
-| ----- | --------------------------------------- |
-| 1     | real and structurally symmetric         |
-| 2     | real and symmetric positive definite    |
-| -2    | real and symmetric indefinite           |
-| 3     | complex and structurally symmetric      |
-| 4     | complex and Hermitian positive definite |
-| -4    | complex and Hermitian indefinite        |
-| 6     | complex and symmetric                   |
-| 11    | real and nonsymmetric                   |
-| 13    | complex and nonsymmetric                |
+|-------|-----------------------------------------|
+|    1  | real and structurally symmetric         |
+|    2  | real and symmetric positive definite    |
+|   -2  | real and symmetric indefinite           |
+|    3  | complex and structurally symmetric      |
+|    4  | complex and Hermitian positive definite |
+|   -4  | complex and Hermitian indefinite        |
+|    6  | complex and symmetric                   |
+|   11  | real and nonsymmetric                   |
+|   13  | complex and nonsymmetric                |
