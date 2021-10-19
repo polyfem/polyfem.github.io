@@ -68,9 +68,11 @@ Complete example
         "vis_boundary_only": false, "Exports only the boundary of volumetric meshes"
         "paraview": "",             "Path for the vtu mesh"
         "wire_mesh": "",            "Wireframe of the mesh"
-        "material_params": false,   "Exports lame parameters per tetrahedron",
-        "body_ids": false           "Export body ids"
+        "material_params": false,   "Exports lame parameters per tetrahedron"
+        "body_ids": false,          "Export body ids"
+        "time_sequence": "sim.pvd"  "Name of output PVD time sequencee"
     },
+    "save_time_sequence": true,     "Save a PVD time sequence"
 
     "use_spline": false,            "Use spline for quad/hex elements"
     "fit_nodes": false,             "Fit nodes for spline basis"
@@ -472,18 +474,6 @@ $\begin{align}
 f_{2D}(x,y) &= (1 - x)  x^2 y (1-y)^2\\
 f_{3D}(x,y,z) &= (1 - x)  x^2 y (1-y)^2 z (1 - z)
 \end{align}$
-
-```json
-{
-    "position": [0.0, 0.0, 0.0],
-    "rotation": [0.0, 0.0, 0.0],
-    "rotation_mode": "xyz",
-    "scale": [1.0, 1.0, 1.0],
-    "enabled": true,
-    "body_id": 0,
-    "boundary_id": 0
-}
-```
 
 Time Integrators
 ----------------

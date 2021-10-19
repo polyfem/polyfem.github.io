@@ -256,3 +256,21 @@ Enabling time-dependent simulation also enable the ability to use the current ti
 }]
 ```
 defines a boundary condition that linearly increases in the x component as time progresses. An example use case for this would be in an elasticity problem to move the boundary over time (remember in this case the value expresses the displacement not the position).
+
+Output
+------
+
+The simulation results will be output as a VTU file or a sequence of VTU files and a PVD file for the time sequence.
+
+### Visualizing Results using ParaView
+
+Here are some tips for working with the output in ParaView.
+
+![Sphere-mat](img/paraview@0.5x.png)
+
+1. Warp: if the solution is displacements, apply the displacements to the rest mesh
+2. Filter: filter elements by a field (here by `body_id` to set the opacity of the box separately from the Octocat)
+3. Apply settings: apply the setting changes (there is a ParaView setting to automatically do this)
+4. Play: play the time sequence
+5. Input fields: select the field to visualize
+6. Rescale over all timesteps: rescale the colors to fit the range of all values over time
