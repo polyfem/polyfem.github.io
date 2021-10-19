@@ -269,7 +269,7 @@ Here are some tips for working with the output in ParaView.
 ![Sphere-mat](img/paraview@0.5x.png)
 
 1. Warp: if the solution is displacements, apply the displacements to the rest mesh
-2. Filter: filter elements by a field (here by `body_id` to set the opacity of the box separately from the Octocat)
+2. Filter: filter elements by a field (here by `body_ids` to set the opacity of the box separately from the Octocat)
 3. Apply settings: apply the setting changes (there is a ParaView setting to automatically do this)
 4. Play: play the time sequence
 5. Input fields: select the field to visualize
