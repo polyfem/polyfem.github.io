@@ -1,9 +1,10 @@
-site_name: polyfem
+site_name: PolyFEM
 site_url: "http://polyfem.github.io/polyfem/"
 repo_name: "polyfem/polyfem"
 repo_url: "https://github.com/polyfem/polyfem"
 edit_uri: "../polyfem.github.io/edit/docs/docs/"
 site_description: "A polyvalent C++ FEM library"
+copyright: Copyright &copy; 2018–2021 PolyFEM Group; <a href="https://github.com/polyfem/polyfem/blob/master/LICENSE">MIT License</a>
 # strict: true
 docs_dir: "docs"
 remote_branch: "master"
@@ -11,13 +12,30 @@ theme:
   name: material
   favicon: "xxx.ico"
   icon:
-    logo: ""
+    logo: material/library
+    repo: fontawesome/brands/github
   palette:
-    primary: "light green"
-    accent: "green"
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: "light green"
+      accent: "green"
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: "green"
+      accent: "green"
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation.expand
+    - search.suggest
+    - search.highlight
 extra:
   social:
-    - icon: fontawesome/brands/github-alt
+    - icon: fontawesome/brands/github
       link: "https://github.com/polyfem"
 markdown_extensions:
   - codehilite
@@ -46,11 +64,13 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-plugins1:
-  - mknotebooks:
-      execute: true
-      preamble: "docs/plot_to_md.py"
-      timeout: -1
+plugins:
+  # - mknotebooks:
+  #   execute: true
+  #   preamble: "docs/plot_to_md.py"
+  #   timeout: -1
+  - git-revision-date
+  - search
 extra_javascript:
   - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
 nav:

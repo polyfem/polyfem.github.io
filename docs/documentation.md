@@ -30,6 +30,12 @@ Complete example
 
     "has_collision": false,         "Enable collision detection"
     "dhat": 0.03,                   "Barrier activation distance, check IPC paper"
+
+    "mu": 0.0,                        "Coefficient of friction (0 disables friction)"
+    "epsv": 1e-3,                     "Smoothing parameter for the transition between static and dynamic friction"
+    "friction_iterations": 1,         "Friction lagging iterations (0 disables friction and < 0 indicates unlimited iterations)"
+    "friction_convergence_tol": 1e-2, "Friction lagging convergence tolerance"
+
     "obstacles": [{                 "Collision obstacle input"
         "mesh": " ",                "Mesh path (absolute or relative to JSON file)"
         "position": [0.0, 0.0, 0.0],
@@ -102,8 +108,8 @@ Complete example
         "E": 1.5,                   "Young modulus"
         "nu": 0.3,                  "Poisson's ratio"
 
-        "lambda": 0.329670329,      "Lame parameter, E, nu have priority"
-        "mu": 0.384615384,
+        "lambda": 0.329670329,      "Lamé's first parameter (E and nu have priority)"
+        "mu": 0.384615384,          "Lamé's second parameter (E and nu have priority)"
 
         "density": 1
     },

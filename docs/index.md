@@ -3,7 +3,7 @@ PolyFEM
 
 *A polyvalent C++ and Python FEM library.*
 
-![Logo](https://polyfem.github.io/img/polyfem.png)
+![Logo](img/polyfem.png)
 
 
 PolyFEM is a simple C++ and Python finite element library. We provide a wide set of common PDEs including:
@@ -165,4 +165,4 @@ This work was partially supported by:
 License
 -------
 
-The code of PolyFEM itself is licensed under [MIT License](LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
+The code of PolyFEM itself is licensed under [MIT License](https://github.com/polyfem/polyfem/blob/master/LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
