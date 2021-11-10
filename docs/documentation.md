@@ -565,6 +565,9 @@ The default `"rotation_mode"` is `"xyz"` which indicates a Euler angle rotation 
 ### Scale
 The `"scale"` field encodes the scale of the mesh relative to its origin (not the center of mass). This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
 
+### Dimensions
+The `"dimensions"` field encodes the absolute size of the mesh's axis-aligned bounding box. This should be an array of $d$ numbers for the dimensions of each axis. This is equivalent to using a scale of `dimensions / initial_dimensions` where nonfinite values are replaced by `1`. If the `"dimensions"` field is present, the `"scale"` field is ignored.
+
 ### Enable
 A boolean for enabling the body. By default, bodies are enabled.
 
