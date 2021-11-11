@@ -529,6 +529,7 @@ The settings for the solver are stored inside the field `"solver_params"`. Gener
 * `"nl_iterations"` (default: `3000`): maximum number of iterations to spend solving
 * `"useGradNorm"` (default: `true`): whether to use the gradient norm or update direction norm for convergence checks
     * When optimizing a function it is natural to check for a zero (up to tolerance) gradient as this signifies an extrema. However, we also implement the convergence criteria used by [Li et al. [2020]](https://ipc-sim.github.io/). Where instead of the gradient's norm the update direction's $L^\infty$-norm is used. This provides two benifits: (1) it expresses the convergence criteria in the units of the variable (e.g., distance for elasticity) which (2) avoids applying small updates that lead to marginal change in the variables. Note: this criteria has been well tested for nonlinear elasticity, but your milage may vary for other formulations.
+    * As a sanity check there is always a check that $\|\nabla f\| < 10^{-2}$ to make sure the solver does not converge with a large gradient.
 
 #### Newton's Method
 

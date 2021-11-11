@@ -81,6 +81,7 @@ nav:
           - Tutorial: tutorial.md
           - Documentation: library.md
           - JSON API: documentation.md
+          - Miscellaneous: miscellaneous.md
       - Python:
           - Home: python.md
           - Jupyter tutorial: python_examples.ipynb

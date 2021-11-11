@@ -52,7 +52,7 @@ For more details refer to the [C++ section](cxx_index.md)
 
 ### Compilation
 
-All the C++ dependencies required to build the code are included. It should work on Windows, macOS and Linux, and it should build out-of-the-box with CMake:
+All the C++ dependencies required to build the code are included. It should work on Windows, macOS, and Linux, and it should build out-of-the-box with CMake:
 
 ```sh
 mkdir build
@@ -61,7 +61,7 @@ cmake ..
 make -j4
 ```
 
-On Linux `zenity` is required for the file dialog window to work. On macOS and Windows the native windows are used directly.
+On Linux, `zenity` is required for the file dialog window to work. On macOS and Windows, the native windows are used directly.
 
 
 ### Usage
@@ -146,9 +146,9 @@ If you use PolyFEM in your project, please consider citing our work:
 }
 ```
 
-Acknowledgements & Funding
---------------------------
-The software is being developed in the [Geometric Computing Lab](https://cims.nyu.edu/gcl/index.html) at NYU Courant Institute of Mathematical Sciences
+Acknowledgments & Funding
+--------
+The software is being developed in the [Geometric Computing Lab](https://cims.nyu.edu/gcl/index.html) at NYU Courant Institute of Mathematical Sciences and the University of Victoria, Canada.
 
 
 This work was partially supported by:
@@ -158,6 +158,8 @@ This work was partially supported by:
 * the NSF grant DMS-1436591
 * the NSF grant 1835712
 * the SNSF grant P2TIP2_175859
+* the NSERC grant RGPIN-2021-03707
+* the NSERC grant DGECR-2021-00461
 * Adobe Research
 * nTopology
 
@@ -165,4 +167,4 @@ This work was partially supported by:
 License
 -------
 
-The code of PolyFEM itself is licensed under [MIT License](https://github.com/polyfem/polyfem/blob/master/LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM, and may be available under a different license.
+The code of PolyFEM itself is licensed under [MIT License](https://github.com/polyfem/polyfem/blob/master/LICENSE). However, please be mindful of third-party libraries which are used by PolyFEM and may be available under a different license.
