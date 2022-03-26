@@ -129,8 +129,8 @@ On save it will produce the `.txt` file with the tags to be used in the `"bc_tag
 ![bc_setter](img/bc_setter.png)
 
 
-Selections, Multi-material, and Collisions [Beta]
--------------------------------------------------
+Selections, Multi-material, and Collisions
+------------------------------------------
 
 ![Sphere-mat](img/sphere-mat.png)
 

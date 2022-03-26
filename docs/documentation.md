@@ -529,7 +529,7 @@ The settings for the solver are stored inside the field `"solver_params"`. Gener
 * `"nl_iterations"` (default: `3000`): maximum number of iterations to spend solving
 * `"useGradNorm"` (default: `true`): whether to use the gradient norm or update direction norm for convergence checks
     * When optimizing a function it is natural to check for a zero (up to tolerance) gradient as this signifies an extrema. However, we also implement the convergence criteria used by [Li et al. [2020]](https://ipc-sim.github.io/). Where instead of the gradient's norm the update direction's $L^\infty$-norm is used. This provides two benifits: (1) it expresses the convergence criteria in the units of the variable (e.g., distance for elasticity) which (2) avoids applying small updates that lead to marginal change in the variables. Note: this criteria has been well tested for nonlinear elasticity, but your milage may vary for other formulations.
-    * As a sanity check there is always a check that $\|\nabla f\| < 10^{-2}$ to make sure the solver does not converge with a large gradient.
+    <!-- * As a sanity check there is always a check that $\|\nabla f\| < 10^{-2}$ to make sure the solver does not converge with a large gradient. -->
 
 #### Newton's Method
 
@@ -588,3 +588,64 @@ The path to the mesh file (absolute or relative to JSON file). In addition to th
 
 ### Displacement
 Specifies the displacement field for the obstacle. This can either be a constant vector or an expression similar to [spatially varying](../tutorial/#spatially-varying-boundary-conditions) and [time-dependent](../tutorial/#time-dependent-boundary-conditions) boundary conditions.
+
+
+Selections
+----------
+
+### Box
+
+An axis-aligned box selection.
+
+#### Parameters
+
+* `box`: a $2 \times n$ array where the first row is the minimum corner and second row is the maximum corner
+* `relative` (default: `false`): if the coordinates of `box` are relative to the mesh's rest bounding box
+
+#### Example
+
+The selection `{"box": [[0, 0, 0], [1, 0.1, 1]], "relative": true}` will select all points in the bottom 10% of the mesh (assuming the vertical direction if in the y-axis).
+
+### Sphere
+
+A sphere (or circle in 2D) selection.
+
+#### Parameters
+
+* `center`: center of the sphere ($n$-length array)
+* `radius`: radius of the sphere (float value)
+* `relative` (default: `false`): if the `center` is relative to the mesh's rest bounding box and the radius is relative to the mesh's bounding box diagonal
+
+#### Example
+
+The selection `{"center": [0, 0, 0], "radius": 1}` will select points that are less than 1 unit from the origin.
+
+### Axis-Plane
+
+A axis aligned plane selection. Everything on one side of the plane is selected.
+
+#### Parameters
+
+* `axis`: axis aligned with the plane
+    * Input can either be a string of format `[+-]?[xyzXYZ]` or int matching `[+-]?[123]` where the sign is the side of the plane to select and coordinate is the axis to align the plane with
+* `position`: position of the plane along the axis (float value)
+* `relative` (default: `false`): if the `position` is relative to the mesh's rest bounding box
+
+#### Example
+
+The selection `{"axis": "-X", "position": 1}` will select points with a x-coordinate less than 1.
+
+### Plane
+
+A plane selection. Everything on one side of the plane is selected.
+
+#### Parameters
+
+* `normal`: normal of the plane ($n$-length array)
+* `point`: point on the plane (has priority over `offset`) ($n$-length array)
+    * (alternatively) `offset`: offset along the normal from the origin defining the point (float value)
+* `relative` (default: `false`): if the `point` is relative to the mesh's rest bounding box (does not apply to the offset)
+
+#### Example
+
+The selection `{"normal": [1, 1, 0], "point": [0, 1, 0]}` will select points $x$ where `(x - point).dot(normal) >= 0`.
