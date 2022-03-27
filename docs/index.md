@@ -112,7 +112,7 @@ If you use PolyFEM in your project, please consider citing our work:
 ```bibtex
 @misc{polyfem,
   author = {Teseo Schneider and Jérémie Dumas and Xifeng Gao and Denis Zorin and Daniele Panozzo},
-  title = {{Polyfem}},
+  title = {{PolyFEM}},
   howpublished = "\url{https://polyfem.github.io/}",
   year = {2019},
 }

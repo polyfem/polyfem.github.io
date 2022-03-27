@@ -1,32 +1,46 @@
+<style>
+    .md-typeset ul {
+        margin-left: 0;
+    }
+    .md-typeset ul li {
+        margin-bottom: 0;
+        margin-left: 0;
+        list-style-type: none;
+    }
+    .md-typeset div.arithmatex > * {
+        margin: 0.1em auto !important;
+    }
+</style>
+
 The following formulations are available in the PolyFEM list of possible formulations. The constants can be set in `params`. All formulations support boundary conditions.
 
 ## Scalar
 
 ### Laplacian
-**Constants**: none<br/>
-**Description**: solve for \(-\Delta u = f\)
+* **Constants:** none
+* **Description:** solve for \(-\Delta u = f\)
 
 ### Bilaplacian (mixed)
-**Constants**: none<br/>
-**Description**: solve for \(-\Delta^2 u = f\)
+* **Constants:** none
+* **Description:** solve for \(-\Delta^2 u = f\)
 
 ### Helmholtz
-**Constants**: $k$<br/>
-**Description**: solve for \(-\Delta u - k^2 u = f\)
+* **Constants:** $k$
+* **Description:** solve for \(-\Delta u - k^2 u = f\)
 
 ## Tensor
 
 ### LinearElasticity
-**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
-**Description**: solve for $-\text{div}(\sigma[u]) = f$ where
+* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
     \sigma[u] = 2 \mu  \epsilon[u]+ \lambda \text{tr}(\epsilon[u]) I \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)
 \]
 
 ### HookeLinearElasticity
-**Constants**:  `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
-**Description**: solve for $-\text{div}(\sigma[u]) = f$ where
+* **Constants:**  `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
     \sigma[u] = C :  \epsilon[u] \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)
@@ -35,8 +49,8 @@ The following formulations are available in the PolyFEM list of possible formula
 where $C$ is the elasticity tensor
 
 ### IncompressibleLinearElasticity (mixed)
-**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
-**Description**: solve for
+* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Description:** solve for
 
 \begin{align}
 -\text{div}(2\mu\epsilon[u] + p I) &= f\\
@@ -44,8 +58,8 @@ where $C$ is the elasticity tensor
 \end{align}
 
 ### SaintVenant
-**Constants**: `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
-**Description**: solve for $-\text{div}(\sigma[u]) = f$ where
+* **Constants:** `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
 \sigma[u] = C: \epsilon[u]  \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T \nabla u + \nabla u^T + \nabla u\right)
@@ -54,16 +68,16 @@ where $C$ is the elasticity tensor
 where $C$ is the elasticity tensor
 
 ### NeoHookean
-**Constants**: `young`/`nu`, `E`/`nu`, `lambda`/`nu`<br/>
-**Description**: solve for $-\text{div}(\sigma[u]) = f$ where
+* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
     \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \qquad F[u] = \nabla u + I
 \]
 
 ### Stokes (mixed)
-**Constants**: `viscosity` $\nu$<br/>
-**Description**: solve for
+* **Constants:** `viscosity` $\nu$
+* **Description:** solve for
 
 \begin{align}
     -\nu\Delta u + \nabla p &= f\\
@@ -71,8 +85,8 @@ where $C$ is the elasticity tensor
 \end{align}
 
 ### NavierStokes (mixed)
-**Constants**: `viscosity` $\nu$<br/>
-**Description**: solve for<br/>
+* **Constants:** `viscosity` $\nu$
+* **Description:** solve for
 
 \begin{align}
     u\cdot \nabla u -\nu\Delta u + \nabla p &= f\\
