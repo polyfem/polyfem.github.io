@@ -80,21 +80,20 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 nav:
   - Home: index.md
-  - PolyFEM:
-      - C++:
-          - Home: cxx_index.md
-          - Tutorial: tutorial.md
-          - JSON API: json.md
-          - Library: library.md
-      - Python:
-          - Home: python.md
-          - Jupyter tutorial: python_examples.ipynb
-          - Docs: polyfempy_doc.md
-      - Details:
-        - Formulations: details/formulations.md
-        - Problems: details/problems.md
-        - Time Integrators: details/time_integrators.md
-        - Solvers: details/solvers.md
-        - Contact: details/contact.md
-        - Miscellaneous: details/miscellaneous.md
+  - C++:
+    - Home: cxx_index.md
+    - Tutorial: tutorial.md
+    - JSON API: json.md
+    - Library: library.md
+  - Python:
+    - Home: python.md
+    - Jupyter Tutorial: python_examples.ipynb
+    - Docs: polyfempy_doc.md
+  - Technical Details:
+    - Formulations: details/formulations.md
+    - Problems: details/problems.md
+    - Time Integrators: details/time_integrators.md
+    - Solvers: details/solvers.md
+    - Contact: details/contact.md
+    - Miscellaneous: details/miscellaneous.md
   - PolySolve: polysolve.md
