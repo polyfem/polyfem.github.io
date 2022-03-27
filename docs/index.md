@@ -16,10 +16,10 @@ PolyFEM is a simple C++ and Python finite element library. We provide a wide set
  - Stokes
  - Navier Stokes
 
-PolyFEM simplicity lies on the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](documentation.md) or trough the [Setting class](polyfempy_doc.md) in python.
+PolyFEM simplicity lies in the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](json.md) or trough the [Setting class](polyfempy_doc.md) in python.
 
 
-For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up to 4, and integrate state-of-the-art techniques such as the adaptive $p$-refinement presented in "Decoupling Simulation Accuracy from Mesh Quality" or the spline and polygonal bases in "Poly-Spline Finite-Element Method".
+For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up to 4, and integrates state-of-the-art techniques such as the adaptive $p$-refinement presented in "Decoupling Simulation Accuracy from Mesh Quality" or the spline and polygonal bases in "Poly-Spline Finite-Element Method".
 
 The library is actively used in our research so expect frequent updates, fixes, and new features!
 
@@ -28,17 +28,17 @@ News
 
 - New "selection" interface to set boundary conditions and body ids.
 - Added support for multi-material simulations.
-- PolyFEM support time-dependent fluid simulations!
-- PolyFEM support contacts using the [IPC Toolkit](https://github.com/ipc-sim/ipc-toolkit).
+- PolyFEM supports time-dependent fluid simulations!
+- PolyFEM supports contacts using the [IPC Toolkit](https://github.com/ipc-sim/ipc-toolkit).
 - We support FEBio (*.feb) files.
 - We finally extracted the solvers from PolyFEM. You can now use the wrappers independently, check the [PolySolve repo](https://github.com/polyfem/polysolve).
 - PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [Eurographics course](https://geometryprocessing.github.io/blackbox-computing-python/).
-- Bindings v0.5.2 with a new more pythonic interface, support for function in the right-hand side and exact solution.
+- Bindings v0.5.2 with a new more pythonic interface, support for functions of the right-hand side and exact solution.
 - PolyFEM is being used in biology! Check the [paper](https://pubs.acs.org/doi/10.1021/acs.nanolett.9b01505) or the [project page](https://cellogram.github.io)!
 - PolyFEM [meshplot](https://skoch9.github.io/meshplot), [igl](https://libigl.github.io/) and [wildmeshing](https://wildmeshing.github.io/) are presented at a [SIGGRAPH course](https://geometryprocessing.github.io/geometric-computing-python/) (07/30/2019).
 - PolyFEM is now triangle and tetgen free. Stay tuned for the release of v0.5 in python with a new interface to high-order meshes and [meshplot](https://skoch9.github.io/meshplot) for the fast 3D plots!
-- PolyFEM as been used in "A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis"! Check the [interactive plots](https://polyfem.github.io/tet-vs-hex/plot.html)!
-- PolyFEM now support high-order geometric maps! Check the SIGGRAPH paper "TriWild: Robust Triangulation with Curve Constraints" for more details!
+- PolyFEM has been used in "A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis"! Check the [interactive plots](https://polyfem.github.io/tet-vs-hex/plot.html)!
+- PolyFEM now supports high-order geometric maps! Check the SIGGRAPH paper "TriWild: Robust Triangulation with Curve Constraints" for more details!
 - PolyFEM has a [python interface](python.md)!
 - PolyFEM can do adaptive *a priori* $p$-refinement! Check the SIGGRAPH paper "Decoupling Simulation Accuracy from Mesh Quality" for more details!
 
@@ -86,7 +86,7 @@ For more details refer to the [Python section](python.md)
 
 I am making efforts to provide a simple python interface to Polyfem.
 
-For doing so I am maintaining  a *conda* package which can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
+For doing so I am maintaining a *conda* package that can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
 
 ```sh
 conda install -c conda-forge polyfempy
@@ -102,7 +102,7 @@ import polyfempy
 PolySolve
 ---------
 
-PolyFEM heavily depends on external libraries for solving linear system. If you need a linear system wrapper based on Eigen (but do not need the finite element setup) you use [PolySolve](solvers.md).
+PolyFEM heavily depends on external libraries for solving linear systems. If you need a linear system wrapper based on Eigen (but do not need the finite element setup) you use [PolySolve](polysolve.md).
 
 Citation
 --------

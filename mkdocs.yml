@@ -10,7 +10,7 @@ docs_dir: "docs"
 remote_branch: "master"
 theme:
   name: material
-  favicon: "xxx.ico"
+  favicon: "img/xxx.ico"
   icon:
     logo: material/library
     repo: fontawesome/brands/github
@@ -46,7 +46,8 @@ markdown_extensions:
   - markdown.extensions.smarty
   - markdown.extensions.toc:
       permalink: true
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
@@ -64,6 +65,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.extra
 plugins:
   # - mknotebooks:
   #   execute: true
@@ -73,17 +75,26 @@ plugins:
   - search
 extra_javascript:
   - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
+  - js/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 nav:
   - Home: index.md
   - PolyFEM:
       - C++:
           - Home: cxx_index.md
           - Tutorial: tutorial.md
-          - Documentation: library.md
-          - JSON API: documentation.md
-          - Miscellaneous: miscellaneous.md
+          - JSON API: json.md
+          - Library: library.md
       - Python:
           - Home: python.md
           - Jupyter tutorial: python_examples.ipynb
           - Docs: polyfempy_doc.md
-  - PolySolve: solvers.md
+      - Details:
+        - Formulations: details/formulations.md
+        - Problems: details/problems.md
+        - Time Integrators: details/time_integrators.md
+        - Solvers: details/solvers.md
+        - Contact: details/contact.md
+        - Miscellaneous: details/miscellaneous.md
+  - PolySolve: polysolve.md

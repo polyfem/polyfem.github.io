@@ -23,7 +23,7 @@ Then press the numbered button in sequence:
 1. You can compute the error for problems with given exact solutions. In case of no exact solution, the program will compute the norms of the solutions
 ![Load mesh](img/t2.png)
 
-At the end you can press save VTU to save the `result.vtu` file in the binary directory. This file can be opened with [Paraview](https://www.paraview.org/)
+At the end, you can press save VTU to save the `result.vtu` file in the binary directory. This file can be opened with [Paraview](https://www.paraview.org/)
 
 ![Load mesh](img/t3.png)
 
@@ -31,7 +31,7 @@ At the end you can press save VTU to save the `result.vtu` file in the binary di
 JSON
 ----
 
-To run the previous experiment with a json file create a `run.json` containing (refer to [documentation](documentation.md) for the full description):
+To run the previous experiment with a JSON file create a `run.json` containing (refer to the [JSON API](json.md) for the full description):
 
 ```json
 {
@@ -66,7 +66,7 @@ For more advanced problems such as `GenericTensor`, `TorsionElastic`, or `Driven
 - in 2D all edges which barycenter is close up to 1e-7 to the left side of the bounding box gets tag 1, the right side gets 3, bottom 2, and top 4. Any other boundary gets 7.
 - in 3D the threshold is a bit larger (1e-2) and x-direction gets 1, 3, y-direction gets 2, 4, and z-direction gets 5, 6. Any other boundary gets 7.
 
-You can also specify a file containing a list of integers per each edge/face of the mesh indicating the tag in the json value `bc_tag`.
+You can also specify a file containing a list of integers per each edge/face of the mesh indicating the tag in the JSON value `bc_tag`.
 
 If you want to run the *real* plate with hole problem you need to choose `GenericTensor` as problem, set the correct Lamé constants in `params`, and specify the proper boundary conditions in `problem_params`. For this example, we want Neumann boundary condition of [100, 0]  (a force of 100 in x) applied to the whole right side (pulling), so in the `neumann_boundary` array of `problem_params` we add an entry with `id` 3 and value [100, 0].
 For the 2 Dirichlet is a bit more complicated because we want reflective boundary condition, that is we want to fix only one of the 2 coordinates. For instance, the right part of the mesh (id 1) needs to be fixed in x (or equivalent can move only in y-direction). To do so we add an entry to the `dirichlet_boundary` array with `id` 1 and `value` [0, 0], that is zero displacement, and specify which `dimension` these boundaries needs to be applied, in this case only the x-direction so `dimension` gets the value `[true, false]`. Similarly, the top part (id 4) gets `dimension=[false, true]`.
@@ -134,7 +134,7 @@ Selections, Multi-material, and Collisions
 
 ![Sphere-mat](img/sphere-mat.png)
 
-The new release of PolyFEM support multi-material. For example if we want to simulate a sphere of radius 0.5m centered on $[0,1,0]$ with material $E=10^8, \nu=0.4, \rho=2000$ falling on thin soft mat  ($E=10^6, \nu=0.4, \rho=1000$) we need to set the body id. To set the body ids we can use selection, that is add this to the main json file:
+The new release of PolyFEM support multi-material. For example if we want to simulate a sphere of radius 0.5m centered on $[0,1,0]$ with material $E=10^8, \nu=0.4, \rho=2000$ falling on thin soft mat  ($E=10^6, \nu=0.4, \rho=1000$) we need to set the body id. To set the body ids we can use selection, that is add this to the main JSON file:
 ```json
 "body_ids": [{
     "id": 1,
@@ -146,7 +146,7 @@ The new release of PolyFEM support multi-material. For example if we want to sim
     "position": 0.01
 }]
 ```
-The sphere will be body 1, the selection is a sphere, for the mat the selection is an "axis-plane". For axis-planes the axis (1,2,3) represent $x,y,z$, the sign indicates the direction of the plane, and the position the offset. For this example, we are setting body id 2 to everything that has $y$-coordinate less than 0.01m (i.e., the thin mat). Using the body ids we can set the per-body material parameters by adding to the json
+The sphere will be body 1, the selection is a sphere, for the mat the selection is an "axis-plane". For axis-planes the axis (1,2,3) represent $x,y,z$, the sign indicates the direction of the plane, and the position the offset. For this example, we are setting body id 2 to everything that has $y$-coordinate less than 0.01m (i.e., the thin mat). Using the body ids we can set the per-body material parameters by adding to the JSON
 ```json
 "body_params": [{
     "id": 1,
@@ -197,7 +197,7 @@ The final piece is to use a Generic tensor problem `"problem": "GenericTensor"` 
 }
 ```
 
-Since this is a contact problem we need to enable collision, **no other thing is needed**: `"has_collision": true`, and run the simulation (the complete json script can be found [here](img/sphere-mat.json)).
+Since this is a contact problem we need to enable collision, **no other thing is needed**: `"has_collision": true`, and run the simulation (the complete JSON script can be found [here](img/sphere-mat.json)).
 ![Sphere-mat](img/sphere-mat-res.png)
 
 Multibody System
