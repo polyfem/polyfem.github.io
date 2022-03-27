@@ -5,8 +5,9 @@ JSON Files Structure
 {
     "default_params": " ",  // Path to another JSON file containing default arguments on which to patch these arguments
     
-    "mesh": " ",    // Mesh path (absolute or relative to JSON file)
-    "meshes": [ ],  // Multi-mesh input (see meshes)
+    "mesh": " ",             // Mesh path (absolute or relative to JSON file)
+    "meshes": [ ],           // Multi-mesh input (see meshes)
+    "normalize_mesh": false, // Normalize mesh such that it fits in the [0,1] bounding box (default: true)
     
     // Formulation:
     "scalar_formulation": " ",
@@ -127,6 +128,13 @@ Contact
 "epsv": 1e-3,                     // Smoothing parameter for the transition between static and dynamic friction
 "friction_iterations": 1,         // Friction lagging iterations (0 disables friction and < 0 indicates unlimited iterations)
 "friction_convergence_tol": 1e-2, // Friction lagging convergence tolerance
+"barrier_stiffness": "adaptive",
+
+"solver_params": {
+    "broad_phase_method": "hash_grid",
+    "ccd_tolerance": 1e-6,
+    "ccd_max_iterations": 1e6
+},
 
 "obstacles": [ ],                 // Collision obstacle input
 ```
@@ -276,24 +284,49 @@ Output
 "save_solve_sequence": false,   // Save all incremental load steps
 "skip_frame": 1,                // Export every n frame
 "vismesh_rel_area": 1e-05       // Relative resolution of the output mesh
-"export": {                     // Export options
-    "full_mat": "",             // Stiffnes matrix without boundary conditions
-    "iso_mesh": "",             // Isolines mesh
-    "nodes": "",                // FE nodes
-    "solution": "",             // Solution vector
-    "spectrum": false,          // Spectrum of the stiffness matrix
-    "stiffness_mat": "",        // Stiffmess matrix after setting boundary conditions
-    "vis_boundary_only": false, // Exports only the boundary of volumetric meshes
+"export": {
+    "sol_at_node": -1,
+    "high_order_mesh": true,
+    "volume": true,
+    "surface": false,
+    "wireframe": false,
+    "vis_mesh": "",
+    "sol_on_grid": -1,
     "paraview": "",             // Path for the vtu mesh
-    "wire_mesh": "",            // Wireframe of the mesh
+    "vis_boundary_only": false, // Exports only the boundary of volumetric meshes
     "material_params": false,   // Exports lame parameters per tetrahedron
     "body_ids": false,          // Export body ids
+    "contact_forces": false,
+    "friction_forces": false,
+    "velocity": false,
+    "acceleration": false,
+    "nodes": "",                // FE nodes
+    "wire_mesh": "",            // Wireframe of the mesh
+    "iso_mesh": "",             // Isolines mesh
+    "spectrum": false,          // Spectrum of the stiffness matrix
+    "solution": "",             // Solution vector
+    "full_mat": "",             // Stiffnes matrix without boundary conditions
+    "stiffness_mat": "",        // Stiffmess matrix after setting boundary conditions
+    "solution_mat": "",
+    "stress_mat": "",
+    "u_path": "",
+    "v_path": "",
+    "a_path": "",
+    "mises": "",
     "time_sequence": "sim.pvd"  // Name of output PVD time sequencee
 }
 ```
 
 Restart
 -------
+
+```js
+"import": {
+    "u_path": " ",
+    "v_path": " ",
+    "a_path": " "
+}
+```
 
 !!! todo
     Describe you to specify restart data.
@@ -312,15 +345,8 @@ Other Parameters
 
     "project_to_psd": false,        // Project the local matrices to PSD in for non-linear materials
 
-    "has_collision": false,         // Enable collision detection
-    "dhat": 0.03,                   // Barrier activation distance, check IPC paper
-
-    "mu": 0.0,                        // Coefficient of friction (0 disables friction)
-    "epsv": 1e-3,                     // Smoothing parameter for the transition between static and dynamic friction
-    "friction_iterations": 1,         // Friction lagging iterations (0 disables friction and < 0 indicates unlimited iterations)
-    "friction_convergence_tol": 1e-2, // Friction lagging convergence tolerance
-
-    "obstacles": [ ],                 // Collision obstacle input
+    "al_weight": 1e6,
+    "max_al_weight": 1e11,
 
     "count_flipped_els": false,     // Count (or not) flipped elements
 

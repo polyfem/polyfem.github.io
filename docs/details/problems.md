@@ -75,7 +75,10 @@ Each problem has a specific set of optional `problem_params` described here.
     "id": 4,                        // Boundary id
     "value": ["sin(z)+y", "z^2", 0] // Formulas are supported
 }],
-"is_time_dependent": false
+"is_time_dependent": false,
+"initial_solution": [0, 0, 0],
+"initial_velocity": [0, 0, 0],
+"initial_acceleration": [0, 0, 0]
 ```
 
 ## Specific
