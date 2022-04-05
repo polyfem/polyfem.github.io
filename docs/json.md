@@ -320,16 +320,30 @@ Output
 Restart
 -------
 
+For time-dependent simulation, the state variables ($u$, $v = \dot{u}$, and $a = \ddot{u}$) are exported using the following parameters:
+
 ```js
-"import": {
-    "u_path": " ",
-    "v_path": " ",
-    "a_path": " "
+"export": {
+    "u_path": "<path/to/out_u.ext>",
+    "v_path": "<path/to/out_v.ext>",
+    "a_path": "<path/to/out_a.ext>"
 }
 ```
 
-!!! todo
-    Describe you to specify restart data.
+The path can be either absolute or relative to the output directory. The format will depend on the file extension: `.txt` corresponds to ASCII and `.bin` corresponds to binary serialization. Other formats may be added in the future, but for now, other extensions will default to the ASCII format.
+
+These files can then be used to initialize (or restart) the simulation from the saved state by specifying:
+
+```js
+"import": {
+    "u_path": "<path/to/in_u.ext>",
+    "v_path": "<path/to/in_v.ext>",
+    "a_path": "<path/to/in_a.ext>"
+}
+```
+
+!!! note
+    When restarting the simulation it is necessary to also specify the `"t0": <start_time>` parameter for the starting time. Otherwise, it will assume a starting time of `0`.
 
 Other Parameters
 ----------------

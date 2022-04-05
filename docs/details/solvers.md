@@ -36,19 +36,19 @@ Acknowledgments: The L-BFGS solver is implemented using the [LBFGS++](https://gi
 ### Backtracking
 
 !!! todo
-    Describe method and parameters.
+    Describe this method and its parameters.
 
 ### Armijo
 
 !!! todo
-    Describe method and parameters.
+    Describe this method and its parameters.
 
 #### Armijo (alt)
 
 !!! todo
-    Describe method and parameters.
+    Describe this method and its parameters.
 
 ### More-Thuente
 
 !!! todo
-    Describe method and parameters.
+    Describe this method and its parameters.

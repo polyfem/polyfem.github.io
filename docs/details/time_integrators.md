@@ -19,7 +19,7 @@
 * **Description:**
 
 \begin{align}
-\dot{u}^{t+1} &= u^t + h \ddot{u}^{t+1}\\
+\dot{u}^{t+1} &= \dot{u}^t + h \ddot{u}^{t+1}\\
 u^{t+1} &= u^t + h \dot{u}^{t+1}
 \end{align}
 
@@ -40,6 +40,9 @@ u^{t+1} &= u^t + h\dot{u}^t + \tfrac{h^2}{2}((1-2\beta)\ddot{u}^t + 2\beta\ddot{
 where $h$ is the time step size and by default $\gamma = 0.5$ and $\beta = 0.25$.
 
 * **Reference:** https://en.wikipedia.org/wiki/Newmark-beta_method
+
+!!! note
+    This is equivalent to the [Trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule_(differential_equations)) for $\gamma = 0.5$ and $\beta = 0.25$.
 
 ## Backward Differentiation Formula (BDF)
 
