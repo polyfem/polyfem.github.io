@@ -1,89 +1,81 @@
 JSON Files Structure
 --------------------
 
+`PolyFEM_bin` expects as input a JSON file containing the setup and parameters of the problem you wish to solve. A basic example of such a file is as follows:
+
 ```js
 {
-    "default_params": " ",  // Path to another JSON file containing default arguments on which to patch these arguments
-    
-    "mesh": " ",             // Mesh path (absolute or relative to JSON file)
-    "meshes": [ ],           // Multi-mesh input (see meshes)
-    "normalize_mesh": false, // Normalize mesh such that it fits in the [0,1] bounding box (default: true)
-    
-    // Formulation:
-    "scalar_formulation": " ",
-    // or
-    "tensor_formulation": " ",
+    "common": "", // path to another JSON file containing default arguments on which to patch these arguments
 
+    "geometry": [{ 
+        "mesh": "" // mesh path (absolute or relative to JSON file)
+    }],
+    
+    "time": {                         // time-dependent problem
+        "tend": 1,                    // end time
+        "dt": 0.1,                    // time step size
+        "time_steps": 10,             // (alternativly) number of time steps
+        "integrator": "ImplicitEuler" // time integration method
+    },
+    
+    "contact": {
+        "enabled": true // enable contact handling
+    },
+    
+    "solver": {
+        "linear": {
+            "solver": "Eigen::PardisoLDLT"
+        },
+        "nonlinear": {
+            "line_search": {
+                "method": "backtracking"
+            },
+            "solver": "newton"
+        }
+    },
+    
     // Material parameter
-    "params": {
-        "k": 1.0,                 // Constant in helmolz
-
-        "elasticity_tensor": {},  // Elasticity tensor, used in hooke and saint ventant
-
-        "E": 1.5,                 // Young modulus
-        "nu": 0.3,                // Poisson's ratio
-
-        "lambda": 0.329670329,    // Lamé's first parameter (E and nu have priority)
-        "mu": 0.384615384,        // Lamé's second parameter (E and nu have priority)
-
-        "density": 1
+    "materials": {
+        "type": "NeoHookean", // material model
+        "E": 1.5, // Young's modulus
+        "nu": 0.3, // Poisson ratio
+        "rho": 1 // density
     },
-
-    "problem": " ",                 // Problem to solve
-    "problem_params": {             // Problem specific parameters
-        "is_time_dependent": false  // Is the problem time-dependent
-    },
-
-    "has_collision": false,  // Enable collision detection
-
-    "nl_solver": "newton",                // Nonlinear solver
-    "solver_type": "Eigen::PardisoLDLT",  // Linear solvers
-    "line_search": "backtracking",        // Line search for newton solver
-    "solver_params": {},                  // solver specific parameters
-
-    "t0": 0,           // Start time for time-dependent simulations
-    "tend": 1,         // End time for time-dependent simulations
-    "time_steps": 10,  // Number of time steps for time-dependent simulations
-    "dt": 0.1,         // Time step size for time-dependent simulations (priority over time_steps)
-    "time_integrator": "ImplicitEuler",
-    "time_integrator_params": {},  // Time integrator specific parameters
-
-    "output": "",                   // Output json path
-    "save_time_sequence": true,     // Save a PVD time sequence
-    "skip_frame": 1,                // Export every n frame
-    "vismesh_rel_area": 1e-05       // Relative resolution of the output mesh
-    "export": {                     // Export options
-        "solution": "",             // Solution vector
-        "vis_boundary_only": false, // Exports only the boundary of volumetric meshes
-        "paraview": "",             // Path for the vtu mesh
-        "wire_mesh": "",            // Wireframe of the mesh
-        "material_params": false,   // Exports lame parameters per tetrahedron
-        "body_ids": false,          // Export body ids
-        "time_sequence": "sim.pvd"  // Name of output PVD time sequencee
-    },
+    
+    "output": {
+        "json": "sim.json",           // output statistics
+        "paraview": {                 // output geometry as paraview VTU files
+            "file_name": "sim.pvd", 
+            "options": {
+                "material": true,     // save material properties
+                "body_ids": true      // save body ids
+            },
+            "vismesh_rel_area": 1e-05 // relative area for upsampling the solution
+        }
+    }
 }
 ```
 
-Formulations
-------------
+Materials
+---------
 
 Options:<br/>
 
 * **scalar_formulation**: `Helmholtz`, `Laplacian`, `Bilaplacian` (mixed)
 * **tensor_formulation**: `HookeLinearElasticity`, `LinearElasticity`, `NeoHookean`, `SaintVenant`, `IncompressibleLinearElasticity` (mixed), `Stokes` (mixed), `NavierStokes` (mixed)
 
-Formulation parameters can be set in `params`. All formulations support boundary conditions.
+Each formulation has a set of material parameters that can be set alongside it in `materials`.
 
 See [formulations](details/formulations.md) for more details.
 
-Problems
+<!-- Problems
 --------
 
 **Options:** `CompressionElasticExact`, `Cubic`, `DrivenCavity`, `Elastic`, `ElasticExact`, `ElasticZeroBC`, `Flow`, `Franke`, `GenericScalar`, `GenericTensor`, `Gravity`, `Kernel`, `Linear`, `LinearElasticExact`, `MinSurf`, `PointBasedTensor`, `Quadratic`, `QuadraticElasticExact`, `Sine`, `TestProblem`, `TimeDependentFlow`, `TimeDependentScalar`, `TorsionElastic`, `Zero_BC`
 
 Each problem has a specific set of optional `problem_params` described here.
 
-See [problems](details/problems.md) for more details.
+See [problems](details/problems.md) for more details. -->
 
 Time Integrators
 ----------------
@@ -103,12 +95,9 @@ PolyFEM offers several linear solver options based on compilation options. For m
 
 **Options:** `AMGCL`, `Eigen::BiCGSTAB`, `Eigen::CholmodSupernodalLLT`, `Eigen::ConjugateGradient`, `Eigen::DGMRES`, `Eigen::GMRES`, `Eigen::LeastSquaresConjugateGradient`, `Eigen::MINRES`, `Eigen::PardisoLDLT`, `Eigen::PardisoLU`, `Eigen::SimplicialLDLT`, `Eigen::SparseLU`, `Eigen::UmfPackLU`, `Hypre`, `Pardiso` 
 
-
 ### Nonlinear Solver
 
 **Options:** `newton`, `lbfgs`
-
-The settings for the solver are stored inside the field `"solver_params"`.
 
 See [solvers](details/solvers.md) for more details.
 
@@ -122,102 +111,105 @@ Contact
 -------
 
 ```js
-"has_collision": false,           // Enable collision detection
-"dhat": 0.03,                     // Barrier activation distance, check IPC paper
-"mu": 0.0,                        // Coefficient of friction (0 disables friction)
-"epsv": 1e-3,                     // Smoothing parameter for the transition between static and dynamic friction
-"friction_iterations": 1,         // Friction lagging iterations (0 disables friction and < 0 indicates unlimited iterations)
-"friction_convergence_tol": 1e-2, // Friction lagging convergence tolerance
-"barrier_stiffness": "adaptive",
+"contact": {
+    "has_collision": false,           // Enable collision detection
+    "dhat": 0.03,                     // Barrier activation distance, check IPC paper
+    "mu": 0.0,                        // Coefficient of friction (0 disables friction)
+    "epsv": 1e-3,                     // Smoothing parameter for the transition between static and dynamic friction
+    "friction_iterations": 1,         // Friction lagging iterations (0 disables friction and < 0 indicates unlimited iterations)
+    "friction_convergence_tol": 1e-2, // Friction lagging convergence tolerance
+    "barrier_stiffness": "adaptive",
+}
 
-"solver_params": {
-    "broad_phase_method": "hash_grid",
-    "ccd_tolerance": 1e-6,
-    "ccd_max_iterations": 1e6
+"solver": {
+    "contact": {
+        "broad_phase_method": "hash_grid",
+        "ccd_tolerance": 1e-6,
+        "ccd_max_iterations": 1e6
+    }
 },
-
-"obstacles": [ ],                 // Collision obstacle input
 ```
 
 See [contact](details/contact.md) for more details.
 
-Meshes
-------
+Geometry
+--------
 
 ```js
-"meshes": [{                    // Multi-mesh input
-    "mesh": " ",                // Mesh path (absolute or relative to JSON file)
-    "position": [0.0, 0.0, 0.0],
-    "rotation": [0.0, 0.0, 0.0],
-    "rotation_mode": "xyz",
-    "scale": [1.0, 1.0, 1.0],
+"geometry": [{
+    "mesh": " ", // Mesh path (absolute or relative to JSON file)
     "enabled": true,
-    "body_id": 0,
-    "boundary_id": 0,
-    "bc_tag": " "               // Path (absolute or relative to JSON file)
+
+    "transformation": {
+        "scale": [1, 1, 1],
+        "rotation": [0, 0, 0],
+        "rotation_mode": "xyz",
+        "translation": [0, 0, 0]
+    },
+
+    "surface_selection": [],
+    "volume_selection": [],
+
+    "is_obstacle": false
 }],
 ```
 
 ### Mesh
 The path to the mesh file (absolute or relative to JSON file).
 
-### Position
-The `"position"` field encodes the position of the mesh's origin (not the center of mass). This is equivalent to a translation of the mesh. This must be an array of length $d$, the dimension of the scene.
+### Enable
+A boolean for enabling the body. By default, bodies are enabled.
 
-### Rotation
-The `"rotation"` field encodes a rotation around the mesh's origin (not the center of mass). The rotation can either be a single number or array of numbers depending on the `"rotation_mode"`.
+### Transformation
+
+A pre-transform is applied to the geometry at load. The order of the transformation is scale, rotate, then translate.
+
+#### Scale
+The `"scale"` field encodes a scaling of the mesh. This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
+
+##### Dimensions
+Alternatively, the `"dimensions"` field encodes the absolute size of the mesh's axis-aligned bounding box. This should be an array of $d$ numbers for the dimensions of each axis. This is equivalent to using a scale of `dimensions / initial_dimensions` where nonfinite values are replaced by `1`. If the `"dimensions"` field is present, the `"scale"` field is ignored.
+
+#### Rotation
+The `"rotation"` field encodes a rotation around the mesh's origin. The rotation can either be a single number or an array of numbers depending on the `"rotation_mode"`.
 
 The `"rotation_mode"` field indicates how the `"rotation"` is represented. The options are:
 
 * `"axis_angle"`: The `"rotation"` must be an array of four numbers where the first number is the angle of rotation in degrees and the last three are the axis of rotation. The axis will be normalized.
 * `"quaternion"`: The `"rotation"` must be an array of four numbers which represent a quaternion $w + xi + yj + zk$. The order of `"rotation"` is `[x, y, z, w]`. The quaternion will be normalized.
-* `"rotation_vector"`: The `"rotation"` must be an array of three numbers whose magnitude is the angle of rotation in degrees and normalized version is the axis of rotation.
+* `"rotation_vector"`: The `"rotation"` must be an array of three numbers whose magnitude is the angle of rotation in degrees and the normalized version is the axis of rotation.
 * `r"[xyz]+"`: Indicates the `"rotation"` is a series of Euler angle rotations in degrees. The `"rotation"` can be either a number or variable-length array as long as the length matches the rotation mode string's length. The Euler rotations will be applied in the order of the string (from left to right).
 
 The default `"rotation_mode"` is `"xyz"` which indicates an Euler angle rotation in the order `x`, `y`, and then `z`.
 
-### Scale
-The `"scale"` field encodes the scale of the mesh relative to its origin (not the center of mass). This can either be a single number for uniform scaling or an array of $d$ numbers for scaling in each axis.
+#### Translation
+The `"translation"` field encodes a translation of the mesh. This must be an array of length $d$, the dimension of the scene.
 
-### Dimensions
-The `"dimensions"` field encodes the absolute size of the mesh's axis-aligned bounding box. This should be an array of $d$ numbers for the dimensions of each axis. This is equivalent to using a scale of `dimensions / initial_dimensions` where nonfinite values are replaced by `1`. If the `"dimensions"` field is present, the `"scale"` field is ignored.
+### Surface Selection
 
-### Enable
-A boolean for enabling the body. By default, bodies are enabled.
+Either 
+* a single number for a selection ID to apply to all surfaces in the mesh,
+* a file path containing one ID per surface element, or
+* a single or list of selection objects used to assign a given `"id"` (see [selections](#selections)).
 
-### Body ID
-The `"id"` of the `"body_params"` to use for the entire body.
+### Volume Selection
 
-### Boundary ID
-The `"id"` of the boundary conditions (e.g., `"dirichlet_boundary"` or `"neumann_boundary"`) to use on the entirety the body's boundary.
+Same as surface selection, but for assigning IDs to the volume elements of the mesh.
 
-### BC Tag File
+### Obstacles
 
-!!! todo
-    Describe `bc_tag` input.
+Obstacles serve as a way of specifying non-simulated collision objects.
 
-Obstacles
----------
+#### Mesh
 
-```js
-"obstacles": [{                 // Collision obstacle input
-    "mesh": " ",                // Mesh path (absolute or relative to JSON file)
-    "position": [0.0, 0.0, 0.0],
-    "rotation": [0.0, 0.0, 0.0],
-    "rotation_mode": "xyz",
-    "scale": [1.0, 1.0, 1.0],
-    "enabled": true,
-    "displacement": [0.0, 0.0, 0.0]
-}],
-```
-
-Obstacles serve as a way of specifying non-simulated collision objects. The syntax of specifying an obstacle is similar to specifying a mesh in the [multi-mesh input](#meshes). The difference is obstacles do not have a `body_id` or `boundary_id` field, but they do have a `displacement` field.
-
-### Mesh
 The path to the mesh file (absolute or relative to JSON file). In addition to the standard volumetric meshes supported by simulated meshes, this can be a codimensional/surface mesh (i.e., points, edges, or triangles). Currently, codimensional points and edges are only supported using the OBJ file format. Codimensional points are specified as vertices that are not indexed by any elements. Codimensional edges are specified as OBJ [line elements](https://en.wikipedia.org/wiki/Wavefront_.obj_file#Line_elements).
 
-### Displacement
-Specifies the displacement field for the obstacle. This can either be a constant vector or an expression similar to [spatially varying](../tutorial/#spatially-varying-boundary-conditions) and [time-dependent](../tutorial/#time-dependent-boundary-conditions) boundary conditions.
+<!-- #### Displacement
+Specifies the displacement field for the obstacle. This can either be a constant vector or an expression similar to [spatially varying](../tutorial/#spatially-varying-boundary-conditions) and [time-dependent](../tutorial/#time-dependent-boundary-conditions) boundary conditions. -->
+
+#### Surface Selection
+
+Must be a single number.
 
 Selections
 ----------
@@ -275,9 +267,9 @@ A plane selection. Everything on one side of the plane is selected.
 !!! example
     `{"normal": [1, 1, 0], "point": [0, 1, 0]}` will select points $x$ where $(x-p) \cdot n \ge 0$.
 
+<!-- 
 Output
 ------
-
 ```js
 "output": "",                   // Output json path
 "save_time_sequence": true,     // Save a PVD time sequence
@@ -315,7 +307,8 @@ Output
     "mises": "",
     "time_sequence": "sim.pvd"  // Name of output PVD time sequencee
 }
-```
+``` 
+-->
 
 Restart
 -------
@@ -323,10 +316,12 @@ Restart
 For time-dependent simulation, the state variables ($u$, $v = \dot{u}$, and $a = \ddot{u}$) are exported using the following parameters:
 
 ```js
-"export": {
-    "u_path": "<path/to/out_u.ext>",
-    "v_path": "<path/to/out_v.ext>",
-    "a_path": "<path/to/out_a.ext>"
+"output": { 
+    "data": {
+        "u_path": "<path/to/out_u.ext>",
+        "v_path": "<path/to/out_v.ext>",
+        "a_path": "<path/to/out_a.ext>"
+    }
 }
 ```
 
@@ -335,17 +330,19 @@ The path can be either absolute or relative to the output directory. The format 
 These files can then be used to initialize (or restart) the simulation from the saved state by specifying:
 
 ```js
-"import": {
-    "u_path": "<path/to/in_u.ext>",
-    "v_path": "<path/to/in_v.ext>",
-    "a_path": "<path/to/in_a.ext>"
+"input": {
+    "data": {
+        "u_path": "<path/to/in_u.ext>",
+        "v_path": "<path/to/in_v.ext>",
+        "a_path": "<path/to/in_a.ext>"
+    }
 }
 ```
 
 !!! note
-    When restarting the simulation it is necessary to also specify the `"t0": <start_time>` parameter for the starting time. Otherwise, it will assume a starting time of `0`.
+    When restarting the simulation it is necessary to also specify the `"time": {"t0": <start_time>}` parameter for the starting time. Otherwise, it will assume a starting time of `0`.
 
-Other Parameters
+<!-- Other Parameters
 ----------------
 
 ```js
@@ -356,8 +353,6 @@ Other Parameters
 
     "n_refs": 0,                    // Number of uniform refinement
     "refinenemt_location": 0.5,     // Refiniement location of polyhedra
-
-    "project_to_psd": false,        // Project the local matrices to PSD in for non-linear materials
 
     "al_weight": 1e6,
     "max_al_weight": 1e11,
@@ -397,4 +392,4 @@ Other Parameters
     "nl_solver_rhs_steps": 1,       // Number of incremental load steps
     "save_solve_sequence": false,   // Save all incremental load steps
 }
-```
+``` -->

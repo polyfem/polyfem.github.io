@@ -10,6 +10,7 @@ docs_dir: "docs"
 remote_branch: "master"
 theme:
   name: material
+  custom_dir: 'docs/theme'
   favicon: "img/xxx.ico"
   icon:
     logo: material/library
@@ -73,6 +74,9 @@ plugins:
   #   timeout: -1
   - git-revision-date
   - search
+  - mkdocs-jupyter:
+      ignore_h1_titles: True
+      include_source: True
 extra_javascript:
   - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
   - js/mathjax.js
@@ -82,13 +86,15 @@ nav:
   - Home: index.md
   - C++:
     - Home: cxx_index.md
-    - Tutorial: tutorial.md
-    - JSON API: json.md
-    - Library: library.md
+    - JSON Input: json.md
+    - API: https://polyfem.github.io/polyfem/
   - Python:
     - Home: python.md
     - Jupyter Tutorial: python_examples.ipynb
     - Docs: polyfempy_doc.md
+  - Tutorials:
+    - Getting Started: tutorials/getting_started.md
+    - Screw and Bolt: tutorials/screw_and_bolt/tutorial.md
   - Technical Details:
     - Formulations: details/formulations.md
     - Problems: details/problems.md

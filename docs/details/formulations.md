@@ -30,7 +30,7 @@ The following formulations are available in the PolyFEM list of possible formula
 
 ## Tensor
 
-### LinearElasticity
+### Linear Elasticity
 * **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
@@ -38,7 +38,7 @@ The following formulations are available in the PolyFEM list of possible formula
     \sigma[u] = 2 \mu  \epsilon[u]+ \lambda \text{tr}(\epsilon[u]) I \qquad \epsilon[u] = \frac 1 2 \left(\nabla u^T + \nabla u\right)
 \]
 
-### HookeLinearElasticity
+### Hooke Linear Elasticity
 * **Constants:**  `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
@@ -48,7 +48,7 @@ The following formulations are available in the PolyFEM list of possible formula
 
 where $C$ is the elasticity tensor
 
-### IncompressibleLinearElasticity (mixed)
+### Incompressible Linear Elasticity (mixed)
 * **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
 * **Description:** solve for
 
@@ -57,7 +57,7 @@ where $C$ is the elasticity tensor
 \text{div}(u) - \lambda^{-1}p &= 0
 \end{align}
 
-### SaintVenant
+### Saint Venant–Kirchoff Elasticity
 * **Constants:** `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
@@ -67,7 +67,7 @@ where $C$ is the elasticity tensor
 
 where $C$ is the elasticity tensor
 
-### NeoHookean
+### NeoHookean Elasticity
 * **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
@@ -84,7 +84,7 @@ where $C$ is the elasticity tensor
     -\text{div}(u) &= 0
 \end{align}
 
-### NavierStokes (mixed)
+### Navier–Stokes (mixed)
 * **Constants:** `viscosity` $\nu$
 * **Description:** solve for
 

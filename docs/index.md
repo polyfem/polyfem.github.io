@@ -11,12 +11,12 @@ PolyFEM is a simple C++ and Python finite element library. We provide a wide set
  - Laplace
  - Helmholtz
  - Linear Elasticity
- - Saint-Venant Elasticity
+ - St. Venant–Kirchhoff Elasticity
  - Neo-Hookean Elasticity
  - Stokes
- - Navier Stokes
+ - Navier–Stokes
 
-PolyFEM simplicity lies in the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](json.md) or trough the [Setting class](polyfempy_doc.md) in python.
+PolyFEM simplicity lies in the interface: just pick a problem, select some boundary condition, and solve. No need to construct complicated function spaces, or learn a new scripting language: everything is set-up trough a [JSON interface](json.md) or through the [Setting class](polyfempy_doc.md) in python.
 
 
 For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up to 4, and integrates state-of-the-art techniques such as the adaptive $p$-refinement presented in "Decoupling Simulation Accuracy from Mesh Quality" or the spline and polygonal bases in "Poly-Spline Finite-Element Method".
@@ -61,15 +61,12 @@ cmake ..
 make -j4
 ```
 
-On Linux, `zenity` is required for the file dialog window to work. On macOS and Windows, the native windows are used directly.
-
-
 ### Usage
 
-The main executable, `./PolyFEM_bin`, can be called with a GUI or through a command-line interface. Simply run:
+The main executable, `./PolyFEM_bin`, can be called as a command-line interface. Simply run:
 
 ```sh
-./PolyFEM_bin
+./PolyFEM_bin --help
 ```
 
 PolyFEM in Python
@@ -84,9 +81,9 @@ For more details refer to the [Python section](python.md)
 
 ### Installation
 
-I am making efforts to provide a simple python interface to Polyfem.
+We are making efforts to provide a simple python interface to Polyfem.
 
-For doing so I am maintaining a *conda* package that can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
+For doing so, we are maintaining a *conda* package that can be easily installed [https://anaconda.org/conda-forge/polyfempy](https://anaconda.org/conda-forge/polyfempy).
 
 ```sh
 conda install -c conda-forge polyfempy
