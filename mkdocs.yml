@@ -87,7 +87,7 @@ nav:
   - C++:
     - Home: cxx_index.md
     - JSON Input: json.md
-    - API: https://polyfem.github.io/polyfem/
+    - Docs: https://polyfem.github.io/polyfem/
   - Python:
     - Home: python.md
     - Jupyter Tutorial: python_examples.ipynb
