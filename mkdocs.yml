@@ -94,7 +94,8 @@ nav:
     - Docs: polyfempy_doc.md
   - Tutorials:
     - Getting Started: tutorials/getting_started.md
-    - Screw a Bolt into a Nut: tutorials/screw/tutorial.md
+    - Multi-Material: tutorials/multi-material/multi-material.md
+    - Screw a Bolt into a Nut: tutorials/screw/screw.md
   - Technical Details:
     - Formulations: details/formulations.md
     - Problems: details/problems.md

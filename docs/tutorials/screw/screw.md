@@ -6,7 +6,7 @@ This tutorial showcases how to set up and use PolyFEM to simulate screwing a bol
 
 <center><img src="../full_sim.gif"></center>
 
-## Preliminaries
+## Prerequisite
 
 In this tutorial, we assume you have already installed PolyFEM on your machine. If not, please follow the instructions [here](../../../cxx_index). After compilation, to use PolyFEM in any working directory machine, we can set up an alias for the main executable for `./PolyFEM_bin` by adding the following to `~/.bashrc` or `~/.zshrc` according to the type of your shell. 
 
