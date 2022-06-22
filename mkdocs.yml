@@ -74,9 +74,9 @@ plugins:
   #   timeout: -1
   - git-revision-date
   - search
-  # - mkdocs-jupyter:
-  #     ignore_h1_titles: True
-  #     include_source: True
+  - mkdocs-jupyter:
+      ignore_h1_titles: True
+      include_source: True
 extra_javascript:
   - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"
   - js/mathjax.js
