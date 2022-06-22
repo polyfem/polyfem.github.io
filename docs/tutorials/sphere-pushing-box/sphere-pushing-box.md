@@ -221,7 +221,7 @@ def get_object_positions(self):
 This function gets sample vertices for each mesh from the solver and these vertices are averaged to get a "centroid" of the object to represent its position.
 
 #### Step function exposed to the user
-```python=
+```python
 def step(self, action: np.ndarray):
     self.set_boundary_conditions(action)
     self.run_simulation()
