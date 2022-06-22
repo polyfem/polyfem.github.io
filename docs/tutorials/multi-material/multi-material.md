@@ -1,12 +1,14 @@
 # Simulating Multiple Materials in a Single Mesh
 
+<div class="md-source-date"><small>Author: Zachary Ferguson and Hanwen Zhao</small></div>
+
 <center><img src="../sim.gif"></center>
 
 In this tutorial, we will demonstrate how to create a multi-material object using [fTetWild](https://github.com/wildmeshing/fTetWild) and simulate it using PolyFEM. 
 
 The data for this tutorial can be found [here](https://github.com/polyfem/polyfem-data/tree/main/multi-material).
 
-## Prerequisite
+## Prerequisites
 
 The following items are necessary to complete this tutorial. To replicate the experiment, you can feel free to use either the given mesh files or your own mesh.
 
@@ -242,7 +244,8 @@ The simulation results will be written to `output/` as a sequence of VTU file an
 To visualize the simulation results in `VTU` format, we can use [`ParaView`](https://www.paraview.org/), an open-source, multi-platform data analysis and visualization application.
 
 To view the results, please follow the instruction below.
-![](../paraview.png)
+
+![](paraview.png)
 
 
 * Step 1: `File` - `Open`, select sequence group file step*.vtu or step*.vtm.
