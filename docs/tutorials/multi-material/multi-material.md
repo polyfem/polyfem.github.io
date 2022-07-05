@@ -4,7 +4,7 @@
 
 <center><img src="../sim.gif"></center>
 
-In this tutorial, we will demonstrate how to create a multi-material object using [fTetWild](https://github.com/wildmeshing/fTetWild) and simulate it using PolyFEM. 
+In this tutorial, we will demonstrate how to create a multi-material object using [fTetWild](https://github.com/wildmeshing/fTetWild) and simulate it using PolyFEM.
 
 The data for this tutorial can be found [here](https://github.com/polyfem/polyfem-data/tree/main/multi-material).
 
@@ -25,9 +25,9 @@ The instructions for building PolyFEM can be found [here](../../../cxx_index). A
 ```shell
 alias polyfem='path/to/PolyFEM/build/PolyFEM_bin'
 ```
-to your `~/.bashrc` or `~/.zshrc` file. 
+to your `~/.bashrc` or `~/.zshrc` file.
 
-Then you can use it by 
+Then you can use it by
 
 ```shell
 polyfem --help
@@ -101,7 +101,7 @@ We will go over the JSON script section by section. The complete JSON file can b
 }
 ```
 
-The `"geometry"` section specifies all required simulation geometry data. The `"mesh"` field defines the path to the volumetric mesh file. In this tutorial, only the `cubes_v22.msh` file from fTetwild will be utilized. 
+The `"geometry"` section specifies all required simulation geometry data. The `"mesh"` field defines the path to the volumetric mesh file. In this tutorial, only the `cubes_v22.msh` file from fTetwild will be utilized.
 
 ### Boundary Conditions
 
@@ -120,9 +120,9 @@ The `"geometry"` section specifies all required simulation geometry data. The `"
 }
 ```
 
-In `boundary conditions`, we permit the `left box` and `right box` sections to have Dirichlet boundaries that move along the x-axis as a function of time `t`. Here we use the default boundary IDs assigned described [here](../getting_started/#boundary-conditions).
+In `boundary conditions`, we permit the `left box` and `right box` sections to have Dirichlet boundaries that move along the x-axis as a function of time `t`. Here we use the default boundary IDs assigned described [here](../../getting_started/#boundary-conditions).
 
-The `rhs` is defined as `[0, 0, 0]`, which indicates that the simulation has no prescribed body forces (i.e., no gravity). 
+The `rhs` is defined as `[0, 0, 0]`, which indicates that the simulation has no prescribed body forces (i.e., no gravity).
 
 ### Materials
 
@@ -150,7 +150,7 @@ The `rhs` is defined as `[0, 0, 0]`, which indicates that the simulation has no 
 }
 ```
 
-In the `materials` section, we assign identical material properties to the left and right boxes but use a softer material for the middle box. 
+In the `materials` section, we assign identical material properties to the left and right boxes but use a softer material for the middle box.
 
 The volume IDs in this case are loaded directly from the `cubes_v22.msh` file. fTetWild automatically assigns these labels based on which domain the elements falls in the CSG.
 
@@ -166,7 +166,7 @@ The volume IDs in this case are loaded directly from the `cubes_v22.msh` file. f
     }
 }
 ```
-In the `"time"` section, we define our time step size as `0.0025` seconds and the total number of steps to be `20`. 
+In the `"time"` section, we define our time step size as `0.0025` seconds and the total number of steps to be `20`.
 
 ### Contact
 
@@ -225,9 +225,9 @@ We make a few adjustments to the solver. Here we are using Newton with backtrack
 }
 ```
 
-Lastly, we demonstrate that PolyFEM can simulate mixed order elements. In this example, we choose to use linear P1 elements for the left and right box, but use quadratic P2 elements for the middle box. 
+Lastly, we demonstrate that PolyFEM can simulate mixed order elements. In this example, we choose to use linear P1 elements for the left and right box, but use quadratic P2 elements for the middle box.
 
-The use of higher-order representations can lead to more precise calculations with slightly more running time. 
+The use of higher-order representations can lead to more precise calculations with slightly more running time.
 
 ## Running the Simulation
 
