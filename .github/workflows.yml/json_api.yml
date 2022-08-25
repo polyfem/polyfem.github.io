@@ -1,0 +1,39 @@
+name: JSON API Documentation
+
+on: repository_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2.4.2
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Clone PolyFEM
+        run: |
+          git --depth 0 clone https://github.com/polyfem/polyfem.git --branch main --single-branch main
+
+      - name: Clone JSON Spec Engine
+        run: |
+          git --depth 0 clone https://github.com/geometryprocessing/json-spec-engine.git --branch main --single-branch main
+
+      - name: Install Dependencies
+        run: |
+          pip install -r ./requirements.txt
+          pip install -r ./json-spec-engine/requirements.txt
+
+      - name: Generate JSON Spec Documentation
+        run: |
+          python ./json-spec-engine/docs/spec2html.py -i ./input-spec.json -o ./polyfem.github.io/docs/json_api.md
+
+      - name: Deploy MKDocs
+        run: |
+          mkdocs gh-deploy
