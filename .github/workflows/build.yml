@@ -1,6 +1,10 @@
 name: Build Website
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - docs
 
 permissions:
   contents: write
@@ -18,6 +22,7 @@ jobs:
           python-version: '3.10'
 
       - name: Generate JSON Spec Documentation
+        run: |
           git clone --depth=1 https://github.com/polyfem/polyfem.git
           git clone --depth=1 https://github.com/geometryprocessing/json-spec-engine.git
           pip install -r ./json-spec-engine/requirements.txt
