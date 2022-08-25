@@ -32,7 +32,7 @@ jobs:
 
       - name: Generate JSON Spec Documentation
         run: |
-          python ./json-spec-engine/docs/spec2html.py -i ./input-spec.json -o ./polyfem.github.io/docs/json_api.md
+          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/input-spec.json -o ./docs/json_api.md
 
       - name: Deploy MKDocs
         run: |
