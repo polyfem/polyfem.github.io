@@ -1,10 +1,6 @@
 name: Build Website
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - docs
+on: workflow_dispatch
 
 permissions:
   contents: write
