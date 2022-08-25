@@ -1,3 +1,6 @@
+---
+template: no_toc.html
+---
 <!--Automatically generated using JSON Spec Engine-->
 
 
@@ -7,7 +10,7 @@
 
 
 
-!!! summary "`/` (`object`)"
+!!! json-spec "`/` (`object`)"
     ```
     /
     ```
@@ -19,103 +22,56 @@
 
 
 
-
-
-
-
-
-    ??? summary "`/geometry/*` (`object`)"
+    ??? json-spec "`/geometry` (`list`)"
         ```
-        /geometry/*
+        /geometry
         ```
         ## Description
-        Each geometry object stores a mesh, a set of transformations applied to it after loading, and a set of selections, which can be used to specify boundary conditions, materials, optimization parameters and other quantities that can be associated with a part of an object.
-        ## Required
+        List of geometry objects.
 
 
 
 
 
-        ??? summary "`/geometry/*/mesh` (`file`)"
+        ??? json-spec "`/geometry/*` (`object`)"
             ```
-            /geometry/*/mesh
-            ```
-            ## Description
-            Path of the mesh file to load.
-        
-            **Extensions:** `['.obj', '.msh', '.stl']`
-
-
-
-        ## Optional
-
-
-
-
-
-        ??? summary "`/geometry/*/type` (`string`)"
-            ```
-            /geometry/*/type
+            /geometry/*
             ```
             ## Description
-            Type of geometry, currently only one supported. In future we will add stuff like planes, spheres, etc
-        
-            **Default**: `'mesh'`
-        
-            **Options:** `['mesh']`
+            Each geometry object stores a mesh, a set of transformations applied to it after loading, and a set of selections, which can be used to specify boundary conditions, materials, optimization parameters and other quantities that can be associated with a part of an object.
+            ## Required
 
 
 
 
 
+            ??? json-spec "`/geometry/*/mesh` (`file`)"
+                ```
+                /geometry/*/mesh
+                ```
+                ## Description
+                Path of the mesh file to load.
+            
+                **Extensions:** `['.obj', '.msh', '.stl', '.ply', '.mesh']`
 
 
 
-        ??? summary "`/geometry/*/extract` (`string`)"
-            ```
-            /geometry/*/extract
-            ```
-            ## Description
-            Used to extract stuff from the mesh. Eg extract surface extracts the surface from a tet mesh
-        
-            **Default**: `'volume'`
-        
-            **Options:** `['volume', 'edges', 'points', 'surface']`
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/transformation` (`object`)"
-            ```
-            /geometry/*/transformation
-            ```
-            ## Description
-            Geometric transformations applied to the geometry after loading it.
-        
-            **Default**: None
             ## Optional
 
 
 
 
 
-
-
-
-
-
-            ??? summary "`/geometry/*/transformation/translation/*` (`float`)"
+            ??? json-spec "`/geometry/*/type` (`string`)"
                 ```
-                /geometry/*/transformation/translation/*
+                /geometry/*/type
                 ```
                 ## Description
-                <span class="todo">FIXME:</span> Missing documentation in the specification
+                Type of geometry, currently only one supported. In future we will add stuff like planes, spheres, etc.
             
-                **Default**: `0`
+                **Default**: `'mesh'`
+            
+                **Options:** `['mesh']`
 
 
 
@@ -124,22 +80,16 @@
 
 
 
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/transformation/rotation/*` (`float`)"
+            ??? json-spec "`/geometry/*/extract` (`string`)"
                 ```
-                /geometry/*/transformation/rotation/*
+                /geometry/*/extract
                 ```
                 ## Description
-                <span class="todo">FIXME:</span> Missing documentation in the specification
+                Used to extract stuff from the mesh. Eg extract surface extracts the surface from a tet mesh.
             
-                **Default**: `0`
+                **Default**: `'volume'`
+            
+                **Options:** `['volume', 'edges', 'points', 'surface']`
 
 
 
@@ -148,185 +98,37 @@
 
 
 
-
-
-
-            ??? summary "`/geometry/*/transformation/rotation_mode` (`string`)"
+            ??? json-spec "`/geometry/*/transformation` (`object`)"
                 ```
-                /geometry/*/transformation/rotation_mode
+                /geometry/*/transformation
                 ```
                 ## Description
-                Type of rotation, supported are any permutation of (x[0-1]|y[0-1]|z[0-1), axis_angle, quaternion, or rotation_vector
+                Geometric transformations applied to the geometry after loading it.
             
-                **Default**: `'xyz'`
+                **Default**: `None`
+                ## Optional
 
 
 
 
 
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/transformation/scale/*` (`float`)"
-                ```
-                /geometry/*/transformation/scale/*
-                ```
-                ## Description
-                <span class="todo">FIXME:</span> Missing documentation in the specification
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/transformation/dimensions`"
-                ```
-                /geometry/*/transformation/dimensions
-                ```
-
-
-                ??? summary "`/geometry/*/transformation/dimensions` (`float`)"
+                ??? json-spec "`/geometry/*/transformation/translation` (`list`)"
                     ```
-                    /geometry/*/transformation/dimensions
+                    /geometry/*/transformation/translation
                     ```
                     ## Description
-                    Scale the object so that bounding box dimensions match specified dimensions, 2 entries for 2D problems, 3 entries for 3D problems. 
-                
-                    **Default**: `1`
+                    Translate (two entries for 2D problems or three entries for 3D problems).
 
 
 
 
 
-
-
-
-                ??? summary "`/geometry/*/transformation/dimensions/*` (`float`)"
-                    ```
-                    /geometry/*/transformation/dimensions/*
-                    ```
-                    ## Description
-                    <span class="todo">FIXME:</span> Missing documentation in the specification
-                
-                    **Default**: `0`
-
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/volume_selection`"
-            ```
-            /geometry/*/volume_selection
-            ```
-
-
-            ??? summary "`/geometry/*/volume_selection` (`int`)"
-                ```
-                /geometry/*/volume_selection
-                ```
-                ## Description
-                Assign specified id to all volume elements of the geometry (negative values indicate using the stored values in the MSH (default: 0)).
-            
-                **Default**: `-1`
-
-
-
-            ??? summary "`/geometry/*/volume_selection` (`object`)"
-                ```
-                /geometry/*/volume_selection
-                ```
-                ## Description
-                Offsets the volume IDs loaded from the mesh.
-                ## Required
-
-
-
-
-
-                ??? summary "`/geometry/*/volume_selection/id_offset` (`int`)"
-                    ```
-                    /geometry/*/volume_selection/id_offset
-                    ```
-                    ## Description
-                    Offsets the volume IDs loaded from the mesh.
-                
-                    **Default**: `0`
-
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/volume_selection/*`"
-                ```
-                /geometry/*/volume_selection/*
-                ```
-
-
-                ??? summary "`/geometry/*/volume_selection/*` (`object`)"
-                    ```
-                    /geometry/*/volume_selection/*
-                    ```
-                    ## Description
-                    Assign the id to all volume elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
-                
-                    **Default**: None
-                    ## Required
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/id` (`int`)"
+                    ??? json-spec "`/geometry/*/transformation/translation/*` (`float`)"
                         ```
-                        /geometry/*/volume_selection/*/id
+                        /geometry/*/transformation/translation/*
                         ```
                         ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/box/*/*` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/box/*/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                        FIXME: Missing documentation in the specification.
                     
                         **Default**: `0`
 
@@ -338,125 +140,46 @@
 
 
 
-                    ## Optional
 
 
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/volume_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
-
-
-
-
-
-
-                ??? summary "`/geometry/*/volume_selection/*` (`object`)"
+                ??? json-spec "`/geometry/*/transformation/rotation` (`list`)"
                     ```
-                    /geometry/*/volume_selection/*
+                    /geometry/*/transformation/rotation
                     ```
                     ## Description
-                    Assign the id to all volume elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
-                
-                    **Default**: None
-                    ## Required
+                    Rotate, in 2D, one number, the rotation angle, in 3D, three or four Euler angles, axis+angle, or a unit quaternion. Depends on rotation mode.
 
 
 
 
 
-                    ??? summary "`/geometry/*/volume_selection/*/id` (`int`)"
+                    ??? json-spec "`/geometry/*/transformation/rotation/*` (`float`)"
                         ```
-                        /geometry/*/volume_selection/*/id
+                        /geometry/*/transformation/rotation/*
                         ```
                         ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/radius` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/radius
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/center/*` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/center/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/volume_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                        FIXME: Missing documentation in the specification.
                     
-                        **Default**: `False`
+                        **Default**: `0`
 
 
 
 
 
 
-                ??? summary "`/geometry/*/volume_selection/*` (`object`)"
+
+
+
+
+
+                ??? json-spec "`/geometry/*/transformation/rotation_mode` (`string`)"
                     ```
-                    /geometry/*/volume_selection/*
+                    /geometry/*/transformation/rotation_mode
                     ```
                     ## Description
-                    Assign the id to all volume elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
+                    Type of rotation, supported are any permutation of [xyz]+, axis_angle, quaternion, or rotation_vector.
                 
-                    **Default**: None
-                    ## Required
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/id` (`int`)"
-                        ```
-                        /geometry/*/volume_selection/*/id
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                    **Default**: `'xyz'`
 
 
 
@@ -465,157 +188,64 @@
 
 
 
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/point/*` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/point/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/normal/*` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/normal/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/volume_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/offset` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/offset
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                ??? summary "`/geometry/*/volume_selection/*` (`object`)"
+                ??? json-spec "`/geometry/*/transformation/scale` (`list`)"
                     ```
-                    /geometry/*/volume_selection/*
+                    /geometry/*/transformation/scale
                     ```
                     ## Description
-                    Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
-                
-                    **Default**: None
-                    ## Required
+                    Scale by specified factors along axes (two entries for 2D problems or three entries for 3D problems).
 
 
 
 
 
-                    ??? summary "`/geometry/*/volume_selection/*/id` (`int`)"
+                    ??? json-spec "`/geometry/*/transformation/scale/*` (`float`)"
                         ```
-                        /geometry/*/volume_selection/*/id
+                        /geometry/*/transformation/scale/*
                         ```
                         ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                        FIXME: Missing documentation in the specification.
+                    
+                        **Default**: `0`
 
 
 
 
 
 
-                    ??? summary "`/geometry/*/volume_selection/*/axis`"
-                        ```
-                        /geometry/*/volume_selection/*/axis
-                        ```
 
 
-                        ??? summary "`/geometry/*/volume_selection/*/axis` (`int`)"
+
+                ??? json-spec "`/geometry/*/transformation/dimensions`"
+                    ```
+                    /geometry/*/transformation/dimensions
+                    ```
+
+
+                    === "`/geometry/*/transformation/dimensions` (`float`)"
+                        ## Description
+                        Scale the object so that bounding box dimensions match specified dimensions, 2 entries for 2D problems, 3 entries for 3D problems.
+                    
+                        **Default**: `1`
+
+
+
+                    === "`/geometry/*/transformation/dimensions` (`list`)"
+                        ## Description
+                        Scale the object so that bounding box dimensions match specified dimensions, 2 entries for 2D problems, 3 entries for 3D problems.
+
+
+
+
+
+                        ??? json-spec "`/geometry/*/transformation/dimensions/*` (`float`)"
                             ```
-                            /geometry/*/volume_selection/*/axis
+                            /geometry/*/transformation/dimensions/*
                             ```
                             ## Description
-                            <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-                        ??? summary "`/geometry/*/volume_selection/*/axis` (`string`)"
-                            ```
-                            /geometry/*/volume_selection/*/axis
-                            ```
-                            ## Description
-                            <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/position` (`float`)"
-                        ```
-                        /geometry/*/volume_selection/*/position
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/volume_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/volume_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
+                            FIXME: Missing documentation in the specification.
+                        
+                            **Default**: `0`
 
 
 
@@ -625,55 +255,971 @@
 
 
 
-            ??? summary "`/geometry/*/volume_selection` (`file`)"
+
+
+
+            ??? json-spec "`/geometry/*/volume_selection`"
                 ```
                 /geometry/*/volume_selection
                 ```
-                ## Description
-                Load ids from a file; the file is required to have one id per volume element of the geometry
-            
-                **Extensions:** `['.txt']`
+
+
+                === "`/geometry/*/volume_selection` (`int`)"
+                    ## Description
+                    Assign specified ID to all volume elements of the geometry (negative values indicate using the stored values in the MSH (default: 0)).
+                
+                    **Default**: `-1`
+
+
+
+                === "`/geometry/*/volume_selection` (`object`)"
+                    ## Description
+                    Offsets the volume IDs loaded from the mesh.
+                    ## Required
+
+
+
+
+
+                    ??? json-spec "`/geometry/*/volume_selection/id_offset` (`int`)"
+                        ```
+                        /geometry/*/volume_selection/id_offset
+                        ```
+                        ## Description
+                        Offsets the volume IDs loaded from the mesh.
+                    
+                        **Default**: `0`
 
 
 
 
 
 
-        ??? summary "`/geometry/*/surface_selection`"
-            ```
-            /geometry/*/surface_selection
-            ```
+                === "`/geometry/*/volume_selection` (`list`)"
+                    ## Description
+                    List of selection (ID assignment) operations to apply to the geometry; operations can be box, sphere, etc.
 
 
-            ??? summary "`/geometry/*/surface_selection` (`int`)"
+
+                    ??? json-spec "`/geometry/*/volume_selection/*`"
+                        ```
+                        /geometry/*/volume_selection/*
+                        ```
+
+
+                        === "`/geometry/*/volume_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all volume elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/volume_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/box` (`list`)"
+                                ```
+                                /geometry/*/volume_selection/*/box
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/volume_selection/*/box/*` (`list`)"
+                                    ```
+                                    /geometry/*/volume_selection/*/box/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                    ??? json-spec "`/geometry/*/volume_selection/*/box/*/*` (`float`)"
+                                        ```
+                                        /geometry/*/volume_selection/*/box/*/*
+                                        ```
+                                        ## Description
+                                        FIXME: Missing documentation in the specification.
+                                    
+                                        **Default**: `0`
+
+
+
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/volume_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+                        === "`/geometry/*/volume_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all volume elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/volume_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/radius` (`float`)"
+                                ```
+                                /geometry/*/volume_selection/*/radius
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/center` (`list`)"
+                                ```
+                                /geometry/*/volume_selection/*/center
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/volume_selection/*/center/*` (`float`)"
+                                    ```
+                                    /geometry/*/volume_selection/*/center/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/volume_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+                        === "`/geometry/*/volume_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all volume elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/volume_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/point` (`list`)"
+                                ```
+                                /geometry/*/volume_selection/*/point
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/volume_selection/*/point/*` (`float`)"
+                                    ```
+                                    /geometry/*/volume_selection/*/point/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/normal` (`list`)"
+                                ```
+                                /geometry/*/volume_selection/*/normal
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/volume_selection/*/normal/*` (`float`)"
+                                    ```
+                                    /geometry/*/volume_selection/*/normal/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/volume_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/offset` (`float`)"
+                                ```
+                                /geometry/*/volume_selection/*/offset
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                        === "`/geometry/*/volume_selection/*` (`object`)"
+                            ## Description
+                            Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/volume_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/axis`"
+                                ```
+                                /geometry/*/volume_selection/*/axis
+                                ```
+
+
+                                === "`/geometry/*/volume_selection/*/axis` (`int`)"
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+                                === "`/geometry/*/volume_selection/*/axis` (`string`)"
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/position` (`float`)"
+                                ```
+                                /geometry/*/volume_selection/*/position
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/volume_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/volume_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+
+
+
+                === "`/geometry/*/volume_selection` (`file`)"
+                    ## Description
+                    Load ids from a file; the file is required to have one ID per volume element of the geometry
+                
+                    **Extensions:** `['.txt']`
+
+
+
+
+
+
+            ??? json-spec "`/geometry/*/surface_selection`"
                 ```
                 /geometry/*/surface_selection
                 ```
+
+
+                === "`/geometry/*/surface_selection` (`int`)"
+                    ## Description
+                    Assign specified ID to all surface elements of the geometry
+                
+                    **Default**: `0`
+
+
+
+                === "`/geometry/*/surface_selection` (`object`)"
+                    ## Description
+                    Assigns ids to sides touching the bbox of the model using a threshold. Assigns 1+offset to left, 2+offset to bottom, 3+offset to right, 4+offset to top, 5+offset to front, 6+offset to back, 7+offset to everything else.
+                    ## Optional
+
+
+
+
+
+                    ??? json-spec "`/geometry/*/surface_selection/threshold` (`float`)"
+                        ```
+                        /geometry/*/surface_selection/threshold
+                        ```
+                        ## Description
+                        FIXME: Missing documentation in the specification.
+                    
+                        **Default**: `-1`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/geometry/*/surface_selection/offset` (`int`)"
+                        ```
+                        /geometry/*/surface_selection/offset
+                        ```
+                        ## Description
+                        FIXME: Missing documentation in the specification.
+                    
+                        **Default**: `0`
+
+
+
+
+
+
+                === "`/geometry/*/surface_selection` (`list`)"
+                    ## Description
+                    List of selection (ID assignment) operations to apply to the geometry; operations can be box, sphere, etc.
+
+
+
+                    ??? json-spec "`/geometry/*/surface_selection/*`"
+                        ```
+                        /geometry/*/surface_selection/*
+                        ```
+
+
+                        === "`/geometry/*/surface_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all surface elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/surface_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/box` (`list`)"
+                                ```
+                                /geometry/*/surface_selection/*/box
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/surface_selection/*/box/*` (`list`)"
+                                    ```
+                                    /geometry/*/surface_selection/*/box/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                    ??? json-spec "`/geometry/*/surface_selection/*/box/*/*` (`float`)"
+                                        ```
+                                        /geometry/*/surface_selection/*/box/*/*
+                                        ```
+                                        ## Description
+                                        FIXME: Missing documentation in the specification.
+                                    
+                                        **Default**: `0`
+
+
+
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/surface_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+                        === "`/geometry/*/surface_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all surface elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/surface_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/radius` (`float`)"
+                                ```
+                                /geometry/*/surface_selection/*/radius
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/center` (`list`)"
+                                ```
+                                /geometry/*/surface_selection/*/center
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/surface_selection/*/center/*` (`float`)"
+                                    ```
+                                    /geometry/*/surface_selection/*/center/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/surface_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+                        === "`/geometry/*/surface_selection/*` (`object`)"
+                            ## Description
+                            Assign the ID to all surface elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/surface_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/point` (`list`)"
+                                ```
+                                /geometry/*/surface_selection/*/point
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/surface_selection/*/point/*` (`float`)"
+                                    ```
+                                    /geometry/*/surface_selection/*/point/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/normal` (`list`)"
+                                ```
+                                /geometry/*/surface_selection/*/normal
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+                                ??? json-spec "`/geometry/*/surface_selection/*/normal/*` (`float`)"
+                                    ```
+                                    /geometry/*/surface_selection/*/normal/*
+                                    ```
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/surface_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/offset` (`float`)"
+                                ```
+                                /geometry/*/surface_selection/*/offset
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                        === "`/geometry/*/surface_selection/*` (`object`)"
+                            ## Description
+                            Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
+                        
+                            **Default**: `None`
+                            ## Required
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/id` (`int`)"
+                                ```
+                                /geometry/*/surface_selection/*/id
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/axis`"
+                                ```
+                                /geometry/*/surface_selection/*/axis
+                                ```
+
+
+                                === "`/geometry/*/surface_selection/*/axis` (`int`)"
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+                                === "`/geometry/*/surface_selection/*/axis` (`string`)"
+                                    ## Description
+                                    FIXME: Missing documentation in the specification.
+
+
+
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/position` (`float`)"
+                                ```
+                                /geometry/*/surface_selection/*/position
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+
+
+
+                            ## Optional
+
+
+
+
+
+                            ??? json-spec "`/geometry/*/surface_selection/*/relative` (`bool`)"
+                                ```
+                                /geometry/*/surface_selection/*/relative
+                                ```
+                                ## Description
+                                FIXME: Missing documentation in the specification.
+                            
+                                **Default**: `False`
+
+
+
+
+
+
+
+
+
+                === "`/geometry/*/surface_selection` (`file`)"
+                    ## Description
+                    Load ids from a file; the file has a list of surface elements of the geometry specified as triples of vertex indices, with one ID for each; each triple must correspond to a surface element
+                
+                    **Extensions:** `['.txt']`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/geometry/*/curve_selection` (`object`)"
+                ```
+                /geometry/*/curve_selection
+                ```
                 ## Description
-                Assign specified id to all surface elements of the geometry
+                Selection of curves
+            
+                **Default**: `None`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/geometry/*/point_selection` (`object`)"
+                ```
+                /geometry/*/point_selection
+                ```
+                ## Description
+                Selection of points
+            
+                **Default**: `None`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/geometry/*/n_refs` (`int`)"
+                ```
+                /geometry/*/n_refs
+                ```
+                ## Description
+                number of uniform refinements
             
                 **Default**: `0`
 
 
 
-            ??? summary "`/geometry/*/surface_selection` (`object`)"
+
+
+
+
+
+            ??? json-spec "`/geometry/*/advanced` (`object`)"
                 ```
-                /geometry/*/surface_selection
+                /geometry/*/advanced
                 ```
                 ## Description
-                Assigns ids to sides touching the bbox of the model using a threshold. Assigns 1+offset to left, 2+offset to bottom, 3+offset to right, 4+offset to top, 5+offset to front, 6+offset to back, 7+offset to everything else.
+                Advanced options for geometry
+            
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/geometry/*/surface_selection/threshold` (`float`)"
+                ??? json-spec "`/geometry/*/advanced/normalize_mesh` (`bool`)"
                     ```
-                    /geometry/*/surface_selection/threshold
+                    /geometry/*/advanced/normalize_mesh
                     ```
                     ## Description
-                    <span class="todo">FIXME:</span> Missing documentation in the specification
+                    Rescale the mesh to it fits in the biunit cube
+                
+                    **Default**: `False`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/geometry/*/advanced/force_linear_geometry` (`bool`)"
+                    ```
+                    /geometry/*/advanced/force_linear_geometry
+                    ```
+                    ## Description
+                    Discard high-order nodes for curved geometries
+                
+                    **Default**: `False`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/geometry/*/advanced/refinement_location` (`float`)"
+                    ```
+                    /geometry/*/advanced/refinement_location
+                    ```
+                    ## Description
+                    parametric location of the refinement
+                
+                    **Default**: `0.5`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/geometry/*/advanced/min_component` (`int`)"
+                    ```
+                    /geometry/*/advanced/min_component
+                    ```
+                    ## Description
+                    Size of the minumum component for collision
                 
                     **Default**: `-1`
 
@@ -684,12 +1230,124 @@
 
 
 
-                ??? summary "`/geometry/*/surface_selection/offset` (`int`)"
+
+
+
+            ??? json-spec "`/geometry/*/enabled` (`bool`)"
+                ```
+                /geometry/*/enabled
+                ```
+                ## Description
+                Skips the geometry if false
+            
+                **Default**: `True`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/geometry/*/is_obstacle` (`bool`)"
+                ```
+                /geometry/*/is_obstacle
+                ```
+                ## Description
+                The geometry elements are not included in deforming geometry, only in collision computations
+            
+                **Default**: `False`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ??? json-spec "`/materials` (`list`)"
+        ```
+        /materials
+        ```
+        ## Description
+        Material Parameters lists including ID pointing to volume selection, Young's modulus ($E$), Poisson's ratio ($\nu$), Density ($\rho$), or Lamé constants ($\lambda$ and $\mu$).
+
+
+
+        ??? json-spec "`/materials/*`"
+            ```
+            /materials/*
+            ```
+
+
+            === "NeoHookean"
+            
+                **Type**: NeoHookean
+                ## Description
+                Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
                     ```
-                    /geometry/*/surface_selection/offset
+                    /materials/*/type
                     ```
                     ## Description
-                    <span class="todo">FIXME:</span> Missing documentation in the specification
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/E` (`float`)"
+                    ```
+                    /materials/*/E
+                    ```
+                    ## Description
+                    Young's modulus
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/nu` (`float`)"
+                    ```
+                    /materials/*/nu
+                    ```
+                    ## Description
+                    Poisson's ratio
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
                 
                     **Default**: `0`
 
@@ -700,57 +1358,408 @@
 
 
 
-
-            ??? summary "`/geometry/*/surface_selection/*`"
-                ```
-                /geometry/*/surface_selection/*
-                ```
-
-
-                ??? summary "`/geometry/*/surface_selection/*` (`object`)"
+                ??? json-spec "`/materials/*/rho` (`float`)"
                     ```
-                    /geometry/*/surface_selection/*
+                    /materials/*/rho
                     ```
                     ## Description
-                    Assign the id to all surface elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
+                    Density
                 
-                    **Default**: None
-                    ## Required
+                    **Default**: `1`
 
 
 
 
 
-                    ??? summary "`/geometry/*/surface_selection/*/id` (`int`)"
+
+            === "NeoHookean"
+            
+                **Type**: NeoHookean
+                ## Description
+                Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/lambda` (`float`)"
+                    ```
+                    /materials/*/lambda
+                    ```
+                    ## Description
+                    Second Lamé parameter
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/mu` (`float`)"
+                    ```
+                    /materials/*/mu
+                    ```
+                    ## Description
+                    First Lamé parameters
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "LinearElasticity"
+            
+                **Type**: LinearElasticity
+                ## Description
+                Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/E` (`float`)"
+                    ```
+                    /materials/*/E
+                    ```
+                    ## Description
+                    Young's modulus
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/nu` (`float`)"
+                    ```
+                    /materials/*/nu
+                    ```
+                    ## Description
+                    Poisson's ratio
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "LinearElasticity"
+            
+                **Type**: LinearElasticity
+                ## Description
+                Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/lambda` (`float`)"
+                    ```
+                    /materials/*/lambda
+                    ```
+                    ## Description
+                    Second Lamé parameter
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/mu` (`float`)"
+                    ```
+                    /materials/*/mu
+                    ```
+                    ## Description
+                    First Lamé parameters
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "HookeLinearElasticity"
+            
+                **Type**: HookeLinearElasticity
+                ## Description
+                Material Parameters including ID, E, nu, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/E` (`float`)"
+                    ```
+                    /materials/*/E
+                    ```
+                    ## Description
+                    Young's modulus
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/nu` (`float`)"
+                    ```
+                    /materials/*/nu
+                    ```
+                    ## Description
+                    Poisson's ratio
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "HookeLinearElasticity"
+            
+                **Type**: HookeLinearElasticity
+                ## Description
+                Material Parameters including ID, E, nu, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/elasticity_tensor` (`list`)"
+                    ```
+                    /materials/*/elasticity_tensor
+                    ```
+                    ## Description
+                    Symmetric elasticity tensor
+
+
+
+
+
+                    ??? json-spec "`/materials/*/elasticity_tensor/*` (`float`)"
                         ```
-                        /geometry/*/surface_selection/*/id
+                        /materials/*/elasticity_tensor/*
                         ```
                         ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/box/*/*` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/box/*/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                        Entries of elasticity tensor
                     
                         **Default**: `0`
 
@@ -759,49 +1768,20 @@
 
 
 
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/surface_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
+                ## Optional
 
 
 
 
 
-
-                ??? summary "`/geometry/*/surface_selection/*` (`object`)"
+                ??? json-spec "`/materials/*/id` (`int`)"
                     ```
-                    /geometry/*/surface_selection/*
+                    /materials/*/id
                     ```
                     ## Description
-                    Assign the id to all surface elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
+                    Volume selection ID
                 
-                    **Default**: None
-                    ## Required
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/id` (`int`)"
-                        ```
-                        /geometry/*/surface_selection/*/id
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                    **Default**: `0`
 
 
 
@@ -810,236 +1790,172 @@
 
 
 
-                    ??? summary "`/geometry/*/surface_selection/*/radius` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/radius
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/center/*` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/center/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/surface_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
-
-
-
-
-
-
-                ??? summary "`/geometry/*/surface_selection/*` (`object`)"
+                ??? json-spec "`/materials/*/rho` (`float`)"
                     ```
-                    /geometry/*/surface_selection/*
+                    /materials/*/rho
                     ```
                     ## Description
-                    Assign the id to all surface elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
+                    Density
                 
-                    **Default**: None
-                    ## Required
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/id` (`int`)"
-                        ```
-                        /geometry/*/surface_selection/*/id
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                    **Default**: `1`
 
 
 
 
 
 
+            === "SaintVenant"
+            
+                **Type**: SaintVenant
+                ## Description
+                Material Parameters including ID, E, nu, density ($\rho$)
+                ## Required
 
 
 
 
 
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/point/*` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/point/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/normal/*` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/normal/*
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/surface_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-                    
-                        **Default**: `False`
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/offset` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/offset
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                ??? summary "`/geometry/*/surface_selection/*` (`object`)"
+                ??? json-spec "`/materials/*/type` (`string`)"
                     ```
-                    /geometry/*/surface_selection/*
+                    /materials/*/type
                     ```
                     ## Description
-                    Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
+                    Type of material
                 
-                    **Default**: None
-                    ## Required
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
 
 
 
-                    ??? summary "`/geometry/*/surface_selection/*/id` (`int`)"
+
+
+
+                ??? json-spec "`/materials/*/E` (`float`)"
+                    ```
+                    /materials/*/E
+                    ```
+                    ## Description
+                    Young's modulus
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/nu` (`float`)"
+                    ```
+                    /materials/*/nu
+                    ```
+                    ## Description
+                    Poisson's ratio
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "SaintVenant"
+            
+                **Type**: SaintVenant
+                ## Description
+                Material Parameters including ID, E, nu, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/elasticity_tensor` (`list`)"
+                    ```
+                    /materials/*/elasticity_tensor
+                    ```
+                    ## Description
+                    Symmetric elasticity tensor
+
+
+
+
+
+                    ??? json-spec "`/materials/*/elasticity_tensor/*` (`float`)"
                         ```
-                        /geometry/*/surface_selection/*/id
+                        /materials/*/elasticity_tensor/*
                         ```
                         ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/axis`"
-                        ```
-                        /geometry/*/surface_selection/*/axis
-                        ```
-
-
-                        ??? summary "`/geometry/*/surface_selection/*/axis` (`int`)"
-                            ```
-                            /geometry/*/surface_selection/*/axis
-                            ```
-                            ## Description
-                            <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-                        ??? summary "`/geometry/*/surface_selection/*/axis` (`string`)"
-                            ```
-                            /geometry/*/surface_selection/*/axis
-                            ```
-                            ## Description
-                            <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/position` (`float`)"
-                        ```
-                        /geometry/*/surface_selection/*/position
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
-
-
-
-                    ## Optional
-
-
-
-
-
-                    ??? summary "`/geometry/*/surface_selection/*/relative` (`bool`)"
-                        ```
-                        /geometry/*/surface_selection/*/relative
-                        ```
-                        ## Description
-                        <span class="todo">FIXME:</span> Missing documentation in the specification
+                        Entries of elasticity tensor
                     
-                        **Default**: `False`
+                        **Default**: `0`
+
+
+
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
 
 
 
@@ -1048,235 +1964,430 @@
 
 
 
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
 
-            ??? summary "`/geometry/*/surface_selection` (`file`)"
-                ```
-                /geometry/*/surface_selection
-                ```
-                ## Description
-                Load ids from a file; the file has a list of surface elements of the geometry specified as triples of vertex indices, with one id for each; each triple must correspond to a surface element
+
+
+
+
+
+            === "Stokes"
             
-                **Extensions:** `['.txt']`
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/curve_selection` (`object`)"
-            ```
-            /geometry/*/curve_selection
-            ```
-            ## Description
-            Selection of curves
-        
-            **Default**: None
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/point_selection` (`object`)"
-            ```
-            /geometry/*/point_selection
-            ```
-            ## Description
-            Selection of points
-        
-            **Default**: None
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/n_refs` (`int`)"
-            ```
-            /geometry/*/n_refs
-            ```
-            ## Description
-            number of uniform refinements
-        
-            **Default**: `0`
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/advanced` (`object`)"
-            ```
-            /geometry/*/advanced
-            ```
-            ## Description
-            Advanced options for geometry
-        
-            **Default**: None
-            ## Optional
-
-
-
-
-
-            ??? summary "`/geometry/*/advanced/normalize_mesh` (`bool`)"
-                ```
-                /geometry/*/advanced/normalize_mesh
-                ```
+                **Type**: Stokes
                 ## Description
-                Rescale the mesh to it fits in the biunit cube
+                Material Parameters including ID, viscosity, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/viscosity` (`float`)"
+                    ```
+                    /materials/*/viscosity
+                    ```
+                    ## Description
+                    Fuild's viscosity
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "NavierStokes"
             
-                **Default**: `False`
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/advanced/force_linear_geometry` (`bool`)"
-                ```
-                /geometry/*/advanced/force_linear_geometry
-                ```
+                **Type**: NavierStokes
                 ## Description
-                Discard high-order nodes for curved geometries
+                Material Parameters including ID, viscosity, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/viscosity` (`float`)"
+                    ```
+                    /materials/*/viscosity
+                    ```
+                    ## Description
+                    Fuild's viscosity
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "IncompressibleLinearElasticity"
             
-                **Default**: `False`
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/advanced/refinement_location` (`float`)"
-                ```
-                /geometry/*/advanced/refinement_location
-                ```
+                **Type**: IncompressibleLinearElasticity
                 ## Description
-                parametric location of the refinement
+                Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/E` (`float`)"
+                    ```
+                    /materials/*/E
+                    ```
+                    ## Description
+                    Young's modulus
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/nu` (`float`)"
+                    ```
+                    /materials/*/nu
+                    ```
+                    ## Description
+                    Poisson's ratio
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "IncompressibleLinearElasticity"
             
-                **Default**: `0.5`
-
-
-
-
-
-
-
-
-            ??? summary "`/geometry/*/advanced/min_component` (`int`)"
-                ```
-                /geometry/*/advanced/min_component
-                ```
+                **Type**: IncompressibleLinearElasticity
                 ## Description
-                Size of the minumum component for collision
+                Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/lambda` (`float`)"
+                    ```
+                    /materials/*/lambda
+                    ```
+                    ## Description
+                    Second Lamé parameter
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/mu` (`float`)"
+                    ```
+                    /materials/*/mu
+                    ```
+                    ## Description
+                    First Lamé parameters
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "Laplacian"
             
-                **Default**: `-1`
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/enabled` (`bool`)"
-            ```
-            /geometry/*/enabled
-            ```
-            ## Description
-            Skips the geometry if false
-        
-            **Default**: `True`
-
-
-
-
-
-
-
-
-        ??? summary "`/geometry/*/is_obstacle` (`bool`)"
-            ```
-            /geometry/*/is_obstacle
-            ```
-            ## Description
-            The geometry elements are not included in deforming geometry, only in collision computations
-        
-            **Default**: `False`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ??? summary "`/materials/*`"
-        ```
-        /materials/*
-        ```
-
-
-        ??? summary "NeoHookean"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Young's modulus(E), Poisson ratio(nu), Density(rho), type()
-        
-            **Type**: NeoHookean
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
+                **Type**: Laplacian
                 ## Description
-                Type of material
+                Material Parameters including ID, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "Helmholtz"
             
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/E` (`float`)"
-                ```
-                /materials/*/E
-                ```
+                **Type**: Helmholtz
                 ## Description
-                Young's modulus
+                Material Parameters including ID, k, density ($\rho$)
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
+
+
+
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
 
 
 
@@ -1285,1187 +2396,88 @@
 
 
 
-            ??? summary "`/materials/*/nu` (`float`)"
-                ```
-                /materials/*/nu
-                ```
-                ## Description
-                Poisson ratio
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
 
 
 
-            ## Optional
 
 
 
 
 
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
+                ??? json-spec "`/materials/*/k` (`float`)"
+                    ```
+                    /materials/*/k
+                    ```
+                    ## Description
+                    Scaling for Helmholtz
+                
+                    **Default**: `1`
+
+
+
+
+
+
+            === "Bilaplacian"
             
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
+                **Type**: Bilaplacian
                 ## Description
-                Density
-            
-                **Default**: `1`
+                Material Parameters including ID, density ($\rho$)
+                ## Required
 
 
 
 
 
+                ??? json-spec "`/materials/*/type` (`string`)"
+                    ```
+                    /materials/*/type
+                    ```
+                    ## Description
+                    Type of material
+                
+                    **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
-        ??? summary "NeoHookean"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Lame first(lambda), Lame second(mu), Density(rho), type()
-        
-            **Type**: NeoHookean
-            ## Required
 
 
+                ## Optional
 
 
 
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
+                ??? json-spec "`/materials/*/id` (`int`)"
+                    ```
+                    /materials/*/id
+                    ```
+                    ## Description
+                    Volume selection ID
+                
+                    **Default**: `0`
 
 
 
 
 
 
-            ??? summary "`/materials/*/lambda` (`float`)"
-                ```
-                /materials/*/lambda
-                ```
-                ## Description
-                Second lame parameter
 
 
-
-
-
-
-
-
-            ??? summary "`/materials/*/mu` (`float`)"
-                ```
-                /materials/*/mu
-                ```
-                ## Description
-                First lame parameters
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "LinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Young's modulus(E), Poisson ratio(nu), Density(rho), type()
-        
-            **Type**: LinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/E` (`float`)"
-                ```
-                /materials/*/E
-                ```
-                ## Description
-                Young's modulus
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/nu` (`float`)"
-                ```
-                /materials/*/nu
-                ```
-                ## Description
-                Poisson ratio
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "LinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Lame first(lambda), Lame second(mu), Density(rho), type()
-        
-            **Type**: LinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/lambda` (`float`)"
-                ```
-                /materials/*/lambda
-                ```
-                ## Description
-                Second lame parameter
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/mu` (`float`)"
-                ```
-                /materials/*/mu
-                ```
-                ## Description
-                First lame parameters
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "HookeLinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, E, nu, Density(rho), type()
-        
-            **Type**: HookeLinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/E` (`float`)"
-                ```
-                /materials/*/E
-                ```
-                ## Description
-                Young's modulus
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/nu` (`float`)"
-                ```
-                /materials/*/nu
-                ```
-                ## Description
-                Poisson ratio
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "HookeLinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, E, nu, Density(rho), type()
-        
-            **Type**: HookeLinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/elasticity_tensor/*` (`float`)"
-                ```
-                /materials/*/elasticity_tensor/*
-                ```
-                ## Description
-                Entries of elasticity tensor
-            
-                **Default**: `0`
-
-
-
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "SaintVenant"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, E, nu, Density(rho), type()
-        
-            **Type**: SaintVenant
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/E` (`float`)"
-                ```
-                /materials/*/E
-                ```
-                ## Description
-                Young's modulus
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/nu` (`float`)"
-                ```
-                /materials/*/nu
-                ```
-                ## Description
-                Poisson ratio
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "SaintVenant"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, E, nu, Density(rho), type()
-        
-            **Type**: SaintVenant
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/elasticity_tensor/*` (`float`)"
-                ```
-                /materials/*/elasticity_tensor/*
-                ```
-                ## Description
-                Entries of elasticity tensor
-            
-                **Default**: `0`
-
-
-
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "Stokes"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, viscosity, Density(rho), type()
-        
-            **Type**: Stokes
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/viscosity` (`float`)"
-                ```
-                /materials/*/viscosity
-                ```
-                ## Description
-                Fuild's viscosity
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "NavierStokes"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, viscosity, Density(rho), type()
-        
-            **Type**: NavierStokes
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/viscosity` (`float`)"
-                ```
-                /materials/*/viscosity
-                ```
-                ## Description
-                Fuild's viscosity
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "IncompressibleLinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Young's modulus(E), Poisson ratio(nu), Density(rho), type()
-        
-            **Type**: IncompressibleLinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/E` (`float`)"
-                ```
-                /materials/*/E
-                ```
-                ## Description
-                Young's modulus
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/nu` (`float`)"
-                ```
-                /materials/*/nu
-                ```
-                ## Description
-                Poisson ratio
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "IncompressibleLinearElasticity"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Lame first(lambda), Lame second(mu), Density(rho), type()
-        
-            **Type**: IncompressibleLinearElasticity
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/lambda` (`float`)"
-                ```
-                /materials/*/lambda
-                ```
-                ## Description
-                Second lame parameter
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/mu` (`float`)"
-                ```
-                /materials/*/mu
-                ```
-                ## Description
-                First lame parameters
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "Laplacian"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Density(rho), type()
-        
-            **Type**: Laplacian
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "Helmholtz"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, k, Density(rho), type()
-        
-            **Type**: Helmholtz
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/k` (`float`)"
-                ```
-                /materials/*/k
-                ```
-                ## Description
-                Scaling for Helmholtz
-            
-                **Default**: `1`
-
-
-
-
-
-
-        ??? summary "Bilaplacian"
-            ```
-            /materials/*
-            ```
-            ## Description
-            Material Parameters including id, Density(rho), type()
-        
-            **Type**: Bilaplacian
-            ## Required
-
-
-
-
-
-            ??? summary "`/materials/*/type` (`string`)"
-                ```
-                /materials/*/type
-                ```
-                ## Description
-                Type of material
-            
-                **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
-
-
-
-            ## Optional
-
-
-
-
-
-            ??? summary "`/materials/*/id` (`int`)"
-                ```
-                /materials/*/id
-                ```
-                ## Description
-                id
-            
-                **Default**: `0`
-
-
-
-
-
-
-
-
-            ??? summary "`/materials/*/rho` (`float`)"
-                ```
-                /materials/*/rho
-                ```
-                ## Description
-                Density
-            
-                **Default**: `1`
+                ??? json-spec "`/materials/*/rho` (`float`)"
+                    ```
+                    /materials/*/rho
+                    ```
+                    ## Description
+                    Density
+                
+                    **Default**: `1`
 
 
 
@@ -2479,34 +2491,31 @@
 
 
 
-    ??? summary "`/preset_problem`"
+    ??? json-spec "`/preset_problem`"
         ```
         /preset_problem
         ```
 
 
-        ??? summary "Linear"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Linear"
         
             **Type**: Linear
+            ## Description
+            TODO
         
-            **Default**: 'skip'
+            **Default**: `'skip'`
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2515,26 +2524,23 @@
 
 
 
-        ??? summary "Quadratic"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Quadratic"
         
             **Type**: Quadratic
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2543,26 +2549,23 @@
 
 
 
-        ??? summary "Cubic"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Cubic"
         
             **Type**: Cubic
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2571,26 +2574,23 @@
 
 
 
-        ??? summary "Sine"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Sine"
         
             **Type**: Sine
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2599,26 +2599,23 @@
 
 
 
-        ??? summary "Franke"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Franke"
         
             **Type**: Franke
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2627,26 +2624,23 @@
 
 
 
-        ??? summary "FrankeOld"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "FrankeOld"
         
             **Type**: FrankeOld
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2655,26 +2649,23 @@
 
 
 
-        ??? summary "GenericScalarExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "GenericScalarExact"
         
             **Type**: GenericScalarExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2686,12 +2677,12 @@
 
 
 
-            ??? summary "`/preset_problem/func` (`int`)"
+            ??? json-spec "`/preset_problem/func` (`int`)"
                 ```
                 /preset_problem/func
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0`
 
@@ -2700,26 +2691,23 @@
 
 
 
-        ??? summary "Zero_BC"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Zero_BC"
         
             **Type**: Zero_BC
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2728,26 +2716,23 @@
 
 
 
-        ??? summary "Elastic"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Elastic"
         
             **Type**: Elastic
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2756,26 +2741,23 @@
 
 
 
-        ??? summary "Walk"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Walk"
         
             **Type**: Walk
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2784,26 +2766,23 @@
 
 
 
-        ??? summary "TorsionElastic"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "TorsionElastic"
         
             **Type**: TorsionElastic
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2815,12 +2794,12 @@
 
 
 
-            ??? summary "`/preset_problem/axis_coordiante` (`int`)"
+            ??? json-spec "`/preset_problem/axis_coordiante` (`int`)"
                 ```
                 /preset_problem/axis_coordiante
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `2`
 
@@ -2831,12 +2810,12 @@
 
 
 
-            ??? summary "`/preset_problem/n_turns` (`float`)"
+            ??? json-spec "`/preset_problem/n_turns` (`float`)"
                 ```
                 /preset_problem/n_turns
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0.5`
 
@@ -2847,12 +2826,12 @@
 
 
 
-            ??? summary "`/preset_problem/fixed_boundary` (`int`)"
+            ??? json-spec "`/preset_problem/fixed_boundary` (`int`)"
                 ```
                 /preset_problem/fixed_boundary
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `5`
 
@@ -2863,12 +2842,12 @@
 
 
 
-            ??? summary "`/preset_problem/turning_boundary` (`int`)"
+            ??? json-spec "`/preset_problem/turning_boundary` (`int`)"
                 ```
                 /preset_problem/turning_boundary
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `6`
 
@@ -2879,19 +2858,25 @@
 
 
 
-
-
-
-
-
-            ??? summary "`/preset_problem/bbox_center/*` (`float`)"
+            ??? json-spec "`/preset_problem/bbox_center` (`list`)"
                 ```
-                /preset_problem/bbox_center/*
+                /preset_problem/bbox_center
                 ```
                 ## Description
-                <span class="todo">TODO</span>
-            
-                **Default**: `0`
+                TODO
+
+
+
+
+
+                ??? json-spec "`/preset_problem/bbox_center/*` (`float`)"
+                    ```
+                    /preset_problem/bbox_center/*
+                    ```
+                    ## Description
+                    TODO
+                
+                    **Default**: `0`
 
 
 
@@ -2901,26 +2886,23 @@
 
 
 
-        ??? summary "DoubleTorsionElastic"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "DoubleTorsionElastic"
         
             **Type**: DoubleTorsionElastic
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -2932,12 +2914,12 @@
 
 
 
-            ??? summary "`/preset_problem/axis_coordiante0` (`int`)"
+            ??? json-spec "`/preset_problem/axis_coordiante0` (`int`)"
                 ```
                 /preset_problem/axis_coordiante0
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `2`
 
@@ -2948,12 +2930,12 @@
 
 
 
-            ??? summary "`/preset_problem/axis_coordiante1` (`int`)"
+            ??? json-spec "`/preset_problem/axis_coordiante1` (`int`)"
                 ```
                 /preset_problem/axis_coordiante1
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `2`
 
@@ -2964,12 +2946,12 @@
 
 
 
-            ??? summary "`/preset_problem/angular_v0` (`float`)"
+            ??? json-spec "`/preset_problem/angular_v0` (`float`)"
                 ```
                 /preset_problem/angular_v0
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0.5`
 
@@ -2980,12 +2962,12 @@
 
 
 
-            ??? summary "`/preset_problem/angular_v1` (`float`)"
+            ??? json-spec "`/preset_problem/angular_v1` (`float`)"
                 ```
                 /preset_problem/angular_v1
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `-0.5`
 
@@ -2996,12 +2978,12 @@
 
 
 
-            ??? summary "`/preset_problem/turning_boundary0` (`int`)"
+            ??? json-spec "`/preset_problem/turning_boundary0` (`int`)"
                 ```
                 /preset_problem/turning_boundary0
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `5`
 
@@ -3012,12 +2994,12 @@
 
 
 
-            ??? summary "`/preset_problem/turning_boundary1` (`int`)"
+            ??? json-spec "`/preset_problem/turning_boundary1` (`int`)"
                 ```
                 /preset_problem/turning_boundary1
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `6`
 
@@ -3028,19 +3010,25 @@
 
 
 
-
-
-
-
-
-            ??? summary "`/preset_problem/bbox_center/*` (`float`)"
+            ??? json-spec "`/preset_problem/bbox_center` (`list`)"
                 ```
-                /preset_problem/bbox_center/*
+                /preset_problem/bbox_center
                 ```
                 ## Description
-                <span class="todo">TODO</span>
-            
-                **Default**: `0`
+                TODO
+
+
+
+
+
+                ??? json-spec "`/preset_problem/bbox_center/*` (`float`)"
+                    ```
+                    /preset_problem/bbox_center/*
+                    ```
+                    ## Description
+                    TODO
+                
+                    **Default**: `0`
 
 
 
@@ -3050,26 +3038,23 @@
 
 
 
-        ??? summary "ElasticZeroBC"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "ElasticZeroBC"
         
             **Type**: ElasticZeroBC
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3078,26 +3063,23 @@
 
 
 
-        ??? summary "ElasticExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "ElasticExact"
         
             **Type**: ElasticExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3106,26 +3088,23 @@
 
 
 
-        ??? summary "ElasticCantileverExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add displacement, E, nu, formulation, mesh_size
+        === "ElasticCantileverExact"
         
             **Type**: ElasticCantileverExact
+            ## Description
+            TODO, add displacement, E, nu, formulation, mesh_size
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3134,26 +3113,23 @@
 
 
 
-        ??? summary "CompressionElasticExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "CompressionElasticExact"
         
             **Type**: CompressionElasticExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3162,26 +3138,23 @@
 
 
 
-        ??? summary "QuadraticElasticExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "QuadraticElasticExact"
         
             **Type**: QuadraticElasticExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3190,26 +3163,23 @@
 
 
 
-        ??? summary "LinearElasticExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "LinearElasticExact"
         
             **Type**: LinearElasticExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3218,26 +3188,23 @@
 
 
 
-        ??? summary "PointBasedTensor"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add optionals
+        === "PointBasedTensor"
         
             **Type**: PointBasedTensor
+            ## Description
+            TODO, add optionals
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3246,26 +3213,23 @@
 
 
 
-        ??? summary "Kernel"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add optionals
+        === "Kernel"
         
             **Type**: Kernel
+            ## Description
+            TODO, add optionals
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3277,12 +3241,12 @@
 
 
 
-            ??? summary "`/preset_problem/formulation` (`string`)"
+            ??? json-spec "`/preset_problem/formulation` (`string`)"
                 ```
                 /preset_problem/formulation
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `''`
 
@@ -3293,12 +3257,12 @@
 
 
 
-            ??? summary "`/preset_problem/n_kernels` (`int`)"
+            ??? json-spec "`/preset_problem/n_kernels` (`int`)"
                 ```
                 /preset_problem/n_kernels
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0`
 
@@ -3309,12 +3273,12 @@
 
 
 
-            ??? summary "`/preset_problem/kernel_distance` (`float`)"
+            ??? json-spec "`/preset_problem/kernel_distance` (`float`)"
                 ```
                 /preset_problem/kernel_distance
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0`
 
@@ -3325,12 +3289,12 @@
 
 
 
-            ??? summary "`/preset_problem/kernel_weights` (`string`)"
+            ??? json-spec "`/preset_problem/kernel_weights` (`string`)"
                 ```
                 /preset_problem/kernel_weights
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `''`
 
@@ -3339,26 +3303,23 @@
 
 
 
-        ??? summary "Node"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add optionals
+        === "Node"
         
             **Type**: Node
+            ## Description
+            TODO, add optionals
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3367,26 +3328,23 @@
 
 
 
-        ??? summary "TimeDependentScalar"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "TimeDependentScalar"
         
             **Type**: TimeDependentScalar
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3395,26 +3353,23 @@
 
 
 
-        ??? summary "MinSurf"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "MinSurf"
         
             **Type**: MinSurf
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3423,26 +3378,23 @@
 
 
 
-        ??? summary "Gravity"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Gravity"
         
             **Type**: Gravity
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3457,26 +3409,23 @@
 
 
 
-        ??? summary "ConstantVelocity"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "ConstantVelocity"
         
             **Type**: ConstantVelocity
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3485,26 +3434,23 @@
 
 
 
-        ??? summary "TwoSpheres"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "TwoSpheres"
         
             **Type**: TwoSpheres
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3513,26 +3459,23 @@
 
 
 
-        ??? summary "DrivenCavity"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "DrivenCavity"
         
             **Type**: DrivenCavity
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3541,26 +3484,23 @@
 
 
 
-        ??? summary "DrivenCavityC0"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "DrivenCavityC0"
         
             **Type**: DrivenCavityC0
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3569,26 +3509,23 @@
 
 
 
-        ??? summary "DrivenCavitySmooth"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "DrivenCavitySmooth"
         
             **Type**: DrivenCavitySmooth
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3597,26 +3534,23 @@
 
 
 
-        ??? summary "Flow"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add inflow, outflow, inflow_amout, outflow_amout, direction, obstacle
+        === "Flow"
         
             **Type**: Flow
+            ## Description
+            TODO, add inflow, outflow, inflow_amout, outflow_amout, direction, obstacle
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3625,26 +3559,23 @@
 
 
 
-        ??? summary "FlowWithObstacle"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "FlowWithObstacle"
         
             **Type**: FlowWithObstacle
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3659,26 +3590,23 @@
 
 
 
-        ??? summary "CornerFlow"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "CornerFlow"
         
             **Type**: CornerFlow
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3698,26 +3626,23 @@
 
 
 
-        ??? summary "UnitFlowWithObstacle"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add inflow_id, direction, no_slip
+        === "UnitFlowWithObstacle"
         
             **Type**: UnitFlowWithObstacle
+            ## Description
+            TODO, add inflow_id, direction, no_slip
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3732,26 +3657,23 @@
 
 
 
-        ??? summary "StokesLaw"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, add radius
+        === "StokesLaw"
         
             **Type**: StokesLaw
+            ## Description
+            TODO, add radius
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3771,26 +3693,23 @@
 
 
 
-        ??? summary "TaylorGreenVortex"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "TaylorGreenVortex"
         
             **Type**: TaylorGreenVortex
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3805,26 +3724,23 @@
 
 
 
-        ??? summary "SimpleStokeProblemExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "SimpleStokeProblemExact"
         
             **Type**: SimpleStokeProblemExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3836,12 +3752,12 @@
 
 
 
-            ??? summary "`/preset_problem/func` (`int`)"
+            ??? json-spec "`/preset_problem/func` (`int`)"
                 ```
                 /preset_problem/func
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0`
 
@@ -3850,26 +3766,23 @@
 
 
 
-        ??? summary "SineStokeProblemExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "SineStokeProblemExact"
         
             **Type**: SineStokeProblemExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3878,26 +3791,23 @@
 
 
 
-        ??? summary "TransientStokeProblemExact"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "TransientStokeProblemExact"
         
             **Type**: TransientStokeProblemExact
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3909,12 +3819,12 @@
 
 
 
-            ??? summary "`/preset_problem/func` (`int`)"
+            ??? json-spec "`/preset_problem/func` (`int`)"
                 ```
                 /preset_problem/func
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Default**: `0`
 
@@ -3928,26 +3838,23 @@
 
 
 
-        ??? summary "Kovnaszy"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Kovnaszy"
         
             **Type**: Kovnaszy
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -3967,26 +3874,23 @@
 
 
 
-        ??? summary "Airfoil"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Airfoil"
         
             **Type**: Airfoil
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -4001,26 +3905,23 @@
 
 
 
-        ??? summary "Lshape"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            <span class="todo">TODO</span>
+        === "Lshape"
         
             **Type**: Lshape
+            ## Description
+            TODO
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -4040,54 +3941,48 @@
 
 
 
-        ??? summary "TestProblem"
-            ```
-            /preset_problem
-            ```
-            ## Description
-            TODO, type, omega, is_scalar
+        === "TestProblem"
         
             **Type**: TestProblem
-            ## Required
-
-
-
-
-
-            ??? summary "`/preset_problem/type` (`string`)"
-                ```
-                /preset_problem/type
-                ```
-                ## Description
-                <span class="todo">TODO</span>
-            
-                **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
-
-
-
-
-
-
-        ??? summary "BilaplacianProblemWithSolution"
-            ```
-            /preset_problem
-            ```
             ## Description
             TODO, type, omega, is_scalar
-        
-            **Type**: BilaplacianProblemWithSolution
             ## Required
 
 
 
 
 
-            ??? summary "`/preset_problem/type` (`string`)"
+            ??? json-spec "`/preset_problem/type` (`string`)"
                 ```
                 /preset_problem/type
                 ```
                 ## Description
-                <span class="todo">TODO</span>
+                TODO
+            
+                **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
+
+
+
+
+
+
+        === "BilaplacianProblemWithSolution"
+        
+            **Type**: BilaplacianProblemWithSolution
+            ## Description
+            TODO, type, omega, is_scalar
+            ## Required
+
+
+
+
+
+            ??? json-spec "`/preset_problem/type` (`string`)"
+                ```
+                /preset_problem/type
+                ```
+                ## Description
+                TODO
             
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
@@ -4101,12 +3996,12 @@
 
 
 
-    ??? summary "`/common` (`file`)"
+    ??? json-spec "`/common` (`file`)"
         ```
         /common
         ```
         ## Description
-        Path to common settings will patch the current file
+        Path to common settings will patch the current file.
     
         **Default**: `''`
     
@@ -4119,12 +4014,12 @@
 
 
 
-    ??? summary "`/root_path` (`string`)"
+    ??? json-spec "`/root_path` (`string`)"
         ```
         /root_path
         ```
         ## Description
-        path for all relative paths, set automatically to the folder containing this json
+        Path for all relative paths, set automatically to the folder containing this json.
     
         **Default**: `''`
 
@@ -4135,28 +4030,25 @@
 
 
 
-    ??? summary "`/space` (`object`)"
+    ??? json-spec "`/space` (`object`)"
         ```
         /space
         ```
         ## Description
         Options related to the FE space.
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
-        ??? summary "`/space/discr_order`"
+        ??? json-spec "`/space/discr_order`"
             ```
             /space/discr_order
             ```
 
 
-            ??? summary "`/space/discr_order` (`int`)"
-                ```
-                /space/discr_order
-                ```
+            === "`/space/discr_order` (`int`)"
                 ## Description
                 Lagrange element order for the space for the main unknown, for all elements.
             
@@ -4164,10 +4056,7 @@
 
 
 
-            ??? summary "`/space/discr_order` (`file`)"
-                ```
-                /space/discr_order
-                ```
+            === "`/space/discr_order` (`file`)"
                 ## Description
                 Path to file containing Lagrange element order for the space for the main unknown per element.
             
@@ -4175,33 +4064,50 @@
 
 
 
-
-
-
-
-
-            ??? summary "`/space/discr_order/*` (`object`)"
-                ```
-                /space/discr_order/*
-                ```
+            === "`/space/discr_order` (`list`)"
                 ## Description
-                Lagrange element order for the a space tagged with volume ID for the main unknown.
-                ## Required
+                List of Lagrange element order for the space for the main unknown with volume IDs.
 
 
 
-                ??? summary "`/space/discr_order/*/id`"
+
+
+                ??? json-spec "`/space/discr_order/*` (`object`)"
                     ```
-                    /space/discr_order/*/id
+                    /space/discr_order/*
                     ```
+                    ## Description
+                    Lagrange element order for the a space tagged with volume ID for the main unknown.
+                    ## Required
 
 
-                    ??? summary "`/space/discr_order/*/id` (`int`)"
+
+                    ??? json-spec "`/space/discr_order/*/id`"
                         ```
                         /space/discr_order/*/id
                         ```
-                        ## Description
-                        Volume selection ID to apply the discr_order to.
+
+
+                        === "`/space/discr_order/*/id` (`int`)"
+                            ## Description
+                            Volume selection ID to apply the discr_order to.
+
+
+
+                        === "`/space/discr_order/*/id` (`list`)"
+                            ## Description
+                            List of volume selection IDs to apply the discr_order to.
+
+
+
+
+
+                            ??? json-spec "`/space/discr_order/*/id/*` (`int`)"
+                                ```
+                                /space/discr_order/*/id/*
+                                ```
+                                ## Description
+                                Volume selection ID to apply the discr_order to.
 
 
 
@@ -4210,29 +4116,15 @@
 
 
 
-                    ??? summary "`/space/discr_order/*/id/*` (`int`)"
+
+
+
+                    ??? json-spec "`/space/discr_order/*/order` (`int`)"
                         ```
-                        /space/discr_order/*/id/*
+                        /space/discr_order/*/order
                         ```
                         ## Description
-                        Volume selection ID to apply the discr_order to.
-
-
-
-
-
-
-
-
-
-
-
-                ??? summary "`/space/discr_order/*/order` (`int`)"
-                    ```
-                    /space/discr_order/*/order
-                    ```
-                    ## Description
-                    Lagrange element order for the space for the main unknown, for all elements.
+                        Lagrange element order for the space for the main unknown, for all elements.
 
 
 
@@ -4247,7 +4139,7 @@
 
 
 
-        ??? summary "`/space/pressure_discr_order` (`int`)"
+        ??? json-spec "`/space/pressure_discr_order` (`int`)"
             ```
             /space/pressure_discr_order
             ```
@@ -4263,7 +4155,7 @@
 
 
 
-        ??? summary "`/space/use_p_ref` (`bool`)"
+        ??? json-spec "`/space/use_p_ref` (`bool`)"
             ```
             /space/use_p_ref
             ```
@@ -4279,21 +4171,21 @@
 
 
 
-        ??? summary "`/space/advanced` (`object`)"
+        ??? json-spec "`/space/advanced` (`object`)"
             ```
             /space/advanced
             ```
             ## Description
             Advanced settings for the FE space.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/space/advanced/discr_order_max` (`int`)"
+            ??? json-spec "`/space/advanced/discr_order_max` (`int`)"
                 ```
                 /space/advanced/discr_order_max
                 ```
@@ -4309,7 +4201,7 @@
 
 
 
-            ??? summary "`/space/advanced/serendipity` (`bool`)"
+            ??? json-spec "`/space/advanced/serendipity` (`bool`)"
                 ```
                 /space/advanced/serendipity
                 ```
@@ -4325,7 +4217,7 @@
 
 
 
-            ??? summary "`/space/advanced/isoparametric` (`bool`)"
+            ??? json-spec "`/space/advanced/isoparametric` (`bool`)"
                 ```
                 /space/advanced/isoparametric
                 ```
@@ -4341,7 +4233,7 @@
 
 
 
-            ??? summary "`/space/advanced/use_spline` (`bool`)"
+            ??? json-spec "`/space/advanced/use_spline` (`bool`)"
                 ```
                 /space/advanced/use_spline
                 ```
@@ -4357,7 +4249,7 @@
 
 
 
-            ??? summary "`/space/advanced/bc_method` (`string`)"
+            ??? json-spec "`/space/advanced/bc_method` (`string`)"
                 ```
                 /space/advanced/bc_method
                 ```
@@ -4375,7 +4267,7 @@
 
 
 
-            ??? summary "`/space/advanced/n_boundary_samples` (`int`)"
+            ??? json-spec "`/space/advanced/n_boundary_samples` (`int`)"
                 ```
                 /space/advanced/n_boundary_samples
                 ```
@@ -4391,7 +4283,7 @@
 
 
 
-            ??? summary "`/space/advanced/quadrature_order` (`int`)"
+            ??? json-spec "`/space/advanced/quadrature_order` (`int`)"
                 ```
                 /space/advanced/quadrature_order
                 ```
@@ -4407,7 +4299,7 @@
 
 
 
-            ??? summary "`/space/advanced/poly_bases` (`string`)"
+            ??? json-spec "`/space/advanced/poly_bases` (`string`)"
                 ```
                 /space/advanced/poly_bases
                 ```
@@ -4425,7 +4317,7 @@
 
 
 
-            ??? summary "`/space/advanced/integral_constraints` (`int`)"
+            ??? json-spec "`/space/advanced/integral_constraints` (`int`)"
                 ```
                 /space/advanced/integral_constraints
                 ```
@@ -4441,7 +4333,7 @@
 
 
 
-            ??? summary "`/space/advanced/n_harmonic_samples` (`int`)"
+            ??? json-spec "`/space/advanced/n_harmonic_samples` (`int`)"
                 ```
                 /space/advanced/n_harmonic_samples
                 ```
@@ -4457,7 +4349,7 @@
 
 
 
-            ??? summary "`/space/advanced/force_no_ref_for_harmonic` (`bool`)"
+            ??? json-spec "`/space/advanced/force_no_ref_for_harmonic` (`bool`)"
                 ```
                 /space/advanced/force_no_ref_for_harmonic
                 ```
@@ -4473,7 +4365,7 @@
 
 
 
-            ??? summary "`/space/advanced/B` (`int`)"
+            ??? json-spec "`/space/advanced/B` (`int`)"
                 ```
                 /space/advanced/B
                 ```
@@ -4489,7 +4381,7 @@
 
 
 
-            ??? summary "`/space/advanced/h1_formula` (`bool`)"
+            ??? json-spec "`/space/advanced/h1_formula` (`bool`)"
                 ```
                 /space/advanced/h1_formula
                 ```
@@ -4505,7 +4397,7 @@
 
 
 
-            ??? summary "`/space/advanced/count_flipped_els` (`bool`)"
+            ??? json-spec "`/space/advanced/count_flipped_els` (`bool`)"
                 ```
                 /space/advanced/count_flipped_els
                 ```
@@ -4525,34 +4417,31 @@
 
 
 
-    ??? summary "`/time`"
+    ??? json-spec "`/time`"
         ```
         /time
         ```
 
 
-        ??? summary "`/time` (`object`)"
-            ```
-            /time
-            ```
+        === "`/time` (`object`)"
             ## Description
-            The time parameters: start time t0, end time tend, time step dt. 
+            The time parameters: start time `t0`, end time `tend`, time step `dt`.
         
-            **Default**: 'skip'
+            **Default**: `'skip'`
             ## Required
 
 
 
 
 
-            ??? summary "`/time/tend` (`float`)"
+            ??? json-spec "`/time/tend` (`float`)"
                 ```
                 /time/tend
                 ```
                 ## Description
                 Ending time
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4561,14 +4450,14 @@
 
 
 
-            ??? summary "`/time/dt` (`float`)"
+            ??? json-spec "`/time/dt` (`float`)"
                 ```
                 /time/dt
                 ```
                 ## Description
-                Delta t
+                Time step size $\Delta t$
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4578,16 +4467,16 @@
 
 
 
-            ??? summary "`/time/t0` (`float`)"
+            ??? json-spec "`/time/t0` (`float`)"
                 ```
                 /time/t0
                 ```
                 ## Description
                 Startning time
             
-                **Range:** `(0, inf)`
-            
                 **Default**: `0`
+            
+                **Range:** `[0, inf]`
 
 
 
@@ -4596,7 +4485,7 @@
 
 
 
-            ??? summary "`/time/integrator` (`string`)"
+            ??? json-spec "`/time/integrator` (`string`)"
                 ```
                 /time/integrator
                 ```
@@ -4614,21 +4503,21 @@
 
 
 
-            ??? summary "`/time/newmark` (`object`)"
+            ??? json-spec "`/time/newmark` (`object`)"
                 ```
                 /time/newmark
                 ```
                 ## Description
                 Options for Newmark
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/newmark/gamma` (`float`)"
+                ??? json-spec "`/time/newmark/gamma` (`float`)"
                     ```
                     /time/newmark/gamma
                     ```
@@ -4644,7 +4533,7 @@
 
 
 
-                ??? summary "`/time/newmark/beta` (`float`)"
+                ??? json-spec "`/time/newmark/beta` (`float`)"
                     ```
                     /time/newmark/beta
                     ```
@@ -4663,21 +4552,21 @@
 
 
 
-            ??? summary "`/time/BDF` (`object`)"
+            ??? json-spec "`/time/BDF` (`object`)"
                 ```
                 /time/BDF
                 ```
                 ## Description
                 Options for BDF
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/BDF/steps` (`int`)"
+                ??? json-spec "`/time/BDF/steps` (`int`)"
                     ```
                     /time/BDF/steps
                     ```
@@ -4694,26 +4583,23 @@
 
 
 
-        ??? summary "`/time` (`object`)"
-            ```
-            /time
-            ```
+        === "`/time` (`object`)"
             ## Description
-            The time parameters: start time t0, time step dt, number of time steps. 
+            The time parameters: start time `t0`, time step `dt`, number of time steps.
             ## Required
 
 
 
 
 
-            ??? summary "`/time/time_steps` (`int`)"
+            ??? json-spec "`/time/time_steps` (`int`)"
                 ```
                 /time/time_steps
                 ```
                 ## Description
                 Number of time steps
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4722,14 +4608,14 @@
 
 
 
-            ??? summary "`/time/dt` (`float`)"
+            ??? json-spec "`/time/dt` (`float`)"
                 ```
                 /time/dt
                 ```
                 ## Description
-                Delta t
+                Time step size $\Delta t$
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4739,16 +4625,16 @@
 
 
 
-            ??? summary "`/time/t0` (`float`)"
+            ??? json-spec "`/time/t0` (`float`)"
                 ```
                 /time/t0
                 ```
                 ## Description
                 Startning time
             
-                **Range:** `(0, inf)`
-            
                 **Default**: `0`
+            
+                **Range:** `[0, inf]`
 
 
 
@@ -4757,7 +4643,7 @@
 
 
 
-            ??? summary "`/time/integrator` (`string`)"
+            ??? json-spec "`/time/integrator` (`string`)"
                 ```
                 /time/integrator
                 ```
@@ -4775,21 +4661,21 @@
 
 
 
-            ??? summary "`/time/newmark` (`object`)"
+            ??? json-spec "`/time/newmark` (`object`)"
                 ```
                 /time/newmark
                 ```
                 ## Description
                 Options for Newmark
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/newmark/gamma` (`float`)"
+                ??? json-spec "`/time/newmark/gamma` (`float`)"
                     ```
                     /time/newmark/gamma
                     ```
@@ -4805,7 +4691,7 @@
 
 
 
-                ??? summary "`/time/newmark/beta` (`float`)"
+                ??? json-spec "`/time/newmark/beta` (`float`)"
                     ```
                     /time/newmark/beta
                     ```
@@ -4824,21 +4710,21 @@
 
 
 
-            ??? summary "`/time/BDF` (`object`)"
+            ??? json-spec "`/time/BDF` (`object`)"
                 ```
                 /time/BDF
                 ```
                 ## Description
                 Options for BDF
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/BDF/steps` (`int`)"
+                ??? json-spec "`/time/BDF/steps` (`int`)"
                     ```
                     /time/BDF/steps
                     ```
@@ -4855,26 +4741,23 @@
 
 
 
-        ??? summary "`/time` (`object`)"
-            ```
-            /time
-            ```
+        === "`/time` (`object`)"
             ## Description
-            The time parameters: start time t0, end time tend, number of time steps. 
+            The time parameters: start time `t0`, end time `tend`, number of time steps.
             ## Required
 
 
 
 
 
-            ??? summary "`/time/time_steps` (`int`)"
+            ??? json-spec "`/time/time_steps` (`int`)"
                 ```
                 /time/time_steps
                 ```
                 ## Description
                 Number of time steps
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4883,14 +4766,14 @@
 
 
 
-            ??? summary "`/time/tend` (`float`)"
+            ??? json-spec "`/time/tend` (`float`)"
                 ```
                 /time/tend
                 ```
                 ## Description
                 Ending time
             
-                **Range:** `(0, inf)`
+                **Range:** `[0, inf]`
 
 
 
@@ -4900,16 +4783,16 @@
 
 
 
-            ??? summary "`/time/t0` (`float`)"
+            ??? json-spec "`/time/t0` (`float`)"
                 ```
                 /time/t0
                 ```
                 ## Description
                 Startning time
             
-                **Range:** `(0, inf)`
-            
                 **Default**: `0`
+            
+                **Range:** `[0, inf]`
 
 
 
@@ -4918,7 +4801,7 @@
 
 
 
-            ??? summary "`/time/integrator` (`string`)"
+            ??? json-spec "`/time/integrator` (`string`)"
                 ```
                 /time/integrator
                 ```
@@ -4936,21 +4819,21 @@
 
 
 
-            ??? summary "`/time/newmark` (`object`)"
+            ??? json-spec "`/time/newmark` (`object`)"
                 ```
                 /time/newmark
                 ```
                 ## Description
                 Options for Newmark
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/newmark/gamma` (`float`)"
+                ??? json-spec "`/time/newmark/gamma` (`float`)"
                     ```
                     /time/newmark/gamma
                     ```
@@ -4966,7 +4849,7 @@
 
 
 
-                ??? summary "`/time/newmark/beta` (`float`)"
+                ??? json-spec "`/time/newmark/beta` (`float`)"
                     ```
                     /time/newmark/beta
                     ```
@@ -4985,21 +4868,21 @@
 
 
 
-            ??? summary "`/time/BDF` (`object`)"
+            ??? json-spec "`/time/BDF` (`object`)"
                 ```
                 /time/BDF
                 ```
                 ## Description
                 Options for BDF
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/time/BDF/steps` (`int`)"
+                ??? json-spec "`/time/BDF/steps` (`int`)"
                     ```
                     /time/BDF/steps
                     ```
@@ -5021,26 +4904,26 @@
 
 
 
-    ??? summary "`/contact` (`object`)"
+    ??? json-spec "`/contact` (`object`)"
         ```
         /contact
         ```
         ## Description
         Contact handling parameters.
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-        ??? summary "`/contact/enabled` (`bool`)"
+        ??? json-spec "`/contact/enabled` (`bool`)"
             ```
             /contact/enabled
             ```
             ## Description
-            True if contact handling is enabled
+            True if contact handling is enabled.
         
             **Default**: `False`
 
@@ -5051,14 +4934,16 @@
 
 
 
-        ??? summary "`/contact/dhat` (`float`)"
+        ??? json-spec "`/contact/dhat` (`float`)"
             ```
             /contact/dhat
             ```
             ## Description
-            IPC barrier function parameter (see IPC paper)
+            Contact barrier activation distance.
         
             **Default**: `0.001`
+        
+            **Range:** `[0, inf]`
 
 
 
@@ -5067,12 +4952,12 @@
 
 
 
-        ??? summary "`/contact/dhat_percentage` (`float`)"
+        ??? json-spec "`/contact/dhat_percentage` (`float`)"
             ```
             /contact/dhat_percentage
             ```
             ## Description
-            dhat as percentage of the diagonal of the bounding box
+            $\hat{d}$ as percentage of the diagonal of the bounding box
         
             **Default**: `0.8`
 
@@ -5083,14 +4968,16 @@
 
 
 
-        ??? summary "`/contact/epsv` (`float`)"
+        ??? json-spec "`/contact/epsv` (`float`)"
             ```
             /contact/epsv
             ```
             ## Description
-            IPC friction smoothing parameter (see IPC paper) 
+            Friction smoothing parameter.
         
             **Default**: `0.001`
+        
+            **Range:** `[0, inf]`
 
 
 
@@ -5099,12 +4986,12 @@
 
 
 
-        ??? summary "`/contact/friction_coefficient` (`float`)"
+        ??? json-spec "`/contact/friction_coefficient` (`float`)"
             ```
             /contact/friction_coefficient
             ```
             ## Description
-            Friction Coefficient
+            Coefficient of friction (global)
         
             **Default**: `0`
 
@@ -5118,40 +5005,40 @@
 
 
 
-    ??? summary "`/solver` (`object`)"
+    ??? json-spec "`/solver` (`object`)"
         ```
         /solver
         ```
         ## Description
-        The settings for the solver including Linear solver, nonlinear solver, and some advanced options
+        The settings for the solver including linear solver, nonlinear solver, and some advanced options.
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-        ??? summary "`/solver/linear` (`object`)"
+        ??? json-spec "`/solver/linear` (`object`)"
             ```
             /solver/linear
             ```
             ## Description
-            Settings for linear solver
+            Settings for the linear solver.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/solver/linear/solver` (`string`)"
+            ??? json-spec "`/solver/linear/solver` (`string`)"
                 ```
                 /solver/linear/solver
                 ```
                 ## Description
-                Linear solver type
+                Linear solver type.
             
                 **Default**: `''`
 
@@ -5162,12 +5049,12 @@
 
 
 
-            ??? summary "`/solver/linear/precond` (`string`)"
+            ??? json-spec "`/solver/linear/precond` (`string`)"
                 ```
                 /solver/linear/precond
                 ```
                 ## Description
-                Preconditioner for iterative linear solver
+                Preconditioner used if using an iterative linear solver.
             
                 **Default**: `''`
 
@@ -5181,21 +5068,21 @@
 
 
 
-        ??? summary "`/solver/nonlinear` (`object`)"
+        ??? json-spec "`/solver/nonlinear` (`object`)"
             ```
             /solver/nonlinear
             ```
             ## Description
-            Settings for nonlinear solver. Interior-loop linear solver settings are defined in the solver/linear section
+            Settings for nonlinear solver. Interior-loop linear solver settings are defined in the solver/linear section.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/solver/nonlinear/solver` (`string`)"
+            ??? json-spec "`/solver/nonlinear/solver` (`string`)"
                 ```
                 /solver/nonlinear/solver
                 ```
@@ -5213,12 +5100,12 @@
 
 
 
-            ??? summary "`/solver/nonlinear/f_delta` (`float`)"
+            ??? json-spec "`/solver/nonlinear/f_delta` (`float`)"
                 ```
                 /solver/nonlinear/f_delta
                 ```
                 ## Description
-                Stopping criterion: minimal change of the energy f for the iterations to continue
+                Stopping criterion: minimal change of the energy f for the iterations to continue.
             
                 **Default**: `1e-10`
 
@@ -5229,12 +5116,12 @@
 
 
 
-            ??? summary "`/solver/nonlinear/grad_norm` (`float`)"
+            ??? json-spec "`/solver/nonlinear/grad_norm` (`float`)"
                 ```
                 /solver/nonlinear/grad_norm
                 ```
                 ## Description
-                Stopping criterion: Minimal gradient norm for the iterations to continue
+                Stopping criterion: Minimal gradient norm for the iterations to continue.
             
                 **Default**: `1e-08`
 
@@ -5245,12 +5132,12 @@
 
 
 
-            ??? summary "`/solver/nonlinear/max_iterations` (`int`)"
+            ??? json-spec "`/solver/nonlinear/max_iterations` (`int`)"
                 ```
                 /solver/nonlinear/max_iterations
                 ```
                 ## Description
-                Maximum number of iterations for a non-linear solve.
+                Maximum number of iterations for a nonlinear solve.
             
                 **Default**: `1000`
 
@@ -5261,7 +5148,7 @@
 
 
 
-            ??? summary "`/solver/nonlinear/use_grad_norm` (`bool`)"
+            ??? json-spec "`/solver/nonlinear/use_grad_norm` (`bool`)"
                 ```
                 /solver/nonlinear/use_grad_norm
                 ```
@@ -5277,7 +5164,7 @@
 
 
 
-            ??? summary "`/solver/nonlinear/relative_gradient` (`bool`)"
+            ??? json-spec "`/solver/nonlinear/relative_gradient` (`bool`)"
                 ```
                 /solver/nonlinear/relative_gradient
                 ```
@@ -5293,26 +5180,26 @@
 
 
 
-            ??? summary "`/solver/nonlinear/line_search` (`object`)"
+            ??? json-spec "`/solver/nonlinear/line_search` (`object`)"
                 ```
                 /solver/nonlinear/line_search
                 ```
                 ## Description
-                Settings for line search in the nonlinear solver
+                Settings for line-search in the nonlinear solver
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/solver/nonlinear/line_search/method` (`string`)"
+                ??? json-spec "`/solver/nonlinear/line_search/method` (`string`)"
                     ```
                     /solver/nonlinear/line_search/method
                     ```
                     ## Description
-                    line search type
+                    Line-search type
                 
                     **Default**: `'backtracking'`
                 
@@ -5325,12 +5212,12 @@
 
 
 
-                ??? summary "`/solver/nonlinear/line_search/use_grad_norm_tol` (`float`)"
+                ??? json-spec "`/solver/nonlinear/line_search/use_grad_norm_tol` (`float`)"
                     ```
                     /solver/nonlinear/line_search/use_grad_norm_tol
                     ```
                     ## Description
-                    When the energy is smaller than use_grad_norm_tol, line search uses norm of gradient instead of energy
+                    When the energy is smaller than use_grad_norm_tol, line-search uses norm of gradient instead of energy
                 
                     **Default**: `0.0001`
 
@@ -5347,21 +5234,21 @@
 
 
 
-        ??? summary "`/solver/augmented_lagrangian` (`object`)"
+        ??? json-spec "`/solver/augmented_lagrangian` (`object`)"
             ```
             /solver/augmented_lagrangian
             ```
             ## Description
-            Parameters for the AL for imposing Dirichlet bc. If the bc are not imposable, we add w*||u - bc||^2 to the energy (u is the solution at the Dirichlet nodes and bc are the Dirichlet values). After convergence, we try to impose bc again, in case of failure we double w until max_weight.
+            Parameters for the AL for imposing Dirichlet BCs. If the bc are not imposable, we add $w\|u - bc\|^2$ to the energy ($u$ is the solution at the Dirichlet nodes and $bc$ are the Dirichlet values). After convergence, we try to impose bc again, in case of failure we double $w$ until `max_weight`.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/solver/augmented_lagrangian/initial_weight` (`float`)"
+            ??? json-spec "`/solver/augmented_lagrangian/initial_weight` (`float`)"
                 ```
                 /solver/augmented_lagrangian/initial_weight
                 ```
@@ -5377,7 +5264,7 @@
 
 
 
-            ??? summary "`/solver/augmented_lagrangian/max_weight` (`float`)"
+            ??? json-spec "`/solver/augmented_lagrangian/max_weight` (`float`)"
                 ```
                 /solver/augmented_lagrangian/max_weight
                 ```
@@ -5393,7 +5280,7 @@
 
 
 
-            ??? summary "`/solver/augmented_lagrangian/force` (`bool`)"
+            ??? json-spec "`/solver/augmented_lagrangian/force` (`bool`)"
                 ```
                 /solver/augmented_lagrangian/force
                 ```
@@ -5412,35 +5299,35 @@
 
 
 
-        ??? summary "`/solver/contact` (`object`)"
+        ??? json-spec "`/solver/contact` (`object`)"
             ```
             /solver/contact
             ```
             ## Description
             Settings for contact handling in the solver.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/solver/contact/CCD` (`object`)"
+            ??? json-spec "`/solver/contact/CCD` (`object`)"
                 ```
                 /solver/contact/CCD
                 ```
                 ## Description
                 CCD options
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/solver/contact/CCD/broad_phase` (`string`)"
+                ??? json-spec "`/solver/contact/CCD/broad_phase` (`string`)"
                     ```
                     /solver/contact/CCD/broad_phase
                     ```
@@ -5458,7 +5345,7 @@
 
 
 
-                ??? summary "`/solver/contact/CCD/tolerance` (`float`)"
+                ??? json-spec "`/solver/contact/CCD/tolerance` (`float`)"
                     ```
                     /solver/contact/CCD/tolerance
                     ```
@@ -5474,7 +5361,7 @@
 
 
 
-                ??? summary "`/solver/contact/CCD/max_iterations` (`float`)"
+                ??? json-spec "`/solver/contact/CCD/max_iterations` (`float`)"
                     ```
                     /solver/contact/CCD/max_iterations
                     ```
@@ -5493,7 +5380,7 @@
 
 
 
-            ??? summary "`/solver/contact/friction_iterations` (`int`)"
+            ??? json-spec "`/solver/contact/friction_iterations` (`int`)"
                 ```
                 /solver/contact/friction_iterations
                 ```
@@ -5509,7 +5396,7 @@
 
 
 
-            ??? summary "`/solver/contact/friction_convergence_tol` (`float`)"
+            ??? json-spec "`/solver/contact/friction_convergence_tol` (`float`)"
                 ```
                 /solver/contact/friction_convergence_tol
                 ```
@@ -5523,16 +5410,13 @@
 
 
 
-            ??? summary "`/solver/contact/barrier_stiffness`"
+            ??? json-spec "`/solver/contact/barrier_stiffness`"
                 ```
                 /solver/contact/barrier_stiffness
                 ```
 
 
-                ??? summary "`/solver/contact/barrier_stiffness` (`string`)"
-                    ```
-                    /solver/contact/barrier_stiffness
-                    ```
+                === "`/solver/contact/barrier_stiffness` (`string`)"
                     ## Description
                     How coefficient of clamped log-barrier function for contact is updated
                 
@@ -5542,10 +5426,7 @@
 
 
 
-                ??? summary "`/solver/contact/barrier_stiffness` (`float`)"
-                    ```
-                    /solver/contact/barrier_stiffness
-                    ```
+                === "`/solver/contact/barrier_stiffness` (`float`)"
                     ## Description
                     The coefficient of clamped log-barrier function value when not adaptive
 
@@ -5556,14 +5437,6 @@
 
 
 
-            ??? summary "`/solver/contact/lagged_damping_weight` (`int`)"
-                ```
-                /solver/contact/lagged_damping_weight
-                ```
-                ## Description
-                <span class="todo">TODO</span>
-            
-                **Default**: `0`
 
 
 
@@ -5572,10 +5445,7 @@
 
 
 
-
-
-
-        ??? summary "`/solver/ignore_inertia` (`bool`)"
+        ??? json-spec "`/solver/ignore_inertia` (`bool`)"
             ```
             /solver/ignore_inertia
             ```
@@ -5591,21 +5461,21 @@
 
 
 
-        ??? summary "`/solver/advanced` (`object`)"
+        ??? json-spec "`/solver/advanced` (`object`)"
             ```
             /solver/advanced
             ```
             ## Description
             Advanced settings for the solver
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/solver/advanced/cache_size` (`int`)"
+            ??? json-spec "`/solver/advanced/cache_size` (`int`)"
                 ```
                 /solver/advanced/cache_size
                 ```
@@ -5621,7 +5491,7 @@
 
 
 
-            ??? summary "`/solver/advanced/lump_mass_matrix` (`bool`)"
+            ??? json-spec "`/solver/advanced/lump_mass_matrix` (`bool`)"
                 ```
                 /solver/advanced/lump_mass_matrix
                 ```
@@ -5643,70 +5513,59 @@
 
 
 
-    ??? summary "`/boundary_conditions` (`object`)"
+    ??? json-spec "`/boundary_conditions` (`object`)"
         ```
         /boundary_conditions
         ```
         ## Description
-        The settings for boundary conditions. 
+        The settings for boundary conditions.
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
-        ??? summary "`/boundary_conditions/rhs`"
+        ??? json-spec "`/boundary_conditions/rhs`"
             ```
             /boundary_conditions/rhs
             ```
 
 
-            ??? summary "`/boundary_conditions/rhs` (`float`)"
-                ```
-                /boundary_conditions/rhs
-                ```
+            === "`/boundary_conditions/rhs` (`float`)"
                 ## Description
-                Right-hand side of the system being solved for scalar-valued pdes
+                Right-hand side of the system being solved for scalar-valued PDEs
 
 
 
-            ??? summary "`/boundary_conditions/rhs` (`string`)"
-                ```
-                /boundary_conditions/rhs
-                ```
+            === "`/boundary_conditions/rhs` (`string`)"
                 ## Description
-                Right-hand side of the system being solved as a function of x,y,z,t
+                Right-hand side of the system being solved as a function of $x,y,z,t$.
 
 
 
+            === "`/boundary_conditions/rhs` (`list`)"
+                ## Description
+                Right-hand side of the system being solved for vector-valued PDEs.
 
 
 
-            ??? summary "`/boundary_conditions/rhs/*`"
-                ```
-                /boundary_conditions/rhs/*
-                ```
-
-
-                ??? summary "`/boundary_conditions/rhs/*` (`float`)"
+                ??? json-spec "`/boundary_conditions/rhs/*`"
                     ```
                     /boundary_conditions/rhs/*
                     ```
-                    ## Description
-                    Right-hand side of the system being solved, value
-                
-                    **Default**: `0`
+
+
+                    === "`/boundary_conditions/rhs/*` (`float`)"
+                        ## Description
+                        Right-hand side of the system being solved, value.
+                    
+                        **Default**: `0`
 
 
 
-                ??? summary "`/boundary_conditions/rhs/*` (`string`)"
-                    ```
-                    /boundary_conditions/rhs/*
-                    ```
-                    ## Description
-                    Right-hand side of the system being solved as a function of x,y,z,t
-
-
+                    === "`/boundary_conditions/rhs/*` (`string`)"
+                        ## Description
+                        Right-hand side of the system being solved as a function of $x,y,z,t$.
 
 
 
@@ -5718,48 +5577,250 @@
 
 
 
-
-        ??? summary "`/boundary_conditions/dirichlet_boundary/*`"
+        ??? json-spec "`/boundary_conditions/dirichlet_boundary` (`list`)"
             ```
-            /boundary_conditions/dirichlet_boundary/*
+            /boundary_conditions/dirichlet_boundary
             ```
+            ## Description
+            The list of Dirichlet boundary conditions for the main variable. Elements of the list are assignment pairs (ID, value) where ID is assigned by surface selection.
 
 
-            ??? summary "`/boundary_conditions/dirichlet_boundary/*` (`object`)"
+
+            ??? json-spec "`/boundary_conditions/dirichlet_boundary/*`"
                 ```
                 /boundary_conditions/dirichlet_boundary/*
                 ```
+
+
+                === "`/boundary_conditions/dirichlet_boundary/*` (`object`)"
+                    ## Description
+                    Dirichlet boundary condition.
+                
+                    **Default**: `None`
+                    ## Required
+
+
+
+                    ??? json-spec "`/boundary_conditions/dirichlet_boundary/*/id`"
+                        ```
+                        /boundary_conditions/dirichlet_boundary/*/id
+                        ```
+
+
+                        === "`/boundary_conditions/dirichlet_boundary/*/id` (`int`)"
+                            ## Description
+                            ID of Dirichlet boundary condition from surface selection.
+
+
+
+                        === "`/boundary_conditions/dirichlet_boundary/*/id` (`string`)"
+                            ## Description
+                            select all ids.
+                        
+                            **Options:** `['all']`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/boundary_conditions/dirichlet_boundary/*/value` (`list`)"
+                        ```
+                        /boundary_conditions/dirichlet_boundary/*/value
+                        ```
+                        ## Description
+                        Values of Dirichlet boundary condition, length 1 for scalar-valued pde, 2/3 for vector-valued PDEs depending on the dimension.
+
+
+
+                        ??? json-spec "`/boundary_conditions/dirichlet_boundary/*/value/*`"
+                            ```
+                            /boundary_conditions/dirichlet_boundary/*/value/*
+                            ```
+
+
+                            === "`/boundary_conditions/dirichlet_boundary/*/value/*` (`string`)"
+                                ## Description
+                                Values of Dirichlet boundary condition for each dimension as a function of $x,y,z,t$.
+
+
+
+                            === "`/boundary_conditions/dirichlet_boundary/*/value/*` (`float`)"
+                                ## Description
+                                Values of Dirichlet boundary condition for each dimension.
+
+
+
+
+
+
+                    ## Optional
+
+
+
+
+
+                    ??? json-spec "`/boundary_conditions/dirichlet_boundary/*/dimension` (`list`)"
+                        ```
+                        /boundary_conditions/dirichlet_boundary/*/dimension
+                        ```
+                        ## Description
+                        List of 2 (2D) or 3 (3D) boolean values indicating if the Dirichlet boundary condition  is applied for a particular dimension.
+
+
+
+
+
+                        ??? json-spec "`/boundary_conditions/dirichlet_boundary/*/dimension/*` (`bool`)"
+                            ```
+                            /boundary_conditions/dirichlet_boundary/*/dimension/*
+                            ```
+                            ## Description
+                            value
+                        
+                            **Default**: `True`
+
+
+
+
+
+
+
+
+
+                === "`/boundary_conditions/dirichlet_boundary/*` (`string`)"
+                    ## Description
+                    Dirichlet boundary condition loaded from a file, <node_id> <bc values>, 1 for scalar, 2/3 for tensor depending on dimension.
+
+
+
+
+
+
+
+
+
+
+
+        ??? json-spec "`/boundary_conditions/neumann_boundary` (`list`)"
+            ```
+            /boundary_conditions/neumann_boundary
+            ```
+            ## Description
+            The list of Neumann boundary conditions for the main variable. Elements of the list are assignment pairs (ID, value) where ID is assigned by surface selection.
+
+
+
+
+
+            ??? json-spec "`/boundary_conditions/neumann_boundary/*` (`object`)"
+                ```
+                /boundary_conditions/neumann_boundary/*
+                ```
                 ## Description
-                Dirichlet boundary condition.
+                Neumann boundary condition
             
-                **Default**: None
+                **Default**: `None`
+                ## Optional
+
+
+
+
+
+                ??? json-spec "`/boundary_conditions/neumann_boundary/*/id` (`int`)"
+                    ```
+                    /boundary_conditions/neumann_boundary/*/id
+                    ```
+                    ## Description
+                    ID of Neumann boundary condition
+                
+                    **Default**: `1`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/boundary_conditions/neumann_boundary/*/value` (`list`)"
+                    ```
+                    /boundary_conditions/neumann_boundary/*/value
+                    ```
+                    ## Description
+                    Values of Neumann boundary condition for each dimension
+
+
+
+                    ??? json-spec "`/boundary_conditions/neumann_boundary/*/value/*`"
+                        ```
+                        /boundary_conditions/neumann_boundary/*/value/*
+                        ```
+
+
+                        === "`/boundary_conditions/neumann_boundary/*/value/*` (`string`)"
+                            ## Description
+                            Values of Neumann boundary condition for each dimension as function of $x,y,z,t$
+                        
+                            **Default**: `''`
+
+
+
+                        === "`/boundary_conditions/neumann_boundary/*/value/*` (`float`)"
+                            ## Description
+                            Values of Neumann boundary condition for each dimension
+                        
+                            **Default**: `0`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ??? json-spec "`/boundary_conditions/pressure_boundary` (`list`)"
+            ```
+            /boundary_conditions/pressure_boundary
+            ```
+            ## Description
+            Dirichlet boundary condition for normal * value for vector-valued PDEs.
+
+
+
+
+
+            ??? json-spec "`/boundary_conditions/pressure_boundary/*` (`object`)"
+                ```
+                /boundary_conditions/pressure_boundary/*
+                ```
+                ## Description
+                pressure BC entry
+            
+                **Default**: `None`
                 ## Required
 
 
 
-                ??? summary "`/boundary_conditions/dirichlet_boundary/*/id`"
+
+
+                ??? json-spec "`/boundary_conditions/pressure_boundary/*/id` (`int`)"
                     ```
-                    /boundary_conditions/dirichlet_boundary/*/id
+                    /boundary_conditions/pressure_boundary/*/id
                     ```
-
-
-                    ??? summary "`/boundary_conditions/dirichlet_boundary/*/id` (`int`)"
-                        ```
-                        /boundary_conditions/dirichlet_boundary/*/id
-                        ```
-                        ## Description
-                        id of Dirichlet boundary condition from surface selection
-
-
-
-                    ??? summary "`/boundary_conditions/dirichlet_boundary/*/id` (`string`)"
-                        ```
-                        /boundary_conditions/dirichlet_boundary/*/id
-                        ```
-                        ## Description
-                        select all ids
-                    
-                        **Options:** `['all']`
+                    ## Description
+                    ID for the pressure Neumann boundary condition
 
 
 
@@ -5768,30 +5829,30 @@
 
 
 
-
-
-
-                ??? summary "`/boundary_conditions/dirichlet_boundary/*/value/*`"
+                ??? json-spec "`/boundary_conditions/pressure_boundary/*/value` (`list`)"
                     ```
-                    /boundary_conditions/dirichlet_boundary/*/value/*
+                    /boundary_conditions/pressure_boundary/*/value
                     ```
+                    ## Description
+                    Values of pressure Neumann boundary condition
 
 
-                    ??? summary "`/boundary_conditions/dirichlet_boundary/*/value/*` (`string`)"
+
+                    ??? json-spec "`/boundary_conditions/pressure_boundary/*/value/*`"
                         ```
-                        /boundary_conditions/dirichlet_boundary/*/value/*
+                        /boundary_conditions/pressure_boundary/*/value/*
                         ```
-                        ## Description
-                        Values of Dirichlet boundary condition for each dimension as a function of x,y,z,t
+
+
+                        === "`/boundary_conditions/pressure_boundary/*/value/*` (`string`)"
+                            ## Description
+                            Values of pressure Neumann boundary condition as a function of $x,y,z,t$
 
 
 
-                    ??? summary "`/boundary_conditions/dirichlet_boundary/*/value/*` (`float`)"
-                        ```
-                        /boundary_conditions/dirichlet_boundary/*/value/*
-                        ```
-                        ## Description
-                        Values of Dirichlet boundary condition for each dimension
+                        === "`/boundary_conditions/pressure_boundary/*/value/*` (`float`)"
+                            ## Description
+                            Values of pressure Neumann boundary condition
 
 
 
@@ -5809,260 +5870,75 @@
 
 
 
-                ??? summary "`/boundary_conditions/dirichlet_boundary/*/dimension/*` (`bool`)"
-                    ```
-                    /boundary_conditions/dirichlet_boundary/*/dimension/*
-                    ```
-                    ## Description
-                    value
-                
-                    **Default**: `True`
 
 
 
 
 
 
-
-
-
-            ??? summary "`/boundary_conditions/dirichlet_boundary/*` (`string`)"
-                ```
-                /boundary_conditions/dirichlet_boundary/*
-                ```
-                ## Description
-                Dirichlet boundary condition loaded from a file, <node_id> <bc values>, 1 for scalar, 2/3 for tensor depending on dimension
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/boundary_conditions/neumann_boundary/*` (`object`)"
+        ??? json-spec "`/boundary_conditions/obstacle_displacements` (`list`)"
             ```
-            /boundary_conditions/neumann_boundary/*
+            /boundary_conditions/obstacle_displacements
             ```
             ## Description
-            Neumann boundary condition
-        
-            **Default**: None
-            ## Optional
+            The list of obstacle displacements. Each entry is an (ID, value) pair, where ids are set by selection.
 
 
 
 
 
-            ??? summary "`/boundary_conditions/neumann_boundary/*/id` (`int`)"
+            ??? json-spec "`/boundary_conditions/obstacle_displacements/*` (`object`)"
                 ```
-                /boundary_conditions/neumann_boundary/*/id
+                /boundary_conditions/obstacle_displacements/*
                 ```
                 ## Description
-                id of Neumann boundary condition
+                Obstacle displacements
             
-                **Default**: `1`
+                **Default**: `None`
+                ## Required
 
 
 
 
 
-
-
-
-
-
-
-            ??? summary "`/boundary_conditions/neumann_boundary/*/value/*`"
-                ```
-                /boundary_conditions/neumann_boundary/*/value/*
-                ```
-
-
-                ??? summary "`/boundary_conditions/neumann_boundary/*/value/*` (`string`)"
+                ??? json-spec "`/boundary_conditions/obstacle_displacements/*/id` (`int`)"
                     ```
-                    /boundary_conditions/neumann_boundary/*/value/*
+                    /boundary_conditions/obstacle_displacements/*/id
                     ```
                     ## Description
-                    Values of Neumann boundary condition for each dimension as function of x,y,z,t
-                
-                    **Default**: `''`
+                    ID of Obstacle displacements
 
 
 
-                ??? summary "`/boundary_conditions/neumann_boundary/*/value/*` (`float`)"
+
+
+
+
+
+                ??? json-spec "`/boundary_conditions/obstacle_displacements/*/value` (`list`)"
                     ```
-                    /boundary_conditions/neumann_boundary/*/value/*
-                    ```
-                    ## Description
-                    Values of Neumann boundary condition for each dimension
-                
-                    **Default**: `0`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/boundary_conditions/pressure_boundary/*` (`object`)"
-            ```
-            /boundary_conditions/pressure_boundary/*
-            ```
-            ## Description
-            pressure BC entry
-        
-            **Default**: None
-            ## Required
-
-
-
-
-
-            ??? summary "`/boundary_conditions/pressure_boundary/*/id` (`int`)"
-                ```
-                /boundary_conditions/pressure_boundary/*/id
-                ```
-                ## Description
-                id for the pressure Neumann boundary condition
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/boundary_conditions/pressure_boundary/*/value/*`"
-                ```
-                /boundary_conditions/pressure_boundary/*/value/*
-                ```
-
-
-                ??? summary "`/boundary_conditions/pressure_boundary/*/value/*` (`string`)"
-                    ```
-                    /boundary_conditions/pressure_boundary/*/value/*
-                    ```
-                    ## Description
-                    Values of pressure Neumann boundary condition as a function of x,y,z,t
-
-
-
-                ??? summary "`/boundary_conditions/pressure_boundary/*/value/*` (`float`)"
-                    ```
-                    /boundary_conditions/pressure_boundary/*/value/*
-                    ```
-                    ## Description
-                    Values of pressure Neumann boundary condition
-
-
-
-
-
-
-            ## Optional
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/boundary_conditions/obstacle_displacements/*` (`object`)"
-            ```
-            /boundary_conditions/obstacle_displacements/*
-            ```
-            ## Description
-            Obstacle displacements
-        
-            **Default**: None
-            ## Required
-
-
-
-
-
-            ??? summary "`/boundary_conditions/obstacle_displacements/*/id` (`int`)"
-                ```
-                /boundary_conditions/obstacle_displacements/*/id
-                ```
-                ## Description
-                id of Obstacle displacements
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/boundary_conditions/obstacle_displacements/*/value/*`"
-                ```
-                /boundary_conditions/obstacle_displacements/*/value/*
-                ```
-
-
-                ??? summary "`/boundary_conditions/obstacle_displacements/*/value/*` (`string`)"
-                    ```
-                    /boundary_conditions/obstacle_displacements/*/value/*
-                    ```
-                    ## Description
-                    Values of Obstacle displacements for each dimension as a function of x,y,z,t
-
-
-
-                ??? summary "`/boundary_conditions/obstacle_displacements/*/value/*` (`float`)"
-                    ```
-                    /boundary_conditions/obstacle_displacements/*/value/*
+                    /boundary_conditions/obstacle_displacements/*/value
                     ```
                     ## Description
                     Values of Obstacle displacements for each dimension
 
 
 
+                    ??? json-spec "`/boundary_conditions/obstacle_displacements/*/value/*`"
+                        ```
+                        /boundary_conditions/obstacle_displacements/*/value/*
+                        ```
+
+
+                        === "`/boundary_conditions/obstacle_displacements/*/value/*` (`string`)"
+                            ## Description
+                            Values of Obstacle displacements for each dimension as a function of $x,y,z,t$
+
+
+
+                        === "`/boundary_conditions/obstacle_displacements/*/value/*` (`float`)"
+                            ## Description
+                            Values of Obstacle displacements for each dimension
 
 
 
@@ -6080,82 +5956,248 @@
 
 
 
-    ??? summary "`/initial_conditions` (`object`)"
+
+
+
+    ??? json-spec "`/initial_conditions` (`object`)"
         ```
         /initial_conditions
         ```
         ## Description
         Initial conditions for the time-dependent problem, imposed on the main variable, its derivative or second derivative
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-
-
-
-
-
-        ??? summary "`/initial_conditions/solution/*` (`object`)"
+        ??? json-spec "`/initial_conditions/solution` (`list`)"
             ```
-            /initial_conditions/solution/*
+            /initial_conditions/solution
             ```
             ## Description
-            A list of (id, value) pairs defining the initial conditions for the main variable values. Ids are set by selection, and values can be floats or formulas.
-        
-            **Default**: None
-            ## Required
+            initial solution
 
 
 
 
 
-            ??? summary "`/initial_conditions/solution/*/id` (`int`)"
+            ??? json-spec "`/initial_conditions/solution/*` (`object`)"
                 ```
-                /initial_conditions/solution/*/id
+                /initial_conditions/solution/*
                 ```
                 ## Description
-                id from volume selections
+                A list of (ID, value) pairs defining the initial conditions for the main variable values. Ids are set by selection, and values can be floats or formulas.
+            
+                **Default**: `None`
+                ## Required
 
 
 
 
 
-
-
-
-
-
-
-            ??? summary "`/initial_conditions/solution/*/value/*`"
-                ```
-                /initial_conditions/solution/*/value/*
-                ```
-
-
-                ??? summary "`/initial_conditions/solution/*/value/*` (`float`)"
+                ??? json-spec "`/initial_conditions/solution/*/id` (`int`)"
                     ```
-                    /initial_conditions/solution/*/value/*
+                    /initial_conditions/solution/*/id
+                    ```
+                    ## Description
+                    ID from volume selections
+
+
+
+
+
+
+
+
+                ??? json-spec "`/initial_conditions/solution/*/value` (`list`)"
+                    ```
+                    /initial_conditions/solution/*/value
+                    ```
+                    ## Description
+                    value of the solution
+
+
+
+                    ??? json-spec "`/initial_conditions/solution/*/value/*`"
+                        ```
+                        /initial_conditions/solution/*/value/*
+                        ```
+
+
+                        === "`/initial_conditions/solution/*/value/*` (`float`)"
+                            ## Description
+                            value
+
+
+
+                        === "`/initial_conditions/solution/*/value/*` (`string`)"
+                            ## Description
+                            as a function of $x,y,z,t$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ??? json-spec "`/initial_conditions/velocity` (`list`)"
+            ```
+            /initial_conditions/velocity
+            ```
+            ## Description
+            initial velocity
+
+
+
+
+
+            ??? json-spec "`/initial_conditions/velocity/*` (`object`)"
+                ```
+                /initial_conditions/velocity/*
+                ```
+                ## Description
+                A list of (ID, value) pairs defining the initial conditions for the first derivative of the main variable values. Ids are set by selection, and values can be floats or formulas.
+            
+                **Default**: `None`
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/initial_conditions/velocity/*/id` (`int`)"
+                    ```
+                    /initial_conditions/velocity/*/id
+                    ```
+                    ## Description
+                    ID from volume selections
+
+
+
+
+
+
+
+
+                ??? json-spec "`/initial_conditions/velocity/*/value` (`list`)"
+                    ```
+                    /initial_conditions/velocity/*/value
+                    ```
+                    ## Description
+                    value od the initial velocity
+
+
+
+                    ??? json-spec "`/initial_conditions/velocity/*/value/*`"
+                        ```
+                        /initial_conditions/velocity/*/value/*
+                        ```
+
+
+                        === "`/initial_conditions/velocity/*/value/*` (`float`)"
+                            ## Description
+                            value
+
+
+
+                        === "`/initial_conditions/velocity/*/value/*` (`string`)"
+                            ## Description
+                            value as a function of $x,y,z,t$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ??? json-spec "`/initial_conditions/acceleration` (`list`)"
+            ```
+            /initial_conditions/acceleration
+            ```
+            ## Description
+            initial acceleration
+
+
+
+
+
+            ??? json-spec "`/initial_conditions/acceleration/*` (`object`)"
+                ```
+                /initial_conditions/acceleration/*
+                ```
+                ## Description
+                entries
+            
+                **Default**: `None`
+                ## Required
+
+
+
+
+
+                ??? json-spec "`/initial_conditions/acceleration/*/id` (`int`)"
+                    ```
+                    /initial_conditions/acceleration/*/id
+                    ```
+                    ## Description
+                    ID from volume selections
+
+
+
+
+
+
+
+
+                ??? json-spec "`/initial_conditions/acceleration/*/value` (`list`)"
+                    ```
+                    /initial_conditions/acceleration/*/value
                     ```
                     ## Description
                     value
 
 
 
-                ??? summary "`/initial_conditions/solution/*/value/*` (`string`)"
-                    ```
-                    /initial_conditions/solution/*/value/*
-                    ```
-                    ## Description
-                    as a function of x,y,z,t
+                    ??? json-spec "`/initial_conditions/acceleration/*/value/*`"
+                        ```
+                        /initial_conditions/acceleration/*/value/*
+                        ```
 
 
+                        === "`/initial_conditions/acceleration/*/value/*` (`float`)"
+                            ## Description
+                            value
+                        
+                            **Default**: `0`
 
 
 
+                        === "`/initial_conditions/acceleration/*/value/*` (`string`)"
+                            ## Description
+                            value as a function of $x,y,z,t$
 
 
 
@@ -6173,169 +6215,24 @@
 
 
 
-        ??? summary "`/initial_conditions/velocity/*` (`object`)"
-            ```
-            /initial_conditions/velocity/*
-            ```
-            ## Description
-            A list of (id, value) pairs defining the initial conditions for the first derivative of the main variable values. Ids are set by selection, and values can be floats or formulas.
-        
-            **Default**: None
-            ## Required
 
 
 
-
-
-            ??? summary "`/initial_conditions/velocity/*/id` (`int`)"
-                ```
-                /initial_conditions/velocity/*/id
-                ```
-                ## Description
-                id from volume selections
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/initial_conditions/velocity/*/value/*`"
-                ```
-                /initial_conditions/velocity/*/value/*
-                ```
-
-
-                ??? summary "`/initial_conditions/velocity/*/value/*` (`float`)"
-                    ```
-                    /initial_conditions/velocity/*/value/*
-                    ```
-                    ## Description
-                    value
-
-
-
-                ??? summary "`/initial_conditions/velocity/*/value/*` (`string`)"
-                    ```
-                    /initial_conditions/velocity/*/value/*
-                    ```
-                    ## Description
-                    value as a function of x,y,z,t
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ??? summary "`/initial_conditions/acceleration/*` (`object`)"
-            ```
-            /initial_conditions/acceleration/*
-            ```
-            ## Description
-            entries
-        
-            **Default**: None
-            ## Required
-
-
-
-
-
-            ??? summary "`/initial_conditions/acceleration/*/id` (`int`)"
-                ```
-                /initial_conditions/acceleration/*/id
-                ```
-                ## Description
-                id from volume selections
-
-
-
-
-
-
-
-
-
-
-
-            ??? summary "`/initial_conditions/acceleration/*/value/*`"
-                ```
-                /initial_conditions/acceleration/*/value/*
-                ```
-
-
-                ??? summary "`/initial_conditions/acceleration/*/value/*` (`float`)"
-                    ```
-                    /initial_conditions/acceleration/*/value/*
-                    ```
-                    ## Description
-                    value
-                
-                    **Default**: `0`
-
-
-
-                ??? summary "`/initial_conditions/acceleration/*/value/*` (`string`)"
-                    ```
-                    /initial_conditions/acceleration/*/value/*
-                    ```
-                    ## Description
-                    value as a function of x,y,z,t
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ??? summary "`/output` (`object`)"
+    ??? json-spec "`/output` (`object`)"
         ```
         /output
         ```
         ## Description
         output settings
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-        ??? summary "`/output/json` (`string`)"
+        ??? json-spec "`/output/json` (`string`)"
             ```
             /output/json
             ```
@@ -6351,21 +6248,21 @@
 
 
 
-        ??? summary "`/output/paraview` (`object`)"
+        ??? json-spec "`/output/paraview` (`object`)"
             ```
             /output/paraview
             ```
             ## Description
             Output in paraview format
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/output/paraview/file_name` (`string`)"
+            ??? json-spec "`/output/paraview/file_name` (`string`)"
                 ```
                 /output/paraview/file_name
                 ```
@@ -6381,7 +6278,7 @@
 
 
 
-            ??? summary "`/output/paraview/vismesh_rel_area` (`float`)"
+            ??? json-spec "`/output/paraview/vismesh_rel_area` (`float`)"
                 ```
                 /output/paraview/vismesh_rel_area
                 ```
@@ -6397,7 +6294,7 @@
 
 
 
-            ??? summary "`/output/paraview/skip_frame` (`int`)"
+            ??? json-spec "`/output/paraview/skip_frame` (`int`)"
                 ```
                 /output/paraview/skip_frame
                 ```
@@ -6413,7 +6310,7 @@
 
 
 
-            ??? summary "`/output/paraview/high_order_mesh` (`bool`)"
+            ??? json-spec "`/output/paraview/high_order_mesh` (`bool`)"
                 ```
                 /output/paraview/high_order_mesh
                 ```
@@ -6429,7 +6326,7 @@
 
 
 
-            ??? summary "`/output/paraview/volume` (`bool`)"
+            ??? json-spec "`/output/paraview/volume` (`bool`)"
                 ```
                 /output/paraview/volume
                 ```
@@ -6445,7 +6342,7 @@
 
 
 
-            ??? summary "`/output/paraview/surface` (`bool`)"
+            ??? json-spec "`/output/paraview/surface` (`bool`)"
                 ```
                 /output/paraview/surface
                 ```
@@ -6461,7 +6358,7 @@
 
 
 
-            ??? summary "`/output/paraview/wireframe` (`bool`)"
+            ??? json-spec "`/output/paraview/wireframe` (`bool`)"
                 ```
                 /output/paraview/wireframe
                 ```
@@ -6477,21 +6374,21 @@
 
 
 
-            ??? summary "`/output/paraview/options` (`object`)"
+            ??? json-spec "`/output/paraview/options` (`object`)"
                 ```
                 /output/paraview/options
                 ```
                 ## Description
                 Optional fields in the output
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/output/paraview/options/material` (`bool`)"
+                ??? json-spec "`/output/paraview/options/material` (`bool`)"
                     ```
                     /output/paraview/options/material
                     ```
@@ -6507,7 +6404,7 @@
 
 
 
-                ??? summary "`/output/paraview/options/body_ids` (`bool`)"
+                ??? json-spec "`/output/paraview/options/body_ids` (`bool`)"
                     ```
                     /output/paraview/options/body_ids
                     ```
@@ -6523,7 +6420,7 @@
 
 
 
-                ??? summary "`/output/paraview/options/contact_forces` (`bool`)"
+                ??? json-spec "`/output/paraview/options/contact_forces` (`bool`)"
                     ```
                     /output/paraview/options/contact_forces
                     ```
@@ -6539,7 +6436,7 @@
 
 
 
-                ??? summary "`/output/paraview/options/friction_forces` (`bool`)"
+                ??? json-spec "`/output/paraview/options/friction_forces` (`bool`)"
                     ```
                     /output/paraview/options/friction_forces
                     ```
@@ -6555,7 +6452,7 @@
 
 
 
-                ??? summary "`/output/paraview/options/velocity` (`bool`)"
+                ??? json-spec "`/output/paraview/options/velocity` (`bool`)"
                     ```
                     /output/paraview/options/velocity
                     ```
@@ -6571,7 +6468,7 @@
 
 
 
-                ??? summary "`/output/paraview/options/acceleration` (`bool`)"
+                ??? json-spec "`/output/paraview/options/acceleration` (`bool`)"
                     ```
                     /output/paraview/options/acceleration
                     ```
@@ -6593,21 +6490,21 @@
 
 
 
-        ??? summary "`/output/data` (`object`)"
+        ??? json-spec "`/output/data` (`object`)"
             ```
             /output/data
             ```
             ## Description
             File names to write output data to.
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/output/data/solution` (`string`)"
+            ??? json-spec "`/output/data/solution` (`string`)"
                 ```
                 /output/data/solution
                 ```
@@ -6623,12 +6520,12 @@
 
 
 
-            ??? summary "`/output/data/full_mat` (`string`)"
+            ??? json-spec "`/output/data/full_mat` (`string`)"
                 ```
                 /output/data/full_mat
                 ```
                 ## Description
-                System matrix without boundary conditions. Doesn't work for non-linear problems
+                System matrix without boundary conditions. Doesn't work for nonlinear problems
             
                 **Default**: `''`
 
@@ -6639,12 +6536,12 @@
 
 
 
-            ??? summary "`/output/data/stiffness_mat` (`string`)"
+            ??? json-spec "`/output/data/stiffness_mat` (`string`)"
                 ```
                 /output/data/stiffness_mat
                 ```
                 ## Description
-                System matrix with boundary conditions. Doesn't work for non-linear problems
+                System matrix with boundary conditions. Doesn't work for nonlinear problems
             
                 **Default**: `''`
 
@@ -6655,7 +6552,7 @@
 
 
 
-            ??? summary "`/output/data/stress_mat` (`string`)"
+            ??? json-spec "`/output/data/stress_mat` (`string`)"
                 ```
                 /output/data/stress_mat
                 ```
@@ -6671,7 +6568,7 @@
 
 
 
-            ??? summary "`/output/data/u_path` (`string`)"
+            ??? json-spec "`/output/data/u_path` (`string`)"
                 ```
                 /output/data/u_path
                 ```
@@ -6687,7 +6584,7 @@
 
 
 
-            ??? summary "`/output/data/v_path` (`string`)"
+            ??? json-spec "`/output/data/v_path` (`string`)"
                 ```
                 /output/data/v_path
                 ```
@@ -6703,7 +6600,7 @@
 
 
 
-            ??? summary "`/output/data/a_path` (`string`)"
+            ??? json-spec "`/output/data/a_path` (`string`)"
                 ```
                 /output/data/a_path
                 ```
@@ -6719,7 +6616,7 @@
 
 
 
-            ??? summary "`/output/data/mises` (`string`)"
+            ??? json-spec "`/output/data/mises` (`string`)"
                 ```
                 /output/data/mises
                 ```
@@ -6735,7 +6632,7 @@
 
 
 
-            ??? summary "`/output/data/nodes` (`string`)"
+            ??? json-spec "`/output/data/nodes` (`string`)"
                 ```
                 /output/data/nodes
                 ```
@@ -6751,21 +6648,21 @@
 
 
 
-            ??? summary "`/output/data/advanced` (`object`)"
+            ??? json-spec "`/output/data/advanced` (`object`)"
                 ```
                 /output/data/advanced
                 ```
                 ## Description
                 advanced options
             
-                **Default**: None
+                **Default**: `None`
                 ## Optional
 
 
 
 
 
-                ??? summary "`/output/data/advanced/reorder_nodes` (`bool`)"
+                ??? json-spec "`/output/data/advanced/reorder_nodes` (`bool`)"
                     ```
                     /output/data/advanced/reorder_nodes
                     ```
@@ -6787,21 +6684,21 @@
 
 
 
-        ??? summary "`/output/advanced` (`object`)"
+        ??? json-spec "`/output/advanced` (`object`)"
             ```
             /output/advanced
             ```
             ## Description
             Additional output options
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/output/advanced/timestep_prefix` (`string`)"
+            ??? json-spec "`/output/advanced/timestep_prefix` (`string`)"
                 ```
                 /output/advanced/timestep_prefix
                 ```
@@ -6817,7 +6714,7 @@
 
 
 
-            ??? summary "`/output/advanced/sol_on_grid` (`float`)"
+            ??? json-spec "`/output/advanced/sol_on_grid` (`float`)"
                 ```
                 /output/advanced/sol_on_grid
                 ```
@@ -6833,7 +6730,7 @@
 
 
 
-            ??? summary "`/output/advanced/compute_error` (`bool`)"
+            ??? json-spec "`/output/advanced/compute_error` (`bool`)"
                 ```
                 /output/advanced/compute_error
                 ```
@@ -6849,7 +6746,7 @@
 
 
 
-            ??? summary "`/output/advanced/sol_at_node` (`int`)"
+            ??? json-spec "`/output/advanced/sol_at_node` (`int`)"
                 ```
                 /output/advanced/sol_at_node
                 ```
@@ -6865,7 +6762,7 @@
 
 
 
-            ??? summary "`/output/advanced/vis_boundary_only` (`bool`)"
+            ??? json-spec "`/output/advanced/vis_boundary_only` (`bool`)"
                 ```
                 /output/advanced/vis_boundary_only
                 ```
@@ -6881,7 +6778,7 @@
 
 
 
-            ??? summary "`/output/advanced/curved_mesh_size` (`bool`)"
+            ??? json-spec "`/output/advanced/curved_mesh_size` (`bool`)"
                 ```
                 /output/advanced/curved_mesh_size
                 ```
@@ -6897,7 +6794,7 @@
 
 
 
-            ??? summary "`/output/advanced/save_solve_sequence_debug` (`bool`)"
+            ??? json-spec "`/output/advanced/save_solve_sequence_debug` (`bool`)"
                 ```
                 /output/advanced/save_solve_sequence_debug
                 ```
@@ -6913,7 +6810,7 @@
 
 
 
-            ??? summary "`/output/advanced/save_time_sequence` (`bool`)"
+            ??? json-spec "`/output/advanced/save_time_sequence` (`bool`)"
                 ```
                 /output/advanced/save_time_sequence
                 ```
@@ -6929,12 +6826,12 @@
 
 
 
-            ??? summary "`/output/advanced/save_nl_solve_sequence` (`bool`)"
+            ??? json-spec "`/output/advanced/save_nl_solve_sequence` (`bool`)"
                 ```
                 /output/advanced/save_nl_solve_sequence
                 ```
                 ## Description
-                saves obj after every non-linear iteration, for debugging
+                saves obj after every nonlinear iteration, for debugging
             
                 **Default**: `False`
 
@@ -6945,7 +6842,7 @@
 
 
 
-            ??? summary "`/output/advanced/spectrum` (`bool`)"
+            ??? json-spec "`/output/advanced/spectrum` (`bool`)"
                 ```
                 /output/advanced/spectrum
                 ```
@@ -6964,33 +6861,39 @@
 
 
 
-        ??? summary "`/output/reference` (`object`)"
+        ??? json-spec "`/output/reference` (`object`)"
             ```
             /output/reference
             ```
             ## Description
             Write out the analytic/numerical ground-truth solution and or its gradient
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-
-
-
-
-
-            ??? summary "`/output/reference/solution/*` (`string`)"
+            ??? json-spec "`/output/reference/solution` (`list`)"
                 ```
-                /output/reference/solution/*
+                /output/reference/solution
                 ```
                 ## Description
-                value as a function of x,y,z,t
-            
-                **Default**: `''`
+                reference solution used to compute errors
+
+
+
+
+
+                ??? json-spec "`/output/reference/solution/*` (`string`)"
+                    ```
+                    /output/reference/solution/*
+                    ```
+                    ## Description
+                    value as a function of $x,y,z,t$
+                
+                    **Default**: `''`
 
 
 
@@ -7002,19 +6905,25 @@
 
 
 
-
-
-
-
-
-            ??? summary "`/output/reference/gradient/*` (`string`)"
+            ??? json-spec "`/output/reference/gradient` (`list`)"
                 ```
-                /output/reference/gradient/*
+                /output/reference/gradient
                 ```
                 ## Description
-                value as a function of x,y,z,t
-            
-                **Default**: `''`
+                gradient of the reference solution to compute errors
+
+
+
+
+
+                ??? json-spec "`/output/reference/gradient/*` (`string`)"
+                    ```
+                    /output/reference/gradient/*
+                    ```
+                    ## Description
+                    value as a function of $x,y,z,t$
+                
+                    **Default**: `''`
 
 
 
@@ -7032,35 +6941,35 @@
 
 
 
-    ??? summary "`/input` (`object`)"
+    ??? json-spec "`/input` (`object`)"
         ```
         /input
         ```
         ## Description
         input data
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-        ??? summary "`/input/data` (`object`)"
+        ??? json-spec "`/input/data` (`object`)"
             ```
             /input/data
             ```
             ## Description
             input to restart time dependent sim
         
-            **Default**: None
+            **Default**: `None`
             ## Optional
 
 
 
 
 
-            ??? summary "`/input/data/u_path` (`string`)"
+            ??? json-spec "`/input/data/u_path` (`string`)"
                 ```
                 /input/data/u_path
                 ```
@@ -7076,7 +6985,7 @@
 
 
 
-            ??? summary "`/input/data/v_path` (`string`)"
+            ??? json-spec "`/input/data/v_path` (`string`)"
                 ```
                 /input/data/v_path
                 ```
@@ -7092,7 +7001,7 @@
 
 
 
-            ??? summary "`/input/data/a_path` (`string`)"
+            ??? json-spec "`/input/data/a_path` (`string`)"
                 ```
                 /input/data/a_path
                 ```
@@ -7114,26 +7023,26 @@
 
 
 
-    ??? summary "`/authen_t1` (`object`)"
+    ??? json-spec "`/authen_t1` (`object`)"
         ```
         /authen_t1
         ```
         ## Description
-        use to test to compare different norms of solutions
+        Used to test to compare different norms of solutions.
     
-        **Default**: None
+        **Default**: `None`
         ## Optional
 
 
 
 
 
-        ??? summary "`/authen_t1/err_h1` (`float`)"
+        ??? json-spec "`/authen_t1/err_h1` (`float`)"
             ```
             /authen_t1/err_h1
             ```
             ## Description
-            reference h1 solution's norm
+            Reference h1 solution's norm.
         
             **Default**: `0`
 
@@ -7144,12 +7053,12 @@
 
 
 
-        ??? summary "`/authen_t1/err_h1_semi` (`float`)"
+        ??? json-spec "`/authen_t1/err_h1_semi` (`float`)"
             ```
             /authen_t1/err_h1_semi
             ```
             ## Description
-            reference h1 seminorm solution's norm
+            Reference h1 seminorm solution's norm.
         
             **Default**: `0`
 
@@ -7160,12 +7069,12 @@
 
 
 
-        ??? summary "`/authen_t1/err_l2` (`float`)"
+        ??? json-spec "`/authen_t1/err_l2` (`float`)"
             ```
             /authen_t1/err_l2
             ```
             ## Description
-            reference l2 solution's norm
+            Reference $L^2$ solution's norm.
         
             **Default**: `0`
 
@@ -7176,12 +7085,12 @@
 
 
 
-        ??? summary "`/authen_t1/err_linf` (`float`)"
+        ??? json-spec "`/authen_t1/err_linf` (`float`)"
             ```
             /authen_t1/err_linf
             ```
             ## Description
-            reference linf solution's norm
+            Reference $L^\infty$ solution's norm.
         
             **Default**: `0`
 
@@ -7192,12 +7101,12 @@
 
 
 
-        ??? summary "`/authen_t1/err_linf_grad` (`float`)"
+        ??? json-spec "`/authen_t1/err_linf_grad` (`float`)"
             ```
             /authen_t1/err_linf_grad
             ```
             ## Description
-            reference linf solution's gradient norm
+            Reference $L^\infty$ solution's gradient norm.
         
             **Default**: `0`
 
@@ -7208,12 +7117,12 @@
 
 
 
-        ??? summary "`/authen_t1/err_lp` (`float`)"
+        ??? json-spec "`/authen_t1/err_lp` (`float`)"
             ```
             /authen_t1/err_lp
             ```
             ## Description
-            reference l8 solution's gradient norm
+            Reference $L^8$ solution's gradient norm.
         
             **Default**: `0`
 
@@ -7224,12 +7133,12 @@
 
 
 
-        ??? summary "`/authen_t1/margin` (`float`)"
+        ??? json-spec "`/authen_t1/margin` (`float`)"
             ```
             /authen_t1/margin
             ```
             ## Description
-            reference tolerance used in tests
+            Reference tolerance used in tests.
         
             **Default**: `0`
 

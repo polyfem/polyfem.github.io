@@ -39,6 +39,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: "https://github.com/polyfem"
+extra_css:
+  - theme/extra.css
 markdown_extensions:
   - codehilite
   - footnotes
@@ -68,6 +70,8 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.extra
+  - pymdownx.tabbed:
+      alternate_style: true
 plugins:
   # - mknotebooks:
   #   execute: true
