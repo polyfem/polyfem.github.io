@@ -12,8 +12,8 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
 
 ```json
 {
-    "geometry": { 
-        "mesh": "plate_hole.obj" 
+    "geometry": {
+        "mesh": "plate_hole.obj"
     },
 
     "materials": {
@@ -38,7 +38,7 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
 
 Then run `PolyFEM_bin --json run.json`.
 
-Refer to the [JSON API](../json) for a the full description of JSON parameters.
+Refer to the [JSON API](../../json) for a the full description of JSON parameters.
 
 Boundary Conditions
 -------------------
@@ -110,24 +110,24 @@ On save, it will produce the `.txt` file with the tags to be used in the `"surfa
 Time-Dependent Simulation
 -------------------------
 
-To enable time-dependent simulation add 
+To enable time-dependent simulation add
 ``` json
 "time": {
-    "tend": 1, 
+    "tend": 1,
     "dt": 0.1
 }
 ```
 to the root of the JSON. The duration of the simulation is specified as `"tend"` and the number of time steps can either be set directly using `"time_steps"` or by specifying the time step size `"dt"` (`"dt"` has priority over `"time_steps"`).
 
-You can also specify the time integration method using 
+You can also specify the time integration method using
 ```json
 "time": {
     "integrator": "ImplicitEuler"
 }
 ```
-By default it uses `"ImplicitEuler"`, and a complete list of options can be found [here](../documentation/#time-integrators) along with details about other time parameters.
+By default it uses `"ImplicitEuler"`, and a complete list of options can be found [here](../../details/time_integrators) along with details about other time parameters.
 
-When doing time-dependent simulation PolyFEM will generate a sequence of VTU files (one file per time step) and a [PVD](https://www.paraview.org/Wiki/ParaView/Data_formats#PVD_File_Format) file of the animation that can be directly viewed in [ParaView](https://www.paraview.org/). You can change the name of this PVD file 
+When doing time-dependent simulation PolyFEM will generate a sequence of VTU files (one file per time step) and a [PVD](https://www.paraview.org/Wiki/ParaView/Data_formats#PVD_File_Format) file of the animation that can be directly viewed in [ParaView](https://www.paraview.org/). You can change the name of this PVD file
 
 ### Time-Dependent Boundary Conditions
 
@@ -145,9 +145,9 @@ Selections, Multi-material, and Collisions
 
 ![Sphere-mat](../img/sphere-mat.png)
 
-PolyFEM supports multi-material and contact. 
+PolyFEM supports multi-material and contact.
 
-For example, here we show how to simulate a sphere of radius 0.5 m centered at $[0,1,0]$ with material $E=10^8, \nu=0.4, \rho=2000$ falling on thin soft mat ($E=10^6, \nu=0.4, \rho=1000$) we need to set the body id. 
+For example, here we show how to simulate a sphere of radius 0.5 m centered at $[0,1,0]$ with material $E=10^8, \nu=0.4, \rho=2000$ falling on thin soft mat ($E=10^6, \nu=0.4, \rho=1000$) we need to set the body id.
 
 First, we need to specify the geometry and assign ids to the surface and volume.
 To do this add this to the main JSON file:
