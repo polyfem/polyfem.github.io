@@ -19,11 +19,11 @@ jobs:
 
       - name: Clone PolyFEM
         run: |
-          git --depth=1 clone https://github.com/polyfem/polyfem.git
+          git clone --depth=1 https://github.com/polyfem/polyfem.git
 
       - name: Clone JSON Spec Engine
         run: |
-          git --depth=1 clone https://github.com/geometryprocessing/json-spec-engine.git
+          git clone --depth=1 https://github.com/geometryprocessing/json-spec-engine.git
 
       - name: Install Dependencies
         run: |
