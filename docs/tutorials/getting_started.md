@@ -21,7 +21,7 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
     },
 
     "preset_problem": {
-        "name": "Franke"
+        "type": "Franke"
     },
 
     "output": {
