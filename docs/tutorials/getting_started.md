@@ -20,15 +20,12 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
         "type": "Laplacian"
     },
 
-    "output": {
-        "stats.json"
-    },
-
     "preset_problem": {
         "name": "Franke"
     },
 
     "output": {
+        "json": "stats.json",
         "paraview": {
             "file_name": "<result.vtu>"
         }
