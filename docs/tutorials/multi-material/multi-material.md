@@ -155,7 +155,7 @@ In the `materials` section, we assign identical material properties to the left 
 The volume IDs in this case are loaded directly from the `cubes_v22.msh` file. fTetWild automatically assigns these labels based on which domain the elements falls in the CSG.
 
 !!! warning
-    Loading volume IDs from the mesh file is currently only supported with version 2.2 MSH files (both ASCII and binary).
+    Loading volume IDs from the mesh file is currently only supported with version 4.1 MSH files (both ASCII and binary).
 
 ### Time-Dependent Simulation
 ```json
