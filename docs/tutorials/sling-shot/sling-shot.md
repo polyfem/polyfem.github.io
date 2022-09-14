@@ -47,7 +47,7 @@ project
 ### Json Environment Setup
 1. The first step is to make a json file `slingshot.json` in the json folder for the initial setup with the sphere, rubber band and the fingers in it. Let's load the objects!
     ```json
-        "geometry": [
+    "geometry": [
         {
             "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
             "transformation": {
@@ -142,7 +142,7 @@ project
             },
             "surface_selection": 1001
         }
-        ]
+    ]
     ```
     The first mesh is a 21cm rubber band. It is originally a mat but then rescaled to the shape of a rubber band. The second mesh is a sphere with a groove in the middle part of its body in case the rubber band might slide off the sphere if the friction is not enough. As for the two fingers, there's no need to consider their deformation so they are set to [obstacles](https://polyfem.github.io/json/#obstacles). The displacements are not zero vectors because the fingers needs to squeeze the ball and hold the ball tightly enough to pull the rubber band without sliding off the fingers while still pulling.
     Note that the `volume_selection` here means to select the entire volume of the tetrahedron mesh to be simulated and the `surface_selection` means the surface area that you want to select. For example, both fingers are obstacles and they are triangle meshes. So to move and simulate them, I would like to select the entire finger. Thus here I can select them by give the whole mesh an index:
