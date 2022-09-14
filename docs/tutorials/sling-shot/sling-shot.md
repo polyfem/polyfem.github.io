@@ -7,13 +7,13 @@ In this tutorial we are going to develop an environment from scratch using polyf
 
 ## Installation of Python Bindings of PolyFEM
 In this tutorial, we are assuming you have already installed polyfempy in your machine. If not, please follow the instructions [here](https://github.com/polyfem/polyfem-python). Note that there's no need to install standalone PolyFEM. All the dependencies that polyfempy requires will be installed automatically including PolyFEM. Also please note that please install and compile polyfempy from source by doing 
-```shell=
+```sh
 python setup.py install
 ```
 instead of using the conda depolyment.
 
 After installation, please try to run 
-```shell=
+```sh
 python -c "import polyfempy as pf"
 ```
 to test if polyfempy is installed successfully. Note that this tutorial is using conda virtual environment.
@@ -46,7 +46,7 @@ project
 ```
 ### Json Environment Setup
 1. The first step is to make a json file `slingshot.json` in the json folder for the initial setup with the sphere, rubber band and the fingers in it. Let's load the objects!
-    ```json=
+    ```json
    "geometry": [
         {
             "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
@@ -146,7 +146,7 @@ project
     ```
     The first mesh is a 21cm rubber band. It is originally a mat but then rescaled to the shape of a rubber band. The second mesh is a sphere with a groove in the middle part of its body in case the rubber band might slide off the sphere if the friction is not enough. As for the two fingers, there's no need to consider their deformation so they are set to [obstacles](https://polyfem.github.io/json/#obstacles). The displacements are not zero vectors because the fingers needs to squeeze the ball and hold the ball tightly enough to pull the rubber band without sliding off the fingers while still pulling.
     Note that the `volume_selection` here means to select the entire volume of the tetrahedron mesh to be simulated and the `surface_selection` means the surface area that you want to select. For example, both fingers are obstacles and they are triangle meshes. So to move and simulate them, I would like to select the entire finger. Thus here I can select them by give the whole mesh an index:
-    ```json=
+    ```json
         {
             "mesh": "slingshot/assets/data/surf_mesh/right_finger.obj",
             "is_obstacle": true,
@@ -155,7 +155,7 @@ project
         }
     ```
     In some scenarios, maybe the user only wants to select part of the mesh and give the selected part a different movement with other parts. Then this could be done by setting the surface_selection part with specialized fields. For example, in this slingshot case, I would like to set the two ends of the rubber band to be still and the rest part to be able to move freely so that the rubber band will be extended while the sphere is pulled back by two fingers. To achieve this, the two ends of the rubber band can be selected by:
-    ```json=
+    ```json
         {
             "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
             ...
@@ -175,7 +175,7 @@ project
     ```
     The detailed explanation of `id` `axis` and `position` can be found at [Selections in PolyFEM](https://polyfem.github.io/tutorials/getting_started/#selections-multi-material-and-collisions)
 2. The second the thing is to give proper material parameters to these objects. Since we are using rubber band and also we want to grasp the ball tightly enough, we can use the material parameters for both of them. If you don't know the parameters of rubber, Just Google for Them! Feel free to use other material parameters.
-    ```json=
+    ```json
     "materials": [
         {
             "id": 2,
@@ -242,7 +242,7 @@ In this section we will develop a python environment to really do the slingshot.
 
 #### Class Initialization
 In the `src` folder, create a python file `slingshot.py`. In this file, let's first import necessary libraries and create a PushBox class with its `__init__` function:
-```python=
+```python
 import polyfempy as pf
 import json
 import numpy as np
@@ -283,7 +283,7 @@ Different from the [PushBox]() environment, in this `__init__` function, we need
 
 #### Take the action from the user
 The solver is already initialized in the previous section, now we can design an interface for the users to pass new actions to the sphere from their side. In this tutorial, the action space is 4 dimensional consists of movement of the fingers along x-axis, y-axis, z-axis and one action to close or open the two fingers. The argument `actions` in this function is a dictionary and contains the actions for both fingers.
-```python=
+```python
 def set_boundary_conditions(self, actions:dict):
     t0 = self.t0
     t1 = t0 + self.dt
@@ -301,7 +301,7 @@ def set_boundary_conditions(self, actions:dict):
 In the current setting, the fingers are opening and closing along the y-axis. That why the action to control the fingers to open or close also needs to be added to the overall y-axis. Also since there are two fingers in the scene, we use a for loop to update the dipslacements for both of them.
 
 #### Run simulation for the current timestep
-```python=
+```python
 def run_simulation(self):
     self.solver.step_in_time(0, self.dt, self.step_count) # run simulation to the current time step, and the length of each timestep is self.dt
     self.step_count += 1 # increment the step counter
@@ -311,7 +311,7 @@ To run simulation for the current timestep, we need to call `self.solver.step_in
 
 #### Get the position of each object
 If you want to get the postion information of each object in the simulation when you make interactions with the environment, you can get the positions of each mesh using this function.
-```python=
+```python
 def get_object_positions(self):
     points, tets, _, body_ids, displacement = self.solver.get_sampled_solution()
     self.id_to_position = {}
@@ -327,7 +327,7 @@ def get_object_positions(self):
 This function basically gets sample vertices for each mesh from the solver and these vertices are averaged to get a "centroid" of the object to represent its position.
 
 #### Step function exposed to the user
-```python=
+```python
 def step(self, action: np.ndarray):
 	actions = {
 	        # x, y, z gripper_displacement
@@ -350,7 +350,7 @@ To view the implementaton of the whole class, please go to [slingshot.py](https:
 
 ### Test of the Environment
 Here's a very simple test case:
-```python=
+```python
 from slingshot.src.slingshot import SlingShot
 import numpy as np
 
