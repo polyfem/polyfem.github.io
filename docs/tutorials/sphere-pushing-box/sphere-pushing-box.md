@@ -160,8 +160,12 @@ class PushBox:
         self.id_to_position = {}
         self.id_to_vf = {}
         for mesh in self.config["geometry"]:
-            self.id_to_mesh[mesh["volume_selection"]] = mesh["mesh"]
-            self.id_to_position[mesh["volume_selection"]] = mesh["transformation"]["translation"]
+            if ("is_obstacle" in mesh.keys()) and (mesh["is_obstacle"]):
+                self.obstacle_ids.append(mesh["surface_selection"])
+            else:
+                self.id_to_mesh[mesh["volume_selection"]] = mesh["mesh"]
+                self.id_to_position[mesh["volume_selection"]] = mesh["transformation"]["translation"]
+            
 ```
 
 In the `__init__` function, we load the environment configuration from the JSON file we just made, initialize a step counter and the polyfem solver. Here we set the `log_level` of PolyFEM to 3 which only displays the errors and warnings from PolyFEM. Feel free to change the log level to get more information or less based on [docs for log_levels](https://polyfem.github.io/polyfempy_doc/#set_log_level) (More specifically,  `--log_level ENUM:value in {trace->0,debug->1,info->2,warning->3,error->4,critical->5,off->6} OR {0,1,2,3,4,5,6}`).

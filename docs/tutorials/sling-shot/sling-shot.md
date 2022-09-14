@@ -1,8 +1,8 @@
 # Sling Shot
 In this tutorial we are going to develop an environment from scratch using polyfempy and python for a sling shot. In this scene we have two fingers holding the ball and the fingers will pull the rubber band and then release the ball in the air. 
 <p float="left">
-  <img src="https://i.imgur.com/MOZsjo3.gif" width="49%" />
-  <img src="https://i.imgur.com/rGcfPxm.gif" width="49%" /> 
+  <img src="../sim1.gif" width="49%" />
+  <img src="../sim2.gif" width="49%" /> 
 </p>
 
 ## Installation of Python Bindings of PolyFEM
@@ -234,7 +234,7 @@ project
 To view the whole json configuration file, please go to [sling_shot.json](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/assets/json/sling_shots.json).
 
 After loading every object, the environment should look like
-![](https://i.imgur.com/BeBbSgd.png)
+![](../setup.png)
 
 
 ### Python Environment Development
