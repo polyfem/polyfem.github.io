@@ -147,36 +147,37 @@ project
     The first mesh is a 21cm rubber band. It is originally a mat but then rescaled to the shape of a rubber band. The second mesh is a sphere with a groove in the middle part of its body in case the rubber band might slide off the sphere if the friction is not enough. As for the two fingers, there's no need to consider their deformation so they are set to [obstacles](https://polyfem.github.io/json/#obstacles). The displacements are not zero vectors because the fingers needs to squeeze the ball and hold the ball tightly enough to pull the rubber band without sliding off the fingers while still pulling.
     Note that the `volume_selection` here means to select the entire volume of the tetrahedron mesh to be simulated and the `surface_selection` means the surface area that you want to select. For example, both fingers are obstacles and they are triangle meshes. So to move and simulate them, I would like to select the entire finger. Thus here I can select them by give the whole mesh an index:
     ```json
-        {
-            "mesh": "slingshot/assets/data/surf_mesh/right_finger.obj",
-            "is_obstacle": true,
-             ... 
-            "surface_selection": 1001
-        }
+    {
+        "mesh": "slingshot/assets/data/surf_mesh/right_finger.obj",
+        "is_obstacle": true,
+         ... 
+        "surface_selection": 1001
+    }
     ```
     In some scenarios, maybe the user only wants to select part of the mesh and give the selected part a different movement with other parts. Then this could be done by setting the surface_selection part with specialized fields. For example, in this slingshot case, I would like to set the two ends of the rubber band to be still and the rest part to be able to move freely so that the rubber band will be extended while the sphere is pulled back by two fingers. To achieve this, the two ends of the rubber band can be selected by:
     ```json
-        {
-            "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
-            ...
-            "surface_selection": [
-                {
-                    "id": 3,
-                    "axis": -3,
-                    "position": -0.1
-                },
-                {
-                    "id": 3,
-                    "axis": 3,
-                    "position": 0.1
-                }
-            ]
-        }
+    {
+        "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
+        ...
+        "surface_selection": [
+            {
+                "id": 3,
+                "axis": -3,
+                "position": -0.1
+            },
+            {
+                "id": 3,
+                "axis": 3,
+                "position": 0.1
+            }
+        ]
+    }
     ```
     The detailed explanation of `id` `axis` and `position` can be found at [Selections in PolyFEM](https://polyfem.github.io/tutorials/getting_started/#selections-multi-material-and-collisions)
 2. The second the thing is to give proper material parameters to these objects. Since we are using rubber band and also we want to grasp the ball tightly enough, we can use the material parameters for both of them. If you don't know the parameters of rubber, Just Google for Them! Feel free to use other material parameters.
     ```json
-    "materials": [
+    {
+        "materials": [
         {
             "id": 2,
             "E": 10000000.0,
@@ -191,11 +192,12 @@ project
             "rho": 1150,
             "type": "NeoHookean"
         }
-    ],
+        ]
+    }
     ```
 4. Since the sphere is all free and the only actuator are the fingers, there is no need to set dirichlet boundary conditions for the sphere. As for the rubber band, although most part of the rubber band is free to move, the two sides of the rubber band need to be static like attached to two poles. Then the dirichlet boundary condition with `"id":3` is set to zero for the two ends of the rubber band.
-    ```json=
-     "boundary_conditions": {
+    ```json
+    "boundary_conditions": {
         "obstacle_displacements": [
             {
                 "id": 1000,
@@ -229,7 +231,7 @@ project
                 ]
             }
         ]
-    },
+    }
     ```
 To view the whole json configuration file, please go to [sling_shot.json](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/assets/json/sling_shots.json).
 
