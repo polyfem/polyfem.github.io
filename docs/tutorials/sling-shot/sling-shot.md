@@ -173,27 +173,25 @@ project
         ]
     }
     ```
-    The detailed explanation of `id` `axis` and `position` can be found at [Selections in PolyFEM](https://polyfem.github.io/tutorials/getting_started/#selections-multi-material-and-collisions)
+    The detailed explanation of `id`, `axis` and `position` can be found at [Selections in PolyFEM](https://polyfem.github.io/tutorials/getting_started/#selections-multi-material-and-collisions)
 2. The second the thing is to give proper material parameters to these objects. Since we are using rubber band and also we want to grasp the ball tightly enough, we can use the material parameters for both of them. If you don't know the parameters of rubber, Just Google for Them! Feel free to use other material parameters.
     ```json
+    "materials": [
     {
-        "materials": [
-        {
-            "id": 2,
-            "E": 10000000.0,
-            "nu": 0.4,
-            "rho": 1150,
-            "type": "NeoHookean"
-        },
-        {
-            "id": 1,
-            "E": 10000000.0,
-            "nu": 0.4,
-            "rho": 1150,
-            "type": "NeoHookean"
-        }
-        ]
+        "id": 2,
+        "E": 10000000.0,
+        "nu": 0.4,
+        "rho": 1150,
+        "type": "NeoHookean"
+    },
+    {
+        "id": 1,
+        "E": 10000000.0,
+        "nu": 0.4,
+        "rho": 1150,
+        "type": "NeoHookean"
     }
+    ]
     ```
 4. Since the sphere is all free and the only actuator are the fingers, there is no need to set dirichlet boundary conditions for the sphere. As for the rubber band, although most part of the rubber band is free to move, the two sides of the rubber band need to be static like attached to two poles. Then the dirichlet boundary condition with `"id":3` is set to zero for the two ends of the rubber band.
     ```json
