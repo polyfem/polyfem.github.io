@@ -1,38 +1,38 @@
 # Sling Shot
-In this tutorial we are going to develop an environment from scratch using polyfempy and python for a sling shot. In this scene we have two fingers holding the ball and the fingers will pull the rubber band and then release the ball in the air. 
+In this tutorial, we are going to develop an environment from scratch using `polyfempy` and Python for a sling-shot. In this scene, we have two fingers holding the ball and the fingers will pull the rubber band and then release the ball into the air.
 <p float="left">
   <img src="../sim1.gif" width="49%" />
-  <img src="../sim2.gif" width="49%" /> 
+  <img src="../sim2.gif" width="49%" />
 </p>
 
 ## Installation of Python Bindings of PolyFEM
-In this tutorial, we are assuming you have already installed polyfempy in your machine. If not, please follow the instructions [here](https://github.com/polyfem/polyfem-python). Note that there's no need to install standalone PolyFEM. All the dependencies that polyfempy requires will be installed automatically including PolyFEM. Also please note that please install and compile polyfempy from source by doing 
+In this tutorial, we are assuming you have already installed `polyfempy` on your machine. If not, please follow the instructions [here](https://github.com/polyfem/polyfem-python). Note that there's no need to install standalone PolyFEM. All the dependencies that `polyfempy` requires will be installed automatically including PolyFEM. Also please note that please install and compile `polyfempy` from source by doing
 ```sh
 python setup.py install
 ```
-instead of using the conda depolyment.
+instead of using the Conda deployment.
 
-After installation, please try to run 
+After installation, please try to run
 ```sh
 python -c "import polyfempy as pf"
 ```
-to test if polyfempy is installed successfully. Note that this tutorial is using conda virtual environment.
+to test if `polyfempy` is installed successfully. Note that this tutorial is using Conda virtual environment.
 
 ## Installation of Other Dependencies
-To build this project, there are some other depencies we need. Note that meshio and igl are optional. They are only required if you want to render the scenes with python.
+To build this project, there are some other dependencies we need. Note that `meshio` and `igl` are optional. They are only required if you want to render the scenes with python.
 1. numpy
     ```conda install numpy```
 2. meshio(optional)
     ```conda install -c conda-forge meshio```
 3. python bindings of libigl(optional)
     ```conda install -c conda-forge igl```
-    
+
 ## Data Preparation
-The data needed in this tutorial can be found [here](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data). For triangle meshes, they are in [surf_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/surf_mesh) and the volume meshes are in [vol_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/vol_mesh) The volume mesh files are all made by [fTetWild](https://github.com/wildmeshing/fTetWild). Feel free you make you own sphere, rubber band and fingers. 
+The data needed in this tutorial can be found [here](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data). For triangle meshes, they are in [surf_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/surf_mesh) and the volume meshes are in [vol_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/vol_mesh) The volume mesh files are all made by [fTetWild](https://github.com/wildmeshing/fTetWild). Feel free you make you own sphere, rubber band and fingers.
 
 ## Tutorial
-All the codes and jsons can be found at [Github: Slingshot Tutorial](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial).
-The file tree of this project is: 
+All the code and JSONs can be found at [Github: Slingshot Tutorial](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial).
+The file tree of this project is:
 ```
 project
 |___pushbox
@@ -41,11 +41,11 @@ project
 |       |___data
 |       |   |___surf_mesh
 |       |   |___vol_mesh
-|       |___json 
+|       |___json
 |___test.py
 ```
 ### Json Environment Setup
-1. The first step is to make a json file `slingshot.json` in the json folder for the initial setup with the sphere, rubber band and the fingers in it. Let's load the objects!
+1. The first step is to make a JSON file `slingshot.json` in the JSON folder for the initial setup with the sphere, rubber band and fingers in it. Let's load the objects!
     ```json
     "geometry": [
         {
@@ -144,17 +144,17 @@ project
         }
     ]
     ```
-    The first mesh is a 21cm rubber band. It is originally a mat but then rescaled to the shape of a rubber band. The second mesh is a sphere with a groove in the middle part of its body in case the rubber band might slide off the sphere if the friction is not enough. As for the two fingers, there's no need to consider their deformation so they are set to [obstacles](https://polyfem.github.io/json/#obstacles). The displacements are not zero vectors because the fingers needs to squeeze the ball and hold the ball tightly enough to pull the rubber band without sliding off the fingers while still pulling.
-    Note that the `volume_selection` here means to select the entire volume of the tetrahedron mesh to be simulated and the `surface_selection` means the surface area that you want to select. For example, both fingers are obstacles and they are triangle meshes. So to move and simulate them, I would like to select the entire finger. Thus here I can select them by give the whole mesh an index:
+    The first mesh is a 21cm rubber band. It is originally a mat but then rescaled to the shape of a rubber band. The second mesh is a sphere with a groove in the middle part of its body in case the rubber band might slide off the sphere if the friction is not enough. As for the two fingers, there's no need to consider their deformation so they are set to [obstacles](https://polyfem.github.io/json/#obstacles). The displacements are not zero vectors because the fingers need to squeeze the ball and hold the ball tightly enough to pull the rubber band without sliding off the fingers while still pulling.
+    Note that the `volume_selection` here means to select the entire volume of the tetrahedron mesh to be simulated and the `surface_selection` means the surface area that you want to select. For example, both fingers are obstacles and they are triangle meshes. So to move and simulate them, I would like to select the entire finger. Thus here I can select them by giving the whole mesh an index:
     ```json
     {
         "mesh": "slingshot/assets/data/surf_mesh/right_finger.obj",
         "is_obstacle": true,
-         ... 
+         ...
         "surface_selection": 1001
     }
     ```
-    In some scenarios, maybe the user only wants to select part of the mesh and give the selected part a different movement with other parts. Then this could be done by setting the surface_selection part with specialized fields. For example, in this slingshot case, I would like to set the two ends of the rubber band to be still and the rest part to be able to move freely so that the rubber band will be extended while the sphere is pulled back by two fingers. To achieve this, the two ends of the rubber band can be selected by:
+    In some scenarios, maybe the user only wants to select a part of the mesh and give the selected part a different movement from other parts. Then this could be done by setting the surface_selection part with specialized fields. For example, in this slingshot case, I would like to set the two ends of the rubber band to be still and the rest part to be able to move freely so that the rubber band will be extended while the sphere is pulled back by two fingers. To achieve this, the two ends of the rubber band can be selected by:
     ```json
     {
         "mesh": "slingshot/assets/data/vol_mesh/mat.msh",
@@ -174,7 +174,7 @@ project
     }
     ```
     The detailed explanation of `id`, `axis` and `position` can be found at [Selections in PolyFEM](https://polyfem.github.io/tutorials/getting_started/#selections-multi-material-and-collisions)
-2. The second the thing is to give proper material parameters to these objects. Since we are using rubber band and also we want to grasp the ball tightly enough, we can use the material parameters for both of them. If you don't know the parameters of rubber, Just Google for Them! Feel free to use other material parameters.
+2. The second thing is to give proper material parameters to these objects. Since we are using a rubber band and also we want to grasp the ball tightly enough, we can use the material parameters for both of them. If you don't know the parameters of rubber, Just Google for Them! Feel free to use other material parameters.
     ```json
     "materials": [
     {
@@ -193,7 +193,7 @@ project
     }
     ]
     ```
-4. Since the sphere is all free and the only actuator are the fingers, there is no need to set dirichlet boundary conditions for the sphere. As for the rubber band, although most part of the rubber band is free to move, the two sides of the rubber band need to be static like attached to two poles. Then the dirichlet boundary condition with `"id":3` is set to zero for the two ends of the rubber band.
+4. Since the sphere is all free and the only actuator are the fingers, there is no need to set Dirichlet boundary conditions for the sphere. As for the rubber band, although most of the rubber band is free to move, the two sides of the rubber band need to be static like attached to two poles. Then the Dirichlet boundary condition with `"id":3` is set to zero for the two ends of the rubber band.
     ```json
     "boundary_conditions": {
         "obstacle_displacements": [
@@ -231,14 +231,14 @@ project
         ]
     }
     ```
-To view the whole json configuration file, please go to [sling_shot.json](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/assets/json/sling_shots.json).
+To view the whole JSON configuration file, please go to [sling_shot.json](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/assets/json/sling_shots.json).
 
 After loading every object, the environment should look like
 ![](../setup.png)
 
 
 ### Python Environment Development
-In this section we will develop a python environment to really do the slingshot.
+In this section, we will develop a python environment to do the slingshot.
 
 #### Class Initialization
 In the `src` folder, create a python file `slingshot.py`. In this file, let's first import necessary libraries and create a PushBox class with its `__init__` function:
@@ -268,26 +268,26 @@ class SlingShot:
         for mesh in self.config["meshes"]:
             self.id_to_mesh[mesh["body_id"]] = mesh["mesh"]
             self.id_to_position[mesh["body_id"]] = mesh["position"]
-        
+
         # To grasp and hold the sphere very tightly
         self.pre_steps = 4
         for i in range(self.pre_steps):
             self.run_simulation()
         self.cumulative_action = {"0":np.array([0, -0.02 * self.dt * self.step_count, 0, 0.02 * self.dt * self.step_count]), "1":np.array([0, 0.02 * self.dt, 0, 0.02 * self.dt])}
 ```
-In the `__init__` function, we load the environment configuration from the json file we just made, initialize a step counter and the polyfem solver. Here we set the log_level of PolyFEM to 3 which only displays the errors and warnings from PolyFEM. Feel free to change the log level to get more information or less based on [docs for log_levels](https://polyfem.github.io/polyfempy_doc/#set_log_level) (More specifically,  --log_level ENUM:value in {trace->0,debug->1,info->2,warning->3,error->4,critical->5,off->6} OR {0,1,2,3,4,5,6}).
+In the `__init__` function, we load the environment configuration from the JSON file we just made, initialize a step counter and the PolyFEM solver. Here we set the log_level of PolyFEM to 3 which only displays the errors and warnings from PolyFEM. Feel free to change the log level to get more information or less based on [docs for log_levels](https://polyfem.github.io/polyfempy_doc/#set_log_level) (More specifically,  --log_level ENUM:value in {trace->0,debug->1,info->2,warning->3,error->4,critical->5,off->6} OR {0,1,2,3,4,5,6}).
 
-One thing to mention is that polyfempy is always calculating the result for this time step based on the displacement from the initial position which is the position read from the json file. However, we only pay close attention to the action or movement we want to exert for this timestep, so `self.cumulative_action` would take care of previous displacments.
+One thing to mention is that `polyfempy` is always calculating the result for this time step based on the displacement from the initial position which is the position read from the JSON file. However, we only pay close attention to the action or movement we want to exert for this timestep, so `self.cumulative_action` would take care of previous displacements.
 
-Different from the [PushBox]() environment, in this `__init__` function, we need to squeeze the sphere to a certain point that the sphere would never slide off the fingers unless the user decides to release it. That's why in the end of the `__init__` function there's 4 `pre_steps` just tring to close the fingers and squeeze the rubber ball.
+Different from the [PushBox]() environment, in this `__init__` function, we need to squeeze the sphere to a certain point so that the sphere would never slide off the fingers unless the user decides to release it. That's why at the end of the `__init__` function four `pre_steps` are trying to close the fingers and squeeze the rubber ball.
 
 #### Take the action from the user
-The solver is already initialized in the previous section, now we can design an interface for the users to pass new actions to the sphere from their side. In this tutorial, the action space is 4 dimensional consists of movement of the fingers along x-axis, y-axis, z-axis and one action to close or open the two fingers. The argument `actions` in this function is a dictionary and contains the actions for both fingers.
+The solver is already initialized in the previous section, now we can design an interface for the users to pass new actions to the sphere from their side. In this tutorial, the action space is 4-dimensional and consists of movement of the fingers along the x-axis, y-axis, and z-axis and one action to close or open the two fingers. The argument `actions` in this function are a dictionary and contain the actions for both fingers.
 ```python
 def set_boundary_conditions(self, actions:dict):
     t0 = self.t0
     t1 = t0 + self.dt
-    for mesh_id, action in actions.items(): 
+    for mesh_id, action in actions.items():
         self.solver.update_obstacle_displacement(
                 int(mesh_id),
                 [
@@ -298,19 +298,22 @@ def set_boundary_conditions(self, actions:dict):
             )
         self.cumulative_action[mesh_id] += action
 ```
-In the current setting, the fingers are opening and closing along the y-axis. That why the action to control the fingers to open or close also needs to be added to the overall y-axis. Also since there are two fingers in the scene, we use a for loop to update the dipslacements for both of them.
+In the current setting, the fingers are opening and closing along the y-axis. That is why the action to control the fingers to open or close also needs to be added to the overall y-axis. Also since there are two fingers in the scene, we use a for loop to update the displacements for both of them.
 
 #### Run simulation for the current timestep
+
 ```python
 def run_simulation(self):
     self.solver.step_in_time(0, self.dt, self.step_count) # run simulation to the current time step, and the length of each timestep is self.dt
     self.step_count += 1 # increment the step counter
     self.t0 += self.dt # increment the starting time point for the next time step
 ```
-To run simulation for the current timestep, we need to call `self.solver.step_in_time`, where the first argument of this function is the initial time of the simulation and the second argument is time length for each time step and the third argument is the total time steps have been simulated now.
+
+To simulate the current timestep, we need to call `self.solver.step_in_time`, where the first argument of this function is the initial time of the simulation and the second argument is the time length for each time step and the third argument is the total time steps have been simulated now.
 
 #### Get the position of each object
-If you want to get the postion information of each object in the simulation when you make interactions with the environment, you can get the positions of each mesh using this function.
+If you want to get the position information of each object in the simulation when you make interactions with the environment, you can get the positions of each mesh using this function.
+
 ```python
 def get_object_positions(self):
     points, tets, _, body_ids, displacement = self.solver.get_sampled_solution()
@@ -324,7 +327,8 @@ def get_object_positions(self):
         self.id_to_position[mesh_id] = np.mean(tet_barycenter[mean_cell_id == mesh_id], axis=0)
     return self.id_to_position
 ```
-This function basically gets sample vertices for each mesh from the solver and these vertices are averaged to get a "centroid" of the object to represent its position.
+
+This function gets sample vertices for each mesh from the solver and these vertices are averaged to get a "centroid" of the object to represent its position.
 
 #### Step function exposed to the user
 ```python
@@ -338,15 +342,15 @@ def step(self, action: np.ndarray):
 	        "1": np.array([action[0],
 	                        action[1],
 	                        action[2],
-	                       action[3]/2]) 
+	                       action[3]/2])
 	    }
 	self.set_boundary_conditions(actions)
 	self.run_simulation()
 	return self.get_object_positions()
 ```
-The step function here takes the action from the user and run the simulation for this timestep and return the positions for each object to the user. Note that the action from the user is an numpy array contains the x,y,z movement for the two fingers and the displacement between the two fingers for the current timestep. Then the action needs to be transferred into a dictionary that `"self.set_boundary_conditions"` function would recognize for both of the fingers. In the same time, the two fingers's displacements are coupled so in the `actions` dictionary, the displacents needs to be decouple to both fingers and let them move in the opposite directions.
+The step function here takes the action from the user and simulates the timestep and returns the positions for each object to the user. Note that the action from the user is a `numpy` array containing the `x,y,z` movement of the two fingers and the displacement between the two fingers for the current timestep. Then the action needs to be transferred into a dictionary that `"self.set_boundary_conditions"` function would recognize for both of the fingers. At the same time, the two fingers' displacements are coupled so in the `actions` dictionary, the displacements need to be decoupled from both fingers and let them move in opposite directions.
 
-To view the implementaton of the whole class, please go to [slingshot.py](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/src/slingshot.py).
+To view the implementation of the whole class, please go to [slingshot.py](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/src/slingshot.py).
 
 ### Test of the Environment
 Here's a very simple test case:
