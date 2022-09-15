@@ -234,7 +234,7 @@ project
 To view the whole JSON configuration file, please go to [sling_shot.json](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/blob/main/slingshot/assets/json/sling_shots.json).
 
 After loading every object, the environment should look like
-![](../setup.png)
+![](setup.png)
 
 
 ### Python Environment Development

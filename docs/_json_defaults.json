@@ -1,0 +1,252 @@
+{
+    "boundary_conditions": {
+        "dirichlet_boundary": [],
+        "neumann_boundary": [],
+        "obstacle_displacements": [],
+        "pressure_boundary": [],
+        "rhs": []
+    },
+    "common": "",
+    "contact": {
+        "dhat": 0.001,
+        "dhat_percentage": 0.8,
+        "enabled": false,
+        "epsv": 0.001,
+        "friction_coefficient": 0
+    },
+    "geometry": "REQUIRED!",
+    "initial_conditions": {
+        "acceleration": [],
+        "solution": [],
+        "velocity": []
+    },
+    "input": {
+        "data": {
+            "a_path": "",
+            "u_path": "",
+            "v_path": ""
+        }
+    },
+    "materials": "REQUIRED!",
+    "output": {
+        "advanced": {
+            "compute_error": true,
+            "curved_mesh_size": false,
+            "save_nl_solve_sequence": false,
+            "save_solve_sequence_debug": false,
+            "save_time_sequence": true,
+            "sol_at_node": -1,
+            "sol_on_grid": -1,
+            "spectrum": false,
+            "timestep_prefix": "step_",
+            "vis_boundary_only": false
+        },
+        "data": {
+            "a_path": "",
+            "advanced": {
+                "reorder_nodes": false
+            },
+            "full_mat": "",
+            "mises": "",
+            "nodes": "",
+            "solution": "",
+            "stiffness_mat": "",
+            "stress_mat": "",
+            "u_path": "",
+            "v_path": ""
+        },
+        "json": "",
+        "paraview": {
+            "file_name": "",
+            "high_order_mesh": true,
+            "options": {
+                "acceleration": false,
+                "body_ids": false,
+                "contact_forces": false,
+                "friction_forces": false,
+                "material": false,
+                "velocity": false
+            },
+            "skip_frame": 1,
+            "surface": false,
+            "vismesh_rel_area": 1e-05,
+            "volume": true,
+            "wireframe": false
+        },
+        "reference": {
+            "gradient": [],
+            "solution": []
+        }
+    },
+    "preset_problem": {
+        "U": {},
+        "angular_v0": 0.5,
+        "angular_v1": -0.5,
+        "axis_coordiante": 2,
+        "axis_coordiante0": 2,
+        "axis_coordiante1": 2,
+        "bbox_center": [],
+        "fixed_boundary": 5,
+        "force": {},
+        "formulation": "",
+        "func": 0,
+        "kernel_distance": 0,
+        "kernel_weights": "",
+        "n_kernels": 0,
+        "n_turns": 0.5,
+        "time_dependent": {},
+        "turning_boundary": 6,
+        "turning_boundary0": 5,
+        "turning_boundary1": 6,
+        "type": "REQUIRED!",
+        "viscosity": {}
+    },
+    "root_path": "",
+    "solver": {
+        "advanced": {
+            "cache_size": 900000,
+            "lagged_regularization_weight": 0,
+            "lump_mass_matrix": false
+        },
+        "augmented_lagrangian": {
+            "force": false,
+            "initial_weight": 1000000.0,
+            "max_weight": 100000000000.0
+        },
+        "contact": {
+            "CCD": {
+                "broad_phase": "hash_grid",
+                "max_iterations": 1000000,
+                "tolerance": 1e-06
+            },
+            "barrier_stiffness": "adaptive",
+            "friction_convergence_tol": 0.01,
+            "friction_iterations": 1
+        },
+        "ignore_inertia": false,
+        "linear": {
+            "AMGCL": {
+                "precond": {
+                    "class": "amg",
+                    "coarsening": {
+                        "aggr": {
+                            "eps_strong": 0
+                        },
+                        "estimate_spectral_radius": true,
+                        "relax": 1,
+                        "type": "smoothed_aggregation"
+                    },
+                    "direct_coarse": false,
+                    "max_levels": 6,
+                    "ncycle": 2,
+                    "relax": {
+                        "degree": 16,
+                        "higher": 2,
+                        "lower": 0.008333333333,
+                        "power_iters": 100,
+                        "scale": true,
+                        "type": "chebyshev"
+                    }
+                },
+                "solver": {
+                    "maxiter": 1000,
+                    "tol": 1e-10,
+                    "type": "cg"
+                }
+            },
+            "Eigen::BiCGSTAB": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Eigen::ConjugateGradient": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Eigen::DGMRES": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Eigen::GMRES": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Eigen::LeastSquaresConjugateGradient": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Eigen::MINRES": {
+                "max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Hypre": {
+                "max_iter": 1000,
+                "pre_max_iter": 1000,
+                "tolerance": 1e-06
+            },
+            "Pardiso": {
+                "mtype": -1
+            },
+            "precond": "",
+            "solver": ""
+        },
+        "nonlinear": {
+            "f_delta": 1e-10,
+            "first_grad_norm_tol": 1e-10,
+            "grad_norm": 1e-08,
+            "line_search": {
+                "method": "backtracking",
+                "use_grad_norm_tol": 0.0001
+            },
+            "max_iterations": 1000,
+            "relative_gradient": false,
+            "solver": "newton",
+            "use_grad_norm": true
+        }
+    },
+    "space": {
+        "advanced": {
+            "B": 3,
+            "bc_method": "lsq",
+            "count_flipped_els": true,
+            "discr_order_max": 4,
+            "force_no_ref_for_harmonic": false,
+            "h1_formula": false,
+            "integral_constraints": 2,
+            "isoparametric": false,
+            "mass_quadrature_order": -1,
+            "n_boundary_samples": -1,
+            "n_harmonic_samples": 10,
+            "poly_bases": "MFSHarmonic",
+            "quadrature_order": -1,
+            "serendipity": false,
+            "use_spline": false
+        },
+        "discr_order": 1,
+        "pressure_discr_order": 1,
+        "use_p_ref": false
+    },
+    "tests": {
+        "err_h1": 0,
+        "err_h1_semi": 0,
+        "err_l2": 0,
+        "err_linf": 0,
+        "err_linf_grad": 0,
+        "err_lp": 0,
+        "margin": 1e-05,
+        "time_steps": 1
+    },
+    "time": {
+        "BDF": {
+            "steps": 1
+        },
+        "dt": "REQUIRED!",
+        "integrator": "ImplicitEuler",
+        "newmark": {
+            "beta": 0.25,
+            "gamma": 0.5
+        },
+        "t0": 0,
+        "tend": "REQUIRED!",
+        "time_steps": "REQUIRED!"
+    }
+}

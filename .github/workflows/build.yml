@@ -29,7 +29,9 @@ jobs:
           git clone --depth=1 https://github.com/polyfem/polyfem.git
           git clone --depth=1 https://github.com/geometryprocessing/json-spec-engine.git
           pip install -r ./json-spec-engine/requirements.txt
-          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/input-spec.json -o ./docs/json_api.md
+          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/input-spec.json -o ./docs/_json_spec.md
+          python ./json-spec-engine/scripts/generate_defaults.py -i ./polyfem/input-spec.json -o ./docs/_json_defaults.json
+          cp ./polyfem/LICENSE ./docs/_polyfem_license.txt
 
       - name: Deploy MkDocs
         run: mkdocs gh-deploy --force

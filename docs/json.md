@@ -7,21 +7,21 @@ JSON Files Structure
 {
     "common": "", // path to another JSON file containing default arguments on which to patch these arguments
 
-    "geometry": [{ 
+    "geometry": [{
         "mesh": "" // mesh path (absolute or relative to JSON file)
     }],
-    
+
     "time": {                         // time-dependent problem
         "tend": 1,                    // end time
         "dt": 0.1,                    // time step size
         "time_steps": 10,             // (alternativly) number of time steps
         "integrator": "ImplicitEuler" // time integration method
     },
-    
+
     "contact": {
         "enabled": true // enable contact handling
     },
-    
+
     "solver": {
         "linear": {
             "solver": "Eigen::PardisoLDLT"
@@ -33,7 +33,7 @@ JSON Files Structure
             "solver": "newton"
         }
     },
-    
+
     // Material parameter
     "materials": {
         "type": "NeoHookean", // material model
@@ -41,11 +41,11 @@ JSON Files Structure
         "nu": 0.3, // Poisson ratio
         "rho": 1 // density
     },
-    
+
     "output": {
         "json": "sim.json",           // output statistics
         "paraview": {                 // output geometry as paraview VTU files
-            "file_name": "sim.pvd", 
+            "file_name": "sim.pvd",
             "options": {
                 "material": true,     // save material properties
                 "body_ids": true      // save body ids
@@ -93,7 +93,7 @@ Solvers
 
 PolyFEM offers several linear solver options based on compilation options. For more information, see [PolySolve](polysolve.md) a stand-alone linear solver wrapper library used by PolyFEM.
 
-**Options:** `AMGCL`, `Eigen::BiCGSTAB`, `Eigen::CholmodSupernodalLLT`, `Eigen::ConjugateGradient`, `Eigen::DGMRES`, `Eigen::GMRES`, `Eigen::LeastSquaresConjugateGradient`, `Eigen::MINRES`, `Eigen::PardisoLDLT`, `Eigen::PardisoLU`, `Eigen::SimplicialLDLT`, `Eigen::SparseLU`, `Eigen::UmfPackLU`, `Hypre`, `Pardiso` 
+**Options:** `AMGCL`, `Eigen::BiCGSTAB`, `Eigen::CholmodSupernodalLLT`, `Eigen::ConjugateGradient`, `Eigen::DGMRES`, `Eigen::GMRES`, `Eigen::LeastSquaresConjugateGradient`, `Eigen::MINRES`, `Eigen::PardisoLDLT`, `Eigen::PardisoLU`, `Eigen::SimplicialLDLT`, `Eigen::SparseLU`, `Eigen::UmfPackLU`, `Hypre`, `Pardiso`
 
 ### Nonlinear Solver
 
@@ -187,7 +187,7 @@ The `"translation"` field encodes a translation of the mesh. This must be an arr
 
 ### Surface Selection
 
-Either 
+Either
 * a single number for a selection ID to apply to all surfaces in the mesh,
 * a file path containing one ID per surface element, or
 * a single or list of selection objects used to assign a given `"id"` (see [selections](#selections)).
@@ -267,56 +267,13 @@ A plane selection. Everything on one side of the plane is selected.
 !!! example
     `{"normal": [1, 1, 0], "point": [0, 1, 0]}` will select points $x$ where $(x-p) \cdot n \ge 0$.
 
-<!-- 
-Output
-------
-```js
-"output": "",                   // Output json path
-"save_time_sequence": true,     // Save a PVD time sequence
-"save_solve_sequence": false,   // Save all incremental load steps
-"skip_frame": 1,                // Export every n frame
-"vismesh_rel_area": 1e-05       // Relative resolution of the output mesh
-"export": {
-    "sol_at_node": -1,
-    "high_order_mesh": true,
-    "volume": true,
-    "surface": false,
-    "wireframe": false,
-    "vis_mesh": "",
-    "sol_on_grid": -1,
-    "paraview": "",             // Path for the vtu mesh
-    "vis_boundary_only": false, // Exports only the boundary of volumetric meshes
-    "material_params": false,   // Exports lame parameters per tetrahedron
-    "body_ids": false,          // Export body ids
-    "contact_forces": false,
-    "friction_forces": false,
-    "velocity": false,
-    "acceleration": false,
-    "nodes": "",                // FE nodes
-    "wire_mesh": "",            // Wireframe of the mesh
-    "iso_mesh": "",             // Isolines mesh
-    "spectrum": false,          // Spectrum of the stiffness matrix
-    "solution": "",             // Solution vector
-    "full_mat": "",             // Stiffnes matrix without boundary conditions
-    "stiffness_mat": "",        // Stiffmess matrix after setting boundary conditions
-    "solution_mat": "",
-    "stress_mat": "",
-    "u_path": "",
-    "v_path": "",
-    "a_path": "",
-    "mises": "",
-    "time_sequence": "sim.pvd"  // Name of output PVD time sequencee
-}
-``` 
--->
-
 Restart
 -------
 
 For time-dependent simulation, the state variables ($u$, $v = \dot{u}$, and $a = \ddot{u}$) are exported using the following parameters:
 
 ```js
-"output": { 
+"output": {
     "data": {
         "u_path": "<path/to/out_u.ext>",
         "v_path": "<path/to/out_v.ext>",
@@ -341,55 +298,3 @@ These files can then be used to initialize (or restart) the simulation from the 
 
 !!! note
     When restarting the simulation it is necessary to also specify the `"time": {"t0": <start_time>}` parameter for the starting time. Otherwise, it will assume a starting time of `0`.
-
-<!-- Other Parameters
-----------------
-
-```js
-{
-    "bc_tag": " ",                  // Path to the boundary tag file, each face/edge is associated with an unique number (you can use bc_setter for setting them in 3d)
-    "boundary_id_threshold": -1,    // Distance from bounding box for a face/edge to belong to boundary. Negative falls into defaul: in 2d is 1e-7, in 3d 1e-2
-    "normalize_mesh": true,         // Normalize mesh such that it fits in the [0,1] bounding box
-
-    "n_refs": 0,                    // Number of uniform refinement
-    "refinenemt_location": 0.5,     // Refiniement location of polyhedra
-
-    "al_weight": 1e6,
-    "max_al_weight": 1e11,
-
-    "count_flipped_els": false,     // Count (or not) flipped elements
-
-    "iso_parametric": false,        // Force isoparametric elements
-    "discr_order": 1,               // Dicretization order, supports P1, P2, P3, P4, Q1, Q2
-
-    "pressure_discr_order": 1,      // Pressure dicrezation order, for mixed formulation
-
-    "n_boundary_samples": 6,        // number of boundary samples (Dirichelt) or quadrature points (Neumann)
-    "quadrature_order": 4,          // quadrature order
-    "BDF_order": 1,                 // Order of BDF for time integration problems
-
-    "export": {                    // Export options
-        "full_mat": "",            // Stiffnes matrix without boundary conditions
-        "iso_mesh": "",            // Isolines mesh
-        "nodes": "",               // FE nodes
-        "spectrum": false,         // Spectrum of the stiffness matrix
-        "stiffness_mat": "",       // Stiffmess matrix after setting boundary conditions
-    },
-
-    "use_spline": false,            // Use spline for quad/hex elements
-    "fit_nodes": false,             // Fit nodes for spline basis
-
-    "integral_constraints": 2,      // Number of constraints for polygonal basis 0, 1, or 2
-    "n_harmonic_samples": 10,       // Number of face/line samples for harmonic bases for polyhedra
-
-    "B": 3,                         // User provided parameter for pref tolerance
-    "use_p_ref": false,             // Enable prefinement for badly shaped simplices
-    "discr_order_max": 4,           // Maximum allowed dicrezation oder, used in p pref
-    "h1_formula": false,            // Use pref formula for h1 bound
-
-    "precond_type": "Eigen::DiagonalPreconditioner",
-
-    "nl_solver_rhs_steps": 1,       // Number of incremental load steps
-    "save_solve_sequence": false,   // Save all incremental load steps
-}
-``` -->

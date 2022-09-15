@@ -1,6 +1,3 @@
----
-template: no_toc.html
----
 <!--Automatically generated using JSON Spec Engine-->
 
 
@@ -14,9 +11,9 @@ template: no_toc.html
     ```
     /
     ```
-    ## Description
+    <h2>Description</h2>
     Root of the configuration file.
-    ## Required
+    <h2>Required</h2>
 
 
 
@@ -26,7 +23,7 @@ template: no_toc.html
         ```
         /geometry
         ```
-        ## Description
+        <h2>Description</h2>
         List of geometry objects.
 
 
@@ -37,9 +34,9 @@ template: no_toc.html
             ```
             /geometry/*
             ```
-            ## Description
+            <h2>Description</h2>
             Each geometry object stores a mesh, a set of transformations applied to it after loading, and a set of selections, which can be used to specify boundary conditions, materials, optimization parameters and other quantities that can be associated with a part of an object.
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -49,14 +46,14 @@ template: no_toc.html
                 ```
                 /geometry/*/mesh
                 ```
-                ## Description
+                <h2>Description</h2>
                 Path of the mesh file to load.
-            
+
                 **Extensions:** `['.obj', '.msh', '.stl', '.ply', '.mesh']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -66,11 +63,11 @@ template: no_toc.html
                 ```
                 /geometry/*/type
                 ```
-                ## Description
+                <h2>Description</h2>
                 Type of geometry, currently only one supported. In future we will add stuff like planes, spheres, etc.
-            
+
                 **Default**: `'mesh'`
-            
+
                 **Options:** `['mesh']`
 
 
@@ -84,11 +81,11 @@ template: no_toc.html
                 ```
                 /geometry/*/extract
                 ```
-                ## Description
+                <h2>Description</h2>
                 Used to extract stuff from the mesh. Eg extract surface extracts the surface from a tet mesh.
-            
+
                 **Default**: `'volume'`
-            
+
                 **Options:** `['volume', 'edges', 'points', 'surface']`
 
 
@@ -102,11 +99,11 @@ template: no_toc.html
                 ```
                 /geometry/*/transformation
                 ```
-                ## Description
+                <h2>Description</h2>
                 Geometric transformations applied to the geometry after loading it.
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -116,7 +113,7 @@ template: no_toc.html
                     ```
                     /geometry/*/transformation/translation
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Translate (two entries for 2D problems or three entries for 3D problems).
 
 
@@ -127,9 +124,9 @@ template: no_toc.html
                         ```
                         /geometry/*/transformation/translation/*
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         FIXME: Missing documentation in the specification.
-                    
+
                         **Default**: `0`
 
 
@@ -146,7 +143,7 @@ template: no_toc.html
                     ```
                     /geometry/*/transformation/rotation
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Rotate, in 2D, one number, the rotation angle, in 3D, three or four Euler angles, axis+angle, or a unit quaternion. Depends on rotation mode.
 
 
@@ -157,9 +154,9 @@ template: no_toc.html
                         ```
                         /geometry/*/transformation/rotation/*
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         FIXME: Missing documentation in the specification.
-                    
+
                         **Default**: `0`
 
 
@@ -176,9 +173,9 @@ template: no_toc.html
                     ```
                     /geometry/*/transformation/rotation_mode
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of rotation, supported are any permutation of [xyz]+, axis_angle, quaternion, or rotation_vector.
-                
+
                     **Default**: `'xyz'`
 
 
@@ -192,7 +189,7 @@ template: no_toc.html
                     ```
                     /geometry/*/transformation/scale
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Scale by specified factors along axes (two entries for 2D problems or three entries for 3D problems).
 
 
@@ -203,9 +200,9 @@ template: no_toc.html
                         ```
                         /geometry/*/transformation/scale/*
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         FIXME: Missing documentation in the specification.
-                    
+
                         **Default**: `0`
 
 
@@ -223,15 +220,15 @@ template: no_toc.html
 
 
                     === "`/geometry/*/transformation/dimensions` (`float`)"
-                        ## Description
+                        <h2>Description</h2>
                         Scale the object so that bounding box dimensions match specified dimensions, 2 entries for 2D problems, 3 entries for 3D problems.
-                    
+
                         **Default**: `1`
 
 
 
                     === "`/geometry/*/transformation/dimensions` (`list`)"
-                        ## Description
+                        <h2>Description</h2>
                         Scale the object so that bounding box dimensions match specified dimensions, 2 entries for 2D problems, 3 entries for 3D problems.
 
 
@@ -242,9 +239,9 @@ template: no_toc.html
                             ```
                             /geometry/*/transformation/dimensions/*
                             ```
-                            ## Description
+                            <h2>Description</h2>
                             FIXME: Missing documentation in the specification.
-                        
+
                             **Default**: `0`
 
 
@@ -265,17 +262,17 @@ template: no_toc.html
 
 
                 === "`/geometry/*/volume_selection` (`int`)"
-                    ## Description
+                    <h2>Description</h2>
                     Assign specified ID to all volume elements of the geometry (negative values indicate using the stored values in the MSH (default: 0)).
-                
+
                     **Default**: `-1`
 
 
 
                 === "`/geometry/*/volume_selection` (`object`)"
-                    ## Description
+                    <h2>Description</h2>
                     Offsets the volume IDs loaded from the mesh.
-                    ## Required
+                    <h2>Required</h2>
 
 
 
@@ -285,9 +282,9 @@ template: no_toc.html
                         ```
                         /geometry/*/volume_selection/id_offset
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         Offsets the volume IDs loaded from the mesh.
-                    
+
                         **Default**: `0`
 
 
@@ -296,7 +293,7 @@ template: no_toc.html
 
 
                 === "`/geometry/*/volume_selection` (`list`)"
-                    ## Description
+                    <h2>Description</h2>
                     List of selection (ID assignment) operations to apply to the geometry; operations can be box, sphere, etc.
 
 
@@ -308,11 +305,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/volume_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all volume elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -322,7 +319,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -336,7 +333,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/box
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -347,7 +344,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/volume_selection/*/box/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -358,9 +355,9 @@ template: no_toc.html
                                         ```
                                         /geometry/*/volume_selection/*/box/*/*
                                         ```
-                                        ## Description
+                                        <h2>Description</h2>
                                         FIXME: Missing documentation in the specification.
-                                    
+
                                         **Default**: `0`
 
 
@@ -371,7 +368,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -381,9 +378,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -392,11 +389,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/volume_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all volume elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -406,7 +403,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -420,7 +417,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/radius
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -434,7 +431,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/center
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -445,7 +442,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/volume_selection/*/center/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -453,7 +450,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -463,9 +460,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -474,11 +471,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/volume_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all volume elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -488,7 +485,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -502,7 +499,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/point
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -513,7 +510,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/volume_selection/*/point/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -530,7 +527,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/normal
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -541,7 +538,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/volume_selection/*/normal/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -549,7 +546,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -559,9 +556,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -575,7 +572,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/offset
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -584,11 +581,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/volume_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -598,7 +595,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -613,13 +610,13 @@ template: no_toc.html
 
 
                                 === "`/geometry/*/volume_selection/*/axis` (`int`)"
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
 
                                 === "`/geometry/*/volume_selection/*/axis` (`string`)"
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -633,12 +630,12 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/position
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -648,9 +645,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/volume_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -662,9 +659,9 @@ template: no_toc.html
 
 
                 === "`/geometry/*/volume_selection` (`file`)"
-                    ## Description
+                    <h2>Description</h2>
                     Load ids from a file; the file is required to have one ID per volume element of the geometry
-                
+
                     **Extensions:** `['.txt']`
 
 
@@ -679,17 +676,17 @@ template: no_toc.html
 
 
                 === "`/geometry/*/surface_selection` (`int`)"
-                    ## Description
+                    <h2>Description</h2>
                     Assign specified ID to all surface elements of the geometry
-                
+
                     **Default**: `0`
 
 
 
                 === "`/geometry/*/surface_selection` (`object`)"
-                    ## Description
+                    <h2>Description</h2>
                     Assigns ids to sides touching the bbox of the model using a threshold. Assigns 1+offset to left, 2+offset to bottom, 3+offset to right, 4+offset to top, 5+offset to front, 6+offset to back, 7+offset to everything else.
-                    ## Optional
+                    <h2>Optional</h2>
 
 
 
@@ -699,9 +696,9 @@ template: no_toc.html
                         ```
                         /geometry/*/surface_selection/threshold
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         FIXME: Missing documentation in the specification.
-                    
+
                         **Default**: `-1`
 
 
@@ -715,9 +712,9 @@ template: no_toc.html
                         ```
                         /geometry/*/surface_selection/offset
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         FIXME: Missing documentation in the specification.
-                    
+
                         **Default**: `0`
 
 
@@ -726,7 +723,7 @@ template: no_toc.html
 
 
                 === "`/geometry/*/surface_selection` (`list`)"
-                    ## Description
+                    <h2>Description</h2>
                     List of selection (ID assignment) operations to apply to the geometry; operations can be box, sphere, etc.
 
 
@@ -738,11 +735,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/surface_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all surface elements with barycenters inside an axis-aligned box given by the list of its 2 corners, one with min, the other with max coordinates along all axes.  If relative option is set to true, the coordinates of the box corners are specified in bilinear/trilinear coordinates  with respect to the bounding box of the geometry.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -752,7 +749,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -766,7 +763,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/box
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -777,7 +774,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/surface_selection/*/box/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -788,9 +785,9 @@ template: no_toc.html
                                         ```
                                         /geometry/*/surface_selection/*/box/*/*
                                         ```
-                                        ## Description
+                                        <h2>Description</h2>
                                         FIXME: Missing documentation in the specification.
-                                    
+
                                         **Default**: `0`
 
 
@@ -801,7 +798,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -811,9 +808,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -822,11 +819,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/surface_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all surface elements with barycenters inside a sphere with specified center and radius.  If relative option is set to true, the coordinates of the  center are specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry, and the radius is specified relative to the bounding box diagonal length.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -836,7 +833,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -850,7 +847,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/radius
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -864,7 +861,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/center
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -875,7 +872,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/surface_selection/*/center/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -883,7 +880,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -893,9 +890,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -904,11 +901,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/surface_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Assign the ID to all surface elements with barycenters in a halfspace. The halfspace boundary plane is defined in one of two ways: (1) by a point in the plane and the normal, which points to the halfspace. (2) By a normal and the offset from the coordinate system origin along the line in the direction of the normal passing through the origin. In the former case, the option relative set to true indicates that the point position is specified in bilinear/trilinear coordinates with respect to the bounding box of the geometry.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -918,7 +915,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -932,7 +929,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/point
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -943,7 +940,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/surface_selection/*/point/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -960,7 +957,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/normal
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -971,7 +968,7 @@ template: no_toc.html
                                     ```
                                     /geometry/*/surface_selection/*/normal/*
                                     ```
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -979,7 +976,7 @@ template: no_toc.html
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -989,9 +986,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -1005,7 +1002,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/offset
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -1014,11 +1011,11 @@ template: no_toc.html
 
 
                         === "`/geometry/*/surface_selection/*` (`object`)"
-                            ## Description
+                            <h2>Description</h2>
                             Same as halfspace, but the boundary plane is axis-aligned. The choice of axis is specified either by a string matching the regexp r"[+-][xyzXYZ]" or an int matching the regular expression [+-]?[123] where the sign is the side of the plane to select and letter or number indicates the axis to which the plane is perpendicular. The offset is the plane offset from the origin. If the relative option is set to true, the offset is with respect to the center of the bounding box.
-                        
+
                             **Default**: `None`
-                            ## Required
+                            <h2>Required</h2>
 
 
 
@@ -1028,7 +1025,7 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/id
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
@@ -1043,13 +1040,13 @@ template: no_toc.html
 
 
                                 === "`/geometry/*/surface_selection/*/axis` (`int`)"
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
 
                                 === "`/geometry/*/surface_selection/*/axis` (`string`)"
-                                    ## Description
+                                    <h2>Description</h2>
                                     FIXME: Missing documentation in the specification.
 
 
@@ -1063,12 +1060,12 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/position
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
 
 
 
-                            ## Optional
+                            <h2>Optional</h2>
 
 
 
@@ -1078,9 +1075,9 @@ template: no_toc.html
                                 ```
                                 /geometry/*/surface_selection/*/relative
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 FIXME: Missing documentation in the specification.
-                            
+
                                 **Default**: `False`
 
 
@@ -1092,9 +1089,9 @@ template: no_toc.html
 
 
                 === "`/geometry/*/surface_selection` (`file`)"
-                    ## Description
+                    <h2>Description</h2>
                     Load ids from a file; the file has a list of surface elements of the geometry specified as triples of vertex indices, with one ID for each; each triple must correspond to a surface element
-                
+
                     **Extensions:** `['.txt']`
 
 
@@ -1108,9 +1105,9 @@ template: no_toc.html
                 ```
                 /geometry/*/curve_selection
                 ```
-                ## Description
+                <h2>Description</h2>
                 Selection of curves
-            
+
                 **Default**: `None`
 
 
@@ -1124,9 +1121,9 @@ template: no_toc.html
                 ```
                 /geometry/*/point_selection
                 ```
-                ## Description
+                <h2>Description</h2>
                 Selection of points
-            
+
                 **Default**: `None`
 
 
@@ -1140,9 +1137,9 @@ template: no_toc.html
                 ```
                 /geometry/*/n_refs
                 ```
-                ## Description
+                <h2>Description</h2>
                 number of uniform refinements
-            
+
                 **Default**: `0`
 
 
@@ -1156,11 +1153,11 @@ template: no_toc.html
                 ```
                 /geometry/*/advanced
                 ```
-                ## Description
+                <h2>Description</h2>
                 Advanced options for geometry
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1170,9 +1167,9 @@ template: no_toc.html
                     ```
                     /geometry/*/advanced/normalize_mesh
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Rescale the mesh to it fits in the biunit cube
-                
+
                     **Default**: `False`
 
 
@@ -1186,9 +1183,9 @@ template: no_toc.html
                     ```
                     /geometry/*/advanced/force_linear_geometry
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Discard high-order nodes for curved geometries
-                
+
                     **Default**: `False`
 
 
@@ -1202,9 +1199,9 @@ template: no_toc.html
                     ```
                     /geometry/*/advanced/refinement_location
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     parametric location of the refinement
-                
+
                     **Default**: `0.5`
 
 
@@ -1218,9 +1215,9 @@ template: no_toc.html
                     ```
                     /geometry/*/advanced/min_component
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Size of the minumum component for collision
-                
+
                     **Default**: `-1`
 
 
@@ -1237,9 +1234,9 @@ template: no_toc.html
                 ```
                 /geometry/*/enabled
                 ```
-                ## Description
+                <h2>Description</h2>
                 Skips the geometry if false
-            
+
                 **Default**: `True`
 
 
@@ -1253,9 +1250,9 @@ template: no_toc.html
                 ```
                 /geometry/*/is_obstacle
                 ```
-                ## Description
+                <h2>Description</h2>
                 The geometry elements are not included in deforming geometry, only in collision computations
-            
+
                 **Default**: `False`
 
 
@@ -1275,7 +1272,7 @@ template: no_toc.html
         ```
         /materials
         ```
-        ## Description
+        <h2>Description</h2>
         Material Parameters lists including ID pointing to volume selection, Young's modulus ($E$), Poisson's ratio ($\nu$), Density ($\rho$), or Lamé constants ($\lambda$ and $\mu$).
 
 
@@ -1287,11 +1284,11 @@ template: no_toc.html
 
 
             === "NeoHookean"
-            
+
                 **Type**: NeoHookean
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1301,9 +1298,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1317,7 +1314,7 @@ template: no_toc.html
                     ```
                     /materials/*/E
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Young's modulus
 
 
@@ -1331,12 +1328,12 @@ template: no_toc.html
                     ```
                     /materials/*/nu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Poisson's ratio
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1346,9 +1343,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1362,9 +1359,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1373,11 +1370,11 @@ template: no_toc.html
 
 
             === "NeoHookean"
-            
+
                 **Type**: NeoHookean
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1387,9 +1384,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1403,7 +1400,7 @@ template: no_toc.html
                     ```
                     /materials/*/lambda
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Second Lamé parameter
 
 
@@ -1417,12 +1414,12 @@ template: no_toc.html
                     ```
                     /materials/*/mu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     First Lamé parameters
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1432,9 +1429,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1448,9 +1445,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1459,11 +1456,11 @@ template: no_toc.html
 
 
             === "LinearElasticity"
-            
+
                 **Type**: LinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1473,9 +1470,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1489,7 +1486,7 @@ template: no_toc.html
                     ```
                     /materials/*/E
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Young's modulus
 
 
@@ -1503,12 +1500,12 @@ template: no_toc.html
                     ```
                     /materials/*/nu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Poisson's ratio
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1518,9 +1515,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1534,9 +1531,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1545,11 +1542,11 @@ template: no_toc.html
 
 
             === "LinearElasticity"
-            
+
                 **Type**: LinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1559,9 +1556,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1575,7 +1572,7 @@ template: no_toc.html
                     ```
                     /materials/*/lambda
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Second Lamé parameter
 
 
@@ -1589,12 +1586,12 @@ template: no_toc.html
                     ```
                     /materials/*/mu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     First Lamé parameters
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1604,9 +1601,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1620,9 +1617,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1631,11 +1628,11 @@ template: no_toc.html
 
 
             === "HookeLinearElasticity"
-            
+
                 **Type**: HookeLinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, E, nu, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1645,9 +1642,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1661,7 +1658,7 @@ template: no_toc.html
                     ```
                     /materials/*/E
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Young's modulus
 
 
@@ -1675,12 +1672,12 @@ template: no_toc.html
                     ```
                     /materials/*/nu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Poisson's ratio
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1690,9 +1687,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1706,9 +1703,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1717,11 +1714,11 @@ template: no_toc.html
 
 
             === "HookeLinearElasticity"
-            
+
                 **Type**: HookeLinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, E, nu, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1731,9 +1728,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1747,7 +1744,7 @@ template: no_toc.html
                     ```
                     /materials/*/elasticity_tensor
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Symmetric elasticity tensor
 
 
@@ -1758,9 +1755,9 @@ template: no_toc.html
                         ```
                         /materials/*/elasticity_tensor/*
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         Entries of elasticity tensor
-                    
+
                         **Default**: `0`
 
 
@@ -1768,7 +1765,7 @@ template: no_toc.html
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1778,9 +1775,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1794,9 +1791,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1805,11 +1802,11 @@ template: no_toc.html
 
 
             === "SaintVenant"
-            
+
                 **Type**: SaintVenant
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, E, nu, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1819,9 +1816,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1835,7 +1832,7 @@ template: no_toc.html
                     ```
                     /materials/*/E
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Young's modulus
 
 
@@ -1849,12 +1846,12 @@ template: no_toc.html
                     ```
                     /materials/*/nu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Poisson's ratio
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1864,9 +1861,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1880,9 +1877,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1891,11 +1888,11 @@ template: no_toc.html
 
 
             === "SaintVenant"
-            
+
                 **Type**: SaintVenant
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, E, nu, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1905,9 +1902,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -1921,7 +1918,7 @@ template: no_toc.html
                     ```
                     /materials/*/elasticity_tensor
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Symmetric elasticity tensor
 
 
@@ -1932,9 +1929,9 @@ template: no_toc.html
                         ```
                         /materials/*/elasticity_tensor/*
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         Entries of elasticity tensor
-                    
+
                         **Default**: `0`
 
 
@@ -1942,7 +1939,7 @@ template: no_toc.html
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -1952,9 +1949,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -1968,9 +1965,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -1979,11 +1976,11 @@ template: no_toc.html
 
 
             === "Stokes"
-            
+
                 **Type**: Stokes
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, viscosity, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -1993,9 +1990,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -2009,12 +2006,12 @@ template: no_toc.html
                     ```
                     /materials/*/viscosity
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Fuild's viscosity
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2024,9 +2021,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2040,9 +2037,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2051,11 +2048,11 @@ template: no_toc.html
 
 
             === "NavierStokes"
-            
+
                 **Type**: NavierStokes
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, viscosity, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2065,9 +2062,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -2081,12 +2078,12 @@ template: no_toc.html
                     ```
                     /materials/*/viscosity
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Fuild's viscosity
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2096,9 +2093,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2112,9 +2109,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2123,11 +2120,11 @@ template: no_toc.html
 
 
             === "IncompressibleLinearElasticity"
-            
+
                 **Type**: IncompressibleLinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Young's modulus ($E$), Poisson's ratio ($\nu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2137,9 +2134,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -2153,7 +2150,7 @@ template: no_toc.html
                     ```
                     /materials/*/E
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Young's modulus
 
 
@@ -2167,12 +2164,12 @@ template: no_toc.html
                     ```
                     /materials/*/nu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Poisson's ratio
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2182,9 +2179,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2198,9 +2195,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2209,11 +2206,11 @@ template: no_toc.html
 
 
             === "IncompressibleLinearElasticity"
-            
+
                 **Type**: IncompressibleLinearElasticity
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, Lamé first ($\lambda$), Lamé second ($\mu$), density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2223,9 +2220,9 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
@@ -2239,7 +2236,7 @@ template: no_toc.html
                     ```
                     /materials/*/lambda
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Second Lamé parameter
 
 
@@ -2253,12 +2250,12 @@ template: no_toc.html
                     ```
                     /materials/*/mu
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     First Lamé parameters
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2268,9 +2265,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2284,9 +2281,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2295,11 +2292,11 @@ template: no_toc.html
 
 
             === "Laplacian"
-            
+
                 **Type**: Laplacian
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2309,14 +2306,14 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2326,9 +2323,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2342,9 +2339,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2353,11 +2350,11 @@ template: no_toc.html
 
 
             === "Helmholtz"
-            
+
                 **Type**: Helmholtz
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, k, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2367,14 +2364,14 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2384,9 +2381,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2400,9 +2397,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2416,9 +2413,9 @@ template: no_toc.html
                     ```
                     /materials/*/k
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Scaling for Helmholtz
-                
+
                     **Default**: `1`
 
 
@@ -2427,11 +2424,11 @@ template: no_toc.html
 
 
             === "Bilaplacian"
-            
+
                 **Type**: Bilaplacian
-                ## Description
+                <h2>Description</h2>
                 Material Parameters including ID, density ($\rho$)
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -2441,14 +2438,14 @@ template: no_toc.html
                     ```
                     /materials/*/type
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Type of material
-                
+
                     **Options:** `['LinearElasticity', 'HookeLinearElasticity', 'SaintVenant', 'NeoHookean', 'Stokes', 'NavierStokes', 'IncompressibleLinearElasticity', 'Laplacian', 'Helmholtz', 'Bilaplacian']`
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -2458,9 +2455,9 @@ template: no_toc.html
                     ```
                     /materials/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Volume selection ID
-                
+
                     **Default**: `0`
 
 
@@ -2474,9 +2471,9 @@ template: no_toc.html
                     ```
                     /materials/*/rho
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Density
-                
+
                     **Default**: `1`
 
 
@@ -2487,7 +2484,7 @@ template: no_toc.html
 
 
 
-    ## Optional
+    <h2>Optional</h2>
 
 
 
@@ -2498,13 +2495,13 @@ template: no_toc.html
 
 
         === "Linear"
-        
+
             **Type**: Linear
-            ## Description
+            <h2>Description</h2>
             TODO
-        
+
             **Default**: `'skip'`
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2514,9 +2511,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2525,11 +2522,11 @@ template: no_toc.html
 
 
         === "Quadratic"
-        
+
             **Type**: Quadratic
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2539,9 +2536,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2550,11 +2547,11 @@ template: no_toc.html
 
 
         === "Cubic"
-        
+
             **Type**: Cubic
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2564,9 +2561,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2575,11 +2572,11 @@ template: no_toc.html
 
 
         === "Sine"
-        
+
             **Type**: Sine
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2589,9 +2586,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2600,11 +2597,11 @@ template: no_toc.html
 
 
         === "Franke"
-        
+
             **Type**: Franke
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2614,9 +2611,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2625,11 +2622,11 @@ template: no_toc.html
 
 
         === "FrankeOld"
-        
+
             **Type**: FrankeOld
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2639,9 +2636,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2650,11 +2647,11 @@ template: no_toc.html
 
 
         === "GenericScalarExact"
-        
+
             **Type**: GenericScalarExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2664,14 +2661,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -2681,9 +2678,9 @@ template: no_toc.html
                 ```
                 /preset_problem/func
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0`
 
 
@@ -2692,11 +2689,11 @@ template: no_toc.html
 
 
         === "Zero_BC"
-        
+
             **Type**: Zero_BC
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2706,9 +2703,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2717,11 +2714,11 @@ template: no_toc.html
 
 
         === "Elastic"
-        
+
             **Type**: Elastic
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2731,9 +2728,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2742,11 +2739,11 @@ template: no_toc.html
 
 
         === "Walk"
-        
+
             **Type**: Walk
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2756,9 +2753,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -2767,11 +2764,11 @@ template: no_toc.html
 
 
         === "TorsionElastic"
-        
+
             **Type**: TorsionElastic
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2781,14 +2778,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -2798,9 +2795,9 @@ template: no_toc.html
                 ```
                 /preset_problem/axis_coordiante
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `2`
 
 
@@ -2814,9 +2811,9 @@ template: no_toc.html
                 ```
                 /preset_problem/n_turns
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0.5`
 
 
@@ -2830,9 +2827,9 @@ template: no_toc.html
                 ```
                 /preset_problem/fixed_boundary
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `5`
 
 
@@ -2846,9 +2843,9 @@ template: no_toc.html
                 ```
                 /preset_problem/turning_boundary
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `6`
 
 
@@ -2862,7 +2859,7 @@ template: no_toc.html
                 ```
                 /preset_problem/bbox_center
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
 
 
@@ -2873,9 +2870,9 @@ template: no_toc.html
                     ```
                     /preset_problem/bbox_center/*
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     TODO
-                
+
                     **Default**: `0`
 
 
@@ -2887,11 +2884,11 @@ template: no_toc.html
 
 
         === "DoubleTorsionElastic"
-        
+
             **Type**: DoubleTorsionElastic
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -2901,14 +2898,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -2918,9 +2915,9 @@ template: no_toc.html
                 ```
                 /preset_problem/axis_coordiante0
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `2`
 
 
@@ -2934,9 +2931,9 @@ template: no_toc.html
                 ```
                 /preset_problem/axis_coordiante1
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `2`
 
 
@@ -2950,9 +2947,9 @@ template: no_toc.html
                 ```
                 /preset_problem/angular_v0
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0.5`
 
 
@@ -2966,9 +2963,9 @@ template: no_toc.html
                 ```
                 /preset_problem/angular_v1
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `-0.5`
 
 
@@ -2982,9 +2979,9 @@ template: no_toc.html
                 ```
                 /preset_problem/turning_boundary0
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `5`
 
 
@@ -2998,9 +2995,9 @@ template: no_toc.html
                 ```
                 /preset_problem/turning_boundary1
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `6`
 
 
@@ -3014,7 +3011,7 @@ template: no_toc.html
                 ```
                 /preset_problem/bbox_center
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
 
 
@@ -3025,9 +3022,9 @@ template: no_toc.html
                     ```
                     /preset_problem/bbox_center/*
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     TODO
-                
+
                     **Default**: `0`
 
 
@@ -3039,11 +3036,11 @@ template: no_toc.html
 
 
         === "ElasticZeroBC"
-        
+
             **Type**: ElasticZeroBC
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3053,9 +3050,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3064,11 +3061,11 @@ template: no_toc.html
 
 
         === "ElasticExact"
-        
+
             **Type**: ElasticExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3078,9 +3075,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3089,11 +3086,11 @@ template: no_toc.html
 
 
         === "ElasticCantileverExact"
-        
+
             **Type**: ElasticCantileverExact
-            ## Description
+            <h2>Description</h2>
             TODO, add displacement, E, nu, formulation, mesh_size
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3103,9 +3100,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3114,11 +3111,11 @@ template: no_toc.html
 
 
         === "CompressionElasticExact"
-        
+
             **Type**: CompressionElasticExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3128,9 +3125,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3139,11 +3136,11 @@ template: no_toc.html
 
 
         === "QuadraticElasticExact"
-        
+
             **Type**: QuadraticElasticExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3153,9 +3150,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3164,11 +3161,11 @@ template: no_toc.html
 
 
         === "LinearElasticExact"
-        
+
             **Type**: LinearElasticExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3178,9 +3175,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3189,11 +3186,11 @@ template: no_toc.html
 
 
         === "PointBasedTensor"
-        
+
             **Type**: PointBasedTensor
-            ## Description
+            <h2>Description</h2>
             TODO, add optionals
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3203,9 +3200,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3214,11 +3211,11 @@ template: no_toc.html
 
 
         === "Kernel"
-        
+
             **Type**: Kernel
-            ## Description
+            <h2>Description</h2>
             TODO, add optionals
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3228,14 +3225,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3245,9 +3242,9 @@ template: no_toc.html
                 ```
                 /preset_problem/formulation
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `''`
 
 
@@ -3261,9 +3258,9 @@ template: no_toc.html
                 ```
                 /preset_problem/n_kernels
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0`
 
 
@@ -3277,9 +3274,9 @@ template: no_toc.html
                 ```
                 /preset_problem/kernel_distance
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0`
 
 
@@ -3293,9 +3290,9 @@ template: no_toc.html
                 ```
                 /preset_problem/kernel_weights
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `''`
 
 
@@ -3304,11 +3301,11 @@ template: no_toc.html
 
 
         === "Node"
-        
+
             **Type**: Node
-            ## Description
+            <h2>Description</h2>
             TODO, add optionals
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3318,9 +3315,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3329,11 +3326,11 @@ template: no_toc.html
 
 
         === "TimeDependentScalar"
-        
+
             **Type**: TimeDependentScalar
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3343,9 +3340,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3354,11 +3351,11 @@ template: no_toc.html
 
 
         === "MinSurf"
-        
+
             **Type**: MinSurf
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3368,9 +3365,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3379,11 +3376,11 @@ template: no_toc.html
 
 
         === "Gravity"
-        
+
             **Type**: Gravity
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3393,14 +3390,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3410,11 +3407,11 @@ template: no_toc.html
 
 
         === "ConstantVelocity"
-        
+
             **Type**: ConstantVelocity
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3424,9 +3421,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3435,11 +3432,11 @@ template: no_toc.html
 
 
         === "TwoSpheres"
-        
+
             **Type**: TwoSpheres
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3449,9 +3446,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3460,11 +3457,11 @@ template: no_toc.html
 
 
         === "DrivenCavity"
-        
+
             **Type**: DrivenCavity
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3474,9 +3471,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3485,11 +3482,11 @@ template: no_toc.html
 
 
         === "DrivenCavityC0"
-        
+
             **Type**: DrivenCavityC0
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3499,9 +3496,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3510,11 +3507,11 @@ template: no_toc.html
 
 
         === "DrivenCavitySmooth"
-        
+
             **Type**: DrivenCavitySmooth
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3524,9 +3521,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3535,11 +3532,11 @@ template: no_toc.html
 
 
         === "Flow"
-        
+
             **Type**: Flow
-            ## Description
+            <h2>Description</h2>
             TODO, add inflow, outflow, inflow_amout, outflow_amout, direction, obstacle
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3549,9 +3546,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3560,11 +3557,11 @@ template: no_toc.html
 
 
         === "FlowWithObstacle"
-        
+
             **Type**: FlowWithObstacle
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3574,14 +3571,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3591,11 +3588,11 @@ template: no_toc.html
 
 
         === "CornerFlow"
-        
+
             **Type**: CornerFlow
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3605,14 +3602,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3627,11 +3624,11 @@ template: no_toc.html
 
 
         === "UnitFlowWithObstacle"
-        
+
             **Type**: UnitFlowWithObstacle
-            ## Description
+            <h2>Description</h2>
             TODO, add inflow_id, direction, no_slip
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3641,14 +3638,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3658,11 +3655,11 @@ template: no_toc.html
 
 
         === "StokesLaw"
-        
+
             **Type**: StokesLaw
-            ## Description
+            <h2>Description</h2>
             TODO, add radius
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3672,14 +3669,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3694,11 +3691,11 @@ template: no_toc.html
 
 
         === "TaylorGreenVortex"
-        
+
             **Type**: TaylorGreenVortex
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3708,14 +3705,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3725,11 +3722,11 @@ template: no_toc.html
 
 
         === "SimpleStokeProblemExact"
-        
+
             **Type**: SimpleStokeProblemExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3739,14 +3736,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3756,9 +3753,9 @@ template: no_toc.html
                 ```
                 /preset_problem/func
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0`
 
 
@@ -3767,11 +3764,11 @@ template: no_toc.html
 
 
         === "SineStokeProblemExact"
-        
+
             **Type**: SineStokeProblemExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3781,9 +3778,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3792,11 +3789,11 @@ template: no_toc.html
 
 
         === "TransientStokeProblemExact"
-        
+
             **Type**: TransientStokeProblemExact
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3806,14 +3803,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3823,9 +3820,9 @@ template: no_toc.html
                 ```
                 /preset_problem/func
                 ```
-                ## Description
+                <h2>Description</h2>
                 TODO
-            
+
                 **Default**: `0`
 
 
@@ -3839,11 +3836,11 @@ template: no_toc.html
 
 
         === "Kovnaszy"
-        
+
             **Type**: Kovnaszy
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3853,14 +3850,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3875,11 +3872,11 @@ template: no_toc.html
 
 
         === "Airfoil"
-        
+
             **Type**: Airfoil
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3889,14 +3886,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3906,11 +3903,11 @@ template: no_toc.html
 
 
         === "Lshape"
-        
+
             **Type**: Lshape
-            ## Description
+            <h2>Description</h2>
             TODO
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3920,14 +3917,14 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -3942,11 +3939,11 @@ template: no_toc.html
 
 
         === "TestProblem"
-        
+
             **Type**: TestProblem
-            ## Description
+            <h2>Description</h2>
             TODO, type, omega, is_scalar
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3956,9 +3953,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -3967,11 +3964,11 @@ template: no_toc.html
 
 
         === "BilaplacianProblemWithSolution"
-        
+
             **Type**: BilaplacianProblemWithSolution
-            ## Description
+            <h2>Description</h2>
             TODO, type, omega, is_scalar
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -3981,9 +3978,9 @@ template: no_toc.html
                 ```
                 /preset_problem/type
                 ```
-                ## Description
-                TODO
-            
+                <h2>Description</h2>
+                Type of preset problem to use.
+
                 **Options:** `['Linear', 'Quadratic', 'Cubic', 'Sine', 'Franke', 'FrankeOld', 'GenericScalarExact', 'Zero_BC', 'Elastic', 'Walk', 'TorsionElastic', 'DoubleTorsionElastic', 'ElasticZeroBC', 'ElasticExact', 'ElasticCantileverExact', 'CompressionElasticExact', 'QuadraticElasticExact', 'LinearElasticExact', 'PointBasedTensor', 'Kernel', 'Node', 'TimeDependentScalar', 'MinSurf', 'Gravity', 'ConstantVelocity', 'TwoSpheres', 'DrivenCavity', 'DrivenCavityC0', 'DrivenCavitySmooth', 'Flow', 'FlowWithObstacle', 'CornerFlow', 'UnitFlowWithObstacle', 'StokesLaw', 'TaylorGreenVortex', 'SimpleStokeProblemExact', 'SineStokeProblemExact', 'TransientStokeProblemExact', 'Kovnaszy', 'Airfoil', 'Lshape', 'TestProblem', 'BilaplacianProblemWithSolution']`
 
 
@@ -4000,11 +3997,11 @@ template: no_toc.html
         ```
         /common
         ```
-        ## Description
+        <h2>Description</h2>
         Path to common settings will patch the current file.
-    
+
         **Default**: `''`
-    
+
         **Extensions:** `['.json']`
 
 
@@ -4018,9 +4015,9 @@ template: no_toc.html
         ```
         /root_path
         ```
-        ## Description
+        <h2>Description</h2>
         Path for all relative paths, set automatically to the folder containing this json.
-    
+
         **Default**: `''`
 
 
@@ -4034,11 +4031,11 @@ template: no_toc.html
         ```
         /space
         ```
-        ## Description
+        <h2>Description</h2>
         Options related to the FE space.
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -4049,23 +4046,23 @@ template: no_toc.html
 
 
             === "`/space/discr_order` (`int`)"
-                ## Description
+                <h2>Description</h2>
                 Lagrange element order for the space for the main unknown, for all elements.
-            
+
                 **Default**: `1`
 
 
 
             === "`/space/discr_order` (`file`)"
-                ## Description
+                <h2>Description</h2>
                 Path to file containing Lagrange element order for the space for the main unknown per element.
-            
+
                 **Extensions:** `['.txt', '.bin']`
 
 
 
             === "`/space/discr_order` (`list`)"
-                ## Description
+                <h2>Description</h2>
                 List of Lagrange element order for the space for the main unknown with volume IDs.
 
 
@@ -4076,9 +4073,9 @@ template: no_toc.html
                     ```
                     /space/discr_order/*
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Lagrange element order for the a space tagged with volume ID for the main unknown.
-                    ## Required
+                    <h2>Required</h2>
 
 
 
@@ -4089,13 +4086,13 @@ template: no_toc.html
 
 
                         === "`/space/discr_order/*/id` (`int`)"
-                            ## Description
+                            <h2>Description</h2>
                             Volume selection ID to apply the discr_order to.
 
 
 
                         === "`/space/discr_order/*/id` (`list`)"
-                            ## Description
+                            <h2>Description</h2>
                             List of volume selection IDs to apply the discr_order to.
 
 
@@ -4106,7 +4103,7 @@ template: no_toc.html
                                 ```
                                 /space/discr_order/*/id/*
                                 ```
-                                ## Description
+                                <h2>Description</h2>
                                 Volume selection ID to apply the discr_order to.
 
 
@@ -4123,7 +4120,7 @@ template: no_toc.html
                         ```
                         /space/discr_order/*/order
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         Lagrange element order for the space for the main unknown, for all elements.
 
 
@@ -4143,9 +4140,9 @@ template: no_toc.html
             ```
             /space/pressure_discr_order
             ```
-            ## Description
+            <h2>Description</h2>
              Lagrange element order for the space for the pressure unknown, for all elements.
-        
+
             **Default**: `1`
 
 
@@ -4159,9 +4156,9 @@ template: no_toc.html
             ```
             /space/use_p_ref
             ```
-            ## Description
+            <h2>Description</h2>
             Perform a priori p-refinement based on element shape, as described in 'Decoupling..' paper.
-        
+
             **Default**: `False`
 
 
@@ -4175,11 +4172,11 @@ template: no_toc.html
             ```
             /space/advanced
             ```
-            ## Description
+            <h2>Description</h2>
             Advanced settings for the FE space.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -4189,9 +4186,9 @@ template: no_toc.html
                 ```
                 /space/advanced/discr_order_max
                 ```
-                ## Description
+                <h2>Description</h2>
                 Maximal discretization order in adaptive p-refinement and hp-refinement
-            
+
                 **Default**: `4`
 
 
@@ -4205,9 +4202,9 @@ template: no_toc.html
                 ```
                 /space/advanced/serendipity
                 ```
-                ## Description
+                <h2>Description</h2>
                 Use serendipity elements for quad/hex elements of degree 2.
-            
+
                 **Default**: `False`
 
 
@@ -4221,9 +4218,9 @@ template: no_toc.html
                 ```
                 /space/advanced/isoparametric
                 ```
-                ## Description
+                <h2>Description</h2>
                 Forces geometric map basis to be the same degree as the main variable basis, irrespective of the degree associated with the geom. map degrees associated with the elements of the geometry.
-            
+
                 **Default**: `False`
 
 
@@ -4237,9 +4234,9 @@ template: no_toc.html
                 ```
                 /space/advanced/use_spline
                 ```
-                ## Description
+                <h2>Description</h2>
                 Use bi/triquadratic spline basis for quad/hex elements not adjacent to polyhedral elements, see 'PolySpline..' paper for details.
-            
+
                 **Default**: `False`
 
 
@@ -4253,11 +4250,11 @@ template: no_toc.html
                 ```
                 /space/advanced/bc_method
                 ```
-                ## Description
+                <h2>Description</h2>
                 Method for imposing analytic Dirichet boundary conditions. If 'lsq' (least-squares fit), then the bc function is sampled at quadrature points, and the FEspace nodal values on the boundary are determined by minimizing L2 norm of the difference. If 'sample', then the analytic bc function is sampled at the boundary nodes.
-            
+
                 **Default**: `'lsq'`
-            
+
                 **Options:** `['lsq', 'sample']`
 
 
@@ -4271,9 +4268,9 @@ template: no_toc.html
                 ```
                 /space/advanced/n_boundary_samples
                 ```
-                ## Description
+                <h2>Description</h2>
                 Per-element number of boundary samples for analytic Dirichlet and Neumann boundary conditions.
-            
+
                 **Default**: `-1`
 
 
@@ -4287,9 +4284,25 @@ template: no_toc.html
                 ```
                 /space/advanced/quadrature_order
                 ```
-                ## Description
+                <h2>Description</h2>
                 Minimal quadrature order to use in matrix and rhs assembly; the actual order is determined as min(2*(p-1)+1,quadrature_order).
-            
+
+                **Default**: `-1`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/space/advanced/mass_quadrature_order` (`int`)"
+                ```
+                /space/advanced/mass_quadrature_order
+                ```
+                <h2>Description</h2>
+                Minimal quadrature order to use in mass matrix assembler; the actual order is determined as min(2*p+1,quadrature_order)
+
                 **Default**: `-1`
 
 
@@ -4303,11 +4316,11 @@ template: no_toc.html
                 ```
                 /space/advanced/poly_bases
                 ```
-                ## Description
+                <h2>Description</h2>
                 Type of basis to use for a polygonal element, one of MFSHarmonic, MeanValue, see 'PolySpline..' paper for details.
-            
+
                 **Default**: `'MFSHarmonic'`
-            
+
                 **Options:** `['MFSHarmonic', 'MeanValue']`
 
 
@@ -4321,9 +4334,9 @@ template: no_toc.html
                 ```
                 /space/advanced/integral_constraints
                 ```
-                ## Description
+                <h2>Description</h2>
                 Number of constraints for non-conforming polygonal basis;  0, 1, or 2; see 'PolySpline..' paper for details.
-            
+
                 **Default**: `2`
 
 
@@ -4337,9 +4350,9 @@ template: no_toc.html
                 ```
                 /space/advanced/n_harmonic_samples
                 ```
-                ## Description
+                <h2>Description</h2>
                 If MFSHarmonics is used for a polygonal element, number of collocation samples used in the basis construction;see 'PolySpline..' paper for details.
-            
+
                 **Default**: `10`
 
 
@@ -4353,9 +4366,9 @@ template: no_toc.html
                 ```
                 /space/advanced/force_no_ref_for_harmonic
                 ```
-                ## Description
+                <h2>Description</h2>
                 If true, do not do uniform global refinement if the mesh contains polygonal elements.
-            
+
                 **Default**: `False`
 
 
@@ -4369,9 +4382,9 @@ template: no_toc.html
                 ```
                 /space/advanced/B
                 ```
-                ## Description
+                <h2>Description</h2>
                 The target deviation of the error on elements from perfect element error, for a priori geometry-dependent p-refinement, see 'Decoupling .. ' paper.
-            
+
                 **Default**: `3`
 
 
@@ -4385,9 +4398,9 @@ template: no_toc.html
                 ```
                 /space/advanced/h1_formula
                 ```
-                ## Description
-                
-            
+                <h2>Description</h2>
+
+
                 **Default**: `False`
 
 
@@ -4401,9 +4414,9 @@ template: no_toc.html
                 ```
                 /space/advanced/count_flipped_els
                 ```
-                ## Description
+                <h2>Description</h2>
                 Count the number of elements with Jacobian of the geometric map not positive at quadrature points.
-            
+
                 **Default**: `True`
 
 
@@ -4424,11 +4437,11 @@ template: no_toc.html
 
 
         === "`/time` (`object`)"
-            ## Description
+            <h2>Description</h2>
             The time parameters: start time `t0`, end time `tend`, time step `dt`.
-        
+
             **Default**: `'skip'`
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -4438,9 +4451,9 @@ template: no_toc.html
                 ```
                 /time/tend
                 ```
-                ## Description
+                <h2>Description</h2>
                 Ending time
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4454,14 +4467,14 @@ template: no_toc.html
                 ```
                 /time/dt
                 ```
-                ## Description
+                <h2>Description</h2>
                 Time step size $\Delta t$
-            
+
                 **Range:** `[0, inf]`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -4471,11 +4484,11 @@ template: no_toc.html
                 ```
                 /time/t0
                 ```
-                ## Description
+                <h2>Description</h2>
                 Startning time
-            
+
                 **Default**: `0`
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4489,11 +4502,11 @@ template: no_toc.html
                 ```
                 /time/integrator
                 ```
-                ## Description
+                <h2>Description</h2>
                 Time integrator
-            
+
                 **Default**: `'ImplicitEuler'`
-            
+
                 **Options:** `['ImplicitEuler', 'BDF', 'ImplicitNewmark']`
 
 
@@ -4507,11 +4520,11 @@ template: no_toc.html
                 ```
                 /time/newmark
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for Newmark
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4521,9 +4534,9 @@ template: no_toc.html
                     ```
                     /time/newmark/gamma
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark gamma
-                
+
                     **Default**: `0.5`
 
 
@@ -4537,9 +4550,9 @@ template: no_toc.html
                     ```
                     /time/newmark/beta
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark beta
-                
+
                     **Default**: `0.25`
 
 
@@ -4556,11 +4569,11 @@ template: no_toc.html
                 ```
                 /time/BDF
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for BDF
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4570,9 +4583,9 @@ template: no_toc.html
                     ```
                     /time/BDF/steps
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     BDF order
-                
+
                     **Default**: `1`
 
 
@@ -4584,9 +4597,9 @@ template: no_toc.html
 
 
         === "`/time` (`object`)"
-            ## Description
+            <h2>Description</h2>
             The time parameters: start time `t0`, time step `dt`, number of time steps.
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -4596,9 +4609,9 @@ template: no_toc.html
                 ```
                 /time/time_steps
                 ```
-                ## Description
+                <h2>Description</h2>
                 Number of time steps
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4612,14 +4625,14 @@ template: no_toc.html
                 ```
                 /time/dt
                 ```
-                ## Description
+                <h2>Description</h2>
                 Time step size $\Delta t$
-            
+
                 **Range:** `[0, inf]`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -4629,11 +4642,11 @@ template: no_toc.html
                 ```
                 /time/t0
                 ```
-                ## Description
+                <h2>Description</h2>
                 Startning time
-            
+
                 **Default**: `0`
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4647,11 +4660,11 @@ template: no_toc.html
                 ```
                 /time/integrator
                 ```
-                ## Description
+                <h2>Description</h2>
                 Time integrator
-            
+
                 **Default**: `'ImplicitEuler'`
-            
+
                 **Options:** `['ImplicitEuler', 'BDF', 'ImplicitNewmark']`
 
 
@@ -4665,11 +4678,11 @@ template: no_toc.html
                 ```
                 /time/newmark
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for Newmark
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4679,9 +4692,9 @@ template: no_toc.html
                     ```
                     /time/newmark/gamma
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark gamma
-                
+
                     **Default**: `0.5`
 
 
@@ -4695,9 +4708,9 @@ template: no_toc.html
                     ```
                     /time/newmark/beta
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark beta
-                
+
                     **Default**: `0.25`
 
 
@@ -4714,11 +4727,11 @@ template: no_toc.html
                 ```
                 /time/BDF
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for BDF
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4728,9 +4741,9 @@ template: no_toc.html
                     ```
                     /time/BDF/steps
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     BDF order
-                
+
                     **Default**: `1`
 
 
@@ -4742,9 +4755,9 @@ template: no_toc.html
 
 
         === "`/time` (`object`)"
-            ## Description
+            <h2>Description</h2>
             The time parameters: start time `t0`, end time `tend`, number of time steps.
-            ## Required
+            <h2>Required</h2>
 
 
 
@@ -4754,9 +4767,9 @@ template: no_toc.html
                 ```
                 /time/time_steps
                 ```
-                ## Description
+                <h2>Description</h2>
                 Number of time steps
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4770,14 +4783,14 @@ template: no_toc.html
                 ```
                 /time/tend
                 ```
-                ## Description
+                <h2>Description</h2>
                 Ending time
-            
+
                 **Range:** `[0, inf]`
 
 
 
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -4787,11 +4800,11 @@ template: no_toc.html
                 ```
                 /time/t0
                 ```
-                ## Description
+                <h2>Description</h2>
                 Startning time
-            
+
                 **Default**: `0`
-            
+
                 **Range:** `[0, inf]`
 
 
@@ -4805,11 +4818,11 @@ template: no_toc.html
                 ```
                 /time/integrator
                 ```
-                ## Description
+                <h2>Description</h2>
                 Time integrator
-            
+
                 **Default**: `'ImplicitEuler'`
-            
+
                 **Options:** `['ImplicitEuler', 'BDF', 'ImplicitNewmark']`
 
 
@@ -4823,11 +4836,11 @@ template: no_toc.html
                 ```
                 /time/newmark
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for Newmark
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4837,9 +4850,9 @@ template: no_toc.html
                     ```
                     /time/newmark/gamma
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark gamma
-                
+
                     **Default**: `0.5`
 
 
@@ -4853,9 +4866,9 @@ template: no_toc.html
                     ```
                     /time/newmark/beta
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Newmark beta
-                
+
                     **Default**: `0.25`
 
 
@@ -4872,11 +4885,11 @@ template: no_toc.html
                 ```
                 /time/BDF
                 ```
-                ## Description
+                <h2>Description</h2>
                 Options for BDF
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -4886,9 +4899,9 @@ template: no_toc.html
                     ```
                     /time/BDF/steps
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     BDF order
-                
+
                     **Default**: `1`
 
 
@@ -4908,11 +4921,11 @@ template: no_toc.html
         ```
         /contact
         ```
-        ## Description
+        <h2>Description</h2>
         Contact handling parameters.
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -4922,9 +4935,9 @@ template: no_toc.html
             ```
             /contact/enabled
             ```
-            ## Description
+            <h2>Description</h2>
             True if contact handling is enabled.
-        
+
             **Default**: `False`
 
 
@@ -4938,11 +4951,11 @@ template: no_toc.html
             ```
             /contact/dhat
             ```
-            ## Description
+            <h2>Description</h2>
             Contact barrier activation distance.
-        
+
             **Default**: `0.001`
-        
+
             **Range:** `[0, inf]`
 
 
@@ -4956,9 +4969,9 @@ template: no_toc.html
             ```
             /contact/dhat_percentage
             ```
-            ## Description
+            <h2>Description</h2>
             $\hat{d}$ as percentage of the diagonal of the bounding box
-        
+
             **Default**: `0.8`
 
 
@@ -4972,11 +4985,11 @@ template: no_toc.html
             ```
             /contact/epsv
             ```
-            ## Description
+            <h2>Description</h2>
             Friction smoothing parameter.
-        
+
             **Default**: `0.001`
-        
+
             **Range:** `[0, inf]`
 
 
@@ -4990,9 +5003,9 @@ template: no_toc.html
             ```
             /contact/friction_coefficient
             ```
-            ## Description
+            <h2>Description</h2>
             Coefficient of friction (global)
-        
+
             **Default**: `0`
 
 
@@ -5009,11 +5022,11 @@ template: no_toc.html
         ```
         /solver
         ```
-        ## Description
+        <h2>Description</h2>
         The settings for the solver including linear solver, nonlinear solver, and some advanced options.
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -5023,11 +5036,11 @@ template: no_toc.html
             ```
             /solver/linear
             ```
-            ## Description
+            <h2>Description</h2>
             Settings for the linear solver.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -5037,10 +5050,12 @@ template: no_toc.html
                 ```
                 /solver/linear/solver
                 ```
-                ## Description
+                <h2>Description</h2>
                 Linear solver type.
-            
+
                 **Default**: `''`
+
+                **Options:** `['Eigen::SimplicialLDLT', 'Eigen::SparseLU', 'Eigen::CholmodSupernodalLLT', 'Eigen::UmfPackLU', 'Eigen::SuperLU', 'Eigen::PardisoLDLT', 'Eigen::PardisoLU', 'Pardiso', 'Hypre', 'AMGCL', 'Eigen::LeastSquaresConjugateGradient', 'Eigen::DGMRES', 'Eigen::ConjugateGradient', 'Eigen::BiCGSTAB', 'Eigen::GMRES', 'Eigen::MINRES']`
 
 
 
@@ -5053,10 +5068,780 @@ template: no_toc.html
                 ```
                 /solver/linear/precond
                 ```
-                ## Description
+                <h2>Description</h2>
                 Preconditioner used if using an iterative linear solver.
-            
+
                 **Default**: `''`
+
+                **Options:** `['Eigen::IdentityPreconditioner', 'Eigen::DiagonalPreconditioner', 'Eigen::IncompleteCholesky', 'Eigen::LeastSquareDiagonalPreconditioner', 'Eigen::IncompleteLUT']`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::LeastSquaresConjugateGradient` (`object`)"
+                ```
+                /solver/linear/Eigen::LeastSquaresConjugateGradient
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's Least Squares Conjugate Gradient solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::LeastSquaresConjugateGradient/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::LeastSquaresConjugateGradient/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::LeastSquaresConjugateGradient/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::LeastSquaresConjugateGradient/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::DGMRES` (`object`)"
+                ```
+                /solver/linear/Eigen::DGMRES
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's DGMRES solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::DGMRES/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::DGMRES/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::DGMRES/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::DGMRES/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::ConjugateGradient` (`object`)"
+                ```
+                /solver/linear/Eigen::ConjugateGradient
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's Conjugate Gradient solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::ConjugateGradient/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::ConjugateGradient/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::ConjugateGradient/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::ConjugateGradient/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::BiCGSTAB` (`object`)"
+                ```
+                /solver/linear/Eigen::BiCGSTAB
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's BiCGSTAB solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::BiCGSTAB/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::BiCGSTAB/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::BiCGSTAB/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::BiCGSTAB/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::GMRES` (`object`)"
+                ```
+                /solver/linear/Eigen::GMRES
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's GMRES solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::GMRES/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::GMRES/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::GMRES/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::GMRES/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Eigen::MINRES` (`object`)"
+                ```
+                /solver/linear/Eigen::MINRES
+                ```
+                <h2>Description</h2>
+                Settings for the Eigen's MINRES solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::MINRES/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Eigen::MINRES/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Eigen::MINRES/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Eigen::MINRES/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-12`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Pardiso` (`object`)"
+                ```
+                /solver/linear/Pardiso
+                ```
+                <h2>Description</h2>
+                Settings for the Pardiso solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Pardiso/mtype` (`int`)"
+                    ```
+                    /solver/linear/Pardiso/mtype
+                    ```
+                    <h2>Description</h2>
+                    Matrix type.
+
+                    **Default**: `11`
+
+                    **Options:** `[1, 2, -2, 3, 4, -4, 6, 11, 13]`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/Hypre` (`object`)"
+                ```
+                /solver/linear/Hypre
+                ```
+                <h2>Description</h2>
+                Settings for the Hypre solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Hypre/max_iter` (`int`)"
+                    ```
+                    /solver/linear/Hypre/max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of iterations.
+
+                    **Default**: `1000`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Hypre/pre_max_iter` (`int`)"
+                    ```
+                    /solver/linear/Hypre/pre_max_iter
+                    ```
+                    <h2>Description</h2>
+                    Maximum number of pre iterations.
+
+                    **Default**: `1`
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/Hypre/tolerance` (`float`)"
+                    ```
+                    /solver/linear/Hypre/tolerance
+                    ```
+                    <h2>Description</h2>
+                    Convergence tolerance.
+
+                    **Default**: `1e-10`
+
+
+
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/linear/AMGCL` (`object`)"
+                ```
+                /solver/linear/AMGCL
+                ```
+                <h2>Description</h2>
+                Settings for the AMGCL solver.
+
+                **Default**: `None`
+                <h2>Optional</h2>
+
+
+
+
+
+                ??? json-spec "`/solver/linear/AMGCL/solver` (`object`)"
+                    ```
+                    /solver/linear/AMGCL/solver
+                    ```
+                    <h2>Description</h2>
+                    Solver settings for the AMGCL.
+
+                    **Default**: `None`
+                    <h2>Optional</h2>
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/solver/tol` (`float`)"
+                        ```
+                        /solver/linear/AMGCL/solver/tol
+                        ```
+                        <h2>Description</h2>
+                        Convergence tolerance.
+
+                        **Default**: `1e-10`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/solver/maxiter` (`int`)"
+                        ```
+                        /solver/linear/AMGCL/solver/maxiter
+                        ```
+                        <h2>Description</h2>
+                        Maximum number of iterations.
+
+                        **Default**: `1000`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/solver/type` (`string`)"
+                        ```
+                        /solver/linear/AMGCL/solver/type
+                        ```
+                        <h2>Description</h2>
+                        Type of solver to use.
+
+                        **Default**: `'cg'`
+
+
+
+
+
+
+
+
+
+
+
+                ??? json-spec "`/solver/linear/AMGCL/precond` (`object`)"
+                    ```
+                    /solver/linear/AMGCL/precond
+                    ```
+                    <h2>Description</h2>
+                    Preconditioner settings for the AMGCL.
+
+                    **Default**: `None`
+                    <h2>Optional</h2>
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/relax` (`object`)"
+                        ```
+                        /solver/linear/AMGCL/precond/relax
+                        ```
+                        <h2>Description</h2>
+                        Preconditioner settings for the AMGCL.
+
+                        **Default**: `None`
+                        <h2>Optional</h2>
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/degree` (`int`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/degree
+                            ```
+                            <h2>Description</h2>
+                            Degree of the polynomial.
+
+                            **Default**: `16`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/type` (`string`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/type
+                            ```
+                            <h2>Description</h2>
+                            Type of relaxation to use.
+
+                            **Default**: `'chebyshev'`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/power_iters` (`int`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/power_iters
+                            ```
+                            <h2>Description</h2>
+                            Number of power iterations.
+
+                            **Default**: `100`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/higher` (`float`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/higher
+                            ```
+                            <h2>Description</h2>
+                            Higher level relaxation.
+
+                            **Default**: `2`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/lower` (`float`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/lower
+                            ```
+                            <h2>Description</h2>
+                            Lower level relaxation.
+
+                            **Default**: `0.008333333333`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/relax/scale` (`bool`)"
+                            ```
+                            /solver/linear/AMGCL/precond/relax/scale
+                            ```
+                            <h2>Description</h2>
+                            Scale.
+
+                            **Default**: `True`
+
+
+
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/class` (`string`)"
+                        ```
+                        /solver/linear/AMGCL/precond/class
+                        ```
+                        <h2>Description</h2>
+                        Type of preconditioner to use.
+
+                        **Default**: `'amg'`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/max_levels` (`int`)"
+                        ```
+                        /solver/linear/AMGCL/precond/max_levels
+                        ```
+                        <h2>Description</h2>
+                        Maximum number of levels.
+
+                        **Default**: `6`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/direct_coarse` (`bool`)"
+                        ```
+                        /solver/linear/AMGCL/precond/direct_coarse
+                        ```
+                        <h2>Description</h2>
+                        Use direct solver for the coarsest level.
+
+                        **Default**: `False`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/ncycle` (`int`)"
+                        ```
+                        /solver/linear/AMGCL/precond/ncycle
+                        ```
+                        <h2>Description</h2>
+                        Number of cycles.
+
+                        **Default**: `2`
+
+
+
+
+
+
+
+
+                    ??? json-spec "`/solver/linear/AMGCL/precond/coarsening` (`object`)"
+                        ```
+                        /solver/linear/AMGCL/precond/coarsening
+                        ```
+                        <h2>Description</h2>
+                        Coarsening parameters.
+
+                        **Default**: `None`
+                        <h2>Optional</h2>
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/coarsening/type` (`string`)"
+                            ```
+                            /solver/linear/AMGCL/precond/coarsening/type
+                            ```
+                            <h2>Description</h2>
+                            Coarsening type.
+
+                            **Default**: `'smoothed_aggregation'`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/coarsening/estimate_spectral_radius` (`bool`)"
+                            ```
+                            /solver/linear/AMGCL/precond/coarsening/estimate_spectral_radius
+                            ```
+                            <h2>Description</h2>
+                            Should the spectral radius be estimated.
+
+                            **Default**: `True`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/coarsening/relax` (`float`)"
+                            ```
+                            /solver/linear/AMGCL/precond/coarsening/relax
+                            ```
+                            <h2>Description</h2>
+                            Coarsening relaxation.
+
+                            **Default**: `1`
+
+
+
+
+
+
+
+
+                        ??? json-spec "`/solver/linear/AMGCL/precond/coarsening/aggr` (`object`)"
+                            ```
+                            /solver/linear/AMGCL/precond/coarsening/aggr
+                            ```
+                            <h2>Description</h2>
+                            Aggregation settings.
+
+                            **Default**: `None`
+                            <h2>Optional</h2>
+
+
+
+
+
+                            ??? json-spec "`/solver/linear/AMGCL/precond/coarsening/aggr/eps_strong` (`float`)"
+                                ```
+                                /solver/linear/AMGCL/precond/coarsening/aggr/eps_strong
+                                ```
+                                <h2>Description</h2>
+                                Aggregation epsilon strong.
+
+                                **Default**: `0`
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5072,11 +5857,11 @@ template: no_toc.html
             ```
             /solver/nonlinear
             ```
-            ## Description
+            <h2>Description</h2>
             Settings for nonlinear solver. Interior-loop linear solver settings are defined in the solver/linear section.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -5086,11 +5871,11 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/solver
                 ```
-                ## Description
+                <h2>Description</h2>
                 Nonlinear solver type
-            
+
                 **Default**: `'newton'`
-            
+
                 **Options:** `['newton', 'lbfgs']`
 
 
@@ -5104,9 +5889,9 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/f_delta
                 ```
-                ## Description
+                <h2>Description</h2>
                 Stopping criterion: minimal change of the energy f for the iterations to continue.
-            
+
                 **Default**: `1e-10`
 
 
@@ -5120,10 +5905,26 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/grad_norm
                 ```
-                ## Description
+                <h2>Description</h2>
                 Stopping criterion: Minimal gradient norm for the iterations to continue.
-            
+
                 **Default**: `1e-08`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/nonlinear/first_grad_norm_tol` (`float`)"
+                ```
+                /solver/nonlinear/first_grad_norm_tol
+                ```
+                <h2>Description</h2>
+                Minimal gradient norm for the iterations to not start, assume we already are at a minimum.
+
+                **Default**: `1e-10`
 
 
 
@@ -5136,9 +5937,9 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/max_iterations
                 ```
-                ## Description
+                <h2>Description</h2>
                 Maximum number of iterations for a nonlinear solve.
-            
+
                 **Default**: `1000`
 
 
@@ -5152,9 +5953,9 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/use_grad_norm
                 ```
-                ## Description
+                <h2>Description</h2>
                 If true, enable gradient-norm stopping criterion, absolute (if relative_gradient is false), or relative to the initial gradient magnitude before the first iteration, otherwise.
-            
+
                 **Default**: `True`
 
 
@@ -5168,9 +5969,9 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/relative_gradient
                 ```
-                ## Description
+                <h2>Description</h2>
                 If true, use relative gradient norm threshold, use absolute otherwise
-            
+
                 **Default**: `False`
 
 
@@ -5184,11 +5985,11 @@ template: no_toc.html
                 ```
                 /solver/nonlinear/line_search
                 ```
-                ## Description
+                <h2>Description</h2>
                 Settings for line-search in the nonlinear solver
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -5198,11 +5999,11 @@ template: no_toc.html
                     ```
                     /solver/nonlinear/line_search/method
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Line-search type
-                
+
                     **Default**: `'backtracking'`
-                
+
                     **Options:** `['armijo', 'armijo_alt', 'backtracking', 'more_thuente', 'none']`
 
 
@@ -5216,9 +6017,9 @@ template: no_toc.html
                     ```
                     /solver/nonlinear/line_search/use_grad_norm_tol
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     When the energy is smaller than use_grad_norm_tol, line-search uses norm of gradient instead of energy
-                
+
                     **Default**: `0.0001`
 
 
@@ -5238,11 +6039,11 @@ template: no_toc.html
             ```
             /solver/augmented_lagrangian
             ```
-            ## Description
+            <h2>Description</h2>
             Parameters for the AL for imposing Dirichlet BCs. If the bc are not imposable, we add $w\|u - bc\|^2$ to the energy ($u$ is the solution at the Dirichlet nodes and $bc$ are the Dirichlet values). After convergence, we try to impose bc again, in case of failure we double $w$ until `max_weight`.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -5252,9 +6053,9 @@ template: no_toc.html
                 ```
                 /solver/augmented_lagrangian/initial_weight
                 ```
-                ## Description
+                <h2>Description</h2>
                 Initial weight for AL
-            
+
                 **Default**: `1000000.0`
 
 
@@ -5268,9 +6069,9 @@ template: no_toc.html
                 ```
                 /solver/augmented_lagrangian/max_weight
                 ```
-                ## Description
+                <h2>Description</h2>
                 Maximum AL weight
-            
+
                 **Default**: `100000000000.0`
 
 
@@ -5284,9 +6085,9 @@ template: no_toc.html
                 ```
                 /solver/augmented_lagrangian/force
                 ```
-                ## Description
+                <h2>Description</h2>
                 Always enable AL, even when BC can be imposed
-            
+
                 **Default**: `False`
 
 
@@ -5303,11 +6104,11 @@ template: no_toc.html
             ```
             /solver/contact
             ```
-            ## Description
+            <h2>Description</h2>
             Settings for contact handling in the solver.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -5317,11 +6118,11 @@ template: no_toc.html
                 ```
                 /solver/contact/CCD
                 ```
-                ## Description
+                <h2>Description</h2>
                 CCD options
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -5331,11 +6132,11 @@ template: no_toc.html
                     ```
                     /solver/contact/CCD/broad_phase
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Broad phase collision-detection algorithm to use
-                
+
                     **Default**: `'hash_grid'`
-                
+
                     **Options:** `['hash_grid', 'HG', 'brute_force', 'BF', 'spatial_hash', 'SH', 'sweep_and_tiniest_queue', 'STQ', 'sweep_and_tiniest_queue_gpu', 'STQ_GPU']`
 
 
@@ -5349,9 +6150,9 @@ template: no_toc.html
                     ```
                     /solver/contact/CCD/tolerance
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     CCD tolerance
-                
+
                     **Default**: `1e-06`
 
 
@@ -5361,14 +6162,14 @@ template: no_toc.html
 
 
 
-                ??? json-spec "`/solver/contact/CCD/max_iterations` (`float`)"
+                ??? json-spec "`/solver/contact/CCD/max_iterations` (`int`)"
                     ```
                     /solver/contact/CCD/max_iterations
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Maximum number of iterations for continuous collision detection
-                
-                    **Default**: `1000000.0`
+
+                    **Default**: `1000000`
 
 
 
@@ -5384,9 +6185,9 @@ template: no_toc.html
                 ```
                 /solver/contact/friction_iterations
                 ```
-                ## Description
+                <h2>Description</h2>
                 Maximum number of update iterations for lagged friction formulation (see IPC paper).
-            
+
                 **Default**: `1`
 
 
@@ -5400,9 +6201,9 @@ template: no_toc.html
                 ```
                 /solver/contact/friction_convergence_tol
                 ```
-                ## Description
+                <h2>Description</h2>
                 Tolerence for friction convergence
-            
+
                 **Default**: `0.01`
 
 
@@ -5417,23 +6218,18 @@ template: no_toc.html
 
 
                 === "`/solver/contact/barrier_stiffness` (`string`)"
-                    ## Description
+                    <h2>Description</h2>
                     How coefficient of clamped log-barrier function for contact is updated
-                
+
                     **Default**: `'adaptive'`
-                
+
                     **Options:** `['adaptive']`
 
 
 
                 === "`/solver/contact/barrier_stiffness` (`float`)"
-                    ## Description
+                    <h2>Description</h2>
                     The coefficient of clamped log-barrier function value when not adaptive
-
-
-
-
-
 
 
 
@@ -5449,9 +6245,9 @@ template: no_toc.html
             ```
             /solver/ignore_inertia
             ```
-            ## Description
+            <h2>Description</h2>
             Ignore inertia in time dependent. Used for doing incremental load.
-        
+
             **Default**: `False`
 
 
@@ -5465,11 +6261,11 @@ template: no_toc.html
             ```
             /solver/advanced
             ```
-            ## Description
+            <h2>Description</h2>
             Advanced settings for the solver
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -5479,9 +6275,9 @@ template: no_toc.html
                 ```
                 /solver/advanced/cache_size
                 ```
-                ## Description
+                <h2>Description</h2>
                 Maximum number of elements when the assembly values are cached.
-            
+
                 **Default**: `900000`
 
 
@@ -5495,10 +6291,26 @@ template: no_toc.html
                 ```
                 /solver/advanced/lump_mass_matrix
                 ```
-                ## Description
+                <h2>Description</h2>
                 If true, use diagonal mass matrix with entries on the diagonal equal to the sum of entries in each row of the full mass matrix.}
-            
+
                 **Default**: `False`
+
+
+
+
+
+
+
+
+            ??? json-spec "`/solver/advanced/lagged_regularization_weight` (`float`)"
+                ```
+                /solver/advanced/lagged_regularization_weight
+                ```
+                <h2>Description</h2>
+                Weight used to regularize singular static problems.
+
+                **Default**: `0`
 
 
 
@@ -5517,11 +6329,11 @@ template: no_toc.html
         ```
         /boundary_conditions
         ```
-        ## Description
+        <h2>Description</h2>
         The settings for boundary conditions.
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -5532,19 +6344,19 @@ template: no_toc.html
 
 
             === "`/boundary_conditions/rhs` (`float`)"
-                ## Description
+                <h2>Description</h2>
                 Right-hand side of the system being solved for scalar-valued PDEs
 
 
 
             === "`/boundary_conditions/rhs` (`string`)"
-                ## Description
+                <h2>Description</h2>
                 Right-hand side of the system being solved as a function of $x,y,z,t$.
 
 
 
             === "`/boundary_conditions/rhs` (`list`)"
-                ## Description
+                <h2>Description</h2>
                 Right-hand side of the system being solved for vector-valued PDEs.
 
 
@@ -5556,15 +6368,15 @@ template: no_toc.html
 
 
                     === "`/boundary_conditions/rhs/*` (`float`)"
-                        ## Description
+                        <h2>Description</h2>
                         Right-hand side of the system being solved, value.
-                    
+
                         **Default**: `0`
 
 
 
                     === "`/boundary_conditions/rhs/*` (`string`)"
-                        ## Description
+                        <h2>Description</h2>
                         Right-hand side of the system being solved as a function of $x,y,z,t$.
 
 
@@ -5581,7 +6393,7 @@ template: no_toc.html
             ```
             /boundary_conditions/dirichlet_boundary
             ```
-            ## Description
+            <h2>Description</h2>
             The list of Dirichlet boundary conditions for the main variable. Elements of the list are assignment pairs (ID, value) where ID is assigned by surface selection.
 
 
@@ -5593,11 +6405,11 @@ template: no_toc.html
 
 
                 === "`/boundary_conditions/dirichlet_boundary/*` (`object`)"
-                    ## Description
+                    <h2>Description</h2>
                     Dirichlet boundary condition.
-                
+
                     **Default**: `None`
-                    ## Required
+                    <h2>Required</h2>
 
 
 
@@ -5608,15 +6420,15 @@ template: no_toc.html
 
 
                         === "`/boundary_conditions/dirichlet_boundary/*/id` (`int`)"
-                            ## Description
+                            <h2>Description</h2>
                             ID of Dirichlet boundary condition from surface selection.
 
 
 
                         === "`/boundary_conditions/dirichlet_boundary/*/id` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             select all ids.
-                        
+
                             **Options:** `['all']`
 
 
@@ -5630,7 +6442,7 @@ template: no_toc.html
                         ```
                         /boundary_conditions/dirichlet_boundary/*/value
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         Values of Dirichlet boundary condition, length 1 for scalar-valued pde, 2/3 for vector-valued PDEs depending on the dimension.
 
 
@@ -5642,13 +6454,13 @@ template: no_toc.html
 
 
                             === "`/boundary_conditions/dirichlet_boundary/*/value/*` (`string`)"
-                                ## Description
+                                <h2>Description</h2>
                                 Values of Dirichlet boundary condition for each dimension as a function of $x,y,z,t$.
 
 
 
                             === "`/boundary_conditions/dirichlet_boundary/*/value/*` (`float`)"
-                                ## Description
+                                <h2>Description</h2>
                                 Values of Dirichlet boundary condition for each dimension.
 
 
@@ -5656,7 +6468,7 @@ template: no_toc.html
 
 
 
-                    ## Optional
+                    <h2>Optional</h2>
 
 
 
@@ -5666,7 +6478,7 @@ template: no_toc.html
                         ```
                         /boundary_conditions/dirichlet_boundary/*/dimension
                         ```
-                        ## Description
+                        <h2>Description</h2>
                         List of 2 (2D) or 3 (3D) boolean values indicating if the Dirichlet boundary condition  is applied for a particular dimension.
 
 
@@ -5677,9 +6489,9 @@ template: no_toc.html
                             ```
                             /boundary_conditions/dirichlet_boundary/*/dimension/*
                             ```
-                            ## Description
+                            <h2>Description</h2>
                             value
-                        
+
                             **Default**: `True`
 
 
@@ -5691,7 +6503,7 @@ template: no_toc.html
 
 
                 === "`/boundary_conditions/dirichlet_boundary/*` (`string`)"
-                    ## Description
+                    <h2>Description</h2>
                     Dirichlet boundary condition loaded from a file, <node_id> <bc values>, 1 for scalar, 2/3 for tensor depending on dimension.
 
 
@@ -5708,7 +6520,7 @@ template: no_toc.html
             ```
             /boundary_conditions/neumann_boundary
             ```
-            ## Description
+            <h2>Description</h2>
             The list of Neumann boundary conditions for the main variable. Elements of the list are assignment pairs (ID, value) where ID is assigned by surface selection.
 
 
@@ -5719,11 +6531,11 @@ template: no_toc.html
                 ```
                 /boundary_conditions/neumann_boundary/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 Neumann boundary condition
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -5733,9 +6545,9 @@ template: no_toc.html
                     ```
                     /boundary_conditions/neumann_boundary/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID of Neumann boundary condition
-                
+
                     **Default**: `1`
 
 
@@ -5749,7 +6561,7 @@ template: no_toc.html
                     ```
                     /boundary_conditions/neumann_boundary/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Values of Neumann boundary condition for each dimension
 
 
@@ -5761,17 +6573,17 @@ template: no_toc.html
 
 
                         === "`/boundary_conditions/neumann_boundary/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of Neumann boundary condition for each dimension as function of $x,y,z,t$
-                        
+
                             **Default**: `''`
 
 
 
                         === "`/boundary_conditions/neumann_boundary/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of Neumann boundary condition for each dimension
-                        
+
                             **Default**: `0`
 
 
@@ -5794,7 +6606,7 @@ template: no_toc.html
             ```
             /boundary_conditions/pressure_boundary
             ```
-            ## Description
+            <h2>Description</h2>
             Dirichlet boundary condition for normal * value for vector-valued PDEs.
 
 
@@ -5805,11 +6617,11 @@ template: no_toc.html
                 ```
                 /boundary_conditions/pressure_boundary/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 pressure BC entry
-            
+
                 **Default**: `None`
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -5819,7 +6631,7 @@ template: no_toc.html
                     ```
                     /boundary_conditions/pressure_boundary/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID for the pressure Neumann boundary condition
 
 
@@ -5833,7 +6645,7 @@ template: no_toc.html
                     ```
                     /boundary_conditions/pressure_boundary/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Values of pressure Neumann boundary condition
 
 
@@ -5845,13 +6657,13 @@ template: no_toc.html
 
 
                         === "`/boundary_conditions/pressure_boundary/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of pressure Neumann boundary condition as a function of $x,y,z,t$
 
 
 
                         === "`/boundary_conditions/pressure_boundary/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of pressure Neumann boundary condition
 
 
@@ -5859,7 +6671,7 @@ template: no_toc.html
 
 
 
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -5880,7 +6692,7 @@ template: no_toc.html
             ```
             /boundary_conditions/obstacle_displacements
             ```
-            ## Description
+            <h2>Description</h2>
             The list of obstacle displacements. Each entry is an (ID, value) pair, where ids are set by selection.
 
 
@@ -5891,11 +6703,11 @@ template: no_toc.html
                 ```
                 /boundary_conditions/obstacle_displacements/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 Obstacle displacements
-            
+
                 **Default**: `None`
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -5905,7 +6717,7 @@ template: no_toc.html
                     ```
                     /boundary_conditions/obstacle_displacements/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID of Obstacle displacements
 
 
@@ -5919,7 +6731,7 @@ template: no_toc.html
                     ```
                     /boundary_conditions/obstacle_displacements/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Values of Obstacle displacements for each dimension
 
 
@@ -5931,13 +6743,13 @@ template: no_toc.html
 
 
                         === "`/boundary_conditions/obstacle_displacements/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of Obstacle displacements for each dimension as a function of $x,y,z,t$
 
 
 
                         === "`/boundary_conditions/obstacle_displacements/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             Values of Obstacle displacements for each dimension
 
 
@@ -5963,11 +6775,11 @@ template: no_toc.html
         ```
         /initial_conditions
         ```
-        ## Description
+        <h2>Description</h2>
         Initial conditions for the time-dependent problem, imposed on the main variable, its derivative or second derivative
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -5977,7 +6789,7 @@ template: no_toc.html
             ```
             /initial_conditions/solution
             ```
-            ## Description
+            <h2>Description</h2>
             initial solution
 
 
@@ -5988,11 +6800,11 @@ template: no_toc.html
                 ```
                 /initial_conditions/solution/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 A list of (ID, value) pairs defining the initial conditions for the main variable values. Ids are set by selection, and values can be floats or formulas.
-            
+
                 **Default**: `None`
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -6002,7 +6814,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/solution/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID from volume selections
 
 
@@ -6016,7 +6828,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/solution/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     value of the solution
 
 
@@ -6028,13 +6840,13 @@ template: no_toc.html
 
 
                         === "`/initial_conditions/solution/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             value
 
 
 
                         === "`/initial_conditions/solution/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             as a function of $x,y,z,t$
 
 
@@ -6057,7 +6869,7 @@ template: no_toc.html
             ```
             /initial_conditions/velocity
             ```
-            ## Description
+            <h2>Description</h2>
             initial velocity
 
 
@@ -6068,11 +6880,11 @@ template: no_toc.html
                 ```
                 /initial_conditions/velocity/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 A list of (ID, value) pairs defining the initial conditions for the first derivative of the main variable values. Ids are set by selection, and values can be floats or formulas.
-            
+
                 **Default**: `None`
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -6082,7 +6894,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/velocity/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID from volume selections
 
 
@@ -6096,7 +6908,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/velocity/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     value od the initial velocity
 
 
@@ -6108,13 +6920,13 @@ template: no_toc.html
 
 
                         === "`/initial_conditions/velocity/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             value
 
 
 
                         === "`/initial_conditions/velocity/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             value as a function of $x,y,z,t$
 
 
@@ -6137,7 +6949,7 @@ template: no_toc.html
             ```
             /initial_conditions/acceleration
             ```
-            ## Description
+            <h2>Description</h2>
             initial acceleration
 
 
@@ -6148,11 +6960,11 @@ template: no_toc.html
                 ```
                 /initial_conditions/acceleration/*
                 ```
-                ## Description
+                <h2>Description</h2>
                 entries
-            
+
                 **Default**: `None`
-                ## Required
+                <h2>Required</h2>
 
 
 
@@ -6162,7 +6974,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/acceleration/*/id
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     ID from volume selections
 
 
@@ -6176,7 +6988,7 @@ template: no_toc.html
                     ```
                     /initial_conditions/acceleration/*/value
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     value
 
 
@@ -6188,15 +7000,15 @@ template: no_toc.html
 
 
                         === "`/initial_conditions/acceleration/*/value/*` (`float`)"
-                            ## Description
+                            <h2>Description</h2>
                             value
-                        
+
                             **Default**: `0`
 
 
 
                         === "`/initial_conditions/acceleration/*/value/*` (`string`)"
-                            ## Description
+                            <h2>Description</h2>
                             value as a function of $x,y,z,t$
 
 
@@ -6222,11 +7034,11 @@ template: no_toc.html
         ```
         /output
         ```
-        ## Description
+        <h2>Description</h2>
         output settings
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -6236,9 +7048,9 @@ template: no_toc.html
             ```
             /output/json
             ```
-            ## Description
+            <h2>Description</h2>
             File name for json output statistics on time/error/etc.
-        
+
             **Default**: `''`
 
 
@@ -6252,11 +7064,11 @@ template: no_toc.html
             ```
             /output/paraview
             ```
-            ## Description
+            <h2>Description</h2>
             Output in paraview format
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -6266,9 +7078,9 @@ template: no_toc.html
                 ```
                 /output/paraview/file_name
                 ```
-                ## Description
+                <h2>Description</h2>
                 Paraview output file name
-            
+
                 **Default**: `''`
 
 
@@ -6282,9 +7094,9 @@ template: no_toc.html
                 ```
                 /output/paraview/vismesh_rel_area
                 ```
-                ## Description
+                <h2>Description</h2>
                 relative area for the upsampled visualisation mesh
-            
+
                 **Default**: `1e-05`
 
 
@@ -6298,9 +7110,9 @@ template: no_toc.html
                 ```
                 /output/paraview/skip_frame
                 ```
-                ## Description
+                <h2>Description</h2>
                 export every skip_frame-th frames for time dependent simulations
-            
+
                 **Default**: `1`
 
 
@@ -6314,9 +7126,9 @@ template: no_toc.html
                 ```
                 /output/paraview/high_order_mesh
                 ```
-                ## Description
+                <h2>Description</h2>
                 Enables/disables high-order output for paraview. Supported only for isoparametric or linear meshes with high-odrer solutions.
-            
+
                 **Default**: `True`
 
 
@@ -6330,9 +7142,9 @@ template: no_toc.html
                 ```
                 /output/paraview/volume
                 ```
-                ## Description
+                <h2>Description</h2>
                 Export volumetric mesh
-            
+
                 **Default**: `True`
 
 
@@ -6346,9 +7158,9 @@ template: no_toc.html
                 ```
                 /output/paraview/surface
                 ```
-                ## Description
+                <h2>Description</h2>
                 Export surface mesh (in 2d polygon)
-            
+
                 **Default**: `False`
 
 
@@ -6362,9 +7174,9 @@ template: no_toc.html
                 ```
                 /output/paraview/wireframe
                 ```
-                ## Description
+                <h2>Description</h2>
                 Export the wireframe of the mesh
-            
+
                 **Default**: `False`
 
 
@@ -6378,11 +7190,11 @@ template: no_toc.html
                 ```
                 /output/paraview/options
                 ```
-                ## Description
+                <h2>Description</h2>
                 Optional fields in the output
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -6392,9 +7204,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/material
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     If true, write out material values sampled on the vertices of the mesh
-                
+
                     **Default**: `False`
 
 
@@ -6408,9 +7220,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/body_ids
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Export volumes ids
-                
+
                     **Default**: `False`
 
 
@@ -6424,9 +7236,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/contact_forces
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     If true, write out contact forces for surface
-                
+
                     **Default**: `False`
 
 
@@ -6440,9 +7252,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/friction_forces
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     If true, write out friction forces for surface
-                
+
                     **Default**: `False`
 
 
@@ -6456,9 +7268,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/velocity
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     If true, write out velocities
-                
+
                     **Default**: `False`
 
 
@@ -6472,9 +7284,9 @@ template: no_toc.html
                     ```
                     /output/paraview/options/acceleration
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     If true, write out accelerations
-                
+
                     **Default**: `False`
 
 
@@ -6494,11 +7306,11 @@ template: no_toc.html
             ```
             /output/data
             ```
-            ## Description
+            <h2>Description</h2>
             File names to write output data to.
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -6508,9 +7320,9 @@ template: no_toc.html
                 ```
                 /output/data/solution
                 ```
-                ## Description
+                <h2>Description</h2>
                 Main variable solution. Unrolled [xyz, xyz, ...] using PolyFEM ordering. If reorder_nodes exports the solution with the same order the vertices of the input mesh as a #n x d file
-            
+
                 **Default**: `''`
 
 
@@ -6524,9 +7336,9 @@ template: no_toc.html
                 ```
                 /output/data/full_mat
                 ```
-                ## Description
+                <h2>Description</h2>
                 System matrix without boundary conditions. Doesn't work for nonlinear problems
-            
+
                 **Default**: `''`
 
 
@@ -6540,9 +7352,9 @@ template: no_toc.html
                 ```
                 /output/data/stiffness_mat
                 ```
-                ## Description
+                <h2>Description</h2>
                 System matrix with boundary conditions. Doesn't work for nonlinear problems
-            
+
                 **Default**: `''`
 
 
@@ -6556,9 +7368,9 @@ template: no_toc.html
                 ```
                 /output/data/stress_mat
                 ```
-                ## Description
+                <h2>Description</h2>
                 Exports stress
-            
+
                 **Default**: `''`
 
 
@@ -6572,9 +7384,9 @@ template: no_toc.html
                 ```
                 /output/data/u_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 Writes the complete solution in PolyFEM format, used to restart the sim
-            
+
                 **Default**: `''`
 
 
@@ -6588,9 +7400,9 @@ template: no_toc.html
                 ```
                 /output/data/v_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 Writes the complete velocity in PolyFEM format, used to restart the sim
-            
+
                 **Default**: `''`
 
 
@@ -6604,9 +7416,9 @@ template: no_toc.html
                 ```
                 /output/data/a_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 Writes the complete acceleration in PolyFEM format, used to restart the sim
-            
+
                 **Default**: `''`
 
 
@@ -6620,9 +7432,9 @@ template: no_toc.html
                 ```
                 /output/data/mises
                 ```
-                ## Description
+                <h2>Description</h2>
                 File name to write per-node Von Mises stress values to.
-            
+
                 **Default**: `''`
 
 
@@ -6636,9 +7448,9 @@ template: no_toc.html
                 ```
                 /output/data/nodes
                 ```
-                ## Description
+                <h2>Description</h2>
                 Writes the FEM nodes
-            
+
                 **Default**: `''`
 
 
@@ -6652,11 +7464,11 @@ template: no_toc.html
                 ```
                 /output/data/advanced
                 ```
-                ## Description
+                <h2>Description</h2>
                 advanced options
-            
+
                 **Default**: `None`
-                ## Optional
+                <h2>Optional</h2>
 
 
 
@@ -6666,9 +7478,9 @@ template: no_toc.html
                     ```
                     /output/data/advanced/reorder_nodes
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     Reorder nodes accodring to input
-                
+
                     **Default**: `False`
 
 
@@ -6688,11 +7500,11 @@ template: no_toc.html
             ```
             /output/advanced
             ```
-            ## Description
+            <h2>Description</h2>
             Additional output options
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -6702,9 +7514,9 @@ template: no_toc.html
                 ```
                 /output/advanced/timestep_prefix
                 ```
-                ## Description
+                <h2>Description</h2>
                 Prefix for output file names for each time step, the final file is step_i.[vtu|vtm] where i is the time index.
-            
+
                 **Default**: `'step_'`
 
 
@@ -6718,9 +7530,9 @@ template: no_toc.html
                 ```
                 /output/advanced/sol_on_grid
                 ```
-                ## Description
+                <h2>Description</h2>
                 exports the solution sampled on a grid, specify the grid spacing
-            
+
                 **Default**: `-1`
 
 
@@ -6734,9 +7546,9 @@ template: no_toc.html
                 ```
                 /output/advanced/compute_error
                 ```
-                ## Description
+                <h2>Description</h2>
                 Enables the computation of the error. If no reference solution is provided, return the norms of the solution
-            
+
                 **Default**: `True`
 
 
@@ -6750,9 +7562,9 @@ template: no_toc.html
                 ```
                 /output/advanced/sol_at_node
                 ```
-                ## Description
+                <h2>Description</h2>
                 Write out solution values at a specific node. the values will be written in the output json file
-            
+
                 **Default**: `-1`
 
 
@@ -6766,9 +7578,9 @@ template: no_toc.html
                 ```
                 /output/advanced/vis_boundary_only
                 ```
-                ## Description
+                <h2>Description</h2>
                 saves only elements touching the boundaries
-            
+
                 **Default**: `False`
 
 
@@ -6782,9 +7594,9 @@ template: no_toc.html
                 ```
                 /output/advanced/curved_mesh_size
                 ```
-                ## Description
+                <h2>Description</h2>
                 upsample curved edges to compute mesh size
-            
+
                 **Default**: `False`
 
 
@@ -6798,9 +7610,9 @@ template: no_toc.html
                 ```
                 /output/advanced/save_solve_sequence_debug
                 ```
-                ## Description
+                <h2>Description</h2>
                 saves AL internal steps, for debugging
-            
+
                 **Default**: `False`
 
 
@@ -6814,9 +7626,9 @@ template: no_toc.html
                 ```
                 /output/advanced/save_time_sequence
                 ```
-                ## Description
+                <h2>Description</h2>
                 saves timesteps
-            
+
                 **Default**: `True`
 
 
@@ -6830,9 +7642,9 @@ template: no_toc.html
                 ```
                 /output/advanced/save_nl_solve_sequence
                 ```
-                ## Description
+                <h2>Description</h2>
                 saves obj after every nonlinear iteration, for debugging
-            
+
                 **Default**: `False`
 
 
@@ -6846,9 +7658,9 @@ template: no_toc.html
                 ```
                 /output/advanced/spectrum
                 ```
-                ## Description
+                <h2>Description</h2>
                 exports the spectrum of the matrix in the output json. Works only if POLYSOLVE_WITH_SPECTRA is enabled
-            
+
                 **Default**: `False`
 
 
@@ -6865,11 +7677,11 @@ template: no_toc.html
             ```
             /output/reference
             ```
-            ## Description
+            <h2>Description</h2>
             Write out the analytic/numerical ground-truth solution and or its gradient
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -6879,7 +7691,7 @@ template: no_toc.html
                 ```
                 /output/reference/solution
                 ```
-                ## Description
+                <h2>Description</h2>
                 reference solution used to compute errors
 
 
@@ -6890,9 +7702,9 @@ template: no_toc.html
                     ```
                     /output/reference/solution/*
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     value as a function of $x,y,z,t$
-                
+
                     **Default**: `''`
 
 
@@ -6909,7 +7721,7 @@ template: no_toc.html
                 ```
                 /output/reference/gradient
                 ```
-                ## Description
+                <h2>Description</h2>
                 gradient of the reference solution to compute errors
 
 
@@ -6920,9 +7732,9 @@ template: no_toc.html
                     ```
                     /output/reference/gradient/*
                     ```
-                    ## Description
+                    <h2>Description</h2>
                     value as a function of $x,y,z,t$
-                
+
                     **Default**: `''`
 
 
@@ -6945,11 +7757,11 @@ template: no_toc.html
         ```
         /input
         ```
-        ## Description
+        <h2>Description</h2>
         input data
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
@@ -6959,11 +7771,11 @@ template: no_toc.html
             ```
             /input/data
             ```
-            ## Description
+            <h2>Description</h2>
             input to restart time dependent sim
-        
+
             **Default**: `None`
-            ## Optional
+            <h2>Optional</h2>
 
 
 
@@ -6973,9 +7785,9 @@ template: no_toc.html
                 ```
                 /input/data/u_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 input solution
-            
+
                 **Default**: `''`
 
 
@@ -6989,9 +7801,9 @@ template: no_toc.html
                 ```
                 /input/data/v_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 input velocity
-            
+
                 **Default**: `''`
 
 
@@ -7005,9 +7817,9 @@ template: no_toc.html
                 ```
                 /input/data/a_path
                 ```
-                ## Description
+                <h2>Description</h2>
                 input acceleration
-            
+
                 **Default**: `''`
 
 
@@ -7023,27 +7835,27 @@ template: no_toc.html
 
 
 
-    ??? json-spec "`/authen_t1` (`object`)"
+    ??? json-spec "`/tests` (`object`)"
         ```
-        /authen_t1
+        /tests
         ```
-        ## Description
+        <h2>Description</h2>
         Used to test to compare different norms of solutions.
-    
+
         **Default**: `None`
-        ## Optional
+        <h2>Optional</h2>
 
 
 
 
 
-        ??? json-spec "`/authen_t1/err_h1` (`float`)"
+        ??? json-spec "`/tests/err_h1` (`float`)"
             ```
-            /authen_t1/err_h1
+            /tests/err_h1
             ```
-            ## Description
+            <h2>Description</h2>
             Reference h1 solution's norm.
-        
+
             **Default**: `0`
 
 
@@ -7053,13 +7865,13 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/err_h1_semi` (`float`)"
+        ??? json-spec "`/tests/err_h1_semi` (`float`)"
             ```
-            /authen_t1/err_h1_semi
+            /tests/err_h1_semi
             ```
-            ## Description
+            <h2>Description</h2>
             Reference h1 seminorm solution's norm.
-        
+
             **Default**: `0`
 
 
@@ -7069,13 +7881,13 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/err_l2` (`float`)"
+        ??? json-spec "`/tests/err_l2` (`float`)"
             ```
-            /authen_t1/err_l2
+            /tests/err_l2
             ```
-            ## Description
+            <h2>Description</h2>
             Reference $L^2$ solution's norm.
-        
+
             **Default**: `0`
 
 
@@ -7085,13 +7897,13 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/err_linf` (`float`)"
+        ??? json-spec "`/tests/err_linf` (`float`)"
             ```
-            /authen_t1/err_linf
+            /tests/err_linf
             ```
-            ## Description
+            <h2>Description</h2>
             Reference $L^\infty$ solution's norm.
-        
+
             **Default**: `0`
 
 
@@ -7101,13 +7913,13 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/err_linf_grad` (`float`)"
+        ??? json-spec "`/tests/err_linf_grad` (`float`)"
             ```
-            /authen_t1/err_linf_grad
+            /tests/err_linf_grad
             ```
-            ## Description
+            <h2>Description</h2>
             Reference $L^\infty$ solution's gradient norm.
-        
+
             **Default**: `0`
 
 
@@ -7117,13 +7929,13 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/err_lp` (`float`)"
+        ??? json-spec "`/tests/err_lp` (`float`)"
             ```
-            /authen_t1/err_lp
+            /tests/err_lp
             ```
-            ## Description
+            <h2>Description</h2>
             Reference $L^8$ solution's gradient norm.
-        
+
             **Default**: `0`
 
 
@@ -7133,14 +7945,41 @@ template: no_toc.html
 
 
 
-        ??? json-spec "`/authen_t1/margin` (`float`)"
+        ??? json-spec "`/tests/margin` (`float`)"
             ```
-            /authen_t1/margin
+            /tests/margin
             ```
-            ## Description
+            <h2>Description</h2>
             Reference tolerance used in tests.
-        
-            **Default**: `0`
+
+            **Default**: `1e-05`
+
+
+
+
+
+
+        ??? json-spec "`/tests/time_steps`"
+            ```
+            /tests/time_steps
+            ```
+
+
+            === "`/tests/time_steps` (`int`)"
+                <h2>Description</h2>
+                Number of time steps to test.
+
+                **Default**: `1`
+
+                **Range:** `[1, inf]`
+
+
+
+            === "`/tests/time_steps` (`string`)"
+                <h2>Description</h2>
+                Number of time steps to test.
+
+                **Options:** `['all', 'static']`
 
 
 
