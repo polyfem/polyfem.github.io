@@ -75,6 +75,20 @@ where $C$ is the elasticity tensor
     \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \qquad F[u] = \nabla u + I
 \]
 
+### Viscous Damping
+* **Constants:** `phi`/`psi`
+* **Description:** an extra energy that represents dissipation, adding to the elastic energy in transient problems
+
+\[
+    R(F,\dot{F})=\psi \|\dot{E}(F,\dot{F})\|^2+\frac{\phi}{2}\text{tr}^2\dot{E}(F,\dot{F}) \qquad F[u] = \nabla u + I,\ E[u] = \frac{1}{2}(F^TF-I)
+\]
+
+which corresponds to the viscous Piola-Kirchhoff stress
+
+\[
+    P=F(2\psi\dot{E}+\phi\text{tr}(\dot{E})I)=\nabla_2 R(F,\dot{F})
+\]
+
 ### Stokes (mixed)
 * **Constants:** `viscosity` $\nu$
 * **Description:** solve for
