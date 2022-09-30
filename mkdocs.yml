@@ -103,6 +103,7 @@ nav:
     - Docs: polyfempy_doc.md
   - Tutorials:
     - Getting Started: tutorials/getting_started.md
+    - IPC Quick Start Guide: tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md
     - Multi-Material: tutorials/multi-material/multi-material.md
     - Screwing a Bolt into a Nut: tutorials/screw/screw.md
     - Robotics:
