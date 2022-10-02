@@ -17,7 +17,7 @@ You can also use the `--help` flag to see all the available options.
 
 <!-- We will assume all the example JSON files are in a directory `tutorial`. -->
 
-All files used in this example can be found [here](https://github.com/polyfem/polyfem.github.io/tree/docs/docs/tutorials/ipc_quick_start_guide/input).
+All files used in this tutorial can be found [here](https://github.com/polyfem/polyfem.github.io/tree/docs/docs/tutorials/ipc_quick_start_guide/input).
 
 ### IPC Default Parameters
 
@@ -26,9 +26,9 @@ Since many of the default parameters in PolyFEM differ from those in the origina
 !!! todo
     Describe what each of the default parameters controls.
 
-## Hello World
+## Hello, World!
 
-Let us start with a "Hello World" example of two cubes falling onto a ground plane.
+Let us start with a "Hello, World!" example of two cubes falling onto a ground plane.
 
 The input JSON for this scene can be found at [`2-cubes-falling.json`](input/2-cubes-falling.json). To run this example, use the following command:
 
@@ -45,7 +45,7 @@ sim.pvd step_0.vtm step_0.vtu [...] step_200.vtm step_200.vtu
 
 We can open the PVD file using [ParaView](https://www.paraview.org/) and play the animation to visualize the simulation:
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/2-cubes-falling.mp4" type="video/mp4">
 </video>
 
@@ -100,7 +100,7 @@ We can change these parameters for all objects in the scene by changing Young's 
 
 This will make Young’s modulus 10x larger than the default while keeping density and Poisson’s ratio the same. Let’s see what we get:
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/stiffer.mp4" type="video/mp4">
 </video>
 
@@ -116,11 +116,11 @@ We can also set different materials for different objects:
 
 We replace our single `"materials"` object with a list of objects with `"id"` keys. These IDs correspond to the `"volume_selection"` from earlier. In general, `"volume_selection"` allows us to select a subset of the mesh's elements and assign a volume ID to them. In this case, we assign a uniform ID to all elements in the cube mesh. With the first cube getting an ID of 1 and the second getting an ID of 2. We then use these volume IDs to assign different materials to each cube. The first cube gets a material that is 3× heavier and 1000× stiffer. While the second cube gets the original material.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/heavy-top.mp4" type="video/mp4">
 </video>
 
-Here we rendered softer material with a lighter yellow color. As we see the top box is nearly rigid now and the bottom box deforms more. Even with this super stiff material PolyFEM stays robust and accurate.
+Here we rendered softer material with a light yellow color. As we see the top box is nearly rigid now and the bottom box deforms more. Even with this super stiff material PolyFEM stays robust and accurate.
 
 ### Simulation Time and Time Step Size
 
@@ -136,7 +136,7 @@ One option to get more energetic animation (while sticking with implicit Euler s
 
 The `"time"` parameter here controls time step size `"dt": 0.005`, which results in a more energetic animation:
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/smaller-dt.mp4" type="video/mp4">
 </video>
 
@@ -148,19 +148,19 @@ One of the exciting features of IPC and PolyFEM is that it is robust enough to s
 {% include "input/larger-dt.json" %}
 ```
 
-The animation now is composed of only 5 frames, 1 for each second. As we see numerical damping is so large that the cubes are barely bouncing.
+The animation now is composed of only five frames, one for each second. As we see numerical damping is so large that the cubes are barely bouncing.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/larger-dt.mp4" type="video/mp4">
 </video>
 
 ## Initial Velocity
 
-To set nonzero initial velocities for objects, we need to specify them as `"initial_consitions"`.
+To set nonzero initial velocities for objects, we need to specify them as `"initial_conditions"`.
 
 ### Initial Linear Velocity
 
-For example, we can set the initial velocity of the top cube to be $-20~\frac{\text{m}}{\text{s}}$ in the negative y direction:
+For example, we can set the initial velocity of the top cube to be $-20~\frac{\text{m}}{\text{s}}$ in the y direction:
 
 ```json
 {% include "input/initial-linear-velocity.json" %}
@@ -168,7 +168,7 @@ For example, we can set the initial velocity of the top cube to be $-20~\frac{\t
 
 Again here we are using the volume IDs to select the top cube.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/initial-linear-velocity.mp4" type="video/mp4">
 </video>
 
@@ -209,7 +209,7 @@ In the JSON we encode this as a string containing the expression:
 
 and voila now the top cube is spinning!
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/initial-angular-velocity.mp4" type="video/mp4">
 </video>
 
@@ -230,7 +230,7 @@ Notice that we changed the `"volume_selection"` to `"surface_selection"` because
 
 We set the obstacle's displacement to `["t", "t", "t"]` which means the obstacle will translate with a velocity of $[1, 1, 1]$ m/s.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/translating-obstacle.mp4" type="video/mp4">
 </video>
 
@@ -271,7 +271,7 @@ As an example, here we kinematically rotate the second cube with an angular velo
 {% include "input/rotating-obstacle.json" %}
 ```
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/rotating-obstacle.mp4" type="video/mp4">
 </video>
 
@@ -294,7 +294,7 @@ If we script the motion of an object, then for a closed surface the interior tes
 
 This is equivalent to using a volumetric mesh because PolyFEM automatically extracts and uses the surface for obstacles.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/rotating-obstacle-surface.mp4" type="video/mp4">
 </video>
 
@@ -306,7 +306,7 @@ This script replaces the cube with a single triangle (zero volume):
 {% include "input/rotating-obstacle-triangle.json" %}
 ```
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/rotating-obstacle-triangle.mp4" type="video/mp4">
 </video>
 
@@ -320,12 +320,12 @@ This script uses the same single triangle but only with its edges. Here we also 
 
 The `"extract": "edges"` specifies that only the edges of the triangle mesh should be used.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/rotating-obstacle-edges.mp4" type="video/mp4">
 </video>
 
 !!! note
-    Alternativly, you can load an edge mesh directly by specifying an `.obj` file with line elements. For example, this is the same edge mesh in OBJ format:
+    Alternatively, you can load an edge mesh directly by specifying an `.obj` file with line elements. For example, this is the same edge mesh in OBJ format:
     ```
     v -0.5 0 -0.5
     v  0.5 0 -0.5
@@ -345,12 +345,12 @@ Even crazier, this script uses the same single triangle but only with its points
 
 We use the `"extract": "points"` to only use the points of the triangle.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/rotating-obstacle-points.mp4" type="video/mp4">
 </video>
 
 !!! note
-    Alternativly, you can load a point cloud directly by specifying an `.obj` file with no triangles or edges. For example, this is the same point cloud in OBJ format:
+    Alternatively, you can load a point cloud directly by specifying an `.obj` file with no triangles or edges. For example, this is the same point cloud in OBJ format:
     ```
     v -0.5 0 -0.5
     v  0.5 0 -0.5
@@ -447,7 +447,7 @@ For example, we can specify a folder path to the kinematic collision objects:
 
 In the specified folder `sequence` we provide the mesh files of the triangle wire in each frame as `*.obj`. Note that the input sequence must maintain the correct vertex correspondence to the one throughout the entire sequence.
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/mesh-sequence.mp4" type="video/mp4">
 </video>
 
@@ -463,7 +463,7 @@ The following script sets the upper box in the hello world example right above t
 {% include "input/smaller-distance.json" %}
 ```
 
-<video autoplay loop muted playsinline controls>
+<video loop muted controls>
 <source src="../videos/smaller-distance.mp4" type="video/mp4">
 </video>
 
@@ -481,22 +481,19 @@ For example, the following script uses the `time/integrator` key to specify impl
 {% include "input/newmark.json" %}
 ```
 
-!!! todo
-    PolyFEM does not currently support Rayleigh damping which can be used for better stability of Newmark integration.
+<!-- !!! todo
+    PolyFEM does not currently support Rayleigh damping which can be used for better stability of Newmark integration. -->
 
-<!-- Here we also enable lagged Rayleigh damping using `dampingRatio`. Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. The number (say $x$) followed by `dampingRatio` is a relative parameter for the damping stiffness. The absolute damping stiffness will be set to $\tfrac{3}{4} x \Delta t^3$, where if $x=1$, the beginning of time step Newmark incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness. To alternately directly set damping stiffness use the keyword `dampingStiff`. -->
+Here we also enable lagged Rayleigh damping using `"damping_ratio"`. Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. The number (say $x$) following `"damping_ratio"` is a relative parameter for the damping stiffness. The absolute damping stiffness will be set to $\tfrac{3}{4} x \Delta t^3$, where if $x=1$, the beginning of time step Newmark incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness.
+<!-- To alternately directly set damping stiffness use the keyword `dampingStiff`. -->
 
 Here in this demo note that we used a smaller time step size at `0.005`s as this is better for the stability of Newmark integration.
 
-<!-- | Newmark, `"damping_ratio": 0.1` | Newmark, `"damping_ratio": 0.2` |
+| Newmark, `"damping_ratio": 0.1` | Newmark, `"damping_ratio": 0.2` |
 |:-------------------------------:|:-------------------------------:|
-| <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.1.gif"/> | <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.2.gif"/> |
+| <video loop muted controls><source src="../videos/newmark-damping_ratio=0.1.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/newmark-damping_ratio=0.2.mp4" type="video/mp4"></video> |
 | Newmark, `"damping_ratio": 0.4` | Backwar Euler |
-| <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.4.gif"/> | <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BE.gif"/> | -->
-
-| Backwar Euler | Implicit Newmark |
-|:-------------:|:----------------:|
-| <video autoplay loop muted playsinline controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> | <video autoplay loop muted playsinline controls><source src="../videos/newmark.mp4" type="video/mp4"></video> |
+| <video loop muted controls><source src="../videos/newmark-damping_ratio=0.4.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> |
 
 ### Accuracy Control
 
@@ -548,9 +545,9 @@ We can set `"friction_iterations"` set to `-1` to iterate until the tangent oper
 
 For collision obstacles (including closed surfaces), one can directly specify the path to their mesh files (`.obj`, `.stl`, `.ply`, etc.) in the script to use it.
 
-For the simulated objects that are tetrahedral meshes, PolyFEM supports [MSH files](https://gmsh.info/doc/texinfo/gmsh.html#File-formats). PolyFEM supports both ASCII and binary encoded version 2.2 and 4.1 files through the use of [MshIO](https://github.com/qnzhou/MshIO).
+For the simulated objects that are tetrahedral meshes, PolyFEM supports [MSH](https://gmsh.info/doc/texinfo/gmsh.html#File-formats) files. PolyFEM supports both ASCII and binary encoded version 2.2 and 4.1 files through the use of [MshIO](https://github.com/qnzhou/MshIO).
 
-To generate tetrahedral mesh from a triangle mesh, we recommend using [fTetWild](https://github.com/wildmeshing/fTetWild).
+To generate a tetrahedral mesh from a triangle mesh, we recommend using [fTetWild](https://github.com/wildmeshing/fTetWild).
 
 ### Restarting a Simulation
 
