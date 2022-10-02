@@ -2,7 +2,8 @@
 
 <div class="md-source-date"><small>Author: Zachary Ferguson</small></div>
 
-This is a retelling of the original [IPC Quick Start Guide](https://github.com/ipc-sim/IPC/wiki) from the original IPC codebase.
+!!! note
+    This is a retelling of the original [IPC Quick Start Guide](https://github.com/ipc-sim/IPC/wiki) from the original IPC codebase.
 
 ## Setup
 
@@ -16,7 +17,7 @@ You can also use the `--help` flag to see all the available options.
 
 <!-- We will assume all the example JSON files are in a directory `tutorial`. -->
 
-All files used in this example can be found [here](input/).
+All files used in this example can be found [here](https://github.com/polyfem/polyfem.github.io/tree/docs/docs/tutorials/ipc_quick_start_guide/input).
 
 ### IPC Default Parameters
 
