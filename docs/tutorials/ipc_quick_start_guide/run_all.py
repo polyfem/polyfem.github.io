@@ -1,8 +1,9 @@
+import sys
 from collections import namedtuple
 import pathlib
 import subprocess
-import recordclass
 
+sys.path.append("/home/zachary/Development/simrender")  # noqa
 import render
 
 polyfem_bin = "/home/zachary/Development/polyfem/build/release/PolyFEM_bin"
@@ -13,19 +14,7 @@ videos_dir = pathlib.Path(__file__).parent / "videos"
 output_dir.mkdir(exist_ok=True, parents=True)
 videos_dir.mkdir(exist_ok=True, parents=True)
 
-RenderArgs = recordclass.recordclass(
-    "RenderArgs", ["input", "output", "width", "height", "fps", "drop_frames", "bg_color"])
-render_args = RenderArgs(
-    input=[],
-    output="anim.mp4",
-    width=1920,
-    height=1080,
-    fps=None,
-    drop_frames=0,
-    bg_color=[46, 48, 62, 255]
-)
-
-for script in input_dir.glob("*.json"):
+for script in input_dir.glob("backwards-euler.json"):
     if script.name == "ipc-defaults.json":
         continue
 
@@ -41,6 +30,10 @@ for script in input_dir.glob("*.json"):
         "--log_level", "error"
     ])
 
-    render_args.input = list((output_dir / script.stem).glob("*.pvd"))
-    render_args.output = [videos_dir / (script.stem + ".mp4")]
+    render_args = render.parse_args([
+        "--input", str(list((output_dir / script.stem).glob("*.pvd"))[0]),
+        "--output", str(videos_dir / (script.stem + ".mp4")),
+        "--bg-color", "46", "48", "62", "255",
+        "--base-zoom", "2"
+    ])
     render.main(render_args)

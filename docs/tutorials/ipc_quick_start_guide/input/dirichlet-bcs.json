@@ -1,0 +1,6 @@
+{
+    "common": "2-cubes-falling.json",
+    "boundary_conditions": {
+        "dirichlet_boundary": ["dirichlet-bcs.txt"]
+    }
+}

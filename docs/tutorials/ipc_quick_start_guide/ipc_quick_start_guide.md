@@ -358,6 +358,12 @@ We use the `"extract": "points"` to only use the points of the triangle.
 
 ## Boundary Conditions
 
+!!! todo
+    PolyFEM currently only lets you assign time-dependent boundary conditions to faces (instead of points) on the boundary. This prevents us from setting up the exact scene shown in the original IPC quick start guide.
+
+    For information about how to setup boundary conditions see [here](../getting_started.md#boundary-conditions).
+
+<!--
 ### Dirichlet
 
 For a simulated volumetric object, sometimes we script the motion of part of its vertices as Dirichlet boundary conditions. This can be simply realized by adding `DBC` commands to the end of each shape line just like how we assign object materials individually:
@@ -424,141 +430,133 @@ ground 0.1 0
 After the required parameters to the `DBC` or `NBC` command, the next numbers are when to start the BC and when to end the BC. By default, the BC is applied from time t=0 to infinity. The end time can be omitted and will default to infinity:
 
 <img src=https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BCTimeRange.gif width="768px">
+-->
 
 ## Advanced Settings
 
 ### Input Mesh Sequence
-The ways of setting kinematic collision object motion described earlier so far support just simple translations or rotations. To support more complex scripting of kinematic collision objects, IPC allows use of input mesh file sequences.
 
-For example, we can specify a folder path to the kinematic collision objects: (`input/tutorialExamples/advanced/2cubesFall_rotateCO_meshSeq.txt`)
-```diff
-shapes input 2
-input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-- input/triMeshes/triangle.seg 0 1 0  0 0 0  2 2 2  angularVelocity 10 90 0
-+ input/triMeshes/triangle.seg 0 1 0  0 0 0  2 2 2  meshSeq input/segMeshes/sequence
+The way of setting kinematic collision obstacles displacements described earlier is expressive but a bit verbose. To support more complex scripting of kinematic collision objects, PolyFEM allows the use of input mesh file sequences.
 
-selfFric 0.1
+For example, we can specify a folder path to the kinematic collision objects:
 
-ground 0.1 0
-
-zoom 0.3
-```
-In the specified folder `input/segMeshes/sequence` we provide the mesh files (here .seg, or .obj that can be automatically transformed by IPC) of the triangle wire in each frame as n.seg or n.obj, where n is the number of the frame. Here we simply use the mesh output of our triangle wire kinematic collision object simulation, and we are able to reproduce that simulation by loading the triangle wire mesh sequence files! Note that the input sequence must maintain the correct vertex correspondence to the one specified in the `shapes` block.
-
-### Attaching Configuration Initialization
-To initialize "attached" configurations, IPC requires a tiny positive gap as it does not support the 0-distance configurations.
-
-The following script sets the upper box in the hello world example right above the lower one: (`input/tutorialExamples/advanced/2cubesFall_attach.txt`)
-```diff
-shapes input 2
-- input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-+ input/tetMeshes/cube.msh 0 2.001 0  0 0 0  1 1 1
-input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1
-
-selfFric 0.1
-
-ground 0.1 0
+```json
+{% include "input/mesh-sequence.json" %}
 ```
 
-![attach](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/attach.gif)
+In the specified folder `sequence` we provide the mesh files of the triangle wire in each frame as `*.obj`. Note that the input sequence must maintain the correct vertex correspondence to the one throughout the entire sequence.
 
-Note the initial gap here is barely visible. In our experience we can set IPC’s contact gap as small as practically needed; i.e., even small enough to fool the ray intersection checks in rendering algorithms. Thus rendering of transparent objects with IPC's small gaps can even have artifacts for valid non-intersecting configurations of the contact surfaces (so, for example, to render the IPC “squeeze out” example, we manually set offsets in the renderer despite having physically correct non-intersecting shapes). Similarly, no two objects can have 0-distance separation : ); even atoms are at distance from each other.
+<video autoplay loop muted playsinline controls>
+<source src="../videos/mesh-sequence.mp4" type="video/mp4">
+</video>
+
+
+<!-- ### Attaching Configuration Initialization -->
+### Smaller Distance Initialization
+
+IPC requires a tiny positive gap as it does not support the 0-distance configurations.
+
+The following script sets the upper box in the hello world example right above the lower one:
+
+```json
+{% include "input/smaller-distance.json" %}
+```
+
+<video autoplay loop muted playsinline controls>
+<source src="../videos/smaller-distance.mp4" type="video/mp4">
+</video>
+
+Note the initial gap here is barely visible. In our experience we can set IPC’s contact gap as small as practically needed; i.e., even small enough to fool the ray intersection checks in rendering algorithms.
+<!-- Thus rendering of transparent objects with IPC's small gaps can even have artifacts for valid non-intersecting configurations of the contact surfaces (so, for example, to render the IPC “squeeze out” example, we manually set offsets in the renderer despite having physically correct non-intersecting shapes).  -->
+Similarly, no two objects can have 0-distance separation : ); even atoms are at distance from each other.
 
 ### Newmark Time-Integration
-Along with implicit Euler, IPC currently supports implicit Newmark time integration. Other time integrators will be added soon. Implicit Newmark can be applied for improved energy preservation and control. To change the time integrator we can simply set the time integration method.
 
-For example, the following script uses `timeIntegration` keyword to set Newmark (`NM`) to be the time integrator for the stiffer boxes scene without friction. By default, `timeIntegration` is set to `BE` (backward Euler). `input/tutorialExamples/advanced/2cubesFall_NM.txt`:
-```diff
-shapes input 2
-input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1
+Along with implicit Euler, PolyFEM supports other time integration methods such as implicit Newmark time integration. Implicit Newmark can be applied for improved energy preservation and control. To change the time integrator we can simply set the time integration method.
 
-ground 0 0
+For example, the following script uses the `time/integrator` key to specify implicit Newmark (`"ImplicitNewmark"`) should be the time integrator for the stiffer boxes scene without friction. By default, `"integrator"` is set to `ImplicitEuler` (backward Euler).
 
-stiffness 1e6 0.4
-
-time 5 0.005
-
-+ timeIntegration NM
-+ dampingRatio 0.1
+```json
+{% include "input/newmark.json" %}
 ```
-Here we also enable lagged Rayleigh damping using `dampingRatio`. Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. The number (say x) followed by `dampingRatio` is a relative parameter for the damping stiffness. The absolute damping stiffness will be set to 0.75 x dt^3, where if x=1, the beginning of time step Newmark incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness. To alternately directly set damping stiffness use the keyword `dampingStiff`.
+
+!!! todo
+    PolyFEM does not currently support Rayleigh damping which can be used for better stability of Newmark integration.
+
+<!-- Here we also enable lagged Rayleigh damping using `dampingRatio`. Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. The number (say $x$) followed by `dampingRatio` is a relative parameter for the damping stiffness. The absolute damping stiffness will be set to $\tfrac{3}{4} x \Delta t^3$, where if $x=1$, the beginning of time step Newmark incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness. To alternately directly set damping stiffness use the keyword `dampingStiff`. -->
+
 Here in this demo note that we used a smaller time step size at `0.005`s as this is better for the stability of Newmark integration.
-<table>
-    <tr>
-        <th>Newmark, dampingRatio 0.1</th>
-        <th>Newmark, dampingRatio 0.2</th>
-    </tr>
-    <tr>
-        <td><img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.1.gif"/></td>
-        <td><img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.2.gif"/></td>
-    </tr>
-    <tr>
-        <th>Newmark, dampingRatio 0.4</th>
-        <th>Backward Euler</th>
-    </tr>
-    <tr>
-        <td><img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.4.gif"/></td>
-        <td><img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BE.gif"/></td>
-    </tr>
-</table>
+
+<!-- | Newmark, `"damping_ratio": 0.1` | Newmark, `"damping_ratio": 0.2` |
+|:-------------------------------:|:-------------------------------:|
+| <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.1.gif"/> | <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.2.gif"/> |
+| Newmark, `"damping_ratio": 0.4` | Backwar Euler |
+| <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NM0.4.gif"/> | <img src="https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BE.gif"/> | -->
+
+| Backwar Euler | Implicit Newmark |
+|:-------------:|:----------------:|
+| <video autoplay loop muted playsinline controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> | <video autoplay loop muted playsinline controls><source src="../videos/newmark.mp4" type="video/mp4"></video> |
 
 ### Accuracy Control
 
 #### Time Integration Accuracy
-Time integration accuracy determines how accurate the dynamic time step solve is satisfied. To set the requested time integration accuracy, we can use the `tol` keyword to set Newton tolerance on the infinity norm of the Newton increment in the velocity unit (scaled with bounding box size).
 
-By default, IPC uses
+Nonlinear solver accuracy determines how accurate the dynamic time step solve is satisfied. To set the requested nonlinear solver accuracy, we can use the `solver/nonlinear/grad_norm` key to set Newton tolerance on the infinity norm of the Newton increment.
+
+So far, we have used
+
+```json
+{
+    "solver": {
+        "nonlinear": {
+            "grad_norm": 1e-05
+        }
+    }
+}
 ```
-tol 1
-1e-2
-```
-where the number following `tol` is the number of tolerances provided, here we provide `1` tolerance which is `1e-2`. This will be set to all time-steps where, with a bounding box diagonal length l, the solver will stop once the current Newton increment cannot change any nodal velocity larger than 1e-2l m/s even if a full step is taken.
 
-For experimentation, if multiple tolerances are provided, IPC will apply them in sequence to different time steps. When the time step number exceeds the number of tolerances provided, IPC will use the last provided tolerance for those frames.
-
-In our experiments, `1e-2` is a relatively large tolerance that consistently provides visually good results without artifacts like early stopping or jittering. We’ve also tested IPC convergence to time-integration accuracies down to `1e-6`. These enable improved accuracy for specific applications, but note that compute costs can then likewise also be more expensive.
+The solver will stop once the current Newton increment cannot change any nodal position larger than `1e-5` m even if a full step is taken. Reducing this improves accuracy, but note that the compute cost can then go up.
 
 #### Contact Accuracy
-There are 3 additional accuracies for IPC. Each controls a contact accuracy in IPC: the distance (`dHat`) that IPC sees objects as touching/attaching to exert contact forces; the relative tangent velocity (`epsv`) determining where IPC sees the touching objects as not sliding and so exerts static friction forces; and the maximum amount of friction iterations (`fricIterAmt`) that IPC updates friction tangent and normal forces.
 
-By default IPC uses
+There are three additional accuracies for IPC. Each controls a contact accuracy in IPC: the barrier activation distance (`"dhat"`) which IPC uses to determine if objects are in contact and exert contact forces; the tangent velocity (`"epsv"`) determining where IPC sees the touching objects as not sliding and so exerts static friction forces; and the maximum amount of friction iterations (`"friction_iterations"`) that IPC updates friction tangent and normal forces.
+
+By default PolyFEM uses
+```json
+{
+    "contact": {
+        "dhat": 1e-3,
+        "epsv": 1e-3
+    },
+    "solver": {
+        "contact": {
+            "friction_iterations": 1
+        }
+    }
+}
 ```
-dHat 1e-3
 
-epsv 1e-3
-fricIterAmt 1
-```
-Similar to Newton tolerance above, `dHat` and `epsv` are both scaled on bounding box size l, which means by default when objects are at a distance smaller than `1e-3`l m there exists contact forces, and 2 attached objects with smaller than `1e-3`l m/s relative tangent velocity will have static friction forces.
+!!! note
+    Unlike the original IPC code, these values are **not** scaled by the bounding box size.
 
-The default setting provides a good trade-off between accuracy and efficiency, where there are no visible gaps, no obvious sliding artifacts, or friction force in inaccurate directions. The roller examples and hitting card house examples are all running with this default setting. We’ve tested `dHat` down to `5e-8` (Masonry arch example), `epsv` down to `1e-5` (stable card house example), and fricIterAmt set to 0 (until tangent operator and normal force converges) to obtain even more accurate results. Note that IPC does not guarantee convergence for `fricIterAmt 0`, in practice for more accurate friction in large deformation or high-speed impact scenes, `fricIterAmt` at `2`~`4` so far appears generally sufficient.
+The default setting provides a good trade-off between accuracy and efficiency, where there are no visible gaps, no obvious sliding artifacts, or friction force in inaccurate directions.
+
+We can set `"friction_iterations"` set to `-1` to iterate until the tangent operator and normal force converges to obtain even more accurate results. Note that IPC does not guarantee convergence for this case. In practice, for more accurate friction in large deformation or high-speed impact scenes, `"friction_iterations"` at `2`~`4` so far appears generally sufficient.
 
 ### Use Your Own Mesh
-For codimensional collision objects (including closed surfaces), one can directly specify the path to their own mesh files (.obj, .seg, or .pt) in the script to use it.
 
-For the simulated objects that are tetrahedral meshes, IPC supports [MSH files](https://gmsh.info/doc/texinfo/gmsh.html#File-formats). IPC supports both ASCII and binary encoded version 2.2 and 4.1 files through the use of [MshIO](https://github.com/qnzhou/MshIO). IPC also supports ASCII version 4.0 MSH files via a custom reader and writer (`IglUtils::readTetMesh_msh4()` and `IglUtils::saveTetMesh_msh4()` in `Utils/IglUtils.cpp`).
+For collision obstacles (including closed surfaces), one can directly specify the path to their mesh files (`.obj`, `.stl`, `.ply`, etc.) in the script to use it.
 
-If one has a watertight surface mesh, we provide a convenient interface to tetrahedralize the mesh with Tetgen:
-In the root directory, run command
-```
-./src/Projects/MeshProcessing/meshprocessing 0 path_to_input_triMesh.obj 3 1e10 0
-```
-Here the last 2 arguments are the maximum allowed tetrahedral element volume, and whether to insert more points on the surface for better-shaped elements (0 means “do not insert”).
-The output will be `path_to_input_triMesh.msh` in the same folder as the input obj file, and the output .msh file is ready to be used by IPC.
+For the simulated objects that are tetrahedral meshes, PolyFEM supports [MSH files](https://gmsh.info/doc/texinfo/gmsh.html#File-formats). PolyFEM supports both ASCII and binary encoded version 2.2 and 4.1 files through the use of [MshIO](https://github.com/qnzhou/MshIO).
+
+To generate tetrahedral mesh from a triangle mesh, we recommend using [fTetWild](https://github.com/wildmeshing/fTetWild).
 
 ### Restarting a Simulation
 
-IPC saves status files at the end of each time step. These files encode the vertex position, velocities, and accelerations as well as the time step number. You can use these files to resume and/or continue the simulation. To do this add the following line to the config script:
-
-```
-restart <path/to/status>
-```
-
-where `<path/to/status>` is the path to the output status file (either absolute or relative to the input config scripts path).
+To learn how to restart a simulation, see [here](../../json.md#restart).
 
 ## More Simulation Examples
-Above are all settings we’ve explored to design IPC examples. We provide the scripts of all IPC examples in `input/paperExamples` and `input/otherExamples` for reference. Here note that these scripts also apply a `script` command that utilizes different C++ implementations for setting boundary conditions and/or collision objects together with additional commands that are not covered in this introduction. These are essentially not all that different from setting them via the scripting files introduced above. Please see our README for a complete description of all script setting options currently available.
 
-It is likely that the settings covered in this document still cannot fullfill some more complex needs. In such cases the best solution is probably to take full control by modifying C++ source codes. `Config.cpp` and `AnimScripter.cpp` are the 2 main classes where we process simulation settings, `TimeStepper/Optimizer.cpp` is where the core simulation algorithm is implemented, and `main.cpp` contains the entry of the program.
+Hopefully, now you know the basics of how to use IPC within PolyFEM. For more examples, we have set up all the simulations in the original IPC paper (and more!) and you can find them all [here](https://github.com/polyfem/polyfem-data/tree/main/contact/examples).
 
-Last but not least, you are always welcome to post Github issues if anything is still unclear!
+If you have any further questions, feel free to post an [issue](https://github.com/polyfem/polyfem/issues) on the PolyFEM GitHub repo.

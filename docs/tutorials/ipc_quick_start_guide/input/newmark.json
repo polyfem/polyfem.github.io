@@ -1,0 +1,10 @@
+{
+    "common": "stiffer.json",
+    "time": {
+        "dt": 0.005,
+        "integrator": "ImplicitNewmark"
+    },
+    "contact": {
+        "friction_coefficient": 0
+    }
+}
