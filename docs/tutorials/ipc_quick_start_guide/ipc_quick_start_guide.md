@@ -481,19 +481,21 @@ For example, the following script uses the `time/integrator` key to specify impl
 {% include "input/newmark.json" %}
 ```
 
-<!-- !!! todo
-    PolyFEM does not currently support Rayleigh damping which can be used for better stability of Newmark integration. -->
+Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. For example, here we use Rayleigh damping of elasticity:
 
-Here we also enable lagged Rayleigh damping using `"damping_ratio"`. Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. The number (say $x$) following `"damping_ratio"` is a relative parameter for the damping stiffness. The absolute damping stiffness will be set to $\tfrac{3}{4} x \Delta t^3$, where if $x=1$, the beginning of time step Newmark incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness.
-<!-- To alternately directly set damping stiffness use the keyword `dampingStiff`. -->
+```json
+{% include "input/rayleigh-damping-ratio=0.1.json" %}
+```
+
+Here we set the damping stiffness as a ratio $\kappa_\text{ratio}$ between 0 and 1. The absolute damping stiffness will be set to $\tfrac{3}{4} \kappa_\text{ratio} \Delta t^3$. If $\kappa_\text{ratio}=1$, at the beginning of time-step Newmark's incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness. To alternately directly set damping stiffness use the key `"stiffness"`.
 
 Here in this demo note that we used a smaller time step size at `0.005`s as this is better for the stability of Newmark integration.
 
-| Newmark, `"damping_ratio": 0.1` | Newmark, `"damping_ratio": 0.2` |
+| Newmark, `"stiffness_ratio": 0.1` | Newmark, `"stiffness_ratio": 0.2` |
 |:-------------------------------:|:-------------------------------:|
-| <video loop muted controls><source src="../videos/newmark-damping_ratio=0.1.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/newmark-damping_ratio=0.2.mp4" type="video/mp4"></video> |
-| Newmark, `"damping_ratio": 0.4` | Backwar Euler |
-| <video loop muted controls><source src="../videos/newmark-damping_ratio=0.4.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> |
+| <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.1.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.2.mp4" type="video/mp4"></video> |
+| Newmark, `"stiffness_ratio": 0.4` | Backwar Euler |
+| <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.4.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> |
 
 ### Accuracy Control
 

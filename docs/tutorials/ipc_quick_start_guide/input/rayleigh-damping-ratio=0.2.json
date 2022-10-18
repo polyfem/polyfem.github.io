@@ -1,0 +1,9 @@
+{
+    "common": "newmark.json",
+    "solver": {
+        "rayleigh_damping": {
+            "form": "elasticity",
+            "stiffness_ratio": 0.2
+        }
+    }
+}
