@@ -14,7 +14,7 @@ videos_dir = pathlib.Path(__file__).parent / "videos"
 output_dir.mkdir(exist_ok=True, parents=True)
 videos_dir.mkdir(exist_ok=True, parents=True)
 
-for script in input_dir.glob("newmark.json"):
+for script in input_dir.glob("*.json"):
     if script.name == "ipc-defaults.json":
         continue
 
@@ -35,6 +35,6 @@ for script in input_dir.glob("newmark.json"):
         "--output", str(videos_dir / (script.stem + ".mp4")),
         "--bg-color", "46", "48", "62", "255",
         "--base-zoom", "2",
-        "--drop-frames", "4"
+        # "--drop-frames", "4"
     ])
     render.main(render_args)
