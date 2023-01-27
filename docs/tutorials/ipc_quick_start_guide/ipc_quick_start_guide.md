@@ -114,7 +114,7 @@ We can also set different materials for different objects:
 {% include "input/heavy-top.json" %}
 ```
 
-We replace our single `"materials"` object with a list of objects with `"id"` keys. These IDs correspond to the `"volume_selection"` from earlier. In general, `"volume_selection"` allows us to select a subset of the mesh's elements and assign a volume ID to them. In this case, we assign a uniform ID to all elements in the cube mesh. With the first cube getting an ID of 1 and the second getting an ID of 2. We then use these volume IDs to assign different materials to each cube. The first cube gets a material that is 3× heavier and 1000× stiffer. While the second cube gets the original material.
+We replace our single `"materials"` object with a list of objects with `"id"` keys. These IDs correspond to the `"volume_selection"` from earlier. In general, `"volume_selection"` allows us to select a subset of the mesh's elements and assign a volume ID to them. In this case, we assign a uniform ID to all elements in the cube mesh. Where the first cube gets an ID of 1 and the second gets an ID of 2. We then use these volume IDs to assign different materials to each cube. The first cube gets a material that is 3× heavier and 1000× stiffer. While the second cube gets the original material.
 
 <video loop muted controls>
 <source src="../videos/heavy-top.mp4" type="video/mp4">
@@ -494,7 +494,7 @@ Here in this demo note that we used a smaller time step size at `0.005`s as this
 | Newmark, `"stiffness_ratio": 0.1` | Newmark, `"stiffness_ratio": 0.2` |
 |:-------------------------------:|:-------------------------------:|
 | <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.1.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.2.mp4" type="video/mp4"></video> |
-| Newmark, `"stiffness_ratio": 0.4` | Backwar Euler |
+| Newmark, `"stiffness_ratio": 0.4` | Backwards Euler |
 | <video loop muted controls><source src="../videos/rayleigh-damping-ratio=0.4.mp4" type="video/mp4"></video> | <video loop muted controls><source src="../videos/backwards-euler.mp4" type="video/mp4"></video> |
 
 ### Accuracy Control

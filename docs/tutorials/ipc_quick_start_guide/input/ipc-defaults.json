@@ -29,8 +29,7 @@
             "solver": "Eigen::PardisoLDLT"
         },
         "nonlinear": {
-            "grad_norm": 1e-05,
-            "use_grad_norm": false
+            "x_delta": 1e-05
         },
         "advanced": {
             "lump_mass_matrix": true
