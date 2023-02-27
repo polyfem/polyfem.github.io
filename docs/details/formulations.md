@@ -31,7 +31,7 @@ The following formulations are available in the PolyFEM list of possible formula
 ## Tensor
 
 ### Linear Elasticity
-* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Constants:** `E`/`nu`, `lambda`/`mu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
@@ -39,7 +39,7 @@ The following formulations are available in the PolyFEM list of possible formula
 \]
 
 ### Hooke Linear Elasticity
-* **Constants:**  `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Constants:**  `elasticity_tensor`, `E`/`nu`, `lambda`/`mu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
@@ -49,7 +49,7 @@ The following formulations are available in the PolyFEM list of possible formula
 where $C$ is the elasticity tensor
 
 ### Incompressible Linear Elasticity (mixed)
-* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Constants:** `E`/`nu`, `lambda`/`mu`
 * **Description:** solve for
 
 \begin{align}
@@ -58,7 +58,7 @@ where $C$ is the elasticity tensor
 \end{align}
 
 ### Saint Venant–Kirchoff Elasticity
-* **Constants:** `elasticity_tensor`, `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Constants:** `elasticity_tensor`, `E`/`nu`, `lambda`/`mu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
@@ -68,29 +68,69 @@ where $C$ is the elasticity tensor
 where $C$ is the elasticity tensor
 
 ### NeoHookean Elasticity
-* **Constants:** `young`/`nu`, `E`/`nu`, `lambda`/`nu`
+* **Constants:** `E`/`nu`, `lambda`/`mu`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where
 
 \[
     \sigma[u] = \mu (F[u] - F[u]^{-T}) + \lambda \ln(\det F[u]) F[u]^{-T} \qquad F[u] = \nabla u + I
 \]
 
+<!-- * **Physical interpretation:** $E$ is the Young's modulus, $\nu$ is Poisson's ratio, $\mu$ is the shear modulus, and $\lambda$ is Lamé's first parameter. -->
+
+### Mooney-Rivlin Elasticity
+
+* **Constants:** `c1`/`c2`/`k=1`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where $\sigma[u]=\nabla_u \Psi[u]$. The energy density $\Psi$ is
+
+\[
+    \Psi[u] = c_1 (\widetilde{I_1} - d) + c_2 (\widetilde{I_2} - d) + \frac{k}{2} \ln^2(J)
+\]
+
+where $d$ is the dimension (2 or 3),
+
+\begin{align}
+F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, \quad \widetilde{C} = \widetilde{F} \widetilde{F}^T, \\
+\widetilde{I_1} = \text{tr}\left(\widetilde{C}\right), \quad  \text{and} \quad
+\widetilde{I_2} = \frac{1}{2} \left(\left(\trace{\widetilde{C}}\right)^2 - \text{tr}\left(\widetilde{C}^2\right)\right).
+\end{align}
+
+### Ogden Elasticity
+
+* **Constants:** `mus`/`alphas`/`Ds`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where $\sigma[u]=\nabla_u \Psi[u]$. The energy density $\Psi$ is
+
+\[
+    \Psi[u] = \sum_{i=1}^N \frac{2 \mu_i}{\alpha_i^2} \left(
+        \sum_{j=1}^d \bar{\lambda}_j^{\alpha_i} - d
+    \right) + \sum_{i=1}^N \frac{\left(J-1\right)^{2 i}}{D_i}
+\]
+
+where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\bar{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ where $\lambda_j$ are the eigenvalues of $F.$
+
+<!-- * **Physical interpretation:**
+!!! todo
+    Physical interpretation of the coefficients -->
+
+* **Reference**: [ABAQUS documentation](https://classes.engineering.wustl.edu/2009/spring/mase5513/abaqus/docs/v6.6/books/stm/default.htm?startat=ch04s06ath124.html)
+
 ### Viscous Damping
 * **Constants:** `phi`/`psi`
 * **Description:** an extra energy that represents dissipation, adding to the elastic energy in transient problems
 
 \[
-    R(F,\dot{F})=\psi \|\dot{E}(F,\dot{F})\|^2+\frac{\phi}{2}\text{tr}^2\dot{E}(F,\dot{F}) \qquad F[u] = \nabla u + I,\ E[u] = \frac{1}{2}(F^TF-I)
+    R(F,\dot{F})=\psi \|\dot{E}(F,\dot{F})\|^2+\frac{\phi}{2}\text{tr}^2\dot{E}(F,\dot{F})
 \]
 
-which corresponds to the viscous Piola-Kirchhoff stress
+where $F[u] = \nabla u + I$ and $E[u] = \frac{1}{2}(F^TF-I)$.
+
+The above corresponds to the viscous Piola-Kirchhoff stress
 
 \[
-    P=F(2\psi\dot{E}+\phi\text{tr}(\dot{E})I)=\nabla_2 R(F,\dot{F})
+    P=F(2\psi\dot{E}+\phi\text{tr}(\dot{E})I)=\nabla_2 R(F,\dot{F}).
 \]
 
 ### Stokes (mixed)
-* **Constants:** `viscosity` $\nu$
+* **Constants:** `viscosity` ($\nu$)
 * **Description:** solve for
 
 \begin{align}
@@ -99,7 +139,7 @@ which corresponds to the viscous Piola-Kirchhoff stress
 \end{align}
 
 ### Navier–Stokes (mixed)
-* **Constants:** `viscosity` $\nu$
+* **Constants:** `viscosity` ($\nu$)
 * **Description:** solve for
 
 \begin{align}
@@ -109,5 +149,5 @@ which corresponds to the viscous Piola-Kirchhoff stress
 
 ## Implementing New Formulations
 
-!!! todo 
+!!! todo
     Describe how to implement a new formulation in C++.
