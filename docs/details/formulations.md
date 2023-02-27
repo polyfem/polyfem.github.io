@@ -94,6 +94,8 @@ F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, 
 \widetilde{I_2} = \frac{1}{2} \left(\left(\trace{\widetilde{C}}\right)^2 - \text{tr}\left(\widetilde{C}^2\right)\right).
 \end{align}
 
+* **Reference**: [FEBio documentation](https://help.febio.org/FEBioTheory/FEBio_tm_3-4-Subsection-5.3.1.html)
+
 ### Ogden Elasticity
 
 * **Constants:** `mus`/`alphas`/`Ds`
