@@ -121,11 +121,11 @@ F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, 
 
 \[
     \Psi[u] = \sum_{i=1}^N \frac{c_i}{m_i^2} \left(
-        \sum_{j=1}^d \bar{\lambda}_j^{c_i} - d
+        \sum_{j=1}^d \tilde{\lambda}_j^{m_i} - d
     \right) +  \frac{1}{2} K  \ln(J)^2
 \]
 
-where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\bar{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ where $\lambda_j$ are the eigenvalues of $F.$
+where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\tilde{\lambda}_j$ are the eigenvalues of $\tilde{F}$ (same as in the [Mooney-Rivlin Elasticity](#mooney-rivlin-elasticity)).
 
 <!-- * **Physical interpretation:**
 !!! todo
