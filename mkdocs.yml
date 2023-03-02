@@ -4,10 +4,10 @@ repo_name: "polyfem/polyfem"
 repo_url: "https://github.com/polyfem/polyfem"
 edit_uri: "../polyfem.github.io/edit/docs/docs/"
 site_description: "A polyvalent C++ FEM library"
-copyright: Copyright &copy; 2018–2021 PolyFEM Group; <a href="https://github.com/polyfem/polyfem/blob/master/LICENSE">MIT License</a>
+copyright: Copyright &copy; 2018–2021 PolyFEM Group; <a href="https://github.com/polyfem/polyfem/blob/main/LICENSE">MIT License</a>
 # strict: true
 docs_dir: "docs"
-remote_branch: "master"
+remote_branch: "main"
 theme:
   name: material
   custom_dir: 'docs/theme'
