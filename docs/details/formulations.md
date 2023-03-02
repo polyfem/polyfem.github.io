@@ -15,19 +15,23 @@
 The following formulations are available in the PolyFEM list of possible formulations. The constants can be set in `params`. All formulations support boundary conditions. For the elasticity formulations we output:
 
 **Cauchy stress tensor**
+
 \[
-\sigma = \frac 1 J \frac{\partial \Psi}{\partial F} F^T
+    \sigma = \frac 1 J \frac{\partial \Psi}{\partial F} F^T
 \]
 
 **Frist Piola Kirchhoff stress tensor** ([Wikipedia](https://en.wikipedia.org/wiki/Stress_(mechanics)#Piola–Kirchhoff_stress_tensor))
+
 \[
-P =  J \sigma F^{-T}
+    P =  J \sigma F^{-T}
 \]
 
 **Second Piola Kirchhoff stress tensor** ([Wikipedia](https://en.wikipedia.org/wiki/Stress_(mechanics)#2nd_Piola–Kirchhoff_stress_tensor))
+
 \[
-S =  J F^{-1} \sigma F^{-T},
+    S =  J F^{-1} \sigma F^{-T},
 \]
+
 where \(\Psi\) is the energy density, \(F\) the deformation gradient, and \(J=\det(F)\).
 
 
