@@ -12,7 +12,24 @@
     }
 </style>
 
-The following formulations are available in the PolyFEM list of possible formulations. The constants can be set in `params`. All formulations support boundary conditions.
+The following formulations are available in the PolyFEM list of possible formulations. The constants can be set in `params`. All formulations support boundary conditions. For the elasticity formulations we output:
+
+**Cauchy stress tensor**
+\[
+\sigma = \frac 1 J \frac{\partial \Psi}{\partial F} F^T
+\]
+
+**Frist Piola Kirchhoff stress tensor** ([Wikipedia](https://en.wikipedia.org/wiki/Stress_(mechanics)#Piola–Kirchhoff_stress_tensor))
+\[
+P =  J \sigma F^{-T}
+\]
+
+**Second Piola Kirchhoff stress tensor** ([Wikipedia](https://en.wikipedia.org/wiki/Stress_(mechanics)#2nd_Piola–Kirchhoff_stress_tensor))
+\[
+S =  J F^{-1} \sigma F^{-T},
+\]
+where \(\Psi\) is the energy density, \(F\) the deformation gradient, and \(J=\det(F)\).
+
 
 ## Scalar
 
@@ -96,7 +113,28 @@ F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, 
 
 * **Reference**: [FEBio documentation](https://help.febio.org/FEBioTheory/FEBio_tm_3-4-Subsection-5.3.1.html)
 
-### Ogden Elasticity
+
+### Incompressible Ogden Elasticity
+
+* **Constants:** `c`/`m`/`k`
+* **Description:** solve for $-\text{div}(\sigma[u]) = f$ where $\sigma[u]=\nabla_u \Psi[u]$. The energy density $\Psi$ is
+
+\[
+    \Psi[u] = \sum_{i=1}^N \frac{c_i}{m_i^2} \left(
+        \sum_{j=1}^d \bar{\lambda}_j^{c_i} - d
+    \right) +  \frac{1}{2} K  \ln(J)^2
+\]
+
+where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\bar{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ where $\lambda_j$ are the eigenvalues of $F.$
+
+<!-- * **Physical interpretation:**
+!!! todo
+    Physical interpretation of the coefficients -->
+
+* **Reference**: [FEBio documentation](https://help.febio.org/FEBioTheory/FEBio_tm_3-4-Subsection-5.3.2.html)
+
+
+### Unconstrained Ogden Elasticity
 
 * **Constants:** `mus`/`alphas`/`Ds`
 * **Description:** solve for $-\text{div}(\sigma[u]) = f$ where $\sigma[u]=\nabla_u \Psi[u]$. The energy density $\Psi$ is
