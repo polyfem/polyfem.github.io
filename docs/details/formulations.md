@@ -110,7 +110,7 @@ where $C$ is the elasticity tensor
 where $d$ is the dimension (2 or 3),
 
 \begin{align}
-F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, \quad \widetilde{C} = \widetilde{F} \widetilde{F}^T, \\
+F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[d]{J}} F, \quad \widetilde{C} = \widetilde{F} \widetilde{F}^T, \\
 \widetilde{I_1} = \text{tr}\left(\widetilde{C}\right), \quad  \text{and} \quad
 \widetilde{I_2} = \frac{1}{2} \left(\left(\trace{\widetilde{C}}\right)^2 - \text{tr}\left(\widetilde{C}^2\right)\right).
 \end{align}
@@ -129,7 +129,7 @@ F = \nabla u + I, \quad J = \det(F), \quad \tilde{F} = \frac{1}{\sqrt[3]{J}} F, 
     \right) +  \frac{1}{2} K  \ln(J)^2
 \]
 
-where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\tilde{\lambda}_j$ are the eigenvalues of $\tilde{F}$ (same as in the [Mooney-Rivlin Elasticity](#mooney-rivlin-elasticity)).
+where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\tilde{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ are the eigenvalues of $\tilde{F}$ (same as in the [Mooney-Rivlin Elasticity](#mooney-rivlin-elasticity)).
 
 <!-- * **Physical interpretation:**
 !!! todo
@@ -145,11 +145,11 @@ where $N$, the number of terms, is dictated by the number of coefficients given,
 
 \[
     \Psi[u] = \sum_{i=1}^N \frac{2 \mu_i}{\alpha_i^2} \left(
-        \sum_{j=1}^d \bar{\lambda}_j^{\alpha_i} - d
+        \sum_{j=1}^d \tilde{\lambda}_j^{\alpha_i} - d
     \right) + \sum_{i=1}^N \frac{\left(J-1\right)^{2 i}}{D_i}
 \]
 
-where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\bar{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ where $\lambda_j$ are the eigenvalues of $F.$
+where $N$, the number of terms, is dictated by the number of coefficients given, $d$ is the dimension (2 or 3), $J = \det(F)$ where $F = \nabla u + I$, and $\tilde{\lambda}_j = J^{-\frac{1}{d}}\lambda_j$ where $\lambda_j$ are the eigenvalues of $F.$
 
 <!-- * **Physical interpretation:**
 !!! todo
