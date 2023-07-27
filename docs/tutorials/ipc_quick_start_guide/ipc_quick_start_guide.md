@@ -49,6 +49,9 @@ We can open the PVD file using [ParaView](https://www.paraview.org/) and play th
 <source src="../videos/2-cubes-falling.mp4" type="video/mp4">
 </video>
 
+!!! tip
+    In ParaView, make sure to press the WarpByVector <img src="../WarpByVector.png" alt="WarpByVector" width="20px"> button to see the deformed animation. Otherwise, you will only see the undeformed rest mesh.
+
 ---
 
 Let’s take a look at the input JSON file [`2-cubes-falling.json`](input/2-cubes-falling.json):
