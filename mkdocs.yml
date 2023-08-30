@@ -106,6 +106,7 @@ nav:
     - IPC Quick Start Guide: tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md
     - Multi-Material: tutorials/multi-material/multi-material.md
     - Screwing a Bolt into a Nut: tutorials/screw/screw.md
+    - Trajectory Optimization: tutorials/trajectory-optimization/trajectory-optimization.md
     - Robotics:
       - Pushing A Box: tutorials/sphere-pushing-box/sphere-pushing-box.md
       - Sling-shot: tutorials/sling-shot/sling-shot.md
