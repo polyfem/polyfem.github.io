@@ -275,23 +275,19 @@ For time-dependent simulation, the state variables ($u$, $v = \dot{u}$, and $a =
 ```js
 "output": {
     "data": {
-        "u_path": "<path/to/out_u.ext>",
-        "v_path": "<path/to/out_v.ext>",
-        "a_path": "<path/to/out_a.ext>"
+        "state": "<path/to/state.hdf5>"
     }
 }
 ```
 
-The path can be either absolute or relative to the output directory. The format will depend on the file extension: `.txt` corresponds to ASCII and `.bin` corresponds to binary serialization. Other formats may be added in the future, but for now, other extensions will default to the ASCII format.
+The path can be either absolute or relative to the output directory. The state will be saved in [HDF5](https://en.wikipedia.org/wiki/Hierarchical_Data_Format) format containing the keys `u`, `v`, and `a` for the solution, velocity, and acceleration, respectively.
 
-These files can then be used to initialize (or restart) the simulation from the saved state by specifying:
+This file can then be used to initialize (or restart) the simulation from the saved state by specifying:
 
 ```js
 "input": {
     "data": {
-        "u_path": "<path/to/in_u.ext>",
-        "v_path": "<path/to/in_v.ext>",
-        "a_path": "<path/to/in_a.ext>"
+        "state": "<path/to/state.hdf5>"
     }
 }
 ```
