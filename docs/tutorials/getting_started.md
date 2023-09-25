@@ -43,7 +43,6 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
         }
     }
 }
-
 ```
 
 Then run `PolyFEM_bin --json run.json`.
