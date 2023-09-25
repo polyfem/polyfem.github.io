@@ -13,21 +13,33 @@ To setup and run this simulation create a JSON file (for example, `run.json`) co
 ```json
 {
     "geometry": {
-        "mesh": "plate_hole.obj"
+        "advanced": {
+            "normalize_mesh": true
+        },
+        "mesh": "plate_hole.obj",
+        "surface_selection": {
+            "threshold": 1e-07
+        }
     },
 
     "materials": {
         "type": "Laplacian"
     },
 
-    "preset_problem": {
-        "type": "Franke"
-    },
-
     "output": {
         "json": "stats.json",
         "paraview": {
             "file_name": "<result.vtu>"
+        }
+    },
+
+    "preset_problem": {
+        "type": "Franke"
+    },
+
+    "solver": {
+        "linear": {
+            "solver": "Eigen::SparseLU"
         }
     }
 }
