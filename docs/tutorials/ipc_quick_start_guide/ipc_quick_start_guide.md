@@ -362,79 +362,99 @@ We use the `"extract": "points"` to only use the points of the triangle.
 
 ## Boundary Conditions
 
-!!! todo
-    PolyFEM currently only lets you assign time-dependent boundary conditions to faces (instead of points) on the boundary. This prevents us from setting up the exact scene shown in the original IPC quick start guide.
+### Selection
 
-    For information about how to setup boundary conditions see [here](../getting_started.md#boundary-conditions).
+Similar to how we apply material, to apply boundary conditions we first need to select which nodes to which to apply the boundary conditions using the `"point_selection"` mesh field. Then, we can specify the boundary conditions in the `"boundary_conditions"` field.
 
-<!--
-### Dirichlet
-
-For a simulated volumetric object, sometimes we script the motion of part of its vertices as Dirichlet boundary conditions. This can be simply realized by adding `DBC` commands to the end of each shape line just like how we assign object materials individually:
-
-```diff
-shapes input 2
-input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-- input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1
-+ input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1  DBC -0.1 -0.1 -0.1  0.1 1.1 0.1  -0.2 0 -0.2  0 0 0  DBC 0.9 -0.1 0.9  1.1 1.1 1.1  0.2 0 0.2  0 0 0
-
-selfFric 0.1
-
-ground 0.1 0
+```json
+{% include "input/point-selection.json" %}
 ```
 
-One can append as many `DBC` commands as needed after each shape line. Each `DBC` command is followed by 12 floating-point numbers, the first 6 form the relative bounding box coordinates of the bottom-left and top-right corner of the selection cuboid, and the last 6 forms the linear velocity followed by angular velocity represented as Euler angles in degree.
-For example, the above script first selects all vertices in the left-back and moves them with (`-0.2`, `0`, `-0.2`) m/s, and then it selects the right-front vertices and moves them with (`0.2`, `0`, `0.2`) m/s:
+Let's break down the `"point_selection"` field. The first object
+```json
+"id": 1,
+"box": [
+    [0, 0, 0],
+    [0.1, 1, 0.1]
+],
+"relative": true
+```
+specifies that we should assign an ID of `1` to the nodes in the back left of the mesh. The second object
+```json
+"id": 2,
+"box": [
+    [0.9, 0, 0.9],
+    [1, 1, 1]
+],
+"relative": true
+```
+specifies that we should assign an ID of `2` to the nodes in the front right of the mesh.
 
-![MDBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/MDBC.gif)
+The `"box"` parameter specifies a bounding box by minimum and maximum corners in which points are selected. Notice the `"relative": true` field which indicates the box's coordinates are relative to the bounding box of the mesh. If we set `"relative": false` then the coordinates are in world space.
+
+!!! note
+    For more information about how to setup boundary conditions (including the more ubiquitous surface selections) look [here](../getting_started.md#boundary-conditions).
+
+### Dirichlet
+
+For a simulated volumetric object, sometimes we script the motion of part of its vertices as Dirichlet boundary conditions. Using our point selections we can specify the boundary conditions as follows:
+
+```json
+{% include "input/dirichlet-bcs.json" %}
+```
+
+The above script specifies that we should apply a displacement of $[-0.2, 0, -0.2]$ m/s to the nodes with ID `1` and a displacement of $[0.2, 0, 0.2]$ m/s to the nodes with ID `2`. The expressions in strings are evaluated using [TinyExpr](https://github.com/codeplea/tinyexpr). You can find out more about these expressions [here](../getting_started.md#spatially-varying-boundary-conditions) and [here](../getting_started.md#time-dependent-boundary-conditions).
+
+Now let's see what we get:
+
+!!! todo
+    Add a video of the simulation.
+    <!-- ![MDBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/MDBC.gif) -->
 
 As we see PolyFEM is robust even when there is large deformation.
 
-What is different here from setting kinematic collision objects is that the unselected vertices are still degree-of-freedoms that are simulated. If one selects all vertices of an object by putting the selection box at e.g. (-0.1, -0.1, -0.1) - (1.1, 1.1, 1.1), and sets them with Dirichlet boundary conditions, it will be essentially identical to a kinematic collision object in IPC.
+What is different here from setting kinematic collision obstacles is that the unselected vertices are still degree-of-freedoms that are simulated. If one selects all vertices of an object by, for example, using a selection of
+```json
+"point_selection": 1
+```
+and set them with Dirichlet boundary conditions, it will be essentially identical to a kinematic collision obstacle.
 
 ### Neumann
 
-We can also add extra constant body forces to part of the vertices of simulated volumetric objects in addition to gravity. This can be similarly realized by adding `NBC` commands to the end of each shape line just like how we did for Dirichlet boundary conditions above: (`input/tutorialExamples/BC/2cubesFall_NBC.txt`)
+!!! warning
+    Nodal Neumann boundary conditions are not yet supported in PolyFEM, so we will setup a similar scene using surface selection.
 
-```diff
-shapes input 2
-input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-- input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1
-+ input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1  NBC -0.1 -0.1 -0.1  0.1 1.1 0.1  -50 0 -50  NBC 0.9 -0.1 0.9  1.1 1.1 1.1  50 0 50
+We can also add extra forces to part of the vertices of simulated volumetric objects in addition to gravity. This can be similarly realized by specifying the `"neumann_boundary"` like how we did for Dirichlet boundary conditions above:
 
-selfFric 0.1
-
-ground 0.1 0
+```json
+{% include "input/neumann-bcs.json" %}
 ```
 
-One can append as many `NBC` commands as needed after each shape line. Each `NBC` command is followed by 9 floating-point numbers, the first 6 form the relative bounding box coordinates of the bottom-left and top-right corner of the selection cuboid, and the last 3 form the linear acceleration in the unit of m/s^2. Here torque is not supported as it is node position-dependent and so more complicated, which is also not usually used as Neumann boundary conditions.
-Similar to the configuration in our Dirichlet example, the above script first selects all vertices in the left-back and drags them with an extra acceleration of (`-50`, `0`, `-50`) m/s^2, and then it selects the right-front vertices and moves them with an extra acceleration of (`50`, `0`, `50`) m/s^2:
+Similar to the configuration in our Dirichlet example, the above script applies an a force of $[-2.5 \times 10^4, 0, -2.5  \times 10^4]$ N to the vertices in the left-back and $[2.5 \times 10^4, 0, 2.5  \times 10^4]$ N to the vertices in the right-front:
 
-![NBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NBC.gif)
+!!! todo
+    Add a video of the simulation.
+    <!-- ![NBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NBC.gif) -->
 
-Unlike Dirichlet boundary conditions, here the Neumann boundary condition does not directly affect the vertical motion of the object, and it elongates the object only to a static state but not further.
+Unlike Dirichlet boundary conditions, here the Neumann boundary condition does not restrict the vertical motion of the object, and it elongates the object only to a static state but not further.
 
 ### Timed Boundary Conditions
-It is also possible to start and stop boundary conditions at a specific time. This can be done by appending the `DBC` or `NBC` commands with a number for the start and end time: (`input/tutorialExamples/BC/2cubesFall_DBC_timeRange.txt`)
-```diff
-shapes input 2
-input/tetMeshes/cube.msh 0 3 0  0 0 0  1 1 1
-input/tetMeshes/cube.msh 0 1 0  0 0 0  1 1 1 \
--    DBC -0.1 -0.1 -0.1  0.1 1.1 0.1  -0.2 0.0 -0.2  0 0 0 \
--    DBC  0.9 -0.1  0.9  1.1 1.1 1.1   0.2 0.0  0.2  0 0 0
-+    DBC -0.1 -0.1 -0.1  0.1 1.1 0.1  -0.2 0.0 -0.2  0 0 0  0.0 2.5 \
-+    DBC -0.1 -0.1 -0.1  0.1 1.1 0.1   0.0 0.0  0.0  0 0 0  2.5     \
-+    DBC  0.9 -0.1  0.9  1.1 1.1 1.1   0.0 0.0  0.0  0 0 0  0.0 2.5 \
-+    DBC  0.9 -0.1  0.9  1.1 1.1 1.1   0.2 0.0  0.2  0 0 0  2.5
 
-selfFric 0.1
+It is also possible to start and stop boundary conditions at a specific time. This can be done by utilizing tiny expressions:
 
-ground 0.1 0
+```json
+{% include "input/timed-bcs.json" %}
 ```
-After the required parameters to the `DBC` or `NBC` command, the next numbers are when to start the BC and when to end the BC. By default, the BC is applied from time t=0 to infinity. The end time can be omitted and will default to infinity:
 
-<img src=https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BCTimeRange.gif width="768px">
--->
+Here we apply a displacement of $[-0.2, 0, -0.2]$ m/s to the nodes with ID `1` from time $t=0$ to $t=2.5$ and a displacement of $[0.2, 0, 0.2]$ m/s to the nodes with ID `2` from time $t=2.5$ to $t=\infty$. We can see this if we plot the x/z-displacement of the BC nodes:
+<center><img src="../timed-bcs.svg" width="50%"></center>
+where the red line is the displacement of the nodes with ID `1` and the blue line is the displacement of the nodes with ID `2`.
+
+Finally, let's see what we get:
+
+!!! todo
+    Add a video of the simulation.
+    <!-- <img src=https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BCTimeRange.gif width="768px"> -->
 
 ## Advanced Settings
 

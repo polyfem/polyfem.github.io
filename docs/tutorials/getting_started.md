@@ -98,6 +98,8 @@ In addition to [TinyExpr's built-in functions](https://github.com/codeplea/tinye
 
 * `min(a, b)`: minimum of two values
 * `max(a, b)`: maximum of two values
+* `if(cond, a, b)`: if `cond` $\ge$ 0, return `a`, otherwise return `b`
+* `sign(x)`: 1 if $x > 0$, 0 if $x == 0$, and -1 if $x < 0$
 * `deg2rad(d)`: convert degrees to radians
 * `rotate_2D_x(x, y, theta)`: given a value for `x`, `y`, and `theta`, compute the *x* component of a 2D rotation of `theta` radians
     * definition: $x\cos(\theta) - y\sin(\theta)$

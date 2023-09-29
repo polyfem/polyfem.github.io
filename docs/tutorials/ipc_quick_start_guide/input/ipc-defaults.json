@@ -44,7 +44,9 @@
             "file_name": "sim.pvd",
             "options": {
                 "material": true,
-                "body_ids": true
+                "body_ids": true,
+                "tensor_values": false,
+                "nodes": false
             },
             "vismesh_rel_area": 1e7
         }
