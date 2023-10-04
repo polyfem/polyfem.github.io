@@ -437,7 +437,7 @@ Similar to the configuration in our Dirichlet example, the above script applies 
 </video>
 
 !!! note
-    Here we simulating a hexahedral mesh, but we are using a linear triangular mesh for contact handling.
+    Here simulate a hexahedral mesh, but we use a linear triangular mesh for contact handling.
     Additionally, the rendering shows a triangulation of the hexahedral mesh's surface.
 
 Unlike Dirichlet boundary conditions, here the Neumann boundary condition does not restrict the vertical motion of the object, and it elongates the object only to a static state but not further.
