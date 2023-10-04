@@ -407,9 +407,9 @@ The above script specifies that we should apply a displacement of $[-0.2, 0, -0.
 
 Now let's see what we get:
 
-!!! todo
-    Add a video of the simulation.
-    <!-- ![MDBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/MDBC.gif) -->
+<video loop muted controls>
+<source src="../videos/dirichlet-bcs.mp4" type="video/mp4">
+</video>
 
 As we see PolyFEM is robust even when there is large deformation.
 
@@ -452,9 +452,9 @@ where the red line is the displacement of the nodes with ID `1` and the blue lin
 
 Finally, let's see what we get:
 
-!!! todo
-    Add a video of the simulation.
-    <!-- <img src=https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/BCTimeRange.gif width="768px"> -->
+<video loop muted controls>
+<source src="../videos/timed-bcs.mp4" type="video/mp4">
+</video>
 
 ## Advanced Settings
 
