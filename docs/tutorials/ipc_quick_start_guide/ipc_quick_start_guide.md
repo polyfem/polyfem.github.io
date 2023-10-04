@@ -432,9 +432,13 @@ We can also add extra forces to part of the vertices of simulated volumetric obj
 
 Similar to the configuration in our Dirichlet example, the above script applies an a force of $[-2.5 \times 10^4, 0, -2.5  \times 10^4]$ N to the vertices in the left-back and $[2.5 \times 10^4, 0, 2.5  \times 10^4]$ N to the vertices in the right-front:
 
-!!! todo
-    Add a video of the simulation.
-    <!-- ![NBC](https://raw.githubusercontent.com/ipc-sim/IPC/master/wiki/img/NBC.gif) -->
+<video loop muted controls>
+<source src="../videos/neumann.mp4" type="video/mp4">
+</video>
+
+!!! note
+    Here we simulating a hexahedral mesh, but we are using a linear triangular mesh for contact handling.
+    Additionally, the rendering shows a triangulation of the hexahedral mesh's surface.
 
 Unlike Dirichlet boundary conditions, here the Neumann boundary condition does not restrict the vertical motion of the object, and it elongates the object only to a static state but not further.
 
