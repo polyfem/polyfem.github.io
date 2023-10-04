@@ -3,15 +3,15 @@ from collections import namedtuple
 import pathlib
 import subprocess
 
-simrender_path = pathlib.Path("/home/zachary/Development/simrender")
+simrender_path = pathlib.Path("/home/zachary/Development/personal-projects/simrender")
 if simrender_path.exists():
     sys.path.append(str(simrender_path))
     import render
 
 debug = False
 
-# polyfem_bin = f"/home/zachary/Development/polyfem/build/{'debug' if debug else 'release'}/PolyFEM_bin"
-polyfem_bin = f"/Users/zachary/Development/research/polyfem/polyfem/build/{'debug' if debug else 'release'}/PolyFEM_bin"
+polyfem_bin = f"/home/zachary/Development/polyfem/build/{'debug' if debug else 'release'}/PolyFEM_bin"
+#polyfem_bin = f"/Users/zachary/Development/research/polyfem/polyfem/build/{'debug' if debug else 'release'}/PolyFEM_bin"
 
 input_dir = pathlib.Path(__file__).parent / "input"
 output_dir = pathlib.Path(__file__).parent / "output"
