@@ -433,7 +433,7 @@ We can also add extra forces to part of the vertices of simulated volumetric obj
 Similar to the configuration in our Dirichlet example, the above script applies an a force of $[-2.5 \times 10^4, 0, -2.5  \times 10^4]$ N to the vertices in the left-back and $[2.5 \times 10^4, 0, 2.5  \times 10^4]$ N to the vertices in the right-front:
 
 <video loop muted controls>
-<source src="../videos/neumann.mp4" type="video/mp4">
+<source src="../videos/neumann-bcs.mp4" type="video/mp4">
 </video>
 
 !!! note
