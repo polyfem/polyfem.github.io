@@ -34,10 +34,11 @@ jobs:
       - name: Generate JSON Spec Documentation
         run: |
           git clone --depth=1 https://github.com/polyfem/polyfem.git
+          git clone --depth=1 https://github.com/polyfem/polysolve.git
           git clone --depth=1 https://github.com/geometryprocessing/json-spec-engine.git
           pip install -r ./json-spec-engine/requirements.txt
-          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/json-specs/input-spec.json -o ./docs/_json_spec.md
-          python ./json-spec-engine/scripts/generate_defaults.py -i ./polyfem/json-specs/input-spec.json -o ./docs/_json_defaults.json
+          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/json-specs/input-spec.json --include-dirs ./polyfem/json-specs ./polysolve -o ./docs/_json_spec.md
+          python ./json-spec-engine/scripts/generate_defaults.py -i ./polyfem/json-specs/input-spec.json --include-dirs ./polyfem/json-specs ./polysolve -o ./docs/_json_defaults.json
           cp ./polyfem/LICENSE ./docs/_polyfem_license.txt
 
       - name: Deploy MkDocs
