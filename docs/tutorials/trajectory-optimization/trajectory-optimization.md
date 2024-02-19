@@ -1,6 +1,6 @@
 # Trajectory Optimization
 
-<div class="md-source-date"><small>Author: Zizhou Huang</small></div>
+<div class="md-source-date"><small>Author: Zizhou Huang, Date: Feb. 19, 2024</small></div>
 
 In this tutorial, we will demonstrate how to use polyfem to optimize the initial velocity of throwing a ball to match a given trajectory.
 
@@ -8,22 +8,22 @@ In this tutorial, we will demonstrate how to use polyfem to optimize the initial
   <img src="../sim.gif" width="60%" />
 </p>
 
-The data for this tutorial can be found [here](https://github.com/polyfem/polyfem-data/tree/main/multi-material).
-
 ## Prerequisites
 
-The following items are necessary to complete this tutorial. To replicate the experiment, you can feel free to use either the given mesh files or your own mesh.
+The following items are necessary to complete this tutorial. To reproduce the experiment, you can feel free to use either the given mesh files or your own mesh.
 
-- [ ] [Build PolyFEM](../../../cxx_index)
+- [ ] [Build PolyFEM](../../cxx_index)
 - [ ] [Download File: square.obj](https://github.com/polyfem/polyfem-data/blob/main/contact/meshes/2D/simple/square.obj)
 - [ ] [Download File: circle.msh](https://github.com/polyfem/polyfem-data/blob/main/differentiable/circle.msh)
 - [ ] [Download File: barycenter-opt.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter-opt.json)
 - [ ] [Download File: barycenter.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter.json)
 - [ ] [Download File: barycenter-target.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter-target.json)
 
+The files can also be found at [polyfem-data](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/).
+
 ### Build PolyFEM
 
-The instructions for building PolyFEM can be found [here](../../../cxx_index).
+The instructions for building PolyFEM can be found [here](../../cxx_index).
 
 Then you can use it by
 
@@ -33,7 +33,7 @@ polyfem --help
 
 ## Setting up the Optimization
 
-We will setup the optimization using PolyFEM's JSON interface. For more details, please refer to the [JSON Input](../../../json) documentation.
+We will setup the optimization using PolyFEM's JSON interface. For more details, please refer to the [JSON Input](../../json.md) documentation.
 
 We will only go over the JSON script for the optimization configuration, please refer to other tutorials for the JSON script for the simulation configuration.
 
@@ -69,7 +69,7 @@ In more complex optimizations, where several types of parameters are optimized, 
 }
 ```
 
-In `states`, we specify the path to the JSON files of simulations, they follow the same [rules](../../../json) for the simulation JSON scripts. PolyFEM will create a number of simulators, one for each JSON file, whose parameters can be optimized. During the optimization, certain parameters in these configurations are optimized, but the optimized values will not overwrite the values in these JSON files. Each simulator gets an ID starting from 0, following the order in this list. The ID of simulators may be used in `variable to simulation` and `functionals`.
+In `states`, we specify the path to the JSON files of simulations, they follow the same [rules](../../json.md) for the simulation JSON scripts. PolyFEM will create a number of simulators, one for each JSON file, whose parameters can be optimized. During the optimization, certain parameters in these configurations are optimized, but the optimized values will not overwrite the values in these JSON files. Each simulator gets an ID starting from 0, following the order in this list. The ID of simulators may be used in `variable to simulation` and `functionals`.
 
 Here we have two simulators: The first one is the simulator being optimized, while the second one is a fixed simulation that generates a reference trajectory. These JSON files are only for initializing the simulators, so one can use the same path for multiple simulators if possible.
 
@@ -104,7 +104,7 @@ The initial condition parameter has a dimension of `2 * dim * n_basis`, where `d
 
 In this tutorial, we only optimize the initial velocity of the ball, so we need to build a mapping, which we call `composition` in the JSON script, from the variable of size 2 to the full initial condition parameter of size `2 * dim * n_basis`. The `composition` is a list of some pre-defined mappings, which will apply to the optimization variables in order, and the final output of the mappings will be assigned to the initial condition parameter.
 
-There are two objects with different volume IDs, specified in `barycenter.json` and `barycenter-target.json`, and we only want to control the initial velocity of the ball, with volume ID 1. First, in `append-values` we append two zeros to the optimization variable, which represents the zero initial velocity of the floor. Second, in `per-body-to-per-node` we map the per-volume values to per-node, whose output has the dimension of `dim * n_basis`. Finally, in `append-const` we append more zeros to the start of the vector, to account for the zero initial displacement. Please refer to the [opt-input-spec.json](https://github.com/geometryprocessing/adjoint-polyfem/blob/shock/opt-input-spec.json) for the documentation of compositions.
+There are two objects with different volume IDs, specified in `barycenter.json` and `barycenter-target.json`, and we only want to control the initial velocity of the ball, with volume ID 1. First, in `append-values` we append two zeros to the optimization variable, which represents the zero initial velocity of the floor. Second, in `per-body-to-per-node` we map the per-volume values to per-node, whose output has the dimension of `dim * n_basis`. Finally, in `append-const` we append more zeros to the start of the vector, to account for the zero initial displacement. Please refer to the [opt-input-spec.json](https://github.com/polyfem/polyfem/blob/main/json-specs/opt-input-spec.json) for the documentation of compositions.
 
 ### Functionals
 
@@ -127,7 +127,7 @@ There are two objects with different volume IDs, specified in `barycenter.json` 
 }
 ```
 
-The `functionals` specify the objective being minimized in the optimization. Please refer to [objective-input-spec.json](https://github.com/geometryprocessing/adjoint-polyfem/blob/shock/objective-input-spec.json) for the documentation of `functionals`.
+The `functionals` specify the objective being minimized in the optimization. Please refer to [objective-input-spec.json](https://github.com/polyfem/polyfem/blob/main/json-specs/objective-spec.json) for the documentation of `functionals`.
 
 Here we perform trajectory optimization on the ball, so the objective is the $L^2$ difference between the two ball barycenters in the two simulations, integrated over time.
 
@@ -157,11 +157,13 @@ The `transient integral` computes the integral over time of the `static objectiv
 
 ```json
 "output": {
-    "solve_log_level": 3
+    "log": {
+        "level": 1
+    }
 }
 ```
 
-The `output` contains options regarding the logging of the optimization, here `solve_log_level` specifies a log level of 3, corresponding to `warning`, for simulations so that we can focus more on the optimization logs.
+The `output` contains options regarding the logging of the optimization, here `output/log/level` specifies a log level of 1, corresponding to `debugging`, to log the energy and gradient during the optimization. The log level for simulations are specified in each state json, normally the simulation log level is set to `info` or `warn` so that we can focus more on the optimization logs.
 
 ### Solver
 
