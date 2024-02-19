@@ -12,7 +12,7 @@ In this tutorial, we will demonstrate how to use polyfem to optimize the initial
 
 The following items are necessary to complete this tutorial. To reproduce the experiment, you can feel free to use either the given mesh files or your own mesh.
 
-- [ ] [Build PolyFEM](../../cxx_index)
+- [ ] [Build PolyFEM](../../cxx_index.md)
 - [ ] [Download File: square.obj](https://github.com/polyfem/polyfem-data/blob/main/contact/meshes/2D/simple/square.obj)
 - [ ] [Download File: circle.msh](https://github.com/polyfem/polyfem-data/blob/main/differentiable/circle.msh)
 - [ ] [Download File: barycenter-opt.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter-opt.json)
@@ -23,7 +23,7 @@ The files can also be found at [polyfem-data](https://github.com/polyfem/polyfem
 
 ### Build PolyFEM
 
-The instructions for building PolyFEM can be found [here](../../cxx_index).
+The instructions for building PolyFEM can be found [here](../../cxx_index.md).
 
 Then you can use it by
 
