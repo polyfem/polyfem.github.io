@@ -1,0 +1,27 @@
+name: Check URLs
+
+on:
+  push:
+    branches:
+      - main
+      - docs
+  pull_request:
+    branches:
+      - main
+      - docs
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: urls-checker
+      uses: urlstechie/urlchecker-action@master
+      with:
+        subfolder: docs
+        file_types: .md,.py,.rst,.txt
+        print_all: false
+        timeout: 5
+        retry_count: 3
+        force_pass : false

@@ -87,7 +87,7 @@ stringyfied json description of this class, used to run the solver
 ### set_advanced_option
 `set_advanced_option(key, value)`
 
-Used to set any advanced option not present in this class, for instance set_advanced_option("use_spline",True), see https://polyfem.github.io/documentation/ for full list
+Used to set any advanced option not present in this class, for instance set_advanced_option("use_spline",True), see https://polyfem.github.io/ for full list
 
 ### set_isolines_export_path
 `set_isolines_export_path(path)`
@@ -97,7 +97,7 @@ Sets the path to export the isolines of the solution
 ### set_material_params
 `set_material_params(name, value)`
 
-set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/documentation/#formulations for full list
+set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/details/formulations/ for full list
 
 ### set_pde
 `set_pde(pde)`
@@ -144,7 +144,7 @@ Classical driven cavity problem in fluid simulation
 
 ## class Flow
 
-Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. https://polyfem.github.io/documentation/#flow
+Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. https://polyfem.github.io/details/problems/?h=flow#flow
 
 ### init
 `__init__(inflow=1, outflow=3, inflow_amout=0.25, outflow_amout=0.25, direction=0, obstacle=[7])`
@@ -156,14 +156,14 @@ Initialize .  See help(type()) for accurate signature.
 
 ## class Franke
 
-Franke problem with exact solution https://polyfem.github.io/documentation/#franke
+Franke problem with exact solution https://polyfem.github.io/details/problems/?h=franke#franke
 
 
 
 
 ## class GenericScalar
 
-Generic scalar problem https://polyfem.github.io/documentation/#genericscalar
+Generic scalar problem https://polyfem.github.io/details/problems/?h=genericscalar#genericscalar
 
 ### add_dirichlet_value
 `add_dirichlet_value(id, value)`
@@ -180,7 +180,7 @@ add the Neumann value value for the sideset id
 
 ## class GenericTensor
 
-Generic tensor problem https://polyfem.github.io/documentation/#generictensor
+Generic tensor problem https://polyfem.github.io/details/problems/?h=gener#generictensor
 
 ### add_dirichlet_value
 `add_dirichlet_value(id, value, is_dirichlet_dim=None)`
@@ -212,7 +212,7 @@ set the velocity value for the sideset id. Note the value must be a vector in 2D
 
 ## class Gravity
 
-time dependent gravity problem https://polyfem.github.io/documentation/#gravity
+time dependent gravity problem https://polyfem.github.io/details/problems/?h=gravity#gravity
 
 ### init
 `__init__(force=0.1)`
@@ -224,7 +224,7 @@ Initialize .  See help(type()) for accurate signature.
 
 ## class Torsion
 
-3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary https://polyfem.github.io/documentation/#torsionelastic
+3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary https://polyfem.github.io/details/problems/?h=torsionelastic#torsionelastic
 
 ### init
 `__init__(axis_coordiante=2, n_turns=0.5, fixed_boundary=5, turning_boundary=6)`

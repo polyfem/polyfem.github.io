@@ -15,7 +15,7 @@ The following items are necessary to complete this tutorial. To reproduce the ex
 - [ ] [Build PolyFEM](../../cxx_index.md)
 - [ ] [Download File: square.obj](https://github.com/polyfem/polyfem-data/blob/main/contact/meshes/2D/simple/square.obj)
 - [ ] [Download File: circle.msh](https://github.com/polyfem/polyfem-data/blob/main/differentiable/circle.msh)
-- [ ] [Download File: barycenter-opt.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter-opt.json)
+- [ ] [Download File: run.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/run.json)
 - [ ] [Download File: barycenter.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter.json)
 - [ ] [Download File: barycenter-target.json](https://github.com/polyfem/polyfem-data/blob/main/differentiable/optimizations/initial-condition-trajectory-opt/barycenter-target.json)
 
