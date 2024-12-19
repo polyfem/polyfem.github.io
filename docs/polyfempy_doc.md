@@ -97,7 +97,7 @@ Sets the path to export the isolines of the solution
 ### set_material_params
 `set_material_params(name, value)`
 
-set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/documentation/#formulations for full list
+set the material parameters, for instance set_material_params("E", 200) sets the Young's modulus E to 200. See https://polyfem.github.io/details/formulations/ for full list
 
 ### set_pde
 `set_pde(pde)`
