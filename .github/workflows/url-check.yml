@@ -20,8 +20,8 @@ jobs:
       uses: urlstechie/urlchecker-action@master
       with:
         subfolder: docs
-        file_types: .md,.py,.rst
+        file_types: .md,.py,.rst,.txt
         print_all: false
         timeout: 5
         retry_count: 3
-        force_pass : true
+        force_pass : false
