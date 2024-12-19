@@ -87,7 +87,7 @@ stringyfied json description of this class, used to run the solver
 ### set_advanced_option
 `set_advanced_option(key, value)`
 
-Used to set any advanced option not present in this class, for instance set_advanced_option("use_spline",True), see https://polyfem.github.io/documentation/ for full list
+Used to set any advanced option not present in this class, for instance set_advanced_option("use_spline",True), see https://polyfem.github.io/ for full list
 
 ### set_isolines_export_path
 `set_isolines_export_path(path)`
@@ -180,7 +180,7 @@ add the Neumann value value for the sideset id
 
 ## class GenericTensor
 
-Generic tensor problem https://polyfem.github.io/documentation/#generictensor
+Generic tensor problem https://polyfem.github.io/details/problems/?h=gener#generictensor
 
 ### add_dirichlet_value
 `add_dirichlet_value(id, value, is_dirichlet_dim=None)`
