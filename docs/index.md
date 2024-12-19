@@ -72,10 +72,12 @@ The main executable, `./PolyFEM_bin`, can be called as a command-line interface.
 PolyFEM in Python
 ------
 
-[![Last update](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Version](https://anaconda.org/conda-forge/polyfempy/badges/version.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![Latest Release Date](https://anaconda.org/conda-forge/polyfempy/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/polyfempy)
 [![Downloads](https://anaconda.org/conda-forge/polyfempy/badges/downloads.svg)](https://anaconda.org/conda-forge/polyfempy)
-[![Install](https://anaconda.org/conda-forge/polyfempy/badges/installer/conda.svg)](https://anaconda.org/conda-forge/polyfempy)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb)
+[![Platforms](https://anaconda.org/conda-forge/polyfempy/badges/platforms.svg)](https://anaconda.org/conda-forge/polyfempy)
+[![License](https://anaconda.org/conda-forge/polyfempy/badges/license.svg)](https://anaconda.org/conda-forge/polyfempy)
 
 For more details refer to the [Python section](python.md)
 
