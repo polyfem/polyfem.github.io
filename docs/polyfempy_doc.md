@@ -212,7 +212,7 @@ set the velocity value for the sideset id. Note the value must be a vector in 2D
 
 ## class Gravity
 
-time dependent gravity problem https://polyfem.github.io/documentation/#gravity
+time dependent gravity problem https://polyfem.github.io/details/problems/?h=gravity#gravity
 
 ### init
 `__init__(force=0.1)`
@@ -224,7 +224,7 @@ Initialize .  See help(type()) for accurate signature.
 
 ## class Torsion
 
-3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary https://polyfem.github.io/documentation/#torsionelastic
+3D torsion problem, specify which sideset to fix (fixed_boundary) and which one turns turning_boundary https://polyfem.github.io/details/problems/?h=torsionelastic#torsionelastic
 
 ### init
 `__init__(axis_coordiante=2, n_turns=0.5, fixed_boundary=5, turning_boundary=6)`
