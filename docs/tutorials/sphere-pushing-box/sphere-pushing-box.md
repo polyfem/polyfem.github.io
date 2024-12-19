@@ -37,7 +37,7 @@ To build this project, there are some other depencies we need. Note that meshio 
 
 ## Data Preparation
 
-The data needed in this tutorial can be found [here](https://github.com/DuoZhangRobotics/PushBox_PolyFEM_Tutorial/tree/main/pushbox/assets/data). For triangle meshes, they are in [surf_mesh folder](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial/tree/main/assets/data/surf_mesh) and the volume meshes are in [vol_mesh folder](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial/tree/main/assets/data/vol_mesh). The volume mesh files are all made using [fTetWild](https://github.com/wildmeshing/fTetWild). Feel free you make your own spheres and boxes.
+The data needed in this tutorial can be found [here](https://github.com/DuoZhangRobotics/PushBox_PolyFEM_Tutorial/tree/main/pushbox/assets/data). For triangle meshes, they are in [surf_mesh folder](https://github.com/DuoZhangRobotics/PushBox_PolyFEM_Tutorial/tree/main/pushbox/assets/data/surf_mesh) and the volume meshes are in [vol_mesh folder](https://github.com/DuoZhangRobotics/PushBox_PolyFEM_Tutorial/tree/main/pushbox/assets/data/vol_mesh). The volume mesh files are all made using [fTetWild](https://github.com/wildmeshing/fTetWild). Feel free you make your own spheres and boxes.
 
 All the codes and JSON files can be found [here](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial).
 
