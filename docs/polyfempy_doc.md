@@ -144,7 +144,7 @@ Classical driven cavity problem in fluid simulation
 
 ## class Flow
 
-Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. https://polyfem.github.io/documentation/#flow
+Inflow/outflow problem for fluids. You can specify the sideset for the moving fluxes, the axial direction of the flow, and the list of obstacle sidesets. https://polyfem.github.io/details/problems/?h=flow#flow
 
 ### init
 `__init__(inflow=1, outflow=3, inflow_amout=0.25, outflow_amout=0.25, direction=0, obstacle=[7])`
@@ -156,14 +156,14 @@ Initialize .  See help(type()) for accurate signature.
 
 ## class Franke
 
-Franke problem with exact solution https://polyfem.github.io/documentation/#franke
+Franke problem with exact solution https://polyfem.github.io/details/problems/?h=franke#franke
 
 
 
 
 ## class GenericScalar
 
-Generic scalar problem https://polyfem.github.io/documentation/#genericscalar
+Generic scalar problem https://polyfem.github.io/details/problems/?h=genericscalar#genericscalar
 
 ### add_dirichlet_value
 `add_dirichlet_value(id, value)`
