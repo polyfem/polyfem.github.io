@@ -31,7 +31,7 @@ To build this project, there are some other dependencies we need. Note that `mes
 The data needed in this tutorial can be found [here](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data). For triangle meshes, they are in [surf_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/surf_mesh) and the volume meshes are in [vol_mesh folder](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial/tree/main/slingshot/assets/data/vol_mesh) The volume mesh files are all made by [fTetWild](https://github.com/wildmeshing/fTetWild). Feel free you make you own sphere, rubber band and fingers.
 
 ## Tutorial
-All the code and JSONs can be found at [Github: Slingshot Tutorial](https://github.com/KraftOreo/PushBox_PolyFEM_Tutorial).
+All the code and JSONs can be found at [Github: Slingshot Tutorial](https://github.com/KraftOreo/Slingshot_Polyfem_Tutorial)
 The file tree of this project is:
 ```
 project
