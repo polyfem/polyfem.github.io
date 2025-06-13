@@ -1,0 +1,9 @@
+{
+    "common": "2-cubes-falling.json",
+    "initial_conditions": {
+        "velocity": [{
+            "id": 1,
+            "value": [0, -20, 0]
+        }]
+    }
+}
