@@ -1,0 +1,6 @@
+{
+    "common": "2-cubes-falling.json",
+    "materials": {
+        "E": 1e6
+    }
+}
