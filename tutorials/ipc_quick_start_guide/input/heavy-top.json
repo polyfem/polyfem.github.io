@@ -1,0 +1,16 @@
+{
+    "common": "2-cubes-falling.json",
+    "materials": [{
+        "id": 1,
+        "type": "NeoHookean",
+        "E": 1e8,
+        "nu": 0.4,
+        "rho": 3000
+    }, {
+        "id": 2,
+        "type": "NeoHookean",
+        "E": 1e5,
+        "nu": 0.4,
+        "rho": 1000
+    }]
+}
