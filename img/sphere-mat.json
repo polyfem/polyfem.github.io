@@ -1,0 +1,80 @@
+{
+    "mesh": "/Users/teseo/data/collisions/polyfem/sphere-mat.msh",
+    "normalize_mesh": false,
+    "has_collision": true,
+    "dhat": 0.0002,
+    "tend": 1,
+    "time_steps": 20,
+    "problem": "GenericTensor",
+    "tensor_formulation": "NeoHookean",
+    "body_params": [
+        {
+            "id": 1,
+            "E": 1e8,
+            "nu": 0.4,
+            "rho": 2000
+        },
+        {
+            "id": 2,
+            "E": 1e6,
+            "nu": 0.4,
+            "rho": 1000
+        }
+    ],
+    "problem_params": {
+        "is_time_dependent": true,
+        "dirichlet_boundary": [
+            {
+                "id": 2,
+                "value": [
+                    0,
+                    0,
+                    0
+                ]
+            }
+        ],
+        "rhs": [
+            0,
+            9.81,
+            0
+        ]
+    },
+    "boundary_sidesets": [
+        {
+            "id": 2,
+            "axis": -1,
+            "position": -0.99
+        },
+        {
+            "id": 2,
+            "axis": 1,
+            "position": 0.99
+        },
+        {
+            "id": 2,
+            "axis": -3,
+            "position": -0.99
+        },
+        {
+            "id": 2,
+            "axis": 3,
+            "position": 0.99
+        }
+    ],
+    "body_ids": [
+        {
+            "id": 1,
+            "center": [
+                0.0,
+                1,
+                0
+            ],
+            "radius": 0.6
+        },
+        {
+            "id": 2,
+            "axis": -2,
+            "position": 0.01
+        }
+    ]
+}

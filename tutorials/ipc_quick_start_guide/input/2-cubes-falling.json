@@ -1,0 +1,22 @@
+{
+    "common": "ipc-defaults.json",
+    "geometry": [{
+        "mesh": "cube.msh",
+        "transformation": {
+            "translation": [0, 3, 0]
+        },
+        "volume_selection": 1
+    }, {
+        "mesh": "cube.msh",
+        "transformation": {
+            "translation": [0, 1, 0]
+        },
+        "volume_selection": 2
+    }, {
+        "mesh": "plane.obj",
+        "is_obstacle": true
+    }],
+    "contact": {
+        "friction_coefficient": 0.1
+    }
+}
