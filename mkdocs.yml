@@ -94,6 +94,7 @@ nav:
     - Home: cxx_index.md
     - JSON Input: json.md
     - JSON Specification: json_defaults_and_spec.md
+    - JSON Builder: https://polyfem.github.io/json-builder/
     - Docs: https://polyfem.github.io/polyfem/
   - Python:
     - Home: python.md
