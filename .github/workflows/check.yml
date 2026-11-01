@@ -1,0 +1,44 @@
+name: Check Website
+
+on:
+  pull_request:
+    branches:
+      - docs
+  push:
+    branches:
+      - polyfem-user-guide
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Generate JSON specification documentation
+        run: |
+          git clone --depth=1 https://github.com/polyfem/polyfem.git
+          git clone --depth=1 https://github.com/polyfem/polysolve.git
+          git clone --depth=1 https://github.com/geometryprocessing/json-spec-engine.git
+          python -m pip install -r ./json-spec-engine/requirements.txt
+          python ./json-spec-engine/docs/spec2html.py -i ./polyfem/json-specs/input-spec.json --include-dirs ./polyfem/json-specs ./polysolve -o ./docs/_json_spec.md
+          python ./json-spec-engine/scripts/generate_defaults.py -i ./polyfem/json-specs/input-spec.json --include-dirs ./polyfem/json-specs ./polysolve -o ./docs/_json_defaults.json
+          cp ./polyfem/LICENSE ./docs/_polyfem_license.txt
+
+      - name: Build MkDocs (no deployment)
+        run: python -m mkdocs build
