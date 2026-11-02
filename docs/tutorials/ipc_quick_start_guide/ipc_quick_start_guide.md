@@ -57,7 +57,7 @@ We can open the PVD file using [ParaView](https://www.paraview.org/) and play th
 Let’s take a look at the input JSON file [`2-cubes-falling.json`](input/2-cubes-falling.json):
 
 ```json
-{% include "input/2-cubes-falling.json" %}
+{% include "./input/2-cubes-falling.json" %}
 ```
 
 The config is simple:
@@ -95,7 +95,7 @@ This corresponds to a NeoHookean material with Young’s modulus $E = 10^5~\text
 We can change these parameters for all objects in the scene by changing Young's modulus to $10^6~\text{Pa}$:
 
 ```json
-{% include "input/stiffer.json" %}
+{% include "./input/stiffer.json" %}
 ```
 
 !!! note
@@ -114,7 +114,7 @@ Yes! The boxes are stiffer now.
 We can also set different materials for different objects:
 
 ```json
-{% include "input/heavy-top.json" %}
+{% include "./input/heavy-top.json" %}
 ```
 
 We replace our single `"materials"` object with a list of objects with `"id"` keys. These IDs correspond to the `"volume_selection"` from earlier. In general, `"volume_selection"` allows us to select a subset of the mesh's elements and assign a volume ID to them. In this case, we assign a uniform ID to all elements in the cube mesh. Where the first cube gets an ID of 1 and the second gets an ID of 2. We then use these volume IDs to assign different materials to each cube. The first cube gets a material that is 3× heavier and 1000× stiffer. While the second cube gets the original material.
@@ -134,7 +134,7 @@ Following the default in IPC, we have been simulating the scene for 5 seconds wi
 One option to get more energetic animation (while sticking with implicit Euler stepping -- see also Newmark stepping below) is to apply smaller time step sizes to reduce the numerical damping of implicit Euler time integration:
 
 ```json
-{% include "input/smaller-dt.json" %}
+{% include "./input/smaller-dt.json" %}
 ```
 
 The `"time"` parameter here controls time step size `"dt": 0.005`, which results in a more energetic animation:
@@ -148,7 +148,7 @@ The `"time"` parameter here controls time step size `"dt": 0.005`, which results
 One of the exciting features of IPC and PolyFEM is that it is robust enough to support extremely large time step sizes on the order of seconds with implicit Euler. In turn, this enables rapid solutions of equilibrium conditions subject to contact, friction and large deformation (via nearly quasi-static solves under numerical damping). For a simple demonstration, we can simulate our hello world example with $\Delta t = 1~\text{s}$:
 
 ```json
-{% include "input/larger-dt.json" %}
+{% include "./input/larger-dt.json" %}
 ```
 
 The animation now is composed of only five frames, one for each second. As we see numerical damping is so large that the cubes are barely bouncing.
@@ -166,7 +166,7 @@ To set nonzero initial velocities for objects, we need to specify them as `"init
 For example, we can set the initial velocity of the top cube to be $-20~\frac{\text{m}}{\text{s}}$ in the y direction:
 
 ```json
-{% include "input/initial-linear-velocity.json" %}
+{% include "./input/initial-linear-velocity.json" %}
 ```
 
 Again here we are using the volume IDs to select the top cube.
@@ -207,7 +207,7 @@ $$
 In the JSON we encode this as a string containing the expression:
 
 ```json
-{% include "input/initial-angular-velocity.json" %}
+{% include "./input/initial-angular-velocity.json" %}
 ```
 
 and voila now the top cube is spinning!
@@ -226,7 +226,7 @@ To make the second code an obstacle all we need to do is set `"is_obstacle": tru
 Then we can specify the displacement of this obstacle using the `"boundary_conditions/obstacle_displacements"` field:
 
 ```json
-{% include "input/translating-obstacle.json" %}
+{% include "./input/translating-obstacle.json" %}
 ```
 
 Notice that we changed the `"volume_selection"` to `"surface_selection"` because we need to identify the surface on which the boundary conditions apply.
@@ -271,7 +271,7 @@ where $\Delta\{x,y,z\}$ are the obstacle displacement, $\omega_{\{x,y,z\}}$ are 
 As an example, here we kinematically rotate the second cube with an angular velocity of $[10, 90, 0]$ degrees/second:
 
 ```json
-{% include "input/rotating-obstacle.json" %}
+{% include "./input/rotating-obstacle.json" %}
 ```
 
 <video loop muted controls>
@@ -292,7 +292,7 @@ IPC contact handling is based on distances and so directly supports codimensiona
 If we script the motion of an object, then for a closed surface the interior tessellation is unnecessary, and we can directly use a surface mesh (`.obj` file)!
 
 ```json
-{% include "input/rotating-obstacle-surface.json" %}
+{% include "./input/rotating-obstacle-surface.json" %}
 ```
 
 This is equivalent to using a volumetric mesh because PolyFEM automatically extracts and uses the surface for obstacles.
@@ -306,7 +306,7 @@ This is equivalent to using a volumetric mesh because PolyFEM automatically extr
 This script replaces the cube with a single triangle (zero volume):
 
 ```json
-{% include "input/rotating-obstacle-triangle.json" %}
+{% include "./input/rotating-obstacle-triangle.json" %}
 ```
 
 <video loop muted controls>
@@ -318,7 +318,7 @@ This script replaces the cube with a single triangle (zero volume):
 This script uses the same single triangle but only with its edges. Here we also scale the triangle 2× larger to let the box fall through.
 
 ```json
-{% include "input/rotating-obstacle-edges.json" %}
+{% include "./input/rotating-obstacle-edges.json" %}
 ```
 
 The `"extract": "edges"` specifies that only the edges of the triangle mesh should be used.
@@ -343,7 +343,7 @@ The `"extract": "edges"` specifies that only the edges of the triangle mesh shou
 Even crazier, this script uses the same single triangle but only with its points. Here we also scale the point cloud 0.7× smaller to let the box hit the points.
 
 ```json
-{% include "input/rotating-obstacle-points.json" %}
+{% include "./input/rotating-obstacle-points.json" %}
 ```
 
 We use the `"extract": "points"` to only use the points of the triangle.
@@ -367,7 +367,7 @@ We use the `"extract": "points"` to only use the points of the triangle.
 Similar to how we apply material, to apply boundary conditions we first need to select which nodes to which to apply the boundary conditions using the `"point_selection"` mesh field. Then, we can specify the boundary conditions in the `"boundary_conditions"` field.
 
 ```json
-{% include "input/point-selection.json" %}
+{% include "./input/point-selection.json" %}
 ```
 
 Let's break down the `"point_selection"` field. The first object
@@ -400,7 +400,7 @@ The `"box"` parameter specifies a bounding box by minimum and maximum corners in
 For a simulated volumetric object, sometimes we script the motion of part of its vertices as Dirichlet boundary conditions. Using our point selections we can specify the boundary conditions as follows:
 
 ```json
-{% include "input/dirichlet-bcs.json" %}
+{% include "./input/dirichlet-bcs.json" %}
 ```
 
 The above script specifies that we should apply a displacement of $[-0.2, 0, -0.2]$ m/s to the nodes with ID `1` and a displacement of $[0.2, 0, 0.2]$ m/s to the nodes with ID `2`. The expressions in strings are evaluated using [TinyExpr](https://github.com/codeplea/tinyexpr). You can find out more about these expressions [here](../getting_started.md#spatially-varying-boundary-conditions) and [here](../getting_started.md#time-dependent-boundary-conditions).
@@ -427,7 +427,7 @@ and set them with Dirichlet boundary conditions, it will be essentially identica
 We can also add extra forces to part of the vertices of simulated volumetric objects in addition to gravity. This can be similarly realized by specifying the `"neumann_boundary"` like how we did for Dirichlet boundary conditions above:
 
 ```json
-{% include "input/neumann-bcs.json" %}
+{% include "./input/neumann-bcs.json" %}
 ```
 
 Similar to the configuration in our Dirichlet example, the above script applies an a force of $[-2.5 \times 10^4, 0, -2.5  \times 10^4]$ N to the vertices in the left-back and $[2.5 \times 10^4, 0, 2.5  \times 10^4]$ N to the vertices in the right-front:
@@ -447,7 +447,7 @@ Unlike Dirichlet boundary conditions, here the Neumann boundary condition does n
 It is also possible to start and stop boundary conditions at a specific time. This can be done by utilizing tiny expressions:
 
 ```json
-{% include "input/timed-bcs.json" %}
+{% include "./input/timed-bcs.json" %}
 ```
 
 Here we apply a displacement of $[-0.2, 0, -0.2]$ m/s to the nodes with ID `1` from time $t=0$ to $t=2.5$ and a displacement of $[0.2, 0, 0.2]$ m/s to the nodes with ID `2` from time $t=2.5$ to $t=\infty$. We can see this if we plot the x/z-displacement of the BC nodes:
@@ -469,7 +469,7 @@ The way of setting kinematic collision obstacles displacements described earlier
 For example, we can specify a folder path to the kinematic collision objects:
 
 ```json
-{% include "input/mesh-sequence.json" %}
+{% include "./input/mesh-sequence.json" %}
 ```
 
 In the specified folder `sequence` we provide the mesh files of the triangle wire in each frame as `*.obj`. Note that the input sequence must maintain the correct vertex correspondence to the one throughout the entire sequence.
@@ -487,7 +487,7 @@ IPC requires a tiny positive gap as it does not support the 0-distance configura
 The following script sets the upper box in the hello world example right above the lower one:
 
 ```json
-{% include "input/smaller-distance.json" %}
+{% include "./input/smaller-distance.json" %}
 ```
 
 <video loop muted controls>
@@ -505,13 +505,13 @@ Along with implicit Euler, PolyFEM supports other time integration methods such 
 For example, the following script uses the `time/integrator` key to specify implicit Newmark (`"ImplicitNewmark"`) should be the time integrator for the stiffer boxes scene without friction. By default, `"integrator"` is set to `ImplicitEuler` (backward Euler).
 
 ```json
-{% include "input/newmark.json" %}
+{% include "./input/newmark.json" %}
 ```
 
 Damping can be useful both for predictive or realistic simulation control of damping and also to extend the effective stability of the underlying Newmark time integration method. For example, here we use Rayleigh damping of elasticity:
 
 ```json
-{% include "input/rayleigh-damping-ratio=0.1.json" %}
+{% include "./input/rayleigh-damping-ratio=0.1.json" %}
 ```
 
 Here we set the damping stiffness as a ratio $\kappa_\text{ratio}$ between 0 and 1. The absolute damping stiffness will be set to $\tfrac{3}{4} \kappa_\text{ratio} \Delta t^3$. If $\kappa_\text{ratio}=1$, at the beginning of time-step Newmark's incremental potential Hessian (with damping term) will be equal to that of implicit Euler. This provides a starting basis for intuitively setting damping stiffness. To alternately directly set damping stiffness use the key `"stiffness"`.
