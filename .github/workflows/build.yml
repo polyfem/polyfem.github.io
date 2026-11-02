@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   docs:
+    if: github.ref == 'refs/heads/docs'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

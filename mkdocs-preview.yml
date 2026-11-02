@@ -1,0 +1,4 @@
+INHERIT: mkdocs.yml
+site_name: PolyFEM (User Guide Preview)
+site_url: https://polyfem.github.io/previews/polyfem-user-guide/
+edit_uri: https://github.com/polyfem/polyfem.github.io/edit/polyfem-user-guide/docs/

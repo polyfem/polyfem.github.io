@@ -27,6 +27,9 @@ jobs:
           python-version: "3.11"
           cache: pip
 
+      - name: Test preview publisher safety
+        run: python -m unittest discover -s .github/scripts -p 'test_*.py' -v
+
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
@@ -42,3 +45,76 @@ jobs:
 
       - name: Build MkDocs (no deployment)
         run: python -m mkdocs build
+
+      - name: Build preview
+        if: github.ref == 'refs/heads/polyfem-user-guide' && github.event_name != 'pull_request'
+        run: python -m mkdocs build --config-file mkdocs-preview.yml --site-dir preview-site
+
+      - name: Upload preview snapshot
+        if: github.ref == 'refs/heads/polyfem-user-guide' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: user-guide-preview
+          path: preview-site/
+          if-no-files-found: error
+          retention-days: 14
+
+  preview:
+    needs: build
+    if: github.ref == 'refs/heads/polyfem-user-guide' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: write
+    # Share the production publisher's lock; never cancel a running deployment.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout publisher
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          path: source
+
+      - name: Checkout current published site
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: published
+
+      - name: Download preview snapshot
+        uses: actions/download-artifact@v4
+        with:
+          name: user-guide-preview
+          path: preview-site
+
+      - name: Confirm existing Pages configuration
+        shell: bash
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/pages" > "$RUNNER_TEMP/pages.json"
+          python - <<'PY'
+          import json, os
+          with open(os.path.join(os.environ["RUNNER_TEMP"], "pages.json")) as stream:
+              pages = json.load(stream)
+          assert pages["build_type"] == "legacy", "Pages source changed; review before publishing"
+          assert pages["source"] == {"branch": "main", "path": "/"}, "Unexpected Pages source"
+          assert pages["html_url"] == "https://polyfem.github.io/", "Unexpected Pages URL"
+          PY
+
+      - name: Publish only the preview directory
+        run: python source/.github/scripts/publish_preview.py preview-site published
+
+      - name: Request Pages rebuild
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+
+      - name: Verify live preview
+        run: python source/.github/scripts/verify_preview.py
+
+      - name: Link to preview
+        run: |
+          echo 'Preview: https://polyfem.github.io/previews/polyfem-user-guide/' >> "$GITHUB_STEP_SUMMARY"
+          echo "Source commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
