@@ -5,6 +5,11 @@ PolyFEM
 
 ![Logo](img/polyfem.png)
 
+!!! tip "New to PolyFEM? Start with a working example"
+    **[Run your first PolyFEM simulation](guide/first-simulation.md)** — a short, step-by-step introduction to building PolyFEM, running a sample problem, and inspecting its output.
+
+    Already familiar with finite elements? Jump to the [full Getting Started tutorial](tutorials/getting_started.md), [JSON input guide](json.md), or [generated JSON specification](json_defaults_and_spec.md).
+
 
 PolyFEM is a simple C++ and Python finite element library. We provide a wide set of common PDEs including:
 
