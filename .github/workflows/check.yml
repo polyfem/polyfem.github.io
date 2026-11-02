@@ -43,12 +43,13 @@ jobs:
           python ./json-spec-engine/scripts/generate_defaults.py -i ./polyfem/json-specs/input-spec.json --include-dirs ./polyfem/json-specs ./polysolve -o ./docs/_json_defaults.json
           cp ./polyfem/LICENSE ./docs/_polyfem_license.txt
 
-      - name: Build MkDocs (no deployment)
-        run: python -m mkdocs build
-
-      - name: Build preview
-        if: github.ref == 'refs/heads/polyfem-user-guide' && github.event_name != 'pull_request'
-        run: python -m mkdocs build --config-file mkdocs-preview.yml --site-dir preview-site
+      - name: Build MkDocs
+        run: |
+          if [ "$GITHUB_REF" = refs/heads/polyfem-user-guide ] && [ "$GITHUB_EVENT_NAME" != pull_request ]; then
+            python -m mkdocs build --config-file mkdocs-preview.yml --site-dir preview-site
+          else
+            python -m mkdocs build
+          fi
 
       - name: Upload preview snapshot
         if: github.ref == 'refs/heads/polyfem-user-guide' && github.event_name != 'pull_request'

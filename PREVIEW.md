@@ -2,8 +2,8 @@
 
 Browse **https://polyfem.github.io/previews/polyfem-user-guide/**.
 
-`Check Website` builds the normal site for every supported event. For pushes or
-manual runs on `polyfem-user-guide`, it also builds `mkdocs-preview.yml`, uploads
+`Check Website` builds the normal site for pull requests and other branches.
+For pushes or manual runs on `polyfem-user-guide`, it builds `mkdocs-preview.yml`, uploads
 the `user-guide-preview` artifact, and publishes only
 `previews/polyfem-user-guide/` on the existing Pages source branch, `main`.
 Pull requests cannot run the publishing job. No new repository, secret, hosting
