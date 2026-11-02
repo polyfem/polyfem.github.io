@@ -90,6 +90,9 @@ nav:
   - General:
     - Home: index.md
     - License: license.md
+  - Start Here:
+    - Your First Simulation: guide/first-simulation.md
+    - Full Getting Started Tutorial: tutorials/getting_started.md
   - C++:
     - Home: cxx_index.md
     - JSON Input: json.md
