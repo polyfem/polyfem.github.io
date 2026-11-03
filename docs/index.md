@@ -6,7 +6,9 @@ PolyFEM
 ![Logo](img/polyfem.png)
 
 !!! tip "New to PolyFEM? Start with a working example"
-    **[Run your first PolyFEM simulation](guide/first-simulation.md)** — a short, step-by-step introduction to building PolyFEM, running a sample problem, and inspecting its output.
+    **[Run your first PolyFEM simulation](guide/first-simulation.md)** — a complete walkthrough with prebuilt binaries, downloadable JSON and mesh files, a first solve, visualization, and an elasticity follow-up.
+
+    Prefer not to build from source? Download a platform package from the [latest successful Artifacts workflow](https://github.com/polyfem/polyfem/actions/workflows/artifacts.yml) (Linux x86-64, macOS ARM64, or Windows AMD64).
 
     Already familiar with finite elements? Jump to the [full Getting Started tutorial](tutorials/getting_started.md), [JSON input guide](json.md), or [generated JSON specification](json_defaults_and_spec.md).
 
@@ -49,15 +51,15 @@ PolyFEM in C++
 For more details refer to the [C++ section](cxx_index.md)
 
 
-### Compilation
+### Download or compile
 
-All the C++ dependencies required to build the code are included. It should work on Windows, macOS, and Linux, and it should build out-of-the-box with CMake:
+Prebuilt PolyFEM executable packages are available for Linux x86-64, macOS ARM64, and Windows AMD64 as [GitHub Actions artifacts](https://github.com/polyfem/polyfem/actions/workflows/artifacts.yml). Choose a successful run on `main`, download the corresponding artifact, and see the [first-run guide](guide/first-simulation.md) for a complete example. These are CI artifacts, not tagged releases.
+
+If you are modifying PolyFEM or need to build on a different platform, all the C++ dependencies required to build the code are included. It should work on Windows, macOS, and Linux, and it should build out-of-the-box with CMake:
 
 ```sh
-mkdir build
-cd build
-cmake ..
-make -j4
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
 ```
 
 ### Usage
