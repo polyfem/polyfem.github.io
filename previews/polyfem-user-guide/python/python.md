@@ -33,51 +33,26 @@ The documentation can be found [here](polyfempy_doc.md).
 Tutorial
 --------
 
-Polyfem relies on 3 main objects:
+!!! important "Current Python API"
+    The older `Settings` / `Problem` / `GenericTensor` examples and the
+    `Problem.set_displacement(...)` / `set_dirichlet_value(...)` boundary-condition
+    setters shown in previous versions of this guide are **not part of the
+    current `polyfem-python` binding**. The reference below was generated for an older
+    release and should not be treated as a current API reference.
 
- 1. `Settings` that contains the main settings such discretization order (e.g., $P_1$ or $P_2$), material parameters, formulation, etc.
- 2. `Problem` that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as `DrivenCavity`, or generic problems, such as `GenericTensor`.
- 3. `Solver` that is the actual FEM solver.
+The current Python binding accepts PolyFEM's JSON configuration directly through
+`Solver.settings(...)` (also exposed as `set_settings(...)`). Define boundary
+conditions using the same JSON schema as the C++ executable; see the
+[JSON input guide](json.md) and [generated specification](json_defaults_and_spec.md).
 
-The usage of specific problems is indented for benchmarking, in general you want to use the `GenericTensor` for tensor-based PDEs (e.g., elasticity) or `GenericScalar` for scalar PDEs (e.g., Poisson).
+For mesh arrays already in Python, the current binding also exposes
+`polyfempy.solve(vertices=..., cells=..., sidesets_func=..., **options)`,
+which returns a solver object. The `sidesets_func` callback assigns boundary
+IDs; it is **not** the removed boundary-condition-value setter.
 
-A typical use of Polyfem is:
-```python
-settings = polyfempy.Settings()
-# set necessary settings
-# e.g. settings.discr_order = 2
-
-problem = polyfempy.GenericTensor() # or any other problem
-# set problem related data
-# e.g. problem.set_displacement(1, [0, 0], [True, False])
-
-settings.problem = problem
-
-#now we can create a solver and solve
-solver = polyfempy.Solver()
-
-solver.settings(settings)
-solver.load_mesh_from_path(mesh_path)
-
-solver.solve()
-```
-
-**Note 1**: for legacy reasons Polyfem always normalizes the mesh (i.e., rescale it to lay in the $[0,1]^d$ box, you can use `normalize_mesh = False` while loading to disable this feature.
-
-**Note 2**: the solution $u(x)$ of a FEM solver are the coefficients $u_i$ you need to multiply the bases $\varphi_i(x)$ with:
-$$
-u(x)=\sum u_i \varphi_i(x).
-$$
-The coefficients $u_i$ are *unrelated* with the mesh vertices because of reordering of the nodes or high-order bases. For instance $P_2$ bases have additional nodes on the edges which do not exist in the mesh.
-
-
-For this reason Polyfem uses a *visualization mesh* where the solution is sampled at the vertices.
-This mesh has two advantages:
-1. it solves the problem of nodes reordering and additional nodes in the same way
-2. it provides a "true" visualization for high order solution by densely sampling each element (a $P_2$ solution is a piecewise quadratic function which is visualized in a picewise linear fashion, thus the need of a dense element sampling).
-
-To control the resolution of the visualization mesh use `vismesh_rel_area` named-argument while loading.
-
+Consult the [current Python binding source](https://github.com/polyfem/polyfem-python/blob/main/src/binding.cpp)
+for the exposed signatures. The historical [Python API reference](polyfempy_doc.md)
+has not yet been regenerated for the current API.
 
 Notebook
 --------

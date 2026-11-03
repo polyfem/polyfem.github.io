@@ -1123,43 +1123,25 @@ for testing.</p>
 <p>Note that the folders tests contain some tests which can be used as documentation.</p>
 <p>The documentation can be found <a href="../polyfempy_doc/">here</a>.</p>
 <h2 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h2>
-<p>Polyfem relies on 3 main objects:</p>
-<ol>
-<li><code>Settings</code> that contains the main settings such discretization order (e.g., <span class="arithmatex">\(P_1\)</span> or <span class="arithmatex">\(P_2\)</span>), material parameters, formulation, etc.</li>
-<li><code>Problem</code> that describe the problem you want to solve, that is the boundary conditions and right-hand side. There are some predefined problems, such as <code>DrivenCavity</code>, or generic problems, such as <code>GenericTensor</code>.</li>
-<li><code>Solver</code> that is the actual FEM solver.</li>
-</ol>
-<p>The usage of specific problems is indented for benchmarking, in general you want to use the <code>GenericTensor</code> for tensor-based PDEs (e.g., elasticity) or <code>GenericScalar</code> for scalar PDEs (e.g., Poisson).</p>
-<p>A typical use of Polyfem is:
-<div class="highlight"><pre><span></span><code><span class="n">settings</span> <span class="o">=</span> <span class="n">polyfempy</span><span class="o">.</span><span class="n">Settings</span><span class="p">()</span>
-<span class="c1"># set necessary settings</span>
-<span class="c1"># e.g. settings.discr_order = 2</span>
-
-<span class="n">problem</span> <span class="o">=</span> <span class="n">polyfempy</span><span class="o">.</span><span class="n">GenericTensor</span><span class="p">()</span> <span class="c1"># or any other problem</span>
-<span class="c1"># set problem related data</span>
-<span class="c1"># e.g. problem.set_displacement(1, [0, 0], [True, False])</span>
-
-<span class="n">settings</span><span class="o">.</span><span class="n">problem</span> <span class="o">=</span> <span class="n">problem</span>
-
-<span class="c1">#now we can create a solver and solve</span>
-<span class="n">solver</span> <span class="o">=</span> <span class="n">polyfempy</span><span class="o">.</span><span class="n">Solver</span><span class="p">()</span>
-
-<span class="n">solver</span><span class="o">.</span><span class="n">settings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">load_mesh_from_path</span><span class="p">(</span><span class="n">mesh_path</span><span class="p">)</span>
-
-<span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-</code></pre></div></p>
-<p><strong>Note 1</strong>: for legacy reasons Polyfem always normalizes the mesh (i.e., rescale it to lay in the <span class="arithmatex">\([0,1]^d\)</span> box, you can use <code>normalize_mesh = False</code> while loading to disable this feature.</p>
-<p><strong>Note 2</strong>: the solution <span class="arithmatex">\(u(x)\)</span> of a FEM solver are the coefficients <span class="arithmatex">\(u_i\)</span> you need to multiply the bases <span class="arithmatex">\(\varphi_i(x)\)</span> with:
-$$
-u(x)=\sum u_i \varphi_i(x).
-$$
-The coefficients <span class="arithmatex">\(u_i\)</span> are <em>unrelated</em> with the mesh vertices because of reordering of the nodes or high-order bases. For instance <span class="arithmatex">\(P_2\)</span> bases have additional nodes on the edges which do not exist in the mesh.</p>
-<p>For this reason Polyfem uses a <em>visualization mesh</em> where the solution is sampled at the vertices.
-This mesh has two advantages:
-1. it solves the problem of nodes reordering and additional nodes in the same way
-2. it provides a &ldquo;true&rdquo; visualization for high order solution by densely sampling each element (a <span class="arithmatex">\(P_2\)</span> solution is a piecewise quadratic function which is visualized in a picewise linear fashion, thus the need of a dense element sampling).</p>
-<p>To control the resolution of the visualization mesh use <code>vismesh_rel_area</code> named-argument while loading.</p>
+<div class="admonition important">
+<p class="admonition-title">Current Python API</p>
+<p>The older <code>Settings</code> / <code>Problem</code> / <code>GenericTensor</code> examples and the
+<code>Problem.set_displacement(...)</code> / <code>set_dirichlet_value(...)</code> boundary-condition
+setters shown in previous versions of this guide are <strong>not part of the
+current <code>polyfem-python</code> binding</strong>. The reference below was generated for an older
+release and should not be treated as a current API reference.</p>
+</div>
+<p>The current Python binding accepts PolyFEM&rsquo;s JSON configuration directly through
+<code>Solver.settings(...)</code> (also exposed as <code>set_settings(...)</code>). Define boundary
+conditions using the same JSON schema as the C++ executable; see the
+<a href="../json/">JSON input guide</a> and <a href="../json_defaults_and_spec/">generated specification</a>.</p>
+<p>For mesh arrays already in Python, the current binding also exposes
+<code>polyfempy.solve(vertices=..., cells=..., sidesets_func=..., **options)</code>,
+which returns a solver object. The <code>sidesets_func</code> callback assigns boundary
+IDs; it is <strong>not</strong> the removed boundary-condition-value setter.</p>
+<p>Consult the <a href="https://github.com/polyfem/polyfem-python/blob/main/src/binding.cpp">current Python binding source</a>
+for the exposed signatures. The historical <a href="../polyfempy_doc/">Python API reference</a>
+has not yet been regenerated for the current API.</p>
 <h2 id="notebook">Notebook<a class="headerlink" href="#notebook" title="Permanent link">&para;</a></h2>
 <p>For more details and nice interactive example go to the <a href="../python_examples/">notebook tutorial</a>!</p>
 <p>Or just play with the tutorial in <a href="https://mybinder.org/v2/gh/polyfem/polyfem.github.io.git/docs?filepath=docs%2Fpython_examples.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
@@ -1169,7 +1151,7 @@ This mesh has two advantages:
   <small>
     
       Last update:
-      2026-11-01
+      2026-11-02
     
   </small>
 </div>
