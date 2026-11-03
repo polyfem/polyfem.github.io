@@ -170,7 +170,323 @@ These IDs come from the plate-with-hole boundary-tagging convention used in the 
 !!! tip "Explore boundary conditions visually"
     In ParaView, color the resulting field and use **Warp By Vector** with the displacement field to see the deformation. You may need to adjust the warp scale to make small displacements noticeable.
 
-## 7. Where to go next
+## 7. Meshes: what PolyFEM actually discretizes
+
+The first example uses a **2D plate with a hole**. PolyFEM is not restricted to this mesh or to triangles. Before changing the physics, it helps to distinguish a *surface describing an object* from a *volume discretization of the object*.
+
+| Input geometry | Typical finite elements | What it represents |
+| --- | --- | --- |
+| 2D triangular mesh | Triangles | A planar PDE or 2D solid |
+| 2D quadrilateral mesh | Quads | The same, with tensor-product-style elements |
+| 3D tetrahedral volume mesh | Tets | A volumetric solid or fluid domain |
+| 3D hexahedral volume mesh | Hexes | A volumetric domain using hex elements |
+| Polygonal / polyhedral elements | Polygons / polyhedra | Generalized elements; basis choice matters |
+| Surface triangle mesh | Triangles on a surface | Often an input for a **collision obstacle**, not a volumetric elastic solid |
+
+### Loading a mesh
+
+The simplest geometry entry is:
+
+\`\`\`json
+"geometry": {
+  "mesh": "plate_hole.obj"
+}
+\`\`\`
+
+A scene with several bodies uses a list of geometries. For example, a sphere and a soft mat may each have their own mesh, transforms, and IDs:
+
+\`\`\`json
+"geometry": [
+  {
+    "mesh": "sphere.msh",
+    "transformation": { "translation": [0, 1, 0] },
+    "volume_selection": 1
+  },
+  {
+    "mesh": "mat.msh",
+    "volume_selection": 2
+  }
+]
+\`\`\`
+
+This is an **illustrative fragment**, not a complete runnable scene; the actual sphere/mat meshes, contact parameters, and boundary conditions are provided by the [tested sphere–mat example](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json).
+
+The input specification lists \`.obj\`, \`.msh\`, \`.stl\`, \`.ply\`, and \`.mesh\` among the accepted mesh-file extensions. **The extension alone does not tell you whether a mesh contains volume cells.** For example, an OBJ containing only triangles is a surface, whereas a Gmsh MSH file can carry tetrahedra or other volume cells. For 3D elasticity you normally need a **volume mesh**, not just a surface shell.
+
+### Geometry operations
+
+Use \`transformation\` to place and resize objects **without modifying their mesh files**:
+
+\`\`\`json
+"geometry": {
+  "mesh": "part.msh",
+  "transformation": {
+    "scale": [1, 2, 1],
+    "translation": [0, 0.5, 0]
+  }
+}
+\`\`\`
+
+Rotations are also supported. Transforms matter because **geometric boundary selection is performed on the positioned geometry**: if you move or scale a body, absolute selection coordinates may need updating.
+
+\`"advanced": { "normalize_mesh": true }\` rescales the mesh into a standard size. That is convenient for the first numerical example, but for physical simulation you should take care with **units and material parameters**. A mesh measured in millimeters is not interchangeable with one measured in meters if you keep the same physical stiffness, density, loads, and time scale.
+
+!!! tip "Surface obstacles versus deformable bodies"
+    A plane or triangulated surface can be used as a collision obstacle (\`"is_obstacle": true\`). It does not automatically become a 3D elastic body with interior degrees of freedom. See the [IPC tutorial](../tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md#collision-obstacles) for surface, edge, and point obstacles.
+
+## 8. Sidesets, body IDs, and boundary conditions
+
+This is one of the most important ideas in PolyFEM.
+
+A **boundary sideset** is a group of *boundary edges* in 2D or *boundary faces* in 3D, identified by an integer. A boundary condition refers to this **ID** rather than listing every edge or face individually. An ID is a **label**, not a coordinate, node number, or material property.
+
+Similarly, a **volume ID** labels a region of elements (triangles/quads in 2D; tets/hexes in 3D). These are often called *body IDs* in examples and are used to assign material parameters.
+
+| Concept | Which primitives are labeled? | Used for |
+| --- | --- | --- |
+| \`surface_selection\` | Boundary edges/faces | Dirichlet and Neumann conditions, boundary loads, prescribed motion |
+| \`volume_selection\` | Interior elements | Material/body assignment and region-specific properties |
+
+**IDs from one category do not automatically determine IDs in the other.** A body with volume ID 2 may have boundary sidesets 1, 3, and 7, and several bodies can reuse a material model with different volume IDs.
+
+### Bounding-box sidesets in the plate example
+
+For the plate-with-hole mesh, the tutorial uses:
+
+\`\`\`json
+"surface_selection": { "threshold": 1e-7 }
+\`\`\`
+
+This is the **bounding-box side selector**. It labels the outer boundary according to its proximity to the bounding-box faces:
+
+| ID | Side |
+| --- | --- |
+| 1 | Minimum x (left) |
+| 2 | Minimum y (bottom) |
+| 3 | Maximum x (right) |
+| 4 | Maximum y (top) |
+| 5 / 6 | Minimum / maximum z (3D only) |
+| 7 | Remaining boundary faces/edges |
+
+The **hole** is an example of an interior boundary that is not on one of the bounding-box sides: it falls into the remaining-boundary category. The threshold controls how close to a box side the barycenter must be for the label to apply. It should be chosen consistently with the mesh scale.
+
+The important connection is now explicit:
+
+\`\`\`json
+"boundary_conditions": {
+  "dirichlet_boundary": [
+    { "id": 1, "value": [0, 0], "dimension": [true, false] },
+    { "id": 4, "value": [0, 0], "dimension": [false, true] }
+  ],
+  "neumann_boundary": [
+    { "id": 3, "value": [100, 0] }
+  ]
+}
+\`\`\`
+
+This constrains the **x displacement** on sideset 1, the **y displacement** on sideset 4, and applies an **x-directed traction** on sideset 3. The other components remain free where the mask is \`false\`.
+
+In an elasticity problem:
+
+- **Dirichlet** means prescribed **displacement**; zero is a fixed displacement, not zero stress.
+- **Neumann** means prescribed **traction** on the selected surface; it is not the same thing as an applied force at one vertex.
+- The **right-hand side** \`rhs\` describes a source or body load in the governing equations, not a sideset.
+- Leaving a sideset without an explicit traction typically corresponds to a natural/free boundary for this class of problem.
+
+### Two ways to assign IDs
+
+There are two broad approaches, and you can mix them as needed.
+
+**A. Use IDs stored in or supplied alongside the mesh.** This is preferable when your meshing pipeline already knows material regions or boundary tags.
+
+\`\`\`json
+"geometry": {
+  "mesh": "tagged.msh",
+  "surface_selection": "surface_tags.txt",
+  "volume_selection": "volume_tags.txt"
+}
+\`\`\`
+
+The \`.txt\` files need IDs in the order expected by PolyFEM for the corresponding mesh elements. These are **illustrative file names**; you must supply matching mesh and tag files. A mesh format may also carry its own region/body labels, in which case you can preserve them rather than generating new selections.
+
+**B. Compute IDs from geometry.** This is convenient when you only have the mesh, or when you want to describe selections with coordinates.
+
+For example, selecting a region near the minimum-x side of a unit-sized body:
+
+\`\`\`json
+"surface_selection": [
+  {
+    "id": 10,
+    "box": [[0, 0, 0], [0.1, 1, 1]],
+    "relative": true
+  }
+]
+\`\`\`
+
+The two corners of the box are in **relative bounding-box coordinates**, so this selects boundary faces whose barycenters lie in the first 10% of the body's x extent. The example is 3D; use two coordinates per corner in 2D. It does **not** change the mesh; it assigns a label.
+
+Other geometric selectors supported by the current specification include:
+
+| Selector | Useful for | Main JSON fields |
+| --- | --- | --- |
+| Box | A region inside an axis-aligned box | \`id\`, \`box\` |
+| Sphere | A local region around a point | \`id\`, \`center\`, \`radius\` |
+| Cylinder | A cylindrical region along an axis | \`id\`, \`p1\`, \`p2\`, \`radius\` |
+| Plane / half-space | Everything on one side of a plane | \`id\`, \`point\`, \`normal\` |
+| Axis-aligned half-space | A side such as x less than a given position | \`id\`, \`axis\`, \`position\` |
+
+Selectors work using element or boundary-primitive **barycenters**, not precise intersections with the underlying continuous region. On a coarse mesh, the selected set may not match the exact geometric cut you imagined.
+
+!!! note "Two independent choices"
+    **What** you label: surface versus volume. **How** you label it: imported IDs versus geometric selection. These are independent; for instance, a body may load volume IDs from \`.msh\` but use geometric rules to choose the surface patch where you pull it.
+
+For a detailed field-by-field explanation of all selection forms, use the [JSON input guide](../json.md#selections) and [generated specification](../json_defaults_and_spec.md). The old standalone **BC Setter** application is no longer part of the current workflow.
+
+## 9. Materials: from one elastic solid to several regions
+
+The \`materials\` section selects the PDE or constitutive law and its parameters. It is not just a palette or visualization label.
+
+### Start with linear elasticity
+
+\`\`\`json
+"materials": {
+  "type": "LinearElasticity",
+  "E": 210000,
+  "nu": 0.3
+}
+\`\`\`
+
+Here \`E\` is **Young's modulus** (stiffness scale) and \`nu\` is **Poisson's ratio** (lateral contraction relative to stretching). For time-dependent mechanics, \`rho\` controls mass density. Physical values must use consistent units.
+
+The \`LinearElasticity\` model assumes small strains. For larger deformations, use an appropriate nonlinear model instead:
+
+\`\`\`json
+"materials": {
+  "type": "NeoHookean",
+  "E": 1000000,
+  "nu": 0.4,
+  "rho": 1000
+}
+\`\`\`
+
+This is a valid example of a **compressible Neo-Hookean** material entry. It does **not** alone define a full simulation: geometry, loads, constraints, and possibly time settings still matter.
+
+### Which material family should I choose?
+
+| Model | When to consider it |
+| --- | --- |
+| \`Laplacian\`, \`Helmholtz\` | Scalar PDEs / simple numerical examples |
+| \`LinearElasticity\` | Small-displacement solids |
+| \`SaintVenant\` | Geometrically nonlinear elasticity with a simple constitutive model |
+| \`NeoHookean\` | Finite-deformation hyperelastic solids |
+| \`MooneyRivlin\` and Ogden variants | More specialized hyperelastic models requiring their own parameters |
+| \`HGOFiber\`, \`HGODispersion\`, \`ActiveFiber\` | Anisotropic or active-fiber material models |
+| \`Stokes\`, \`NavierStokes\` | Incompressible fluid flow; mixed spaces and fluid parameters are required |
+| \`NavierStokesFSI\` | Coupled fluid–structure interaction; **advanced**, with several coupled fields |
+| \`ThermoElasticity\` | Coupled displacement and temperature fields |
+
+This is a **guided subset**, not a list of interchangeable options. Each model has its own **required parameters** and mathematical assumptions. See [formulations](../details/formulations.md) and the [generated material specification](../json_defaults_and_spec.md) before switching a real application.
+
+### Multiple materials: connect volume IDs to material IDs
+
+A scene can contain several material regions:
+
+\`\`\`json
+"geometry": [
+  { "mesh": "stiff_part.msh", "volume_selection": 1 },
+  { "mesh": "soft_part.msh", "volume_selection": 2 }
+],
+"materials": [
+  { "id": 1, "type": "NeoHookean", "E": 1e8, "nu": 0.4, "rho": 2000 },
+  { "id": 2, "type": "NeoHookean", "E": 1e6, "nu": 0.4, "rho": 1000 }
+]
+\`\`\`
+
+This is a **configuration fragment**, not a runnable scene: both meshes must exist and you need suitable boundary conditions. Notice the correspondence between \`volume_selection: 1\` and \`materials[0].id: 1\`, and similarly for ID 2.
+
+**Try it:** on a multi-body model, change one material's \`E\` by a factor of 10 while keeping everything else fixed. Compare the displacement field and force response. If you want the complete, documented workflow (including mesh generation and assignment of region IDs), continue with [Simulating Multiple Materials in a Single Mesh](../tutorials/multi-material/multi-material.md).
+
+## 10. Finite-element spaces: separate geometry, approximation, and physics
+
+An FEM computation involves at least three choices:
+
+1. **Mesh:** how the domain is split into elements (triangles, quads, tets, hexes, etc.).
+2. **Approximation space:** the shape functions and number/location of degrees of freedom (for example, linear versus quadratic Lagrange).
+3. **Physics/material:** which equations the degrees of freedom satisfy (for example, Laplacian versus elasticity).
+
+The last two are **not the same thing**. You can solve the same elasticity model on the same mesh using different approximation orders, or solve different physics using the same FE space.
+
+### Polynomial degree: P1 versus P2
+
+The easiest experiment is to keep the input and change one field:
+
+\`\`\`json
+"space": {
+  "discr_order": 1
+}
+\`\`\`
+
+Then try:
+
+\`\`\`json
+"space": {
+  "discr_order": 2
+}
+\`\`\`
+
+The order controls the **finite-element approximation**, not the material law. Degree 1 generally means a piecewise-linear solution on simplicial elements; degree 2 adds additional degrees of freedom and can resolve more variation on the same mesh, at greater assembly/solve cost.
+
+**Experiment:** solve the same plate-with-hole problem at orders 1 and 2. Compare the results *without changing the mesh or physics*. For a smooth solution, compare accuracy as well as runtime; it is misleading to conclude one choice is better solely from how smooth a ParaView image looks.
+
+### Basis families
+
+The current JSON specification exposes:
+
+\`\`\`json
+"space": {
+  "discr_order": 2,
+  "basis_type": "Lagrange"
+}
+\`\`\`
+
+| Basis | Interpretation / restriction |
+| --- | --- |
+| \`Lagrange\` | Standard nodal finite-element basis; good default |
+| \`Spline\` | Spline-based basis on supported quadrilateral/hexahedral discretizations |
+| \`Serendipity\` | Reduced-DOF polynomial family on supported quadrilateral/hexahedral meshes |
+| \`Bernstein\` | Bernstein basis option (check mesh/feature compatibility before using) |
+
+For **polygonal** elements, PolyFEM has a separate \`poly_basis_type\` selector. Available names in the current specification include \`MFSHarmonic\`, \`MeanValue\`, and \`Wachspress\`. Those are specialized approximation constructions: they are not simply different names for P1.
+
+The \`space.use_p_ref\` option allows geometry-dependent **a priori p-refinement**. It is a separate concept from simply increasing a global \`discr_order\`. For background, see the [technical formulations](../details/formulations.md) and PolyFEM's [Decoupling Simulation Accuracy from Mesh Quality work](https://github.com/polyfem/polyfem).
+
+### Mixed formulations have multiple fields
+
+Not every simulation has a single scalar or displacement vector as its unknown. For example, incompressible flow solves for both **velocity** and **pressure**. Fluid–structure interaction can also include solid displacement and ALE mesh displacement. In those cases, the input material and coupled problem configuration refer to **space IDs** for the different fields; using only a single \`discr_order\` is not a complete mixed formulation setup.
+
+!!! warning "Don't guess a coupled setup"
+    A working \`NavierStokesFSI\` example needs more than changing \`materials.type\`. It has required field-space IDs, geometry IDs, viscosity, and nested material choices. Start from a compatible **tested configuration** and consult the [generated JSON specification](../json_defaults_and_spec.md).
+
+### Mesh order is not necessarily solution order
+
+A curved/high-order geometric map describes **where the elements are in physical space**. The \`space.discr_order\` describes **how the unknown field is approximated**. PolyFEM supports separating these decisions in supported cases. Increasing the solution order does not automatically repair a poorly resolved geometric boundary; conversely, a curved mesh can represent geometry well without forcing the solution space to the same order.
+
+## 11. Put it together: a small sequence of experiments
+
+Once the initial plate example works, make one change at a time. This keeps failures attributable to one modeling decision.
+
+| Experiment | Change | Observe |
+| --- | --- | --- |
+| A. Spatial approximation | \`space.discr_order\` from 1 to 2 | Solution accuracy, runtime, DOF count |
+| B. Physics | Laplacian to linear elasticity (Section 6) | Scalar field versus displacement vector |
+| C. Constraints | Change the Dirichlet dimension mask | Which displacement component is blocked |
+| D. Loads | Change the Neumann traction magnitude | How displacement scales in linear elasticity |
+| E. Materials | Change \`E\` or \`nu\` | Stiffness and deformation response |
+| F. Mesh | Replace the plate mesh with a compatible 2D mesh | Which sidesets/selection rules still apply |
+
+For experiment F, remember: **the boundary tags of the new mesh may differ**. A JSON file that ran successfully on one mesh may fail or produce an unintended problem on another because its selected sidesets no longer exist or cover the wrong boundary. Check the geometry and labels before assuming the solver is wrong.
+
+## 12. Where to go next
 
 - **Time stepping and moving boundary conditions:** the [full Getting Started tutorial](../tutorials/getting_started.md#time-dependent-simulation) introduces `time.dt`, `time.tend`, and time-dependent expressions.
 - **Contact and friction:** the [IPC Quick Start Guide](../tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md) begins with two cubes falling onto a plane, then develops stiffness, collision, and time-step variations.
