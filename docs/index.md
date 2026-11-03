@@ -34,6 +34,7 @@ News
 Recent developments from the [PolyFEM project](https://github.com/polyfem/polyfem). For development activity beyond these highlights, see the [commit history](https://github.com/polyfem/polyfem/commits/main/) and [pull requests](https://github.com/polyfem/polyfem/pulls).
 
 - **November 2, 2026 — JSON builder added to the documentation.** The website navigation now includes a JSON builder page. [Website change](https://github.com/polyfem/polyfem.github.io/pull/10).
+- **July 29, 2026 — Fluid–structure interaction (FSI) support.** PolyFEM merged a coupled Navier–Stokes/solid mechanics implementation, including interface coupling forms and associated tests. [Pull request #525](https://github.com/polyfem/polyfem/pull/525).
 - **October 30, 2026 — Legacy-code cleanup.** The `no-legacy` changes were merged into PolyFEM. [Pull request #555](https://github.com/polyfem/polyfem/pull/555).
 - **October 28, 2026 — Macro strain moved to the variational-form implementation.** Periodic macro-strain simulations now route through the nonlinear-elasticity variational form. [Pull request #546](https://github.com/polyfem/polyfem/pull/546).
 - **October 23, 2026 — Extremum Sum Potential integrated.** A new contact formulation based on Extremum Sum Proximity Potential was merged. [Pull request #542](https://github.com/polyfem/polyfem/pull/542).
