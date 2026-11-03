@@ -764,8 +764,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bc-setter-app" class="md-nav__link">
-    BC Setter App
+  <a href="#assigning-boundary-tags" class="md-nav__link">
+    Assigning Boundary Tags
   </a>
   
 </li>
@@ -1156,8 +1156,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bc-setter-app" class="md-nav__link">
-    BC Setter App
+  <a href="#assigning-boundary-tags" class="md-nav__link">
+    Assigning Boundary Tags
   </a>
   
 </li>
@@ -1344,11 +1344,10 @@ For the two Dirichlet, it is a bit more complicated because we want reflective b
 </ul>
 </li>
 </ul>
-<h3 id="bc-setter-app">BC Setter App<a class="headerlink" href="#bc-setter-app" title="Permanent link">&para;</a></h3>
-<p>Since creating the file with association from boundary to ID is complicated, we also provide an application <code>bc_setter</code> to interactively <em>color</em> faces of 3D meshes (or edges of 2D meshes) and associate tags.</p>
-<p>By <em>shift</em>-clicking you can color coplanar faces to assign an ID (<em>command</em> or <em>control</em>-click colors only one face). The UI also allows specifying the three values (for scalar problem only one) to assign to that boundary condition and choose between Dirichlet and Neumann.</p>
-<p>On save, it will produce the <code>.txt</code> file with the tags to be used in the <code>"surface_selection"</code> JSON field and a JSON file to set the <code>"boundary_conditions"</code>.</p>
-<p><img alt="bc_setter" src="../../img/bc_setter.png" /></p>
+<h3 id="assigning-boundary-tags">Assigning Boundary Tags<a class="headerlink" href="#assigning-boundary-tags" title="Permanent link">&para;</a></h3>
+<p>The standalone <code>bc_setter</code> application shown in older versions of this tutorial is no longer distributed with PolyFEM.</p>
+<p>Boundary conditions are assigned through the JSON <code>boundary_conditions</code> section using the IDs of boundary faces or edges. For simple meshes, <code>geometry.surface_selection</code> can assign these IDs based on positions, as in the plate-with-hole example above. For meshes with existing tags, a per-face or per-edge tag file can also be referenced from <code>surface_selection</code>.</p>
+<p>See the <a href="../../json.md">JSON input guide</a> and the <a href="../../json_defaults_and_spec.md">generated JSON specification</a> for the currently supported selection options. The <a href="https://polyfem.github.io/json-builder/">JSON builder</a> can help prepare the configuration.</p>
 <h2 id="time-dependent-simulation">Time-Dependent Simulation<a class="headerlink" href="#time-dependent-simulation" title="Permanent link">&para;</a></h2>
 <p>To enable time-dependent simulation add
 <div class="highlight"><pre><span></span><code><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

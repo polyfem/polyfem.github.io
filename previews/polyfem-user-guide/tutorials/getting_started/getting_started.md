@@ -108,15 +108,13 @@ In addition to [TinyExpr's built-in functions](https://github.com/codeplea/tinye
 * `smooth_abs(x, k)`: a smooth approximation to `abs(x)`
     * definition: $\tanh(kx)x$
 
-### BC Setter App
+### Assigning Boundary Tags
 
-Since creating the file with association from boundary to ID is complicated, we also provide an application `bc_setter` to interactively *color* faces of 3D meshes (or edges of 2D meshes) and associate tags.
+The standalone `bc_setter` application shown in older versions of this tutorial is no longer distributed with PolyFEM.
 
-By *shift*-clicking you can color coplanar faces to assign an ID (*command* or *control*-click colors only one face). The UI also allows specifying the three values (for scalar problem only one) to assign to that boundary condition and choose between Dirichlet and Neumann.
+Boundary conditions are assigned through the JSON `boundary_conditions` section using the IDs of boundary faces or edges. For simple meshes, `geometry.surface_selection` can assign these IDs based on positions, as in the plate-with-hole example above. For meshes with existing tags, a per-face or per-edge tag file can also be referenced from `surface_selection`.
 
-On save, it will produce the `.txt` file with the tags to be used in the `"surface_selection"` JSON field and a JSON file to set the `"boundary_conditions"`.
-
-![bc_setter](../img/bc_setter.png)
+See the [JSON input guide](../../json.md) and the [generated JSON specification](../../json_defaults_and_spec.md) for the currently supported selection options. The [JSON builder](https://polyfem.github.io/json-builder/) can help prepare the configuration.
 
 Time-Dependent Simulation
 -------------------------
