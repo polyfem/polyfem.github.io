@@ -1,4 +1,4 @@
-# Your first PolyFEM simulation
+# PolyFEM user guide: from first run to advanced simulations
 
 This hands-on introduction starts with a complete, downloadable example, explains each part of the input, and then changes the physics and boundary conditions. You can **run PolyFEM without compiling it** if a suitable prebuilt package is available.
 
@@ -15,24 +15,9 @@ Each link opens the **actual JSON used in PolyFEM tests**. Read its `geometry`, 
 !!! tip "Try the examples in the GUI"
     Download or clone [polyfem-data](https://github.com/polyfem/polyfem-data), launch the packaged **PolyFEM desktop app**, click **Load JSON**, choose an example and click **Run**. Start with short, static cases; dynamics and contact can cost much more. Some regression configurations contain `tests` entries for automated accuracy checks. Those are not the primary user-facing settings.
 
-### Recommended learning path
+### The path through the examples
 
-| Stage | Real configuration(s) | What to learn |
-| --- | --- | --- |
-| **1. First solve** | [Plate with a hole](https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.json) | Load a 2D mesh, select a scalar PDE, save and inspect the result |
-| **2. Boundary labels and constraints** | [Elastic baseline](https://github.com/polyfem/polyfem-data/blob/main/standard/elastic_common.json) | Relate sideset IDs to left/right boundary constraints; understand shared JSON |
-| **3. Geometric versus file selections** | [Plane](https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json), [sphere](https://github.com/polyfem/polyfem-data/blob/main/selection/sphere.json), [cylinder](https://github.com/polyfem/polyfem-data/blob/main/selection/cylinder.json), [file tags](https://github.com/polyfem/polyfem-data/blob/main/selection/file.json) | Tag the same mesh by geometric predicates or a side-ID file |
-| **4. Mesh elements** | [3D tet Laplacian](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace.json), [2D quad Laplacian](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_quad.json) | Compare element types without immediately introducing nonlinear mechanics |
-| **5. FE approximation** | [Bernstein order 2](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_3d_b2.json), [spline](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_spline.json), [polygonal Mean Value](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json) | Distinguish polynomial degree, basis family, and geometry |
-| **6. Material laws** | [Linear/Hooke](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke.json), [Saint Venant](https://github.com/polyfem/polyfem-data/blob/main/standard/saint_venant.json), [Neo-Hookean](https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json) | Change the constitutive law while reusing a controlled elastic test |
-| **7. Several materials** | [Stretching three material regions](https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json) | Associate *volume IDs* with stiffness/density, and learn why mesh regions matter |
-| **8. Prescribed motion and time stepping** | [Linear-ramp boundary conditions](https://github.com/polyfem/polyfem-data/blob/main/interpolation/linear_ramp.json), [implicit Euler](https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json), [Newmark](https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json) | Change boundary values over time and compare integration methods |
-| **9. Contact** | [Two cubes](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/unit-tests/2-cubes.json), [sphere on mat](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json) | Multiple moving objects, collision constraints, and contact parameters |
-| **10. Advanced mechanics** | [Anisotropic Hooke](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke_anisotropic.json), [active fiber](https://github.com/polyfem/polyfem-data/blob/main/standard/active-fiber.json) | Direction-dependent response, composed material laws, and units |
-| **11. Mixed finite-element fields** | [Incompressible elasticity](https://github.com/polyfem/polyfem-data/blob/main/standard/incompressible.json), [Stokes flow](https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json) | Why displacement/pressure or velocity/pressure need distinct FE spaces |
-| **12. Coupled multiphysics** | [Transient Navier–Stokes](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_transient.json), [thermoelastic bar](https://github.com/polyfem/polyfem-data/blob/main/standard/thermoelastic_heated_clamped_bar.json), [FSI square](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_fsi_simple_square.json) | Coupled fields, multiple `fe_space` IDs, and more demanding setups |
-
-**Suggested pace:** Sections 1–6 cover the essentials and the common mistakes. Sections 7–9 explain many practical simulations. Sections 10–12 are an **advanced reference route**, not prerequisites for running PolyFEM.
+The next sections build up one concept at a time: **first run → mesh → boundary tags → materials → finite-element spaces → dynamics → contact → multiphysics**. Each section links to an actual `polyfem-data` JSON, says which fields to inspect, and suggests a small experiment. You can read the whole guide on this page; open the specialized tutorials only when you want more depth.
 
 ### How to read inherited configurations
 
@@ -88,7 +73,7 @@ Choose one of these paths:
     conda install -c conda-forge polyfempy
     ```
 
-    The command-line examples below use the **C++ executable**, not `polyfempy`. For Python examples, see the [Python guide](../python.md) and [Jupyter tutorial](../python_examples.ipynb).
+    The desktop-app examples below use the **C++ application**, not `polyfempy`. For Python examples, see the [Python guide](../python.md) and [Jupyter tutorial](../python_examples.ipynb).
 
 ## 2. Download a complete first example
 
@@ -176,6 +161,10 @@ Here is the complete example, so you can read it alongside the downloaded file:
 
 For every available setting, use the [JSON input guide](../json.md) and the [automatically generated JSON specification](../json_defaults_and_spec.md). The [interactive JSON builder](https://polyfem.github.io/json-builder/) is another way to explore configuration options.
 
+!!! example "From the test suite: plate with a hole"
+    The [tested `standard/plate_hole.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.json) contains precisely this kind of scalar problem. Compare its `geometry`, `materials`, `preset_problem`, and `output` with the downloaded `run.json`. The test-suite version additionally has `tests` entries for numerical regression checks; these are not required to start a simulation.
+
+    **Try:** change only `output.paraview.file_name` and run again. Confirm that you can find the new file. This is a simpler first experiment than changing the PDE.
 ## 6. Change the problem: linear elasticity
 
 Now use the *same mesh* to solve a vector-valued displacement problem.
@@ -215,6 +204,10 @@ These IDs come from the plate-with-hole boundary-tagging convention used in the 
 !!! tip "Explore boundary conditions visually"
     In ParaView, color the resulting field and use **Warp By Vector** with the displacement field to see the deformation. You may need to adjust the warp scale to make small displacements noticeable.
 
+!!! example "From the test suite: the elastic baseline"
+    [`standard/elastic_common.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/elastic_common.json) is a 3D baseline used by several elastic tests. Look at its two `surface_selection` boxes, the corresponding IDs 1 and 3 in `dirichlet_boundary`, and its reference to `common.json`.
+
+    **Try:** identify which boundaries move left and right without running anything, then compare the displacement vectors. This same connection between boundary tags and conditions is what your plate example uses.
 ## 7. Meshes: what PolyFEM actually discretizes
 
 The first example uses a **2D plate with a hole**. PolyFEM is not restricted to this mesh or to triangles. Before changing the physics, it helps to distinguish a *surface describing an object* from a *volume discretization of the object*.
@@ -258,6 +251,10 @@ This is an **illustrative fragment**, not a complete runnable scene; the actual 
 
 The input specification lists `.obj`, `.msh`, `.stl`, `.ply`, and `.mesh` among the accepted mesh-file extensions. **The extension alone does not tell you whether a mesh contains volume cells.** For example, an OBJ containing only triangles is a surface, whereas a Gmsh MSH file can carry tetrahedra or other volume cells. For 3D elasticity you normally need a **volume mesh**, not just a surface shell.
 
+!!! example "From the test suite: change element types, keep the physics"
+    Compare [`standard/laplace.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace.json) (3D cube volume mesh) with [`standard/laplace_quad.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_quad.json) (2D quadrilateral mesh). Both use `Laplacian` and the `Franke` preset; notice that their meshes, dimension, and refinement settings differ.
+
+    **Try:** run each from a complete checkout of `polyfem-data`, keeping its relative mesh paths. You are comparing two *different discretized domains*, not a controlled convergence experiment. For a controlled experiment, refine the same mesh or change only the FE degree.
 ### Geometry operations
 
 Use `transformation` to place and resize objects **without modifying their mesh files**:
@@ -338,6 +335,15 @@ In an elasticity problem:
 - The **right-hand side** `rhs` describes a source or body load in the governing equations, not a sideset.
 - Leaving a sideset without an explicit traction typically corresponds to a natural/free boundary for this class of problem.
 
+!!! example "From the test suite: one mesh, different sidesets"
+    The selection tests share an [alien volumetric mesh](https://github.com/polyfem/polyfem-data/tree/main/selection) and a [baseline problem](https://github.com/polyfem/polyfem-data/blob/main/selection/main.json). Compare:
+
+    - [`selection/plane.json`](https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json): half-spaces defined by a point and normal.
+    - [`selection/sphere.json`](https://github.com/polyfem/polyfem-data/blob/main/selection/sphere.json): spherical neighborhoods.
+    - [`selection/cylinder.json`](https://github.com/polyfem/polyfem-data/blob/main/selection/cylinder.json): cylindrical neighborhoods.
+    - [`selection/file.json`](https://github.com/polyfem/polyfem-data/blob/main/selection/file.json): IDs loaded from `alien.txt`.
+
+    Each inherits `main.json` through `common`. **Compare the `geometry.surface_selection` block first**; its two IDs feed the same prescribed displacements in the baseline. Then inspect the geometry and results. Do not compare their numerical errors as if they were solving identical boundary-value problems: the selected boundary regions differ.
 ### Two ways to assign IDs
 
 There are two broad approaches, and you can mix them as needed.
@@ -432,6 +438,12 @@ This is a valid example of a **compressible Neo-Hookean** material entry. It doe
 
 This is a **guided subset**, not a list of interchangeable options. Each model has its own **required parameters** and mathematical assumptions. See [formulations](../details/formulations.md) and the [generated material specification](../json_defaults_and_spec.md) before switching a real application.
 
+!!! example "From the test suite: change the law, not the domain"
+    Read [`standard/hooke.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke.json), [`standard/saint_venant.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/saint_venant.json), and [`standard/neohookean.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json). The first two use a cube and the `ElasticExact` preset; Neo-Hookean inherits the displacement-controlled `elastic_common.json` baseline.
+
+    **Important:** because these inputs do not all have identical boundary conditions, they are examples of material configuration, **not** an apples-to-apples quantitative constitutive-model comparison. To isolate a material law, hold geometry, loads, and constraints fixed and change the material in a copy of one runnable configuration.
+
+    For specialized materials, [`standard/hooke_anisotropic.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke_anisotropic.json) supplies a full elasticity tensor, while [`standard/active-fiber.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/active-fiber.json) builds a composite with `MaterialSum`, `NeoHookean`, `VolumePenalty`, and `ActiveFiber`. Read them after the isotropic cases.
 ### Multiple materials: connect volume IDs to material IDs
 
 A scene can contain several material regions:
@@ -451,6 +463,12 @@ This is a **configuration fragment**, not a runnable scene: both meshes must exi
 
 **Try it:** on a multi-body model, change one material's `E` by a factor of 10 while keeping everything else fixed. Compare the displacement field and force response. If you want the complete, documented workflow (including mesh generation and assignment of region IDs), continue with [Simulating Multiple Materials in a Single Mesh](../tutorials/multi-material/multi-material.md).
 
+!!! example "From the test suite: one mesh with multiple material IDs"
+    [`multi-material/stretch-cubes.json`](https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json) uses a tagged volume mesh (`cubes_v41.msh`) and three `materials` entries, with IDs 1, 2, and 3. It also uses geometric boxes to select the **left and right boundary regions**, and prescribed motion to stretch the object.
+
+    **Inspect in order:** the mesh file and its *volume IDs* → `materials[].id` → `surface_selection` → `boundary_conditions`. The same integers may appear in different roles, but volume IDs choose material regions while surface IDs choose boundary regions.
+
+    **Try:** make the middle material stiffer by changing only its `E`. Keep the original file and mesh in their repository directory. For the mesh-generation procedure, follow the [existing multi-material tutorial](../tutorials/multi-material/multi-material.md).
 ## 10. Finite-element spaces: separate geometry, approximation, and physics
 
 An FEM computation involves at least three choices:
@@ -483,6 +501,10 @@ The order controls the **finite-element approximation**, not the material law. D
 
 **Experiment:** solve the same plate-with-hole problem at orders 1 and 2. Compare the results *without changing the mesh or physics*. For a smooth solution, compare accuracy as well as runtime; it is misleading to conclude one choice is better solely from how smooth a ParaView image looks.
 
+!!! example "From the test suite: compare element order"
+    [`standard/laplace_3d_b2.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_3d_b2.json) explicitly chooses `"basis_type": "Bernstein"` and `"discr_order": 2`. For a cleaner P1/P2 experiment on a single problem, duplicate one input (such as the plate) and change only `space.discr_order`.
+
+    **Try:** compare the number of degrees of freedom, solve time, and solution/error statistics. When comparing separate `polyfem-data` files, first check whether they also changed the **mesh order** or refinement level.
 ### Basis families
 
 The current JSON specification exposes:
@@ -505,6 +527,10 @@ For **polygonal** elements, PolyFEM has a separate `poly_basis_type` selector. A
 
 The `space.use_p_ref` option allows geometry-dependent **a priori p-refinement**. It is a separate concept from simply increasing a global `discr_order`. For background, see the [technical formulations](../details/formulations.md) and PolyFEM's [Decoupling Simulation Accuracy from Mesh Quality work](https://github.com/polyfem/polyfem).
 
+!!! example "From the test suite: spline and polygonal choices"
+    The [`standard/laplace_spline.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_spline.json) configuration uses a quadrilateral mesh and `space.basis_type: "Spline"`. The [`standard/laplace_mv.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json) and [`standard/laplace_ws.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_ws.json) files instead use a polygon mesh with Mean Value and Wachspress `poly_basis_type` options.
+
+    **Try:** compare the two polygon examples first: their configurations have the same mesh and preset, so the polygonal basis is the meaningful change. Then look at the quadrilateral spline example as a separate basis-family demonstration.
 ### Mixed formulations have multiple fields
 
 Not every simulation has a single scalar or displacement vector as its unknown. For example, incompressible flow solves for both **velocity** and **pressure**. Fluid–structure interaction can also include solid displacement and ALE mesh displacement. In those cases, the input material and coupled problem configuration refer to **space IDs** for the different fields; using only a single `discr_order` is not a complete mixed formulation setup.
@@ -516,22 +542,88 @@ Not every simulation has a single scalar or displacement vector as its unknown. 
 
 A curved/high-order geometric map describes **where the elements are in physical space**. The `space.discr_order` describes **how the unknown field is approximated**. PolyFEM supports separating these decisions in supported cases. Increasing the solution order does not automatically repair a poorly resolved geometric boundary; conversely, a curved mesh can represent geometry well without forcing the solution space to the same order.
 
-## 11. Put it together: a small sequence of experiments
+## 11. Time-dependent simulations: motion and integration
 
-Once the initial plate example works, make one change at a time. This keeps failures attributable to one modeling decision.
+For transient problems, the top-level `time` section determines the simulated interval and time-stepping scheme. A material's density and the problem's initial conditions become especially important. The UI still follows the same workflow: **Load JSON → Run**, but output often becomes a time sequence instead of one VTU.
 
-| Experiment | Change | Observe |
+Start with these actual tests:
+
+- [`interpolation/linear_ramp.json`](https://github.com/polyfem/polyfem-data/blob/main/interpolation/linear_ramp.json) gives boundary IDs 1 and 3 prescribed displacement values, with **different linear-ramp intervals**. It inherits the rest of the scene from `interpolation/main.json`. This demonstrates that *how* a displacement changes over time is separate from *which* boundary receives it.
+- [`time-int/euler.json`](https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json) and [`time-int/newmark.json`](https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json) both inherit `time-int/main.json`; they choose `ImplicitEuler` and `ImplicitNewmark` respectively.
+
+```json
+"time": {
+  "integrator": "ImplicitEuler",
+  "tend": 0.1,
+  "time_steps": 10
+}
+```
+
+**Try:** compare the two integrator configurations without editing them first. Then change the time-step count *in a copy*, keeping total simulated time fixed. Compare trajectory/output across steps; do not equate a difference in numerical damping with a material effect.
+
+For a more visual prescribed-motion example, inspect [`time-bc/walking-elephant.json`](https://github.com/polyfem/polyfem-data/blob/main/time-bc/walking-elephant.json). It uses spatial selections and time-dependent boundary motion on an elephant mesh.
+
+## 12. Contact: two bodies and a barrier
+
+Contact is more than two overlapping meshes: the objects must be represented by appropriate geometry, a constitutive model must define their motion, and **collision/contact** must be configured.
+
+Start with [`contact/examples/3D/unit-tests/2-cubes.json`](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/unit-tests/2-cubes.json). It has two cube meshes positioned at different heights, a fixed boundary selection on the lower one, gravity as `rhs`, and a time-dependent solve. Its `common` file supplies shared contact settings; inspect that too.
+
+Next look at [`contact/examples/3D/large-ratios/sphere-mat.json`](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json), where the sphere and the mat have **different volume IDs and different Neo-Hookean parameters**. The mat boundaries also move with expressions involving `t`.
+
+**Read in order:** `geometry` (objects and transforms) → `volume_selection` (body/material IDs) → `surface_selection` (prescribed boundaries) → `materials` → `contact` and `time`. Run from the intact data tree; both scenes refer to external meshes and shared settings.
+
+For friction, changing time steps, and codimensional obstacles, the [IPC Quick Start Guide](../tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md) goes much deeper.
+
+## 13. Mixed spaces and coupled physics
+
+A scalar Laplace problem has one unknown; incompressible solids and fluids have **more than one field**. The JSON assigns **FE space IDs**, which are distinct from material-body IDs and boundary sideset IDs.
+
+The [`standard/stokes_static.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json) example uses velocity in space 0 and pressure in space 1:
+
+```json
+"materials": {
+  "type": "Stokes",
+  "viscosity": 100,
+  "velocity_space_id": 0,
+  "pressure_space_id": 1
+},
+"space": {
+  "discr_order": [
+    { "fe_space": 0, "order": 2 },
+    { "fe_space": 1, "order": 1 }
+  ]
+}
+```
+
+Those are **Taylor–Hood-style P2/P1** choices for this example—not different materials, and not two different meshes. [`standard/incompressible.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/incompressible.json) uses analogous displacement/pressure space IDs for incompressible elasticity.
+
+More advanced combinations are represented by:
+
+- [`standard/thermoelastic_heated_clamped_bar.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/thermoelastic_heated_clamped_bar.json): separate displacement and temperature fields, each with its own boundary conditions or right-hand sides.
+- [`standard/navier_stokes_transient.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_transient.json): transient fluid flow with velocity and pressure.
+- [`standard/navier_stokes_fsi_simple_square.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_fsi_simple_square.json): a coupled fluid–structure interaction setup with velocity, pressure, ALE mesh displacement, and solid displacement spaces. It also distinguishes **fluid and solid geometry IDs**.
+
+**Try:** in the FSI file, find each `*_space_id`, then locate its matching entry under `space.discr_order`. Identify the `fe_space` used by each boundary condition. Do **not** attempt to turn a single-field elasticity input into FSI just by changing `materials.type`.
+
+These coupled examples are a reading path first; run them only once the simpler configurations work and you are comfortable interpreting their mesh dependencies, convergence settings, and output.
+
+## 14. Suggested practice sequence
+
+Use real `polyfem-data` files as your starting point. For each exercise, make one copy, identify any `common` or `patch` parent, and keep the referenced mesh and resource files available.
+
+| Exercise | Start from | One change to study |
 | --- | --- | --- |
-| A. Spatial approximation | `space.discr_order` from 1 to 2 | Solution accuracy, runtime, DOF count |
-| B. Physics | Laplacian to linear elasticity (Section 6) | Scalar field versus displacement vector |
-| C. Constraints | Change the Dirichlet dimension mask | Which displacement component is blocked |
-| D. Loads | Change the Neumann traction magnitude | How displacement scales in linear elasticity |
-| E. Materials | Change `E` or `nu` | Stiffness and deformation response |
-| F. Mesh | Replace the plate mesh with a compatible 2D mesh | Which sidesets/selection rules still apply |
+| A. Change resolution | [Plate with a hole](https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.json) | Increase `space.discr_order`; compare approximation and cost |
+| B. Change boundary labeling | [Alien plane selection](https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json) | Compare with sphere or file selection; inspect affected sidesets |
+| C. Change a material region | [Stretching cubes](https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json) | Change only middle-region `E` |
+| D. Change time integration | [Euler](https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json) | Compare its inherited scene with [Newmark](https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json) |
+| E. Change FE basis | [Polygonal Mean Value](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json) | Compare with [Wachspress](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_ws.json) |
+| F. Identify mixed fields | [Stokes](https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json) | Trace `velocity_space_id`, `pressure_space_id` and FE orders |
 
-For experiment F, remember: **the boundary tags of the new mesh may differ**. A JSON file that ran successfully on one mesh may fail or produce an unintended problem on another because its selected sidesets no longer exist or cover the wrong boundary. Check the geometry and labels before assuming the solver is wrong.
+The goal is to explain **why** the result changed. If two cases also use different meshes, boundary conditions, or solver settings, they are not a controlled single-parameter comparison.
 
-## 12. Where to go next
+## 15. Where to go next
 
 - **Time stepping and moving boundary conditions:** the [full Getting Started tutorial](../tutorials/getting_started.md#time-dependent-simulation) introduces `time.dt`, `time.tend`, and time-dependent expressions.
 - **Contact and friction:** the [IPC Quick Start Guide](../tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md) begins with two cubes falling onto a plane, then develops stiffness, collision, and time-step variations.
