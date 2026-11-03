@@ -1718,43 +1718,40 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </table>
 <h3 id="loading-a-mesh">Loading a mesh<a class="headerlink" href="#loading-a-mesh" title="Permanent link">&para;</a></h3>
 <p>The simplest geometry entry is:</p>
-<p>```json
-&ldquo;geometry&rdquo;: {
-  &ldquo;mesh&rdquo;: &ldquo;plate_hole.obj&rdquo;
-}
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plate_hole.obj"</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>A scene with several bodies uses a list of geometries. For example, a sphere and a soft mat may each have their own mesh, transforms, and IDs:</p>
-<p>```json
-&ldquo;geometry&rdquo;: [
-  {
-    &ldquo;mesh&rdquo;: &ldquo;sphere.msh&rdquo;,
-    &ldquo;transformation&rdquo;: { &ldquo;translation&rdquo;: [0, 1, 0] },
-    &ldquo;volume_selection&rdquo;: 1
-  },
-  {
-    &ldquo;mesh&rdquo;: &ldquo;mat.msh&rdquo;,
-    &ldquo;volume_selection&rdquo;: 2
-  }
-]
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sphere.msh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"transformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"translation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mat.msh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <p>This is an <strong>illustrative fragment</strong>, not a complete runnable scene; the actual sphere/mat meshes, contact parameters, and boundary conditions are provided by the <a href="https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json">tested sphere–mat example</a>.</p>
-<p>The input specification lists `.obj`, `.msh`, `.stl`, `.ply`, and `.mesh` among the accepted mesh-file extensions. <strong>The extension alone does not tell you whether a mesh contains volume cells.</strong> For example, an OBJ containing only triangles is a surface, whereas a Gmsh MSH file can carry tetrahedra or other volume cells. For 3D elasticity you normally need a <strong>volume mesh</strong>, not just a surface shell.</p>
+<p>The input specification lists <code>.obj</code>, <code>.msh</code>, <code>.stl</code>, <code>.ply</code>, and <code>.mesh</code> among the accepted mesh-file extensions. <strong>The extension alone does not tell you whether a mesh contains volume cells.</strong> For example, an OBJ containing only triangles is a surface, whereas a Gmsh MSH file can carry tetrahedra or other volume cells. For 3D elasticity you normally need a <strong>volume mesh</strong>, not just a surface shell.</p>
 <h3 id="geometry-operations">Geometry operations<a class="headerlink" href="#geometry-operations" title="Permanent link">&para;</a></h3>
-<p>Use `transformation` to place and resize objects <strong>without modifying their mesh files</strong>:</p>
-<p>```json
-&ldquo;geometry&rdquo;: {
-  &ldquo;mesh&rdquo;: &ldquo;part.msh&rdquo;,
-  &ldquo;transformation&rdquo;: {
-    &ldquo;scale&rdquo;: [1, 2, 1],
-    &ldquo;translation&rdquo;: [0, 0.5, 0]
-  }
-}
-```</p>
+<p>Use <code>transformation</code> to place and resize objects <strong>without modifying their mesh files</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"part.msh"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"transformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"scale"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"translation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Rotations are also supported. Transforms matter because <strong>geometric boundary selection is performed on the positioned geometry</strong>: if you move or scale a body, absolute selection coordinates may need updating.</p>
-<p>`&ldquo;advanced&rdquo;: { &ldquo;normalize_mesh&rdquo;: true }` rescales the mesh into a standard size. That is convenient for the first numerical example, but for physical simulation you should take care with <strong>units and material parameters</strong>. A mesh measured in millimeters is not interchangeable with one measured in meters if you keep the same physical stiffness, density, loads, and time scale.</p>
+<p><code>"advanced": { "normalize_mesh": true }</code> rescales the mesh into a standard size. That is convenient for the first numerical example, but for physical simulation you should take care with <strong>units and material parameters</strong>. A mesh measured in millimeters is not interchangeable with one measured in meters if you keep the same physical stiffness, density, loads, and time scale.</p>
 <div class="admonition tip">
 <p class="admonition-title">Surface obstacles versus deformable bodies</p>
-<p>A plane or triangulated surface can be used as a collision obstacle (`&ldquo;is_obstacle&rdquo;: true`). It does not automatically become a 3D elastic body with interior degrees of freedom. See the <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/#collision-obstacles">IPC tutorial</a> for surface, edge, and point obstacles.</p>
+<p>A plane or triangulated surface can be used as a collision obstacle (<code>"is_obstacle": true</code>). It does not automatically become a 3D elastic body with interior degrees of freedom. See the <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/#collision-obstacles">IPC tutorial</a> for surface, edge, and point obstacles.</p>
 </div>
 <h2 id="8-sidesets-body-ids-and-boundary-conditions">8. Sidesets, body IDs, and boundary conditions<a class="headerlink" href="#8-sidesets-body-ids-and-boundary-conditions" title="Permanent link">&para;</a></h2>
 <p>This is one of the most important ideas in PolyFEM.</p>
@@ -1770,12 +1767,12 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </thead>
 <tbody>
 <tr>
-<td>`surface_selection`</td>
+<td><code>surface_selection</code></td>
 <td>Boundary edges/faces</td>
 <td>Dirichlet and Neumann conditions, boundary loads, prescribed motion</td>
 </tr>
 <tr>
-<td>`volume_selection`</td>
+<td><code>volume_selection</code></td>
 <td>Interior elements</td>
 <td>Material/body assignment and region-specific properties</td>
 </tr>
@@ -1784,9 +1781,8 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <p><strong>IDs from one category do not automatically determine IDs in the other.</strong> A body with volume ID 2 may have boundary sidesets 1, 3, and 7, and several bodies can reuse a material model with different volume IDs.</p>
 <h3 id="bounding-box-sidesets-in-the-plate-example">Bounding-box sidesets in the plate example<a class="headerlink" href="#bounding-box-sidesets-in-the-plate-example" title="Permanent link">&para;</a></h3>
 <p>For the plate-with-hole mesh, the tutorial uses:</p>
-<p>```json
-&ldquo;surface_selection&rdquo;: { &ldquo;threshold&rdquo;: 1e-7 }
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-7</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 <p>This is the <strong>bounding-box side selector</strong>. It labels the outer boundary according to its proximity to the bounding-box faces:</p>
 <table>
 <thead>
@@ -1824,47 +1820,44 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </table>
 <p>The <strong>hole</strong> is an example of an interior boundary that is not on one of the bounding-box sides: it falls into the remaining-boundary category. The threshold controls how close to a box side the barycenter must be for the label to apply. It should be chosen consistently with the mesh scale.</p>
 <p>The important connection is now explicit:</p>
-<p>```json
-&ldquo;boundary_conditions&rdquo;: {
-  &ldquo;dirichlet_boundary&rdquo;: [
-    { &ldquo;id&rdquo;: 1, &ldquo;value&rdquo;: [0, 0], &ldquo;dimension&rdquo;: [true, false] },
-    { &ldquo;id&rdquo;: 4, &ldquo;value&rdquo;: [0, 0], &ldquo;dimension&rdquo;: [false, true] }
-  ],
-  &ldquo;neumann_boundary&rdquo;: [
-    { &ldquo;id&rdquo;: 3, &ldquo;value&rdquo;: [100, 0] }
-  ]
-}
-```</p>
-<p>This constrains the <strong>x displacement</strong> on sideset 1, the <strong>y displacement</strong> on sideset 4, and applies an <strong>x-directed traction</strong> on sideset 3. The other components remain free where the mask is `false`.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"boundary_conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"dirichlet_boundary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nt">"dimension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nt">"dimension"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"neumann_boundary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This constrains the <strong>x displacement</strong> on sideset 1, the <strong>y displacement</strong> on sideset 4, and applies an <strong>x-directed traction</strong> on sideset 3. The other components remain free where the mask is <code>false</code>.</p>
 <p>In an elasticity problem:</p>
 <ul>
 <li><strong>Dirichlet</strong> means prescribed <strong>displacement</strong>; zero is a fixed displacement, not zero stress.</li>
 <li><strong>Neumann</strong> means prescribed <strong>traction</strong> on the selected surface; it is not the same thing as an applied force at one vertex.</li>
-<li>The <strong>right-hand side</strong> `rhs` describes a source or body load in the governing equations, not a sideset.</li>
+<li>The <strong>right-hand side</strong> <code>rhs</code> describes a source or body load in the governing equations, not a sideset.</li>
 <li>Leaving a sideset without an explicit traction typically corresponds to a natural/free boundary for this class of problem.</li>
 </ul>
 <h3 id="two-ways-to-assign-ids">Two ways to assign IDs<a class="headerlink" href="#two-ways-to-assign-ids" title="Permanent link">&para;</a></h3>
 <p>There are two broad approaches, and you can mix them as needed.</p>
 <p><strong>A. Use IDs stored in or supplied alongside the mesh.</strong> This is preferable when your meshing pipeline already knows material regions or boundary tags.</p>
-<p>```json
-&ldquo;geometry&rdquo;: {
-  &ldquo;mesh&rdquo;: &ldquo;tagged.msh&rdquo;,
-  &ldquo;surface_selection&rdquo;: &ldquo;surface_tags.txt&rdquo;,
-  &ldquo;volume_selection&rdquo;: &ldquo;volume_tags.txt&rdquo;
-}
-```</p>
-<p>The `.txt` files need IDs in the order expected by PolyFEM for the corresponding mesh elements. These are <strong>illustrative file names</strong>; you must supply matching mesh and tag files. A mesh format may also carry its own region/body labels, in which case you can preserve them rather than generating new selections.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tagged.msh"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"surface_tags.txt"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"volume_tags.txt"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <code>.txt</code> files need IDs in the order expected by PolyFEM for the corresponding mesh elements. These are <strong>illustrative file names</strong>; you must supply matching mesh and tag files. A mesh format may also carry its own region/body labels, in which case you can preserve them rather than generating new selections.</p>
 <p><strong>B. Compute IDs from geometry.</strong> This is convenient when you only have the mesh, or when you want to describe selections with coordinates.</p>
 <p>For example, selecting a region near the minimum-x side of a unit-sized body:</p>
-<p>```json
-&ldquo;surface_selection&rdquo;: [
-  {
-    &ldquo;id&rdquo;: 10,
-    &ldquo;box&rdquo;: [[0, 0, 0], [0.1, 1, 1]],
-    &ldquo;relative&rdquo;: true
-  }
-]
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"box"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">]],</span>
+<span class="w">    </span><span class="nt">"relative"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <p>The two corners of the box are in <strong>relative bounding-box coordinates</strong>, so this selects boundary faces whose barycenters lie in the first 10% of the body&rsquo;s x extent. The example is 3D; use two coordinates per corner in 2D. It does <strong>not</strong> change the mesh; it assigns a label.</p>
 <p>Other geometric selectors supported by the current specification include:</p>
 <table>
@@ -1879,56 +1872,54 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <tr>
 <td>Box</td>
 <td>A region inside an axis-aligned box</td>
-<td>`id`, `box`</td>
+<td><code>id</code>, <code>box</code></td>
 </tr>
 <tr>
 <td>Sphere</td>
 <td>A local region around a point</td>
-<td>`id`, `center`, `radius`</td>
+<td><code>id</code>, <code>center</code>, <code>radius</code></td>
 </tr>
 <tr>
 <td>Cylinder</td>
 <td>A cylindrical region along an axis</td>
-<td>`id`, `p1`, `p2`, `radius`</td>
+<td><code>id</code>, <code>p1</code>, <code>p2</code>, <code>radius</code></td>
 </tr>
 <tr>
 <td>Plane / half-space</td>
 <td>Everything on one side of a plane</td>
-<td>`id`, `point`, `normal`</td>
+<td><code>id</code>, <code>point</code>, <code>normal</code></td>
 </tr>
 <tr>
 <td>Axis-aligned half-space</td>
 <td>A side such as x less than a given position</td>
-<td>`id`, `axis`, `position`</td>
+<td><code>id</code>, <code>axis</code>, <code>position</code></td>
 </tr>
 </tbody>
 </table>
 <p>Selectors work using element or boundary-primitive <strong>barycenters</strong>, not precise intersections with the underlying continuous region. On a coarse mesh, the selected set may not match the exact geometric cut you imagined.</p>
 <div class="admonition note">
 <p class="admonition-title">Two independent choices</p>
-<p><strong>What</strong> you label: surface versus volume. <strong>How</strong> you label it: imported IDs versus geometric selection. These are independent; for instance, a body may load volume IDs from `.msh` but use geometric rules to choose the surface patch where you pull it.</p>
+<p><strong>What</strong> you label: surface versus volume. <strong>How</strong> you label it: imported IDs versus geometric selection. These are independent; for instance, a body may load volume IDs from <code>.msh</code> but use geometric rules to choose the surface patch where you pull it.</p>
 </div>
 <p>For a detailed field-by-field explanation of all selection forms, use the <a href="../../json/#selections">JSON input guide</a> and <a href="../../json_defaults_and_spec/">generated specification</a>. The old standalone <strong>BC Setter</strong> application is no longer part of the current workflow.</p>
 <h2 id="9-materials-from-one-elastic-solid-to-several-regions">9. Materials: from one elastic solid to several regions<a class="headerlink" href="#9-materials-from-one-elastic-solid-to-several-regions" title="Permanent link">&para;</a></h2>
-<p>The `materials` section selects the PDE or constitutive law and its parameters. It is not just a palette or visualization label.</p>
+<p>The <code>materials</code> section selects the PDE or constitutive law and its parameters. It is not just a palette or visualization label.</p>
 <h3 id="start-with-linear-elasticity">Start with linear elasticity<a class="headerlink" href="#start-with-linear-elasticity" title="Permanent link">&para;</a></h3>
-<p>```json
-&ldquo;materials&rdquo;: {
-  &ldquo;type&rdquo;: &ldquo;LinearElasticity&rdquo;,
-  &ldquo;E&rdquo;: 210000,
-  &ldquo;nu&rdquo;: 0.3
-}
-```</p>
-<p>Here `E` is <strong>Young&rsquo;s modulus</strong> (stiffness scale) and `nu` is <strong>Poisson&rsquo;s ratio</strong> (lateral contraction relative to stretching). For time-dependent mechanics, `rho` controls mass density. Physical values must use consistent units.</p>
-<p>The `LinearElasticity` model assumes small strains. For larger deformations, use an appropriate nonlinear model instead:</p>
-<p>```json
-&ldquo;materials&rdquo;: {
-  &ldquo;type&rdquo;: &ldquo;NeoHookean&rdquo;,
-  &ldquo;E&rdquo;: 1000000,
-  &ldquo;nu&rdquo;: 0.4,
-  &ldquo;rho&rdquo;: 1000
-}
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinearElasticity"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">210000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Here <code>E</code> is <strong>Young&rsquo;s modulus</strong> (stiffness scale) and <code>nu</code> is <strong>Poisson&rsquo;s ratio</strong> (lateral contraction relative to stretching). For time-dependent mechanics, <code>rho</code> controls mass density. Physical values must use consistent units.</p>
+<p>The <code>LinearElasticity</code> model assumes small strains. For larger deformations, use an appropriate nonlinear model instead:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>This is a valid example of a <strong>compressible Neo-Hookean</strong> material entry. It does <strong>not</strong> alone define a full simulation: geometry, loads, constraints, and possibly time settings still matter.</p>
 <h3 id="which-material-family-should-i-choose">Which material family should I choose?<a class="headerlink" href="#which-material-family-should-i-choose" title="Permanent link">&para;</a></h3>
 <table>
@@ -1940,39 +1931,39 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </thead>
 <tbody>
 <tr>
-<td>`Laplacian`, `Helmholtz`</td>
+<td><code>Laplacian</code>, <code>Helmholtz</code></td>
 <td>Scalar PDEs / simple numerical examples</td>
 </tr>
 <tr>
-<td>`LinearElasticity`</td>
+<td><code>LinearElasticity</code></td>
 <td>Small-displacement solids</td>
 </tr>
 <tr>
-<td>`SaintVenant`</td>
+<td><code>SaintVenant</code></td>
 <td>Geometrically nonlinear elasticity with a simple constitutive model</td>
 </tr>
 <tr>
-<td>`NeoHookean`</td>
+<td><code>NeoHookean</code></td>
 <td>Finite-deformation hyperelastic solids</td>
 </tr>
 <tr>
-<td>`MooneyRivlin` and Ogden variants</td>
+<td><code>MooneyRivlin</code> and Ogden variants</td>
 <td>More specialized hyperelastic models requiring their own parameters</td>
 </tr>
 <tr>
-<td>`HGOFiber`, `HGODispersion`, `ActiveFiber`</td>
+<td><code>HGOFiber</code>, <code>HGODispersion</code>, <code>ActiveFiber</code></td>
 <td>Anisotropic or active-fiber material models</td>
 </tr>
 <tr>
-<td>`Stokes`, `NavierStokes`</td>
+<td><code>Stokes</code>, <code>NavierStokes</code></td>
 <td>Incompressible fluid flow; mixed spaces and fluid parameters are required</td>
 </tr>
 <tr>
-<td>`NavierStokesFSI`</td>
+<td><code>NavierStokesFSI</code></td>
 <td>Coupled fluid–structure interaction; <strong>advanced</strong>, with several coupled fields</td>
 </tr>
 <tr>
-<td>`ThermoElasticity`</td>
+<td><code>ThermoElasticity</code></td>
 <td>Coupled displacement and temperature fields</td>
 </tr>
 </tbody>
@@ -1980,18 +1971,17 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <p>This is a <strong>guided subset</strong>, not a list of interchangeable options. Each model has its own <strong>required parameters</strong> and mathematical assumptions. See <a href="../../details/formulations/">formulations</a> and the <a href="../../json_defaults_and_spec/">generated material specification</a> before switching a real application.</p>
 <h3 id="multiple-materials-connect-volume-ids-to-material-ids">Multiple materials: connect volume IDs to material IDs<a class="headerlink" href="#multiple-materials-connect-volume-ids-to-material-ids" title="Permanent link">&para;</a></h3>
 <p>A scene can contain several material regions:</p>
-<p>```json
-&ldquo;geometry&rdquo;: [
-  { &ldquo;mesh&rdquo;: &ldquo;stiff_part.msh&rdquo;, &ldquo;volume_selection&rdquo;: 1 },
-  { &ldquo;mesh&rdquo;: &ldquo;soft_part.msh&rdquo;, &ldquo;volume_selection&rdquo;: 2 }
-],
-&ldquo;materials&rdquo;: [
-  { &ldquo;id&rdquo;: 1, &ldquo;type&rdquo;: &ldquo;NeoHookean&rdquo;, &ldquo;E&rdquo;: 1e8, &ldquo;nu&rdquo;: 0.4, &ldquo;rho&rdquo;: 2000 },
-  { &ldquo;id&rdquo;: 2, &ldquo;type&rdquo;: &ldquo;NeoHookean&rdquo;, &ldquo;E&rdquo;: 1e6, &ldquo;nu&rdquo;: 0.4, &ldquo;rho&rdquo;: 1000 }
-]
-```</p>
-<p>This is a <strong>configuration fragment</strong>, not a runnable scene: both meshes must exist and you need suitable boundary conditions. Notice the correspondence between `volume_selection: 1` and `materials[0].id: 1`, and similarly for ID 2.</p>
-<p><strong>Try it:</strong> on a multi-body model, change one material&rsquo;s `E` by a factor of 10 while keeping everything else fixed. Compare the displacement field and force response. If you want the complete, documented workflow (including mesh generation and assignment of region IDs), continue with <a href="../../tutorials/multi-material/multi-material/">Simulating Multiple Materials in a Single Mesh</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stiff_part.msh"</span><span class="p">,</span><span class="w"> </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soft_part.msh"</span><span class="p">,</span><span class="w"> </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span>
+<span class="p">],</span>
+<span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e8</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e6</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>This is a <strong>configuration fragment</strong>, not a runnable scene: both meshes must exist and you need suitable boundary conditions. Notice the correspondence between <code>volume_selection: 1</code> and <code>materials[0].id: 1</code>, and similarly for ID 2.</p>
+<p><strong>Try it:</strong> on a multi-body model, change one material&rsquo;s <code>E</code> by a factor of 10 while keeping everything else fixed. Compare the displacement field and force response. If you want the complete, documented workflow (including mesh generation and assignment of region IDs), continue with <a href="../../tutorials/multi-material/multi-material/">Simulating Multiple Materials in a Single Mesh</a>.</p>
 <h2 id="10-finite-element-spaces-separate-geometry-approximation-and-physics">10. Finite-element spaces: separate geometry, approximation, and physics<a class="headerlink" href="#10-finite-element-spaces-separate-geometry-approximation-and-physics" title="Permanent link">&para;</a></h2>
 <p>An FEM computation involves at least three choices:</p>
 <ol>
@@ -2002,27 +1992,24 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <p>The last two are <strong>not the same thing</strong>. You can solve the same elasticity model on the same mesh using different approximation orders, or solve different physics using the same FE space.</p>
 <h3 id="polynomial-degree-p1-versus-p2">Polynomial degree: P1 versus P2<a class="headerlink" href="#polynomial-degree-p1-versus-p2" title="Permanent link">&para;</a></h3>
 <p>The easiest experiment is to keep the input and change one field:</p>
-<p>```json
-&ldquo;space&rdquo;: {
-  &ldquo;discr_order&rdquo;: 1
-}
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Then try:</p>
-<p>```json
-&ldquo;space&rdquo;: {
-  &ldquo;discr_order&rdquo;: 2
-}
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>The order controls the <strong>finite-element approximation</strong>, not the material law. Degree 1 generally means a piecewise-linear solution on simplicial elements; degree 2 adds additional degrees of freedom and can resolve more variation on the same mesh, at greater assembly/solve cost.</p>
 <p><strong>Experiment:</strong> solve the same plate-with-hole problem at orders 1 and 2. Compare the results <em>without changing the mesh or physics</em>. For a smooth solution, compare accuracy as well as runtime; it is misleading to conclude one choice is better solely from how smooth a ParaView image looks.</p>
 <h3 id="basis-families">Basis families<a class="headerlink" href="#basis-families" title="Permanent link">&para;</a></h3>
 <p>The current JSON specification exposes:</p>
-<p>```json
-&ldquo;space&rdquo;: {
-  &ldquo;discr_order&rdquo;: 2,
-  &ldquo;basis_type&rdquo;: &ldquo;Lagrange&rdquo;
-}
-```</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"basis_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lagrange"</span>
+<span class="p">}</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2032,33 +2019,33 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </thead>
 <tbody>
 <tr>
-<td>`Lagrange`</td>
+<td><code>Lagrange</code></td>
 <td>Standard nodal finite-element basis; good default</td>
 </tr>
 <tr>
-<td>`Spline`</td>
+<td><code>Spline</code></td>
 <td>Spline-based basis on supported quadrilateral/hexahedral discretizations</td>
 </tr>
 <tr>
-<td>`Serendipity`</td>
+<td><code>Serendipity</code></td>
 <td>Reduced-DOF polynomial family on supported quadrilateral/hexahedral meshes</td>
 </tr>
 <tr>
-<td>`Bernstein`</td>
+<td><code>Bernstein</code></td>
 <td>Bernstein basis option (check mesh/feature compatibility before using)</td>
 </tr>
 </tbody>
 </table>
-<p>For <strong>polygonal</strong> elements, PolyFEM has a separate `poly_basis_type` selector. Available names in the current specification include `MFSHarmonic`, `MeanValue`, and `Wachspress`. Those are specialized approximation constructions: they are not simply different names for P1.</p>
-<p>The `space.use_p_ref` option allows geometry-dependent <strong>a priori p-refinement</strong>. It is a separate concept from simply increasing a global `discr_order`. For background, see the <a href="../../details/formulations/">technical formulations</a> and PolyFEM&rsquo;s <a href="https://github.com/polyfem/polyfem">Decoupling Simulation Accuracy from Mesh Quality work</a>.</p>
+<p>For <strong>polygonal</strong> elements, PolyFEM has a separate <code>poly_basis_type</code> selector. Available names in the current specification include <code>MFSHarmonic</code>, <code>MeanValue</code>, and <code>Wachspress</code>. Those are specialized approximation constructions: they are not simply different names for P1.</p>
+<p>The <code>space.use_p_ref</code> option allows geometry-dependent <strong>a priori p-refinement</strong>. It is a separate concept from simply increasing a global <code>discr_order</code>. For background, see the <a href="../../details/formulations/">technical formulations</a> and PolyFEM&rsquo;s <a href="https://github.com/polyfem/polyfem">Decoupling Simulation Accuracy from Mesh Quality work</a>.</p>
 <h3 id="mixed-formulations-have-multiple-fields">Mixed formulations have multiple fields<a class="headerlink" href="#mixed-formulations-have-multiple-fields" title="Permanent link">&para;</a></h3>
-<p>Not every simulation has a single scalar or displacement vector as its unknown. For example, incompressible flow solves for both <strong>velocity</strong> and <strong>pressure</strong>. Fluid–structure interaction can also include solid displacement and ALE mesh displacement. In those cases, the input material and coupled problem configuration refer to <strong>space IDs</strong> for the different fields; using only a single `discr_order` is not a complete mixed formulation setup.</p>
+<p>Not every simulation has a single scalar or displacement vector as its unknown. For example, incompressible flow solves for both <strong>velocity</strong> and <strong>pressure</strong>. Fluid–structure interaction can also include solid displacement and ALE mesh displacement. In those cases, the input material and coupled problem configuration refer to <strong>space IDs</strong> for the different fields; using only a single <code>discr_order</code> is not a complete mixed formulation setup.</p>
 <div class="admonition warning">
 <p class="admonition-title">Don&rsquo;t guess a coupled setup</p>
-<p>A working `NavierStokesFSI` example needs more than changing `materials.type`. It has required field-space IDs, geometry IDs, viscosity, and nested material choices. Start from a compatible <strong>tested configuration</strong> and consult the <a href="../../json_defaults_and_spec/">generated JSON specification</a>.</p>
+<p>A working <code>NavierStokesFSI</code> example needs more than changing <code>materials.type</code>. It has required field-space IDs, geometry IDs, viscosity, and nested material choices. Start from a compatible <strong>tested configuration</strong> and consult the <a href="../../json_defaults_and_spec/">generated JSON specification</a>.</p>
 </div>
 <h3 id="mesh-order-is-not-necessarily-solution-order">Mesh order is not necessarily solution order<a class="headerlink" href="#mesh-order-is-not-necessarily-solution-order" title="Permanent link">&para;</a></h3>
-<p>A curved/high-order geometric map describes <strong>where the elements are in physical space</strong>. The `space.discr_order` describes <strong>how the unknown field is approximated</strong>. PolyFEM supports separating these decisions in supported cases. Increasing the solution order does not automatically repair a poorly resolved geometric boundary; conversely, a curved mesh can represent geometry well without forcing the solution space to the same order.</p>
+<p>A curved/high-order geometric map describes <strong>where the elements are in physical space</strong>. The <code>space.discr_order</code> describes <strong>how the unknown field is approximated</strong>. PolyFEM supports separating these decisions in supported cases. Increasing the solution order does not automatically repair a poorly resolved geometric boundary; conversely, a curved mesh can represent geometry well without forcing the solution space to the same order.</p>
 <h2 id="11-put-it-together-a-small-sequence-of-experiments">11. Put it together: a small sequence of experiments<a class="headerlink" href="#11-put-it-together-a-small-sequence-of-experiments" title="Permanent link">&para;</a></h2>
 <p>Once the initial plate example works, make one change at a time. This keeps failures attributable to one modeling decision.</p>
 <table>
@@ -2072,7 +2059,7 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <tbody>
 <tr>
 <td>A. Spatial approximation</td>
-<td>`space.discr_order` from 1 to 2</td>
+<td><code>space.discr_order</code> from 1 to 2</td>
 <td>Solution accuracy, runtime, DOF count</td>
 </tr>
 <tr>
@@ -2092,7 +2079,7 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </tr>
 <tr>
 <td>E. Materials</td>
-<td>Change `E` or `nu`</td>
+<td>Change <code>E</code> or <code>nu</code></td>
 <td>Stiffness and deformation response</td>
 </tr>
 <tr>
