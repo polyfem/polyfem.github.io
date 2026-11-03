@@ -1257,14 +1257,23 @@
 <p>For instance, PolyFEM seamlessly integrates quad/hexes and tri/tets of order up to 4, and integrates state-of-the-art techniques such as the adaptive <span class="arithmatex">\(p\)</span>-refinement presented in &ldquo;Decoupling Simulation Accuracy from Mesh Quality&rdquo; or the spline and polygonal bases in &ldquo;Poly-Spline Finite-Element Method&rdquo;.</p>
 <p>The library is actively used in our research so expect frequent updates, fixes, and new features!</p>
 <h2 id="news">News<a class="headerlink" href="#news" title="Permanent link">&para;</a></h2>
-<p>Recent developments from the <a href="https://github.com/polyfem/polyfem">PolyFEM project</a>. For development activity beyond these highlights, see the <a href="https://github.com/polyfem/polyfem/commits/main/">commit history</a> and <a href="https://github.com/polyfem/polyfem/pulls">pull requests</a>.</p>
 <ul>
-<li><strong>November 2, 2026 — JSON builder added to the documentation.</strong> The website navigation now includes a JSON builder page. <a href="https://github.com/polyfem/polyfem.github.io/pull/10">Website change</a>.</li>
-<li><strong>October 30, 2026 — Legacy-code cleanup.</strong> The <code>no-legacy</code> changes were merged into PolyFEM. <a href="https://github.com/polyfem/polyfem/pull/555">Pull request #555</a>.</li>
-<li><strong>October 28, 2026 — Macro strain moved to the variational-form implementation.</strong> Periodic macro-strain simulations now route through the nonlinear-elasticity variational form. <a href="https://github.com/polyfem/polyfem/pull/546">Pull request #546</a>.</li>
-<li><strong>October 23, 2026 — Extremum Sum Potential integrated.</strong> A new contact formulation based on Extremum Sum Proximity Potential was merged. <a href="https://github.com/polyfem/polyfem/pull/542">Pull request #542</a>.</li>
+<li>New &ldquo;selection&rdquo; interface to set boundary conditions and body ids.</li>
+<li>Added support for multi-material simulations.</li>
+<li>PolyFEM supports time-dependent fluid simulations!</li>
+<li>PolyFEM supports contacts using the <a href="https://github.com/ipc-sim/ipc-toolkit">IPC Toolkit</a>.</li>
+<li>We support FEBio (*.feb) files.</li>
+<li>We finally extracted the solvers from PolyFEM. You can now use the wrappers independently, check the <a href="https://github.com/polyfem/polysolve">PolySolve repo</a>.</li>
+<li>PolyFEM <a href="https://skoch9.github.io/meshplot">meshplot</a>, <a href="https://libigl.github.io/">igl</a> and <a href="https://wildmeshing.github.io/">wildmeshing</a> are presented at a <a href="https://geometryprocessing.github.io/blackbox-computing-python/">Eurographics course</a>.</li>
+<li>Bindings v0.5.2 with a new more pythonic interface, support for functions of the right-hand side and exact solution.</li>
+<li>PolyFEM is being used in biology! Check the <a href="https://pubs.acs.org/doi/10.1021/acs.nanolett.9b01505">paper</a> or the <a href="https://cellogram.github.io">project page</a>!</li>
+<li>PolyFEM <a href="https://skoch9.github.io/meshplot">meshplot</a>, <a href="https://libigl.github.io/">igl</a> and <a href="https://wildmeshing.github.io/">wildmeshing</a> are presented at a <a href="https://geometryprocessing.github.io/geometric-computing-python/">SIGGRAPH course</a> (07/30/2019).</li>
+<li>PolyFEM is now triangle and tetgen free. Stay tuned for the release of v0.5 in python with a new interface to high-order meshes and <a href="https://skoch9.github.io/meshplot">meshplot</a> for the fast 3D plots!</li>
+<li>PolyFEM has been used in &ldquo;A Large Scale Comparison of Tetrahedral and Hexahedral Elements for Finite Element Analysis&rdquo;! Check the <a href="https://polyfem.github.io/tet-vs-hex/plot.html">interactive plots</a>!</li>
+<li>PolyFEM now supports high-order geometric maps! Check the SIGGRAPH paper &ldquo;TriWild: Robust Triangulation with Curve Constraints&rdquo; for more details!</li>
+<li>PolyFEM has a <a href="python/">python interface</a>!</li>
+<li>PolyFEM can do adaptive <em>a priori</em> <span class="arithmatex">\(p\)</span>-refinement! Check the SIGGRAPH paper &ldquo;Decoupling Simulation Accuracy from Mesh Quality&rdquo; for more details!</li>
 </ul>
-<p>See <a href="news-archive/">earlier announcements</a> or the <a href="https://github.com/polyfem/polyfem/releases/tag/v0.5">v0.5 release</a> for historical information.</p>
 <h2 id="polyfem-in-c">PolyFEM in C++<a class="headerlink" href="#polyfem-in-c" title="Permanent link">&para;</a></h2>
 <p><img alt="Build" src="https://github.com/polyfem/polyfem/workflows/Build/badge.svg" /></p>
 <p>For more details refer to the <a href="cxx_index/">C++ section</a></p>
