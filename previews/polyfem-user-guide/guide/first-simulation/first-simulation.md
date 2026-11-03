@@ -6,6 +6,51 @@ This hands-on introduction starts with a complete, downloadable example, explain
 
 ![Plate with a hole and its solution](../img/plate_hole_solution.png)
 
+## How this guide is organized: a progression through tested examples
+
+This page is a **guided tour of the [polyfem-data test and example repository](https://github.com/polyfem/polyfem-data)**, not a separate collection of invented demos. The repository currently contains **414 JSON files**, including **182 under `old-tolerances/`** (historical regression copies). Most aren't good first lessons: some exercise one solver detail, and others inherit a larger scene. The learning path below selects representative **current** examples and introduces one modeling idea at a time.
+
+Each link opens the **actual JSON used in PolyFEM tests**. Read its `geometry`, `materials`, `space`, and `boundary_conditions` fields alongside the explanation in this page. An example with `"common"` or `"patch"` **depends on another JSON file**; load it using its original path and keep the data repository's directory structure, rather than downloading only that one file.
+
+!!! tip "Try the examples in the GUI"
+    Download or clone [polyfem-data](https://github.com/polyfem/polyfem-data), launch the packaged **PolyFEM desktop app**, click **Load JSON**, choose an example and click **Run**. Start with short, static cases; dynamics and contact can cost much more. Some regression configurations contain `tests` entries for automated accuracy checks. Those are not the primary user-facing settings.
+
+### Recommended learning path
+
+| Stage | Real configuration(s) | What to learn |
+| --- | --- | --- |
+| **1. First solve** | [Plate with a hole](https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.json) | Load a 2D mesh, select a scalar PDE, save and inspect the result |
+| **2. Boundary labels and constraints** | [Elastic baseline](https://github.com/polyfem/polyfem-data/blob/main/standard/elastic_common.json) | Relate sideset IDs to left/right boundary constraints; understand shared JSON |
+| **3. Geometric versus file selections** | [Plane](https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json), [sphere](https://github.com/polyfem/polyfem-data/blob/main/selection/sphere.json), [cylinder](https://github.com/polyfem/polyfem-data/blob/main/selection/cylinder.json), [file tags](https://github.com/polyfem/polyfem-data/blob/main/selection/file.json) | Tag the same mesh by geometric predicates or a side-ID file |
+| **4. Mesh elements** | [3D tet Laplacian](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace.json), [2D quad Laplacian](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_quad.json) | Compare element types without immediately introducing nonlinear mechanics |
+| **5. FE approximation** | [Bernstein order 2](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_3d_b2.json), [spline](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_spline.json), [polygonal Mean Value](https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json) | Distinguish polynomial degree, basis family, and geometry |
+| **6. Material laws** | [Linear/Hooke](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke.json), [Saint Venant](https://github.com/polyfem/polyfem-data/blob/main/standard/saint_venant.json), [Neo-Hookean](https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json) | Change the constitutive law while reusing a controlled elastic test |
+| **7. Several materials** | [Stretching three material regions](https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json) | Associate *volume IDs* with stiffness/density, and learn why mesh regions matter |
+| **8. Prescribed motion and time stepping** | [Linear-ramp boundary conditions](https://github.com/polyfem/polyfem-data/blob/main/interpolation/linear_ramp.json), [implicit Euler](https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json), [Newmark](https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json) | Change boundary values over time and compare integration methods |
+| **9. Contact** | [Two cubes](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/unit-tests/2-cubes.json), [sphere on mat](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json) | Multiple moving objects, collision constraints, and contact parameters |
+| **10. Advanced mechanics** | [Anisotropic Hooke](https://github.com/polyfem/polyfem-data/blob/main/standard/hooke_anisotropic.json), [active fiber](https://github.com/polyfem/polyfem-data/blob/main/standard/active-fiber.json) | Direction-dependent response, composed material laws, and units |
+| **11. Mixed finite-element fields** | [Incompressible elasticity](https://github.com/polyfem/polyfem-data/blob/main/standard/incompressible.json), [Stokes flow](https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json) | Why displacement/pressure or velocity/pressure need distinct FE spaces |
+| **12. Coupled multiphysics** | [Transient Navier–Stokes](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_transient.json), [thermoelastic bar](https://github.com/polyfem/polyfem-data/blob/main/standard/thermoelastic_heated_clamped_bar.json), [FSI square](https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_fsi_simple_square.json) | Coupled fields, multiple `fe_space` IDs, and more demanding setups |
+
+**Suggested pace:** Sections 1–6 cover the essentials and the common mistakes. Sections 7–9 explain many practical simulations. Sections 10–12 are an **advanced reference route**, not prerequisites for running PolyFEM.
+
+### How to read inherited configurations
+
+For instance, [`standard/neohookean.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json) is intentionally compact:
+
+```json
+{
+  "common": "elastic_common.json",
+  "materials": { "type": "NeoHookean", "id": 1, "E": 20000, "nu": 0.3 }
+}
+```
+
+It inherits mesh, constraints, and solver configuration from [`standard/elastic_common.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/elastic_common.json), which itself refers to [`standard/common.json`](https://github.com/polyfem/polyfem-data/blob/main/standard/common.json) for output settings. Reading only the small top-level JSON would hide most of the actual problem.
+
+A few test cases also use **`patch`**, such as [P2 ball bounce](https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/higher-order/ball-bounce/P2.json), which changes the mesh path and FE degree relative to P1. Keep the full parent chain, including meshes. That is also a useful pattern for your own comparisons: reuse one baseline and vary only the part you are studying.
+
+---
+
 ## 1. Get PolyFEM
 
 Choose one of these paths:
