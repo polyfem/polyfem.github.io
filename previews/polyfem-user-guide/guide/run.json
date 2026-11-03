@@ -1,6 +1,5 @@
 {
   "geometry": {
-    "advanced": { "normalize_mesh": true },
     "mesh": "plate_hole.obj",
     "surface_selection": { "threshold": 1e-7 }
   },
