@@ -505,11 +505,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-run-the-simulation" class="md-nav__link">
-    3. Run the simulation
+  <a href="#3-run-the-simulation-in-the-desktop-application" class="md-nav__link">
+    3. Run the simulation in the desktop application
   </a>
   
-    <nav class="md-nav" aria-label="3. Run the simulation">
+    <nav class="md-nav" aria-label="3. Run the simulation in the desktop application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1136,11 +1136,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-run-the-simulation" class="md-nav__link">
-    3. Run the simulation
+  <a href="#3-run-the-simulation-in-the-desktop-application" class="md-nav__link">
+    3. Run the simulation in the desktop application
   </a>
   
-    <nav class="md-nav" aria-label="3. Run the simulation">
+    <nav class="md-nav" aria-label="3. Run the simulation in the desktop application">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1213,7 +1213,7 @@
 
 <h1 id="your-first-polyfem-simulation">Your first PolyFEM simulation<a class="headerlink" href="#your-first-polyfem-simulation" title="Permanent link">&para;</a></h1>
 <p>This hands-on introduction starts with a complete, downloadable example, explains each part of the input, and then changes the physics and boundary conditions. You can <strong>run PolyFEM without compiling it</strong> if a suitable prebuilt package is available.</p>
-<p><strong>What you will do:</strong> run a Laplace problem on a plate with a hole, inspect a VTU result in ParaView, switch to linear elasticity, and learn how to explore other examples.</p>
+<p><strong>What you will do:</strong> open the PolyFEM desktop application, load a JSON simulation of a plate with a hole, run it using the <strong>Run</strong> button, inspect the output in ParaView, and then try linear elasticity.</p>
 <p><img alt="Plate with a hole and its solution" src="../../img/plate_hole_solution.png" /></p>
 <h2 id="1-get-polyfem">1. Get PolyFEM<a class="headerlink" href="#1-get-polyfem" title="Permanent link">&para;</a></h2>
 <p>Choose one of these paths:</p>
@@ -1224,8 +1224,8 @@
 <ol>
 <li>Open the workflow and choose a <strong>successful run on <code>main</code></strong>. For example, <a href="https://github.com/polyfem/polyfem/actions/runs/41086941557">this successful October 30, 2026 run</a> contains all three platform packages.</li>
 <li>Under <strong>Artifacts</strong>, download the package matching your operating system. GitHub may ask you to sign in.</li>
-<li>Extract the Linux <code>.tar.gz</code> or Windows <code>.zip</code>, or open the macOS <code>.dmg</code>. Locate the packaged PolyFEM application/executable and note its path.</li>
-<li>Open a terminal and run the executable with <code>--help</code> to verify that it starts.</li>
+<li>Extract the Linux <code>.tar.gz</code> or Windows <code>.zip</code>, or open the macOS <code>.dmg</code>. Launch the packaged <strong>PolyFEM desktop application</strong> (<code>polyfem_app</code>), using the normal launcher for your platform. The desktop app has <strong>Load JSON</strong>, <strong>Load HDF5</strong>, and <strong>Run</strong> controls.</li>
+<li>The command-line <code>PolyFEM_bin</code> is a separate option and is not required for the walkthrough.</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Workflow artifacts, not tagged releases</p>
@@ -1264,12 +1264,21 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <p class="admonition-title">Keep the files together</p>
 <p>The configuration contains <code>"mesh": "plate_hole.obj"</code>. Running it from the directory containing both files avoids path-resolution surprises.</p>
 </div>
-<h2 id="3-run-the-simulation">3. Run the simulation<a class="headerlink" href="#3-run-the-simulation" title="Permanent link">&para;</a></h2>
-<p>Open a terminal in <code>polyfem-first-run</code>. Run the PolyFEM executable you downloaded or compiled:</p>
+<h2 id="3-run-the-simulation-in-the-desktop-application">3. Run the simulation in the desktop application<a class="headerlink" href="#3-run-the-simulation-in-the-desktop-application" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Launch the <strong>PolyFEM app</strong> (<code>polyfem_app</code>) from the downloaded package. If you compiled from source, make sure the application was enabled with <code>POLYFEM_WITH_APP=ON</code> and launch the built app.</li>
+<li>Click <strong>Load JSON</strong> and select <code>run.json</code> from your <code>polyfem-first-run</code> directory. The mesh path inside the JSON refers to <code>plate_hole.obj</code> in that same directory.</li>
+<li>Click <strong>Run</strong> to start the solve. The interface displays <strong>Running&hellip;</strong> while it is executing; wait for it to finish, and check any displayed errors if the input cannot be loaded.</li>
+<li>Find the generated output in the configured output directory. This example requests <strong><code>result.vtu</code></strong> and <strong><code>stats.json</code></strong>.</li>
+</ol>
+<p>The application also has a <strong>Load HDF5</strong> button for bundled inputs, but JSON is simpler for a first exercise.</p>
+<div class="admonition note">
+<p class="admonition-title">Command-line alternative</p>
+<p>If you prefer scripting or automation, the separate command-line executable accepts the same example:</p>
 <div class="highlight"><pre><span></span><code>/path/to/PolyFEM_bin<span class="w"> </span>--json<span class="w"> </span>run.json
 </code></pre></div>
-<p>Replace <code>/path/to/PolyFEM_bin</code> with your executable&rsquo;s real path; on Windows use the corresponding executable name and path. You can check the available flags with <code>--help</code> (<code>-j</code> is also used in the <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/">IPC tutorial</a>).</p>
-<p>The input requests a ParaView-compatible result named <strong><code>result.vtu</code></strong>, plus <strong><code>stats.json</code></strong>. Find them in the configured output location; if you override the output directory on the command line, look there.</p>
+<p>This is optional for beginners. It is <strong>not</strong> how the desktop application is launched.</p>
+</div>
 <h3 id="what-are-we-solving">What are we solving?<a class="headerlink" href="#what-are-we-solving" title="Permanent link">&para;</a></h3>
 <p>The <em>Laplacian</em> is a scalar PDE. This example uses PolyFEM&rsquo;s <code>Franke</code> preset, which provides a convenient test problem without requiring you to manually define forces and boundary values. PolyFEM constructs the finite-element system, solves it, and exports the field for visualization.</p>
 <h2 id="4-inspect-the-results">4. Inspect the results<a class="headerlink" href="#4-inspect-the-results" title="Permanent link">&para;</a></h2>
@@ -1383,9 +1392,7 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 </code></pre></div>
 </li>
 <li>
-<p>Change the output filename to <code>elasticity.vtu</code>, then run:</p>
-<div class="highlight"><pre><span></span><code>/path/to/PolyFEM_bin<span class="w"> </span>--json<span class="w"> </span>elasticity.json
-</code></pre></div>
+<p>Change the output filename to <code>elasticity.vtu</code>, then return to the <strong>desktop app</strong>, click <strong>Load JSON</strong> to select <code>elasticity.json</code>, and click <strong>Run</strong> again. You can also run it using <code>PolyFEM_bin --json elasticity.json</code> if you prefer the CLI.</p>
 </li>
 </ol>
 <p><strong>What changed?</strong> In elasticity, the unknown is a <em>displacement vector</em>. Neumann conditions prescribe a force/traction; Dirichlet conditions constrain displacement. The <code>dimension</code> masks here restrict only one coordinate at each of the two selected boundaries.</p>
@@ -1402,9 +1409,10 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
 <li><strong>Real-world test scenes:</strong> explore the <a href="https://github.com/polyfem/polyfem-data">polyfem-data repository</a>. Its examples are useful as complete configurations, but some refer to meshes and shared JSON files elsewhere in that repository. <strong>Keep their relative paths intact</strong> when running them.</li>
 </ul>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<p><strong>The executable cannot start.</strong> Check that the downloaded package matches your architecture (notably macOS ARM64 versus Intel), and use <code>--help</code> to distinguish installation issues from simulation issues.</p>
+<p><strong>The app cannot start.</strong> Check that the downloaded package matches your architecture (notably macOS ARM64 versus Intel). The GUI application is <code>polyfem_app</code>; <code>PolyFEM_bin</code> is the separate CLI executable.</p>
 <p><strong>Cannot open <code>plate_hole.obj</code>.</strong> Make sure the mesh was downloaded as a raw OBJ file (not an HTML web page) and lives alongside <code>run.json</code>. Run from that directory or use an absolute mesh path.</p>
 <p><strong>The JSON cannot be parsed.</strong> JSON requires commas between entries, double-quoted keys, and no trailing comma after the last property. If you made edits in Step 6, check the transition between the <code>materials</code>, <code>boundary_conditions</code>, and <code>solver</code> blocks.</p>
+<p><strong>The app cannot load the JSON.</strong> Check that <code>run.json</code> and the referenced <code>plate_hole.obj</code> are available together. The <strong>Load JSON</strong> button expects a JSON configuration, not a mesh file.</p>
 <p><strong>The simulation ran but you cannot see the result.</strong> Search the output directory for <code>result.vtu</code>, <code>elasticity.vtu</code>, or <code>stats.json</code>. Open the VTU file in ParaView and click <strong>Apply</strong>.</p>
 <p><strong>The result doesn&rsquo;t look like the picture.</strong> Check the chosen field and color scale. Elasticity results may need the <strong>Warp By Vector</strong> filter; the Laplacian example does not.</p>
 
@@ -1413,7 +1421,7 @@ cmake<span class="w"> </span>--build<span class="w"> </span>build
   <small>
     
       Last update:
-      2026-11-02
+      2026-11-03
     
   </small>
 </div>

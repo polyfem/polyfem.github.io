@@ -2,7 +2,7 @@
 
 This hands-on introduction starts with a complete, downloadable example, explains each part of the input, and then changes the physics and boundary conditions. You can **run PolyFEM without compiling it** if a suitable prebuilt package is available.
 
-**What you will do:** run a Laplace problem on a plate with a hole, inspect a VTU result in ParaView, switch to linear elasticity, and learn how to explore other examples.
+**What you will do:** open the PolyFEM desktop application, load a JSON simulation of a plate with a hole, run it using the **Run** button, inspect the output in ParaView, and then try linear elasticity.
 
 ![Plate with a hole and its solution](../img/plate_hole_solution.png)
 
@@ -16,8 +16,8 @@ Choose one of these paths:
 
     1. Open the workflow and choose a **successful run on `main`**. For example, [this successful October 30, 2026 run](https://github.com/polyfem/polyfem/actions/runs/41086941557) contains all three platform packages.
     2. Under **Artifacts**, download the package matching your operating system. GitHub may ask you to sign in.
-    3. Extract the Linux `.tar.gz` or Windows `.zip`, or open the macOS `.dmg`. Locate the packaged PolyFEM application/executable and note its path.
-    4. Open a terminal and run the executable with `--help` to verify that it starts.
+    3. Extract the Linux `.tar.gz` or Windows `.zip`, or open the macOS `.dmg`. Launch the packaged **PolyFEM desktop application** (`polyfem_app`), using the normal launcher for your platform. The desktop app has **Load JSON**, **Load HDF5**, and **Run** controls.
+    4. The command-line `PolyFEM_bin` is a separate option and is not required for the walkthrough.
 
     !!! note "Workflow artifacts, not tagged releases"
         These packages are built from the project’s `main` branch. They are **CI artifacts** (which can expire), not assets attached to the older [v0.5 GitHub release](https://github.com/polyfem/polyfem/releases/tag/v0.5). Use the latest successful workflow run when the example link expires.
@@ -63,17 +63,23 @@ polyfem-first-run/
 !!! important "Keep the files together"
     The configuration contains `"mesh": "plate_hole.obj"`. Running it from the directory containing both files avoids path-resolution surprises.
 
-## 3. Run the simulation
+## 3. Run the simulation in the desktop application
 
-Open a terminal in `polyfem-first-run`. Run the PolyFEM executable you downloaded or compiled:
+1. Launch the **PolyFEM app** (`polyfem_app`) from the downloaded package. If you compiled from source, make sure the application was enabled with `POLYFEM_WITH_APP=ON` and launch the built app.
+2. Click **Load JSON** and select `run.json` from your `polyfem-first-run` directory. The mesh path inside the JSON refers to `plate_hole.obj` in that same directory.
+3. Click **Run** to start the solve. The interface displays **Running...** while it is executing; wait for it to finish, and check any displayed errors if the input cannot be loaded.
+4. Find the generated output in the configured output directory. This example requests **`result.vtu`** and **`stats.json`**.
 
-```sh
-/path/to/PolyFEM_bin --json run.json
-```
+The application also has a **Load HDF5** button for bundled inputs, but JSON is simpler for a first exercise.
 
-Replace `/path/to/PolyFEM_bin` with your executable's real path; on Windows use the corresponding executable name and path. You can check the available flags with `--help` (`-j` is also used in the [IPC tutorial](../tutorials/ipc_quick_start_guide/ipc_quick_start_guide.md)).
+!!! note "Command-line alternative"
+    If you prefer scripting or automation, the separate command-line executable accepts the same example:
 
-The input requests a ParaView-compatible result named **`result.vtu`**, plus **`stats.json`**. Find them in the configured output location; if you override the output directory on the command line, look there.
+    ```sh
+    /path/to/PolyFEM_bin --json run.json
+    ```
+
+    This is optional for beginners. It is **not** how the desktop application is launched.
 
 ### What are we solving?
 
@@ -155,11 +161,7 @@ Now use the *same mesh* to solve a vector-valued displacement problem.
     }
     ```
 
-5. Change the output filename to `elasticity.vtu`, then run:
-
-    ```sh
-    /path/to/PolyFEM_bin --json elasticity.json
-    ```
+5. Change the output filename to `elasticity.vtu`, then return to the **desktop app**, click **Load JSON** to select `elasticity.json`, and click **Run** again. You can also run it using `PolyFEM_bin --json elasticity.json` if you prefer the CLI.
 
 **What changed?** In elasticity, the unknown is a *displacement vector*. Neumann conditions prescribe a force/traction; Dirichlet conditions constrain displacement. The `dimension` masks here restrict only one coordinate at each of the two selected boundaries.
 
@@ -177,11 +179,13 @@ These IDs come from the plate-with-hole boundary-tagging convention used in the 
 
 ## Troubleshooting
 
-**The executable cannot start.** Check that the downloaded package matches your architecture (notably macOS ARM64 versus Intel), and use `--help` to distinguish installation issues from simulation issues.
+**The app cannot start.** Check that the downloaded package matches your architecture (notably macOS ARM64 versus Intel). The GUI application is `polyfem_app`; `PolyFEM_bin` is the separate CLI executable.
 
 **Cannot open `plate_hole.obj`.** Make sure the mesh was downloaded as a raw OBJ file (not an HTML web page) and lives alongside `run.json`. Run from that directory or use an absolute mesh path.
 
 **The JSON cannot be parsed.** JSON requires commas between entries, double-quoted keys, and no trailing comma after the last property. If you made edits in Step 6, check the transition between the `materials`, `boundary_conditions`, and `solver` blocks.
+
+**The app cannot load the JSON.** Check that `run.json` and the referenced `plate_hole.obj` are available together. The **Load JSON** button expects a JSON configuration, not a mesh file.
 
 **The simulation ran but you cannot see the result.** Search the output directory for `result.vtu`, `elasticity.vtu`, or `stats.json`. Open the VTU file in ParaView and click **Apply**.
 
