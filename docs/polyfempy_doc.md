@@ -1,3 +1,9 @@
+!!! warning "Historical Python API reference"
+    This page documents an older `polyfempy` API and includes boundary-condition
+    setters that no longer exist in the current bindings. **Do not use these
+    signatures as current documentation.** See the [Python overview](python.md)
+    and [current binding implementation](https://github.com/polyfem/polyfem-python/blob/main/src/binding.cpp).
+
 ## class Problem
 
 Generic problem problem, scalar or tensor depending on the pde. Warning, this problem needs to be used with the `set_pde` function in settings

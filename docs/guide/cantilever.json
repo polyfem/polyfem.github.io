@@ -1,0 +1,17 @@
+{
+  "geometry": {
+    "mesh": "bar.msh",
+    "surface_selection": { "threshold": 1e-6 }
+  },
+  "materials": { "type": "LinearElasticity", "E": 20000, "nu": 0.3 },
+  "boundary_conditions": {
+    "dirichlet_boundary": [ { "id": 1, "value": [0, 0, 0] } ],
+    "neumann_boundary": [ { "id": 3, "value": [0, -1, 0] } ]
+  },
+  "space": { "discr_order": 1 },
+  "solver": { "linear": { "solver": "Eigen::SparseLU" } },
+  "output": {
+    "json": "cantilever-stats.json",
+    "paraview": { "file_name": "cantilever.vtu" }
+  }
+}
