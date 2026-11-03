@@ -2,152 +2,157 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/_json_spec/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/cxx_index/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/json/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/json_defaults_and_spec/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/library/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/license/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polyfem.github.io/previews/polyfem-user-guide/news-archive/</loc>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/polyfempy_doc/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/polysolve/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/python/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/python_examples/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/contact/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/formulations/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/miscellaneous/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/problems/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/solvers/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/details/time_integrators/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/guide/first-simulation/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tools/exporter/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tools/plot_to_md/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/getting_started/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/ipc_quick_start_guide/ipc_quick_start_guide/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/ipc_quick_start_guide/rotating-obstacle/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/ipc_quick_start_guide/run_all/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/multi-material/multi-material/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/screw/screw/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/sling-shot/sling-shot/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/sphere-pushing-box/sphere-pushing-box/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/trajectory-optimization/trajectory-optimization/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polyfem.github.io/previews/polyfem-user-guide/tutorials/vision-proprioception/vision-proprioception/</loc>
-         <lastmod>2026-11-02</lastmod>
+         <lastmod>2026-11-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
