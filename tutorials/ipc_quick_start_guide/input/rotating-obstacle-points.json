@@ -1,0 +1,22 @@
+{
+    "common": "rotating-obstacle.json",
+    "geometry": [{
+        "mesh": "cube.msh",
+        "transformation": {
+            "translation": [0, 3, 0]
+        },
+        "volume_selection": 1
+    }, {
+        "mesh": "triangle.obj",
+        "transformation": {
+            "translation": [0, 1, 0],
+            "scale": 0.7
+        },
+        "surface_selection": 1,
+        "is_obstacle": true,
+        "extract": "points"
+    }, {
+        "mesh": "plane.obj",
+        "is_obstacle": true
+    }]
+}
