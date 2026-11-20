@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" aria-labelledby="title desc">
+<title id="title">Cantilever boundary conditions</title><desc id="desc">A 10 by 1 by 1 bar extends along x. Face 1 at x=0 is fixed in all directions. Face 3 at x=10 has downward y traction.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b34400"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#f8fafc"/>
+<g font-family="system-ui, sans-serif" font-size="17" fill="#172b4d">
+<text x="32" y="35" font-size="22" font-weight="700">Fix one end. Load the other.</text>
+<path d="M170 112L610 112L660 82L220 82Z" fill="#dfe7f1" stroke="#66768b"/>
+<path d="M170 112L610 112L610 190L170 190Z" fill="#eaf0f7" stroke="#66768b"/>
+<path d="M610 112L660 82L660 160L610 190Z" fill="#ffdfc5" stroke="#b34400" stroke-width="3"/>
+<path d="M170 112L220 82L220 160L170 190Z" fill="#b4daf1" fill-opacity="0.85" stroke="#00629b" stroke-width="3"/>
+<g stroke="#00629b" stroke-width="2"><path d="M158 112L140 130M158 132L140 150M158 152L140 170M158 172L140 190M158 192L140 210"/></g>
+<g stroke="#b34400" stroke-width="3" marker-end="url(#arrow)"><path d="M625 118V200"/><path d="M647 108V186"/></g>
+<text x="30" y="237" fill="#00629b" font-weight="700">ID 1: fixed face</text>
+<text x="30" y="263">u = [0, 0, 0]</text>
+<text x="688" y="116" fill="#b34400" font-weight="700">ID 3: traction</text>
+<text x="688" y="143">[0, −1, 0]</text>
+<path d="M240 226H603" stroke="#b34400" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="330" y="252">x: 0 → 10</text>
+<text x="342" y="173">free outer faces</text>
+<text x="322" y="284" font-size="14">Schematic; cross-section enlarged for clarity.</text>
+</g></svg>

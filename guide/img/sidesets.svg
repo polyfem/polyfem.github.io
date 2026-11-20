@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="330" viewBox="0 0 880 330" role="img" aria-labelledby="title desc">
+<title id="title">Bounding-box sideset labels</title><desc id="desc">In 2D, left is 1, bottom is 2, right is 3, top is 4. A hole is a remaining boundary and has label 7.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b34400"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#f8fafc"/>
+<g font-family="system-ui, sans-serif" font-size="17" fill="#172b4d">
+<text x="32" y="35" font-size="22" font-weight="700">Boundary labels on a 2D mesh</text>
+<rect x="170" y="85" width="400" height="160" fill="#edf2f8"/>
+<g stroke="#c2cbd8" stroke-width="1"><path d="M170 85V245M170 85L220 245"/><path d="M220 85V245M220 85L270 245"/><path d="M270 85V245M270 85L320 245"/><path d="M320 85V245M320 85L370 245"/><path d="M370 85V245M370 85L420 245"/><path d="M420 85V245M420 85L470 245"/><path d="M470 85V245M470 85L520 245"/><path d="M520 85V245M520 85L570 245"/><path d="M170 165H570"/></g>
+<circle cx="370" cy="165" r="45" fill="#f8fafc" stroke="#b34400" stroke-width="4"/>
+<path d="M170 85V245" stroke="#00629b" stroke-width="5"/>
+<path d="M170 245H570" stroke="#147657" stroke-width="5"/>
+<path d="M570 85V245" stroke="#b32b46" stroke-width="5"/>
+<path d="M170 85H570" stroke="#7050a2" stroke-width="5"/>
+<text x="66" y="170" fill="#00629b" font-weight="700">1: min x</text>
+<text x="318" y="279" fill="#147657" font-weight="700">2: min y</text>
+<text x="600" y="170" fill="#b32b46" font-weight="700">3: max x</text>
+<text x="318" y="67" fill="#7050a2" font-weight="700">4: max y</text>
+<text x="360" y="172" fill="#b34400" font-size="23" font-weight="700">7</text>
+<text x="32" y="310">In 3D: 5 = min z, 6 = max z. Label 7 collects the remaining boundary.</text>
+</g></svg>

@@ -1,0 +1,13 @@
+{
+    "common": "translating-obstacle.json",
+    "boundary_conditions": {
+        "obstacle_displacements": [{
+            "id": 1,
+            "value": [
+                "x*cos(pi*t/2) - x + z*sin(pi*t/2)",
+                "x*sin(pi*t/18)*sin(pi*t/2) - y - z*sin(pi*t/18)*cos(pi*t/2) + (y - 1)*cos(pi*t/18) + 1",
+                "-x*sin(pi*t/2)*cos(pi*t/18) + z*cos(pi*t/18)*cos(pi*t/2) - z + (y - 1)*sin(pi*t/18)"
+            ]
+        }]
+    }
+}

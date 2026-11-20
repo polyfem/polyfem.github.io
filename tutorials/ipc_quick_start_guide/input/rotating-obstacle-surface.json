@@ -1,0 +1,20 @@
+{
+    "common": "rotating-obstacle.json",
+    "geometry": [{
+        "mesh": "cube.msh",
+        "transformation": {
+            "translation": [0, 3, 0]
+        },
+        "volume_selection": 1
+    }, {
+        "mesh": "cube.obj",
+        "transformation": {
+            "translation": [0, 1, 0]
+        },
+        "surface_selection": 1,
+        "is_obstacle": true
+    }, {
+        "mesh": "plane.obj",
+        "is_obstacle": true
+    }]
+}

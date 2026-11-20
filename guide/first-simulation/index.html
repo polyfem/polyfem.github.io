@@ -1,0 +1,2351 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A polyvalent C++ FEM library">
+      
+      
+      
+        <link rel="canonical" href="http://polyfem.github.io/polyfem/guide/first-simulation/">
+      
+      
+        <link rel="prev" href="../../license/">
+      
+      
+        <link rel="next" href="../../tutorials/getting_started/">
+      
+      <link rel="icon" href="../../img/xxx.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+    
+    
+      
+        <title>Your First Simulation - PolyFEM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../theme/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="green">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#polyfem-user-guide-from-first-run-to-advanced-simulations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PolyFEM" class="md-header__button md-logo" aria-label="PolyFEM" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PolyFEM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Your First Simulation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/polyfem/polyfem" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        General
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Start Here
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cxx_index/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../python/" class="md-tabs__link">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tutorials/getting_started/" class="md-tabs__link">
+        Tutorials
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../details/formulations/" class="md-tabs__link">
+        Technical Details
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../polysolve/" class="md-tabs__link">
+      PolySolve
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PolyFEM" class="md-nav__button md-logo" aria-label="PolyFEM" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    PolyFEM
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/polyfem/polyfem" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    polyfem/polyfem
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          General
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          General
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Start Here
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Start Here
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Your First Simulation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Your First Simulation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-get-polyfem" class="md-nav__link">
+    1. Get PolyFEM
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Get PolyFEM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-allow-the-app-to-open" class="md-nav__link">
+    macOS: allow the app to open
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-help-and-report-a-bug" class="md-nav__link">
+    Get help and report a bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-download-a-complete-first-example" class="md-nav__link">
+    2. Download a complete first example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-the-simulation-in-the-desktop-application" class="md-nav__link">
+    3. Run the simulation in the desktop application
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Run the simulation in the desktop application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-we-solving" class="md-nav__link">
+    What are we solving?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inspect-the-results" class="md-nav__link">
+    4. Inspect the results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-understand-runjson" class="md-nav__link">
+    5. Understand run.json
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-first-mechanics-example-a-cantilever" class="md-nav__link">
+    6. First mechanics example: a cantilever
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-meshes-what-polyfem-discretizes" class="md-nav__link">
+    7. Meshes: what PolyFEM discretizes
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Meshes: what PolyFEM discretizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-geometry-at-the-intended-size" class="md-nav__link">
+    Load geometry at the intended size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-sidesets-selections-and-boundary-conditions" class="md-nav__link">
+    8. Sidesets, selections, and boundary conditions
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Sidesets, selections, and boundary conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-bounding-box-sides" class="md-nav__link">
+    Automatic bounding-box sides
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-ways-to-assign-ids" class="md-nav__link">
+    Two ways to assign IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-materials-from-one-elastic-solid-to-several-regions" class="md-nav__link">
+    9. Materials: from one elastic solid to several regions
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Materials: from one elastic solid to several regions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-with-linear-elasticity" class="md-nav__link">
+    Start with linear elasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-material-family-should-i-choose" class="md-nav__link">
+    Which material family should I choose?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-materials-connect-volume-ids-to-material-ids" class="md-nav__link">
+    Multiple materials: connect volume IDs to material IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-finite-element-spaces-separate-geometry-approximation-and-physics" class="md-nav__link">
+    10. Finite-element spaces: separate geometry, approximation, and physics
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Finite-element spaces: separate geometry, approximation, and physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-degree-p1-versus-p2" class="md-nav__link">
+    Polynomial degree: P1 versus P2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basis-families" class="md-nav__link">
+    Basis families
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixed-formulations-have-multiple-fields" class="md-nav__link">
+    Mixed formulations have multiple fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mesh-order-is-not-necessarily-solution-order" class="md-nav__link">
+    Mesh order is not necessarily solution order
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-advanced-input-shared-configurations-and-geometry-operations" class="md-nav__link">
+    11. Advanced input: shared configurations and geometry operations
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Advanced input: shared configurations and geometry operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-complete-examples-from-the-data-repository" class="md-nav__link">
+    Run complete examples from the data repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-inherited-configurations-common-and-patch" class="md-nav__link">
+    Read inherited configurations: common and patch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-material-comparisons-in-context" class="md-nav__link">
+    Read material comparisons in context
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#positioning-geometry-and-changing-scale" class="md-nav__link">
+    Positioning geometry and changing scale
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-displacement-constraints" class="md-nav__link">
+    Partial displacement constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-time-dependent-simulations-motion-and-integration" class="md-nav__link">
+    12. Time-dependent simulations: motion and integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-contact-two-bodies-and-a-barrier" class="md-nav__link">
+    13. Contact: two bodies and a barrier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-mixed-spaces-and-coupled-physics" class="md-nav__link">
+    14. Mixed spaces and coupled physics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-suggested-practice-sequence" class="md-nav__link">
+    15. Suggested practice sequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-where-to-go-next" class="md-nav__link">
+    16. Where to go next
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/getting_started/" class="md-nav__link">
+        Full Getting Started Tutorial
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          C++
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cxx_index/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json/" class="md-nav__link">
+        JSON Input
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json_defaults_and_spec/" class="md-nav__link">
+        JSON Specification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://polyfem.github.io/json-builder/" class="md-nav__link">
+        JSON Builder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://polyfem.github.io/polyfem/" class="md-nav__link">
+        Docs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python_examples/" class="md-nav__link">
+        Jupyter Tutorial
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../polyfempy_doc/" class="md-nav__link">
+        Docs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/getting_started/" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/" class="md-nav__link">
+        IPC Quick Start Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/multi-material/multi-material/" class="md-nav__link">
+        Multi-Material
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/screw/screw/" class="md-nav__link">
+        Screwing a Bolt into a Nut
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/trajectory-optimization/trajectory-optimization/" class="md-nav__link">
+        Trajectory Optimization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+          Robotics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5_6">
+          <span class="md-nav__icon md-icon"></span>
+          Robotics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/sphere-pushing-box/sphere-pushing-box/" class="md-nav__link">
+        Pushing A Box
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/sling-shot/sling-shot/" class="md-nav__link">
+        Sling-shot
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/vision-proprioception/vision-proprioception/" class="md-nav__link">
+        Vision Proprioception
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Technical Details
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Technical Details
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/formulations/" class="md-nav__link">
+        Formulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/problems/" class="md-nav__link">
+        Problems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/time_integrators/" class="md-nav__link">
+        Time Integrators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/solvers/" class="md-nav__link">
+        Solvers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/contact/" class="md-nav__link">
+        Contact
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../details/miscellaneous/" class="md-nav__link">
+        Miscellaneous
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../polysolve/" class="md-nav__link">
+        PolySolve
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-get-polyfem" class="md-nav__link">
+    1. Get PolyFEM
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Get PolyFEM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos-allow-the-app-to-open" class="md-nav__link">
+    macOS: allow the app to open
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-help-and-report-a-bug" class="md-nav__link">
+    Get help and report a bug
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-download-a-complete-first-example" class="md-nav__link">
+    2. Download a complete first example
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-run-the-simulation-in-the-desktop-application" class="md-nav__link">
+    3. Run the simulation in the desktop application
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Run the simulation in the desktop application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-we-solving" class="md-nav__link">
+    What are we solving?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-inspect-the-results" class="md-nav__link">
+    4. Inspect the results
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-understand-runjson" class="md-nav__link">
+    5. Understand run.json
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-first-mechanics-example-a-cantilever" class="md-nav__link">
+    6. First mechanics example: a cantilever
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-meshes-what-polyfem-discretizes" class="md-nav__link">
+    7. Meshes: what PolyFEM discretizes
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Meshes: what PolyFEM discretizes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-geometry-at-the-intended-size" class="md-nav__link">
+    Load geometry at the intended size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-sidesets-selections-and-boundary-conditions" class="md-nav__link">
+    8. Sidesets, selections, and boundary conditions
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Sidesets, selections, and boundary conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-bounding-box-sides" class="md-nav__link">
+    Automatic bounding-box sides
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-ways-to-assign-ids" class="md-nav__link">
+    Two ways to assign IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-materials-from-one-elastic-solid-to-several-regions" class="md-nav__link">
+    9. Materials: from one elastic solid to several regions
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Materials: from one elastic solid to several regions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-with-linear-elasticity" class="md-nav__link">
+    Start with linear elasticity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-material-family-should-i-choose" class="md-nav__link">
+    Which material family should I choose?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-materials-connect-volume-ids-to-material-ids" class="md-nav__link">
+    Multiple materials: connect volume IDs to material IDs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-finite-element-spaces-separate-geometry-approximation-and-physics" class="md-nav__link">
+    10. Finite-element spaces: separate geometry, approximation, and physics
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Finite-element spaces: separate geometry, approximation, and physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-degree-p1-versus-p2" class="md-nav__link">
+    Polynomial degree: P1 versus P2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basis-families" class="md-nav__link">
+    Basis families
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixed-formulations-have-multiple-fields" class="md-nav__link">
+    Mixed formulations have multiple fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mesh-order-is-not-necessarily-solution-order" class="md-nav__link">
+    Mesh order is not necessarily solution order
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-advanced-input-shared-configurations-and-geometry-operations" class="md-nav__link">
+    11. Advanced input: shared configurations and geometry operations
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Advanced input: shared configurations and geometry operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-complete-examples-from-the-data-repository" class="md-nav__link">
+    Run complete examples from the data repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-inherited-configurations-common-and-patch" class="md-nav__link">
+    Read inherited configurations: common and patch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-material-comparisons-in-context" class="md-nav__link">
+    Read material comparisons in context
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#positioning-geometry-and-changing-scale" class="md-nav__link">
+    Positioning geometry and changing scale
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-displacement-constraints" class="md-nav__link">
+    Partial displacement constraints
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-time-dependent-simulations-motion-and-integration" class="md-nav__link">
+    12. Time-dependent simulations: motion and integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-contact-two-bodies-and-a-barrier" class="md-nav__link">
+    13. Contact: two bodies and a barrier
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-mixed-spaces-and-coupled-physics" class="md-nav__link">
+    14. Mixed spaces and coupled physics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-suggested-practice-sequence" class="md-nav__link">
+    15. Suggested practice sequence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-where-to-go-next" class="md-nav__link">
+    16. Where to go next
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+
+
+                  
+
+  
+  
+
+
+<h1 id="polyfem-user-guide-from-first-run-to-advanced-simulations">PolyFEM user guide: from first run to advanced simulations<a class="headerlink" href="#polyfem-user-guide-from-first-run-to-advanced-simulations" title="Permanent link">&para;</a></h1>
+<p>Start by opening the desktop app and running a complete scalar example. Then solve a <strong>cantilever fixed at one end</strong>, learn how meshes and boundary labels work, and explore materials and finite-element spaces. Dynamics, contact, shared configurations, and coupled physics come later, all on this page.</p>
+<p>The examples draw on <a href="https://github.com/polyfem/polyfem-data">polyfem-data</a> and PolyFEM&rsquo;s tests. The first two exercises include complete configurations and meshes: keep each JSON and its mesh together. Later sections link to complete examples in the data repository.</p>
+<h2 id="1-get-polyfem">1. Get PolyFEM<a class="headerlink" href="#1-get-polyfem" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Download a binary (quickest)</label><label for="__tabbed_1_2">Build from source</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>PolyFEM&rsquo;s <a href="https://github.com/polyfem/polyfem/actions/workflows/artifacts.yml">Artifacts workflow</a> builds desktop packages for <strong>Linux x86-64</strong>, <strong>macOS ARM64</strong>, and <strong>Windows AMD64</strong>.</p>
+<ol>
+<li>Open the workflow and choose a <strong>successful run on <code>main</code></strong>.</li>
+<li>Under <strong>Artifacts</strong>, download the package matching your operating system and processor. GitHub may ask you to sign in. Artifacts can expire; choose a newer successful run if a download is unavailable.</li>
+<li>Extract the Linux <code>.tar.gz</code> or Windows <code>.zip</code>. On macOS, open the <code>.dmg</code> and copy <strong><code>polyfem_app.app</code></strong> to Applications before opening it.</li>
+<li>Launch <strong><code>polyfem_app</code></strong>, the desktop application. It has <strong>Load JSON</strong> and <strong>Run</strong> controls. The separate <code>PolyFEM_bin</code> command-line executable is optional.</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<p>Use a source build if no package matches your platform, or if you want to modify PolyFEM. Follow the <a href="https://github.com/polyfem/polyfem#compilation">current build instructions</a> for prerequisites and platform-specific details. Enable the desktop application when configuring:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/polyfem/polyfem.git
+<span class="nb">cd</span><span class="w"> </span>polyfem
+cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DPOLYFEM_WITH_APP<span class="o">=</span>ON<span class="w"> </span>-DPOLYFEM_WITH_PYTHON<span class="o">=</span>OFF
+cmake<span class="w"> </span>--build<span class="w"> </span>build
+</code></pre></div>
+<p>Launch <code>polyfem_app</code> from the build directory (the <code>.app</code> bundle on macOS).</p>
+</div>
+</div>
+</div>
+<h3 id="macos-allow-the-app-to-open">macOS: allow the app to open<a class="headerlink" href="#macos-allow-the-app-to-open" title="Permanent link">&para;</a></h3>
+<p>macOS may report that Apple could not verify <code>polyfem_app.app</code>. If you downloaded it from the official PolyFEM workflow and trust that download:</p>
+<ol>
+<li>Try opening the copied application once, then dismiss the verification warning.</li>
+<li>Open <strong>System Settings → Privacy &amp; Security</strong> and scroll to <strong>Security</strong>.</li>
+<li>Find the message naming <code>polyfem_app.app</code> and click <strong>Open Anyway</strong>.</li>
+<li>Authenticate if requested, then confirm <strong>Open</strong>.</li>
+</ol>
+<p><img alt="macOS Privacy &amp; Security showing the PolyFEM app verification notice and Open Anyway button" src="../img/macos-open-anyway.png" /></p>
+<p>This is the per-app exception described in <a href="https://support.apple.com/102445">Apple&rsquo;s instructions for opening downloaded apps</a>. A warning that an app <strong>will damage your computer</strong> or contains malware is different; follow Apple&rsquo;s guidance for that warning. Allowing the app to open does not diagnose a model-loading or solver error after launch.</p>
+<h3 id="get-help-and-report-a-bug">Get help and report a bug<a class="headerlink" href="#get-help-and-report-a-bug" title="Permanent link">&para;</a></h3>
+<p>If installation, loading, or solving fails, check the <a href="https://github.com/polyfem/polyfem/issues">PolyFEM issue tracker</a> and <a href="https://github.com/polyfem/polyfem/issues/new/choose">report a bug</a> if needed. Include your operating system and architecture, the workflow run or source commit, the smallest failing JSON and its mesh, and the error text. For a packaged-app problem, mention whether the same input works in a source build.</p>
+<p>Before sharing screenshots or logs, <strong>remove usernames, home-directory paths, and private project names</strong>. The app displays full input and output paths.</p>
+<h2 id="2-download-a-complete-first-example">2. Download a complete first example<a class="headerlink" href="#2-download-a-complete-first-example" title="Permanent link">&para;</a></h2>
+<p>Create a writable directory called <code>polyfem-first-run</code> and save <strong>both</strong> files there:</p>
+<ul>
+<li><a href="../run.json"><code>run.json</code></a> — the scalar simulation configuration.</li>
+<li><a href="../plate_hole.obj"><code>plate_hole.obj</code></a> — the mesh, already prepared at the size used by this exercise.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>polyfem-first-run/
+├── plate_hole.obj
+└── run.json
+</code></pre></div>
+<p>The mesh comes from <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.obj"><code>standard/plate_hole.obj</code></a>. The downloaded version is ready to use; the JSON loads its coordinates directly. Keep the mesh beside <code>run.json</code>, whose mesh entry is <code>"mesh": "plate_hole.obj"</code>.</p>
+<h2 id="3-run-the-simulation-in-the-desktop-application">3. Run the simulation in the desktop application<a class="headerlink" href="#3-run-the-simulation-in-the-desktop-application" title="Permanent link">&para;</a></h2>
+<p><img alt="PolyFEM desktop app before loading an input, with Load JSON and Run controls at the top" src="../img/desktop-app.png" /></p>
+<ol>
+<li>Launch <strong>PolyFEM</strong> (<code>polyfem_app</code>).</li>
+<li>Click <strong>Load JSON</strong> and select <code>run.json</code>. After loading, the app should show the <strong>JSON File</strong> and <strong>Output Directory</strong> paths.</li>
+<li>Click <strong>Run</strong> and wait for completion. Check the displayed error/log panels if it fails.</li>
+<li>Look in the <strong>Output Directory shown by the app</strong> for <code>result.vtu</code> and <code>stats.json</code>. If no output directory was specified, the GUI creates a run folder under <code>output/</code> beside the input.</li>
+</ol>
+<p>The screenshot shows the app <strong>before</strong> an input is loaded. An empty JSON File line and <code>0/0</code> progress are not evidence of a solver failure; load the configuration first. The app may also offer <strong>Load HDF5</strong> for bundled inputs; start with JSON here.</p>
+<div class="admonition note">
+<p class="admonition-title">Optional command-line alternative</p>
+<p>From the directory containing both files, run the separate command-line executable:</p>
+<div class="highlight"><pre><span></span><code>/path/to/PolyFEM_bin<span class="w"> </span>--json<span class="w"> </span>run.json
+</code></pre></div>
+</div>
+<h3 id="what-are-we-solving">What are we solving?<a class="headerlink" href="#what-are-we-solving" title="Permanent link">&para;</a></h3>
+<p>The <em>Laplacian</em> is a scalar PDE: its solution is one number at each point, rather than a displacement vector. This example uses PolyFEM&rsquo;s <code>Franke</code> preset to supply a test problem. PolyFEM assembles the finite-element system, solves it, and exports the field for visualization.</p>
+<h2 id="4-inspect-the-results">4. Inspect the results<a class="headerlink" href="#4-inspect-the-results" title="Permanent link">&para;</a></h2>
+<p>Install <a href="https://www.paraview.org/">ParaView</a> and open <code>result.vtu</code> from the app&rsquo;s output directory.</p>
+<ol>
+<li>Click <strong>Apply</strong> after loading the file.</li>
+<li>Choose the solution field in the <strong>Coloring</strong> dropdown.</li>
+<li>Compare with the reference below.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Input mesh</th>
+<th>Reference solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Plate with a hole" src="../../img/plate_hole_mesh.png" /></td>
+<td><img alt="Laplacian solution" src="../../img/plate_hole_solution.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>This scalar field lives on a fixed geometry. In the next exercise, a vector displacement field will describe a bending solid.</p>
+<h2 id="5-understand-runjson">5. Understand <code>run.json</code><a class="headerlink" href="#5-understand-runjson" title="Permanent link">&para;</a></h2>
+<p>Here is the complete downloaded input:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"plate_hole.obj"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-7</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Laplacian"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"preset_problem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Franke"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"linear"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eigen::SparseLU"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"paraview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"result.vtu"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geometry.mesh</code></td>
+<td>Load the mesh in its supplied coordinates</td>
+</tr>
+<tr>
+<td><code>surface_selection</code></td>
+<td>Assign boundary labels; explained below</td>
+</tr>
+<tr>
+<td><code>materials</code></td>
+<td>Choose the governing PDE or material model</td>
+</tr>
+<tr>
+<td><code>preset_problem</code></td>
+<td>Supply this built-in scalar test problem</td>
+</tr>
+<tr>
+<td><code>solver</code></td>
+<td>Choose a numerical linear solver</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>Name the visualization and statistics files</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Try:</strong> change only <code>output.paraview.file_name</code>, reload the JSON, and run again. Find the new file in the displayed output directory.</p>
+<p>This exercise follows <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/plate_hole.json"><code>standard/plate_hole.json</code></a>, with the mesh prepared in advance and the regression-check settings omitted. The <a href="../../json/">JSON input guide</a>, <a href="../../json_defaults_and_spec/">generated specification</a>, and <a href="https://polyfem.github.io/json-builder/">interactive JSON builder</a> describe the available options.</p>
+<h2 id="6-first-mechanics-example-a-cantilever">6. First mechanics example: a cantilever<a class="headerlink" href="#6-first-mechanics-example-a-cantilever" title="Permanent link">&para;</a></h2>
+<p>A <strong>cantilever</strong> is a beam fixed at one end and loaded at the other. Start from a complete new input so the constraints and load are easy to see.</p>
+<p>Save these two files together in a writable <code>polyfem-cantilever</code> directory:</p>
+<ul>
+<li><a href="../cantilever.json"><code>cantilever.json</code></a></li>
+<li><a href="../bar.msh"><code>bar.msh</code></a></li>
+</ul>
+<p>The mesh is the unchanged <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/bar.msh"><code>standard/bar.msh</code></a> used by the <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/thermoelastic_heated_clamped_bar.json">heated clamped-bar test</a>. Here we use that geometry for a simpler <strong>static linear-elastic</strong> problem. Its dimensions are <strong>10 × 1 × 1</strong>, with length along x; it is already positioned correctly.</p>
+<p><img alt="Cantilever diagram: the x-min face has sideset ID 1 and zero displacement in all directions; the x-max face has ID 3 and downward traction" src="../img/cantilever.svg" /></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar.msh"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-6</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinearElasticity"</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"boundary_conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"dirichlet_boundary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"neumann_boundary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"linear"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eigen::SparseLU"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"output"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"json"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cantilever-stats.json"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"paraview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cantilever.vtu"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Read the setup:</strong> <code>surface_selection</code> labels the minimum-x end <strong>1</strong> and maximum-x end <strong>3</strong>. The Dirichlet value <code>[0, 0, 0]</code> fixes <strong>all three displacement components</strong> on the left face. The Neumann value <code>[0, -1, 0]</code> applies a uniform downward traction to the right face. The remaining faces are free. The load and stiffness are illustrative values in consistent units.</p>
+<ol>
+<li>In PolyFEM, click <strong>Load JSON</strong>, select <code>cantilever.json</code>, and click <strong>Run</strong>.</li>
+<li>Open <code>cantilever.vtu</code> from the displayed output directory in ParaView and click <strong>Apply</strong>.</li>
+<li>Apply <strong>Warp By Vector</strong> and select the displacement/solution vector. Increase the warp scale if needed to see the small deformation; the beam should bend downward and stay fixed at the left face.</li>
+<li>Color by displacement magnitude to see the change along the beam. A magnified warp is a visualization aid, not the physical displacement scale.</li>
+</ol>
+<p><strong>Try:</strong> double <code>E</code> and rerun with the same load. Linear elasticity should give half the displacement. Then restore <code>E</code> and halve the traction: this should also halve the displacement. Keep a copy of each result to compare.</p>
+<h2 id="7-meshes-what-polyfem-discretizes">7. Meshes: what PolyFEM discretizes<a class="headerlink" href="#7-meshes-what-polyfem-discretizes" title="Permanent link">&para;</a></h2>
+<p>The first example uses <strong>2D triangles</strong>; the cantilever uses <strong>3D tetrahedra</strong>. A mesh divides a domain into elements over which the solution is approximated.</p>
+<table>
+<thead>
+<tr>
+<th>Input geometry</th>
+<th>Finite elements</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2D triangular or quadrilateral mesh</td>
+<td>Triangles or quads</td>
+<td>A planar PDE or 2D solid</td>
+</tr>
+<tr>
+<td>3D tetrahedral or hexahedral volume mesh</td>
+<td>Tets or hexes</td>
+<td>A volumetric solid or fluid</td>
+</tr>
+<tr>
+<td>Polygonal / polyhedral mesh</td>
+<td>Polygons / polyhedra</td>
+<td>Specialized approximation spaces</td>
+</tr>
+<tr>
+<td>Surface triangle mesh in 3D</td>
+<td>Surface triangles</td>
+<td>For example, a collision obstacle</td>
+</tr>
+</tbody>
+</table>
+<p>For 3D elasticity, use a <strong>volume mesh</strong> with interior cells. A surface shell alone does not define the volumetric solid in this walkthrough. File extensions are not enough to tell the difference: <code>.msh</code> can contain different element types, while an OBJ may describe a planar 2D domain or a surface in 3D.</p>
+<h3 id="load-geometry-at-the-intended-size">Load geometry at the intended size<a class="headerlink" href="#load-geometry-at-the-intended-size" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar.msh"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Start with the mesh at the correct size and position, and keep length, stiffness, load, density, and time units consistent. For several bodies, <code>geometry</code> becomes a list of mesh entries; material-region IDs are explained in the materials section.</p>
+<p>To explore element types later, compare <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace.json"><code>standard/laplace.json</code></a>, a 3D cube, with <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_quad.json"><code>standard/laplace_quad.json</code></a>, a 2D quad mesh. These are different domains, so comparing their errors is not a controlled convergence experiment. The advanced section explains how to run repository examples with shared settings.</p>
+<h2 id="8-sidesets-selections-and-boundary-conditions">8. Sidesets, selections, and boundary conditions<a class="headerlink" href="#8-sidesets-selections-and-boundary-conditions" title="Permanent link">&para;</a></h2>
+<p>A <strong>sideset</strong> groups boundary edges in 2D or boundary faces in 3D under an integer ID. A boundary condition names that ID. The ID is a label, not a coordinate or node number.</p>
+<p>A <strong>volume ID</strong> instead labels a region of elements and connects it to a material. Surface IDs and volume IDs are independent: a body with volume ID 2 can have boundary sidesets 1, 3, and 7.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>What receives labels?</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>surface_selection</code></td>
+<td>Boundary edges/faces</td>
+<td>Fixed boundaries, tractions, prescribed motion</td>
+</tr>
+<tr>
+<td><code>volume_selection</code></td>
+<td>Domain elements</td>
+<td>Material regions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="automatic-bounding-box-sides">Automatic bounding-box sides<a class="headerlink" href="#automatic-bounding-box-sides" title="Permanent link">&para;</a></h3>
+<p>Both downloaded examples use a bounding-box side selector:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"threshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-6</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p><img alt="Boundary IDs on a rectangular 2D mesh: left 1, bottom 2, right 3, top 4; an internal hole is labeled 7" src="../img/sidesets.svg" /></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Boundary near</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Minimum x (left)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Minimum y (bottom)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Maximum x (right)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Maximum y (top)</td>
+</tr>
+<tr>
+<td>5 / 6</td>
+<td>Minimum / maximum z, in 3D</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Remaining boundary edges/faces, such as the hole</td>
+</tr>
+</tbody>
+</table>
+<p>The threshold is a distance tolerance in mesh coordinates. A boundary edge/face is labeled using its <strong>barycenter</strong> (midpoint for an edge, centroid for a triangle). This labels existing boundaries; it does not create cuts or change the mesh.</p>
+<p>In the cantilever, ID 1 connects directly to <code>"dirichlet_boundary": [{ "id": 1, "value": [0, 0, 0] }]</code>. A zero Dirichlet value means zero <strong>displacement</strong>, while a Neumann value specifies <strong>traction</strong>. A body load belongs in <code>boundary_conditions.rhs</code>, rather than on a sideset. Faces without an explicit traction are free in this example.</p>
+<h3 id="two-ways-to-assign-ids">Two ways to assign IDs<a class="headerlink" href="#two-ways-to-assign-ids" title="Permanent link">&para;</a></h3>
+<p><strong>Use tags from the mesh or a matching file.</strong> If a supported mesh already carries boundary or material tags, preserve them by leaving the corresponding selection unspecified. Alternatively, supply a tag file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tagged.msh"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"surface_tags.txt"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"volume_tags.txt"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>These are illustrative names. Tag files must match PolyFEM&rsquo;s ordering of the mesh primitives; they are not lists of arbitrary vertex IDs. <a href="https://github.com/polyfem/polyfem-data/blob/main/selection/file.json"><code>selection/file.json</code></a> shows a real surface-tag file, <code>alien.txt</code>. See the <a href="../../json/#selections">selection reference</a> for the file format.</p>
+<p><strong>Choose a region geometrically.</strong> A box, sphere, cylinder, or half-space can assign a sideset ID by testing boundary barycenters. This is useful for a local patch that does not follow a whole bounding-box side.</p>
+<p><img alt="Three selection diagrams on the same triangular strip: a box near the left end, a circular neighborhood at the upper right, and a left-facing half-space. Orange edges have barycenters inside the shaded region; gray edges do not." src="../img/geometric-selection.svg" /></p>
+<p>The diagram uses a 2D strip spanning x = 0…4 and y = 0…1. These are <strong>selection fragments</strong>, not complete simulations; use one in the mesh&rsquo;s <code>geometry</code> entry:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Box</label><label for="__tabbed_2_2">Sphere / circle in 2D</label><label for="__tabbed_2_3">Plane / half-space</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"box"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">-0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.1</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.1</span><span class="p">]]</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>This narrow box selects only the left boundary in the illustrated mesh.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"center"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nt">"radius"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>A circular neighborhood selects a patch near the upper-right corner. In 3D, supply three coordinates to select within a sphere.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nt">"surface_selection"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">"point"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="nt">"normal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>The normal points into the selected half-space: here x ≤ 1. It can include parts of several boundary sides, not just edges lying on the plane.</p>
+</div>
+</div>
+</div>
+<p>Only edges/faces whose <strong>barycenters</strong> pass the test are selected. Intersecting part of an edge is not enough. The orange dots in the diagram make that distinction visible. On coarse meshes, selection boundaries can look stepped.</p>
+<p>For 3D cylindrical neighborhoods, use <code>p1</code>, <code>p2</code>, and <code>radius</code> as in <a href="https://github.com/polyfem/polyfem-data/blob/main/selection/cylinder.json"><code>selection/cylinder.json</code></a>. The actual <a href="https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json"><code>plane</code></a>, <a href="https://github.com/polyfem/polyfem-data/blob/main/selection/sphere.json"><code>sphere</code></a>, and file-selection tests all use the same alien mesh. Compare their <code>geometry.surface_selection</code> blocks now; the advanced section explains the shared scene before you run them.</p>
+<p>When coordinates should track the object&rsquo;s bounding box, a box selector can use <code>"relative": true</code>: its corners then use 0…1 coordinates along each axis. Start with absolute coordinates and a mesh whose dimensions you know. Full options are in the <a href="../../json/#selections">JSON input guide</a> and <a href="../../json_defaults_and_spec/">generated specification</a>.</p>
+<h2 id="9-materials-from-one-elastic-solid-to-several-regions">9. Materials: from one elastic solid to several regions<a class="headerlink" href="#9-materials-from-one-elastic-solid-to-several-regions" title="Permanent link">&para;</a></h2>
+<p>The <code>materials</code> section selects the PDE or constitutive law and its parameters. It is not just a palette or visualization label.</p>
+<h3 id="start-with-linear-elasticity">Start with linear elasticity<a class="headerlink" href="#start-with-linear-elasticity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinearElasticity"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">210000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Here <code>E</code> is <strong>Young&rsquo;s modulus</strong> (stiffness scale) and <code>nu</code> is <strong>Poisson&rsquo;s ratio</strong> (lateral contraction relative to stretching). For time-dependent mechanics, <code>rho</code> controls mass density. Physical values must use consistent units.</p>
+<p>The <code>LinearElasticity</code> model assumes small strains. For larger deformations, use an appropriate nonlinear model instead:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is a valid example of a <strong>compressible Neo-Hookean</strong> material entry. It does <strong>not</strong> alone define a full simulation: geometry, loads, constraints, and possibly time settings still matter.</p>
+<h3 id="which-material-family-should-i-choose">Which material family should I choose?<a class="headerlink" href="#which-material-family-should-i-choose" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>When to consider it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Laplacian</code>, <code>Helmholtz</code></td>
+<td>Scalar PDEs / simple numerical examples</td>
+</tr>
+<tr>
+<td><code>LinearElasticity</code></td>
+<td>Small-displacement solids</td>
+</tr>
+<tr>
+<td><code>SaintVenant</code></td>
+<td>Geometrically nonlinear elasticity with a simple constitutive model</td>
+</tr>
+<tr>
+<td><code>NeoHookean</code></td>
+<td>Finite-deformation hyperelastic solids</td>
+</tr>
+<tr>
+<td><code>MooneyRivlin</code> and Ogden variants</td>
+<td>More specialized hyperelastic models requiring their own parameters</td>
+</tr>
+<tr>
+<td><code>HGOFiber</code>, <code>HGODispersion</code>, <code>ActiveFiber</code></td>
+<td>Anisotropic or active-fiber material models</td>
+</tr>
+<tr>
+<td><code>Stokes</code>, <code>NavierStokes</code></td>
+<td>Incompressible fluid flow; mixed spaces and fluid parameters are required</td>
+</tr>
+<tr>
+<td><code>NavierStokesFSI</code></td>
+<td>Coupled fluid–structure interaction; <strong>advanced</strong>, with several coupled fields</td>
+</tr>
+<tr>
+<td><code>ThermoElasticity</code></td>
+<td>Coupled displacement and temperature fields</td>
+</tr>
+</tbody>
+</table>
+<p>This is a <strong>guided subset</strong>, not a list of interchangeable options. Each model has its own <strong>required parameters</strong> and mathematical assumptions. See <a href="../../details/formulations/">formulations</a> and the <a href="../../json_defaults_and_spec/">generated material specification</a> before switching a real application.</p>
+<h3 id="multiple-materials-connect-volume-ids-to-material-ids">Multiple materials: connect volume IDs to material IDs<a class="headerlink" href="#multiple-materials-connect-volume-ids-to-material-ids" title="Permanent link">&para;</a></h3>
+<p>A scene can contain several material regions:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stiff_part.msh"</span><span class="p">,</span><span class="w"> </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soft_part.msh"</span><span class="p">,</span><span class="w"> </span><span class="nt">"volume_selection"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}</span>
+<span class="p">],</span>
+<span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e8</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e6</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>This is a <strong>configuration fragment</strong>, not a runnable scene: both meshes must exist and you need suitable boundary conditions. Notice the correspondence between <code>volume_selection: 1</code> and <code>materials[0].id: 1</code>, and similarly for ID 2.</p>
+<p><strong>Try it:</strong> on a multi-body model, change one material&rsquo;s <code>E</code> by a factor of 10 while keeping everything else fixed. Compare the displacement field and force response. If you want the complete, documented workflow (including mesh generation and assignment of region IDs), continue with <a href="../../tutorials/multi-material/multi-material/">Simulating Multiple Materials in a Single Mesh</a>.</p>
+<div class="admonition example">
+<p class="admonition-title">From the test suite: one mesh with multiple material IDs</p>
+<p><a href="https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json"><code>multi-material/stretch-cubes.json</code></a> uses a tagged volume mesh (<code>cubes_v41.msh</code>) and three <code>materials</code> entries, with IDs 1, 2, and 3. It also uses geometric boxes to select the <strong>left and right boundary regions</strong>, and prescribed motion to stretch the object.</p>
+<p><strong>Inspect in order:</strong> the mesh file and its <em>volume IDs</em> → <code>materials[].id</code> → <code>surface_selection</code> → <code>boundary_conditions</code>. The same integers may appear in different roles, but volume IDs choose material regions while surface IDs choose boundary regions.</p>
+<p><strong>Try:</strong> make the middle material stiffer by changing only its <code>E</code>. Keep the original file and mesh in their repository directory. For the mesh-generation procedure, follow the <a href="../../tutorials/multi-material/multi-material/">existing multi-material tutorial</a>.</p>
+</div>
+<h2 id="10-finite-element-spaces-separate-geometry-approximation-and-physics">10. Finite-element spaces: separate geometry, approximation, and physics<a class="headerlink" href="#10-finite-element-spaces-separate-geometry-approximation-and-physics" title="Permanent link">&para;</a></h2>
+<p>An FEM computation involves at least three choices:</p>
+<ol>
+<li><strong>Mesh:</strong> how the domain is split into elements (triangles, quads, tets, hexes, etc.).</li>
+<li><strong>Approximation space:</strong> the shape functions and number/location of degrees of freedom (for example, linear versus quadratic Lagrange).</li>
+<li><strong>Physics/material:</strong> which equations the degrees of freedom satisfy (for example, Laplacian versus elasticity).</li>
+</ol>
+<p>The last two are <strong>not the same thing</strong>. You can solve the same elasticity model on the same mesh using different approximation orders, or solve different physics using the same FE space.</p>
+<h3 id="polynomial-degree-p1-versus-p2">Polynomial degree: P1 versus P2<a class="headerlink" href="#polynomial-degree-p1-versus-p2" title="Permanent link">&para;</a></h3>
+<p>The easiest experiment is to keep the input and change one field:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then try:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The order controls the <strong>finite-element approximation</strong>, not the material law. Degree 1 generally means a piecewise-linear solution on simplicial elements; degree 2 adds additional degrees of freedom and can resolve more variation on the same mesh, at greater assembly/solve cost.</p>
+<p><strong>Experiment:</strong> solve the same cantilever problem at orders 1 and 2. Compare tip displacement, degrees of freedom, and runtime <em>without changing the mesh or physics</em>. For an accuracy study, also compare against a refined reference solution; the cantilever input does not supply an exact solution. A smoother ParaView image alone does not establish greater accuracy.</p>
+<div class="admonition example">
+<p class="admonition-title">From the test suite: compare element order</p>
+<p><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_3d_b2.json"><code>standard/laplace_3d_b2.json</code></a> explicitly chooses <code>"basis_type": "Bernstein"</code> and <code>"discr_order": 2</code>. For a P1/P2 experiment on a single problem, duplicate the cantilever input and change only <code>space.discr_order</code>.</p>
+<p><strong>Try:</strong> compare the number of degrees of freedom, solve time, and solution/error statistics. When comparing separate <code>polyfem-data</code> files, first check whether they also changed the <strong>mesh order</strong> or refinement level.</p>
+</div>
+<h3 id="basis-families">Basis families<a class="headerlink" href="#basis-families" title="Permanent link">&para;</a></h3>
+<p>The current JSON specification exposes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"basis_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lagrange"</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Basis</th>
+<th>Interpretation / restriction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lagrange</code></td>
+<td>Standard nodal finite-element basis; good default</td>
+</tr>
+<tr>
+<td><code>Spline</code></td>
+<td>Spline-based basis on supported quadrilateral/hexahedral discretizations</td>
+</tr>
+<tr>
+<td><code>Serendipity</code></td>
+<td>Reduced-DOF polynomial family on supported quadrilateral/hexahedral meshes</td>
+</tr>
+<tr>
+<td><code>Bernstein</code></td>
+<td>Bernstein basis option (check mesh/feature compatibility before using)</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>polygonal</strong> elements, PolyFEM has a separate <code>poly_basis_type</code> selector. Available names in the current specification include <code>MFSHarmonic</code>, <code>MeanValue</code>, and <code>Wachspress</code>. Those are specialized approximation constructions: they are not simply different names for P1.</p>
+<p>The <code>space.use_p_ref</code> option allows geometry-dependent <strong>a priori p-refinement</strong>. It is a separate concept from simply increasing a global <code>discr_order</code>. For background, see the <a href="../../details/formulations/">technical formulations</a> and PolyFEM&rsquo;s <a href="https://github.com/polyfem/polyfem">Decoupling Simulation Accuracy from Mesh Quality work</a>.</p>
+<div class="admonition example">
+<p class="admonition-title">From the test suite: spline and polygonal choices</p>
+<p>The <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_spline.json"><code>standard/laplace_spline.json</code></a> configuration uses a quadrilateral mesh and <code>space.basis_type: "Spline"</code>. The <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json"><code>standard/laplace_mv.json</code></a> and <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_ws.json"><code>standard/laplace_ws.json</code></a> files instead use a polygon mesh with Mean Value and Wachspress <code>poly_basis_type</code> options.</p>
+<p><strong>Try:</strong> compare the two polygon examples first: their configurations have the same mesh and preset, so the polygonal basis is the meaningful change. Then look at the quadrilateral spline example as a separate basis-family demonstration.</p>
+</div>
+<h3 id="mixed-formulations-have-multiple-fields">Mixed formulations have multiple fields<a class="headerlink" href="#mixed-formulations-have-multiple-fields" title="Permanent link">&para;</a></h3>
+<p>Not every simulation has a single scalar or displacement vector as its unknown. For example, incompressible flow solves for both <strong>velocity</strong> and <strong>pressure</strong>. Fluid–structure interaction can also include solid displacement and ALE mesh displacement. In those cases, the input material and coupled problem configuration refer to <strong>space IDs</strong> for the different fields; using only a single <code>discr_order</code> is not a complete mixed formulation setup.</p>
+<div class="admonition warning">
+<p class="admonition-title">Don&rsquo;t guess a coupled setup</p>
+<p>A working <code>NavierStokesFSI</code> example needs more than changing <code>materials.type</code>. It has required field-space IDs, geometry IDs, viscosity, and nested material choices. Start from a compatible <strong>tested configuration</strong> and consult the <a href="../../json_defaults_and_spec/">generated JSON specification</a>.</p>
+</div>
+<h3 id="mesh-order-is-not-necessarily-solution-order">Mesh order is not necessarily solution order<a class="headerlink" href="#mesh-order-is-not-necessarily-solution-order" title="Permanent link">&para;</a></h3>
+<p>A curved/high-order geometric map describes <strong>where the elements are in physical space</strong>. The <code>space.discr_order</code> describes <strong>how the unknown field is approximated</strong>. PolyFEM supports separating these decisions in supported cases. Increasing the solution order does not automatically repair a poorly resolved geometric boundary; conversely, a curved mesh can represent geometry well without forcing the solution space to the same order.</p>
+<h2 id="11-advanced-input-shared-configurations-and-geometry-operations">11. Advanced input: shared configurations and geometry operations<a class="headerlink" href="#11-advanced-input-shared-configurations-and-geometry-operations" title="Permanent link">&para;</a></h2>
+<p>The downloaded scalar and cantilever examples are complete inputs. Larger repository scenes often reuse settings or position several objects. Learn these features once the simpler cases work.</p>
+<h3 id="run-complete-examples-from-the-data-repository">Run complete examples from the data repository<a class="headerlink" href="#run-complete-examples-from-the-data-repository" title="Permanent link">&para;</a></h3>
+<p>Download or clone <a href="https://github.com/polyfem/polyfem-data">polyfem-data</a> and keep its directory structure intact. A small JSON may depend on other JSONs, meshes, or tag files elsewhere in that tree. Open the original example with <strong>Load JSON</strong>, then <strong>Run</strong>. Regression files may also contain <code>tests</code> entries for automated accuracy checks; those are not required in your own input.</p>
+<h3 id="read-inherited-configurations-common-and-patch">Read inherited configurations: <code>common</code> and <code>patch</code><a class="headerlink" href="#read-inherited-configurations-common-and-patch" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json"><code>standard/neohookean.json</code></a> supplies a material and inherits the rest of its scene:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"common"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elastic_common.json"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NeoHookean"</span><span class="p">,</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"E"</span><span class="p">:</span><span class="w"> </span><span class="mi">20000</span><span class="p">,</span><span class="w"> </span><span class="nt">"nu"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Read <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/elastic_common.json"><code>elastic_common.json</code></a> for geometry, constraints, and solver settings, then its parent <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/common.json"><code>common.json</code></a> for output settings. Downloading only the top-level JSON is insufficient. The selection tests similarly share <a href="https://github.com/polyfem/polyfem-data/blob/main/selection/main.json"><code>selection/main.json</code></a>; its sideset IDs 1 and 3 connect to the regions selected in each child input.</p>
+<p>Some examples apply a JSON <strong><code>patch</code></strong> to a baseline. <a href="https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/higher-order/ball-bounce/P2.json">P2 ball bounce</a> uses JSON Patch operations to replace the mesh and FE order relative to P1. Inspect both files and keep the parent resources available. For an early experiment, editing a copy of a complete input is easier to follow.</p>
+<h3 id="read-material-comparisons-in-context">Read material comparisons in context<a class="headerlink" href="#read-material-comparisons-in-context" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">From the test suite: change the law, not the domain</p>
+<p>Read <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/hooke.json"><code>standard/hooke.json</code></a>, <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/saint_venant.json"><code>standard/saint_venant.json</code></a>, and <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/neohookean.json"><code>standard/neohookean.json</code></a>. The first two use a cube and the <code>ElasticExact</code> preset; Neo-Hookean inherits the displacement-controlled <code>elastic_common.json</code> baseline.</p>
+<p><strong>Important:</strong> because these inputs do not all have identical boundary conditions, they are examples of material configuration, <strong>not</strong> an apples-to-apples quantitative constitutive-model comparison. To isolate a material law, hold geometry, loads, and constraints fixed and change the material in a copy of one runnable configuration.</p>
+<p>For specialized materials, <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/hooke_anisotropic.json"><code>standard/hooke_anisotropic.json</code></a> supplies anisotropic elasticity parameters, while <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/active-fiber.json"><code>standard/active-fiber.json</code></a> builds a composite with <code>MaterialSum</code>, <code>NeoHookean</code>, <code>VolumePenalty</code>, and <code>ActiveFiber</code>. Read them after the isotropic cases.</p>
+</div>
+<h3 id="positioning-geometry-and-changing-scale">Positioning geometry and changing scale<a class="headerlink" href="#positioning-geometry-and-changing-scale" title="Permanent link">&para;</a></h3>
+<p>For scenes that need object placement, <code>transformation</code> can scale or translate a mesh without editing its file:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mesh"</span><span class="p">:</span><span class="w"> </span><span class="s2">"part.msh"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"transformation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"scale"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"translation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This is a fragment; supply the mesh and remaining simulation settings. Geometric selection runs on the positioned geometry, so moving an object may require changing absolute selection coordinates. With multiple bodies, each geometry entry can have its own placement and material-region ID; the <a href="https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json">sphere–mat example</a> demonstrates this.</p>
+<p><code>geometry.advanced.normalize_mesh</code> rescales a mesh to a standard size. This is useful in some numerical tests, but it changes physical dimensions and therefore the interpretation of loads and material parameters. The beginner downloads already have the intended geometry; no such operation is needed there.</p>
+<h3 id="partial-displacement-constraints">Partial displacement constraints<a class="headerlink" href="#partial-displacement-constraints" title="Permanent link">&para;</a></h3>
+<p>Some mechanical setups prescribe only one component, using a <code>dimension</code> mask. That is useful for rollers or symmetry conditions; see the <a href="../../tutorials/getting_started/#boundary-conditions">detailed boundary-condition tutorial</a>. The cantilever instead fixes the whole displacement vector on its clamped face, so it needs no mask.</p>
+<h2 id="12-time-dependent-simulations-motion-and-integration">12. Time-dependent simulations: motion and integration<a class="headerlink" href="#12-time-dependent-simulations-motion-and-integration" title="Permanent link">&para;</a></h2>
+<p>For transient problems, the top-level <code>time</code> section determines the simulated interval and time-stepping scheme. A material&rsquo;s density and the problem&rsquo;s initial conditions become especially important. The UI still follows the same workflow: <strong>Load JSON → Run</strong>, but output often becomes a time sequence instead of one VTU.</p>
+<p>Start with these actual tests:</p>
+<ul>
+<li><a href="https://github.com/polyfem/polyfem-data/blob/main/interpolation/linear_ramp.json"><code>interpolation/linear_ramp.json</code></a> gives boundary IDs 1 and 3 prescribed displacement values, with <strong>different linear-ramp intervals</strong>. It inherits the rest of the scene from <code>interpolation/main.json</code>. This demonstrates that <em>how</em> a displacement changes over time is separate from <em>which</em> boundary receives it.</li>
+<li><a href="https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json"><code>time-int/euler.json</code></a> and <a href="https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json"><code>time-int/newmark.json</code></a> both inherit <code>time-int/main.json</code>; they choose <code>ImplicitEuler</code> and <code>ImplicitNewmark</code> respectively.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"integrator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ImplicitEuler"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"tend"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"time_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Try:</strong> compare the two integrator configurations without editing them first. Then change the time-step count <em>in a copy</em>, keeping total simulated time fixed. Compare trajectory/output across steps; do not equate a difference in numerical damping with a material effect.</p>
+<p>For a more visual prescribed-motion example, inspect <a href="https://github.com/polyfem/polyfem-data/blob/main/time-bc/walking-elephant.json"><code>time-bc/walking-elephant.json</code></a>. It uses spatial selections and time-dependent boundary motion on an elephant mesh.</p>
+<h2 id="13-contact-two-bodies-and-a-barrier">13. Contact: two bodies and a barrier<a class="headerlink" href="#13-contact-two-bodies-and-a-barrier" title="Permanent link">&para;</a></h2>
+<p>Contact is more than two overlapping meshes: the objects must be represented by appropriate geometry, a constitutive model must define their motion, and <strong>collision/contact</strong> must be configured.</p>
+<p>Start with <a href="https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/unit-tests/2-cubes.json"><code>contact/examples/3D/unit-tests/2-cubes.json</code></a>. It has two cube meshes positioned at different heights, a fixed boundary selection on the lower one, gravity as <code>rhs</code>, and a time-dependent solve. Its <code>common</code> file supplies shared contact settings; inspect that too.</p>
+<p>Next look at <a href="https://github.com/polyfem/polyfem-data/blob/main/contact/examples/3D/large-ratios/sphere-mat.json"><code>contact/examples/3D/large-ratios/sphere-mat.json</code></a>, where the sphere and the mat have <strong>different volume IDs and different Neo-Hookean parameters</strong>. The mat boundaries also move with expressions involving <code>t</code>.</p>
+<p><strong>Read in order:</strong> <code>geometry</code> (objects and transforms) → <code>volume_selection</code> (body/material IDs) → <code>surface_selection</code> (prescribed boundaries) → <code>materials</code> → <code>contact</code> and <code>time</code>. Run from the intact data tree; both scenes refer to external meshes and shared settings.</p>
+<p>For friction, changing time steps, and codimensional obstacles, the <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/">IPC Quick Start Guide</a> goes much deeper.</p>
+<h2 id="14-mixed-spaces-and-coupled-physics">14. Mixed spaces and coupled physics<a class="headerlink" href="#14-mixed-spaces-and-coupled-physics" title="Permanent link">&para;</a></h2>
+<p>A scalar Laplace problem has one unknown; incompressible solids and fluids have <strong>more than one field</strong>. The JSON assigns <strong>FE space IDs</strong>, which are distinct from material-body IDs and boundary sideset IDs.</p>
+<p>The <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json"><code>standard/stokes_static.json</code></a> example uses velocity in space 0 and pressure in space 1:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stokes"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"viscosity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"velocity_space_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"pressure_space_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">},</span>
+<span class="nt">"space"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"discr_order"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"fe_space"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"fe_space"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Those are <strong>Taylor–Hood-style P2/P1</strong> choices for this example—not different materials, and not two different meshes. <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/incompressible.json"><code>standard/incompressible.json</code></a> uses analogous displacement/pressure space IDs for incompressible elasticity.</p>
+<p>More advanced combinations are represented by:</p>
+<ul>
+<li><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/thermoelastic_heated_clamped_bar.json"><code>standard/thermoelastic_heated_clamped_bar.json</code></a>: separate displacement and temperature fields, each with its own boundary conditions or right-hand sides.</li>
+<li><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_transient.json"><code>standard/navier_stokes_transient.json</code></a>: transient fluid flow with velocity and pressure.</li>
+<li><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/navier_stokes_fsi_simple_square.json"><code>standard/navier_stokes_fsi_simple_square.json</code></a>: a coupled fluid–structure interaction setup with velocity, pressure, ALE mesh displacement, and solid displacement spaces. It also distinguishes <strong>fluid and solid geometry IDs</strong>.</li>
+</ul>
+<p><strong>Try:</strong> in the FSI file, find each <code>*_space_id</code>, then locate its matching entry under <code>space.discr_order</code>. Identify the <code>fe_space</code> used by each boundary condition. Do <strong>not</strong> attempt to turn a single-field elasticity input into FSI just by changing <code>materials.type</code>.</p>
+<p>These coupled examples are a reading path first; run them only once the simpler configurations work and you are comfortable interpreting their mesh dependencies, convergence settings, and output.</p>
+<h2 id="15-suggested-practice-sequence">15. Suggested practice sequence<a class="headerlink" href="#15-suggested-practice-sequence" title="Permanent link">&para;</a></h2>
+<p>Use real <code>polyfem-data</code> files as your starting point. Begin with the complete cantilever download; then use repository examples, keeping their parent configurations, meshes, and resource files available.</p>
+<table>
+<thead>
+<tr>
+<th>Exercise</th>
+<th>Start from</th>
+<th>One change to study</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. Change stiffness</td>
+<td><a href="../cantilever.json">Cantilever</a></td>
+<td>Double <code>E</code> with the same load; compare displacement</td>
+</tr>
+<tr>
+<td>B. Change resolution</td>
+<td><a href="../cantilever.json">Cantilever</a></td>
+<td>Increase <code>space.discr_order</code>; compare displacement and cost</td>
+</tr>
+<tr>
+<td>C. Change boundary labeling</td>
+<td><a href="https://github.com/polyfem/polyfem-data/blob/main/selection/plane.json">Alien plane selection</a></td>
+<td>Compare with sphere or file selection; inspect affected sidesets</td>
+</tr>
+<tr>
+<td>D. Change a material region</td>
+<td><a href="https://github.com/polyfem/polyfem-data/blob/main/multi-material/stretch-cubes.json">Stretching cubes</a></td>
+<td>Change only middle-region <code>E</code></td>
+</tr>
+<tr>
+<td>E. Change time integration</td>
+<td><a href="https://github.com/polyfem/polyfem-data/blob/main/time-int/euler.json">Euler</a></td>
+<td>Compare its inherited scene with <a href="https://github.com/polyfem/polyfem-data/blob/main/time-int/newmark.json">Newmark</a></td>
+</tr>
+<tr>
+<td>F. Change FE basis</td>
+<td><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_mv.json">Polygonal Mean Value</a></td>
+<td>Compare with <a href="https://github.com/polyfem/polyfem-data/blob/main/standard/laplace_ws.json">Wachspress</a></td>
+</tr>
+<tr>
+<td>G. Identify mixed fields</td>
+<td><a href="https://github.com/polyfem/polyfem-data/blob/main/standard/stokes_static.json">Stokes</a></td>
+<td>Trace <code>velocity_space_id</code>, <code>pressure_space_id</code> and FE orders</td>
+</tr>
+</tbody>
+</table>
+<p>The goal is to explain <strong>why</strong> the result changed. If two cases also use different meshes, boundary conditions, or solver settings, they are not a controlled single-parameter comparison.</p>
+<h2 id="16-where-to-go-next">16. Where to go next<a class="headerlink" href="#16-where-to-go-next" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Time stepping and moving boundary conditions:</strong> the <a href="../../tutorials/getting_started/#time-dependent-simulation">full Getting Started tutorial</a> introduces <code>time.dt</code>, <code>time.tend</code>, and time-dependent expressions.</li>
+<li><strong>Contact and friction:</strong> the <a href="../../tutorials/ipc_quick_start_guide/ipc_quick_start_guide/">IPC Quick Start Guide</a> begins with two cubes falling onto a plane, then develops stiffness, collision, and time-step variations.</li>
+<li><strong>Several materials in one scene:</strong> see the <a href="../../tutorials/multi-material/multi-material/">Multi-Material tutorial</a>.</li>
+<li><strong>Real-world test scenes:</strong> explore the <a href="https://github.com/polyfem/polyfem-data">polyfem-data repository</a>. Its examples are useful as complete configurations, but some refer to meshes and shared JSON files elsewhere in that repository. <strong>Keep their relative paths intact</strong> when running them.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p><strong>The app cannot start.</strong> On macOS, follow the <a href="#macos-allow-the-app-to-open">Gatekeeper instructions above</a> for the verification warning. Check that the downloaded package matches your architecture (notably macOS ARM64 versus Intel). The GUI application is <code>polyfem_app</code>; <code>PolyFEM_bin</code> is the separate CLI executable.</p>
+<p><strong>Cannot open a mesh.</strong> Make sure you downloaded the linked mesh file, not a GitHub HTML page, and kept its name unchanged beside the JSON. The scalar input expects <code>plate_hole.obj</code>; the cantilever expects <code>bar.msh</code>.</p>
+<p><strong>The JSON cannot be parsed.</strong> JSON requires commas between entries, double-quoted keys, and no trailing comma after the last property. After an edit, check the commas between the <code>materials</code>, <code>boundary_conditions</code>, and <code>solver</code> blocks.</p>
+<p><strong>The app cannot load the JSON.</strong> Keep <code>run.json</code> with <code>plate_hole.obj</code>, or <code>cantilever.json</code> with <code>bar.msh</code>. The <strong>Load JSON</strong> button expects a JSON configuration, not a mesh file.</p>
+<p><strong>The simulation ran but you cannot see the result.</strong> Use the Output Directory shown by the app and look for <code>result.vtu</code>, <code>cantilever.vtu</code>, or the corresponding statistics JSON. Open the VTU file in ParaView and click <strong>Apply</strong>.</p>
+<p><strong>The result doesn&rsquo;t look like the picture.</strong> Check the chosen field and color scale. Elasticity results may need the <strong>Warp By Vector</strong> filter; the Laplacian example does not.</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      2026-11-03
+    
+  </small>
+</div>
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2018–2023 PolyFEM Group; <a href="https://github.com/polyfem/polyfem/blob/main/LICENSE">MIT License</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/polyfem" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.expand", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
